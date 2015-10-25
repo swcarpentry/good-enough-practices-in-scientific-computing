@@ -11,7 +11,7 @@
 * By definition, the "best" are a minority, so "best practices" are what only a minority does
 * This paper therefore looks instead at "good enough" practices
   * English lacks a good word for this: "mediocre" isn't appropriate
-* The world according to Titus Brown
+* [The world according to Titus Brown](http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html)
   * Version control
   * Checklists
 * A few more things
