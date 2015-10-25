@@ -1,7 +1,9 @@
 ---
 ---
 # Good Enough Practices for Scientific Computing
+
 ## Greg Wilson
+
 ## December 2015
 
 * Two years ago we wrote a paper called *Best Practices in Scientific Computing*
