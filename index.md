@@ -6,20 +6,53 @@
 
 ## December 2015
 
-* Two years ago we wrote a paper called *Best Practices in Scientific Computing*
-* That might have been misguided: many people find the whole catalog intimidating
-* By definition, the "best" are a minority, so "best practices" are what only a minority does
-* This paper therefore looks instead at "good enough" practices
-  * English lacks a good word for this: "mediocre" isn't appropriate
-* [The world according to Titus Brown](http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html)
+Two years ago we wrote a paper called
+*[Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)*
+That might have been misguided:
+many novices find the catalog intimidating,
+and by definition,
+the "best" are a minority,
+so "best practices" are what only a minority does.
+
+This paper therefore looks instead at "good enough" practices,
+i.e.,
+at the minimum every researcher should do.
+(Note that English lacks a good word for this:
+"mediocre" and "sufficient" aren't exactly right.)
+It draws inspiration from several sources, including:
+
+*   William Stafford Noble's
+    "[A Quick Guide to Organizing Computational Biology Projects rules](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)"
+*   Titus Brown's
+    "[How to grow a sustainable software development process](http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html)"
+*   Matthew Gentzkow and Jesse Shapiro's
+    "[Code and Data for the Social Sciences: A Practitioner's Guide](https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf)"
+*   Hadley Wickham's
+    "[Tidy Data](http://vita.had.co.nz/papers/tidy-data.pdf)"
+
+1.  Use version control to manage everything created directly by a human being.
+
+* minimum
   * Version control
-  * Checklists
-* A few more things
-  * Use a syntax-aware editor that handles indentation and tab completion
+  * Develop on branches
+  * Checklists for merging
+    * Tests passed
+    * Style guidelines are met
+    * Two-person rule (if you have collaborators)
+  * Key concept is *[technical debt](https://en.wikipedia.org/wiki/Technical_debt)*
+* What to add (in order)
+  * Use a syntax-aware editor
+    * Life is too short for people to indent code manually
+    * Tab completion is your friend
   * Name files so that pattern-matching is reliable
-  * Store numerical data as CSV with column headers that include units
-  * Normalize that data
+    * Field-field-field.type
+    * Dates as yyyy-mm-dd
+    * Same directory structure for everything
+    * 
+  * Store numerical data as normalized CSV
+    * 
     * Atomic values
+    * Column headers that include units
     * Keys for records
     * Each fact stored once
     * Use foreign keys to connect data sets
