@@ -30,55 +30,69 @@ It draws inspiration from several sources, including:
 *   Hadley Wickham's
     "[Tidy Data](http://vita.had.co.nz/papers/tidy-data.pdf)"
 
-1.  Use version control to manage everything created directly by a human being.
+## Version Control
 
-* minimum
-  * Version control
-  * Develop on branches
-  * Checklists for merging
-    * Tests passed
-    * Style guidelines are met
-    * Two-person rule (if you have collaborators)
-  * Key concept is *[technical debt](https://en.wikipedia.org/wiki/Technical_debt)*
-* What to add (in order)
-  * Use a syntax-aware editor
-    * Life is too short for people to indent code manually
-    * Tab completion is your friend
-  * Name files so that pattern-matching is reliable
-    * Field-field-field.type
-    * Dates as yyyy-mm-dd
-    * Same directory structure for everything
-    * 
-  * Store numerical data as normalized CSV
-    * 
-    * Atomic values
-    * Column headers that include units
-    * Keys for records
-    * Each fact stored once
-    * Use foreign keys to connect data sets
-    * Note: this is unnatural extra work if you're using a spreadsheet
-  * Break code into functions that:
-    * Are no more than 30 lines long
-    * Do not use global variables (constants are OK)
-    * Take no more than half a dozen parameters
-  * Learn a second data structure
-    * E.g., in Python, learn how to use a dictionary
-  * Write papers in plain text
-    * LaTeX, Markdown - doesn't matter
-    * Sad that this is necessary to play nicely with version control
-  * Write and save small programs (possibly shell scripts) to do every step
-    * Fetching data
-    * Deriving new data
-    * Generating figures
-    * Formatting the paper
-  * Treat parameters as data
-  * Verison control: everything branches from main and is merged with it
-* What's not on this list
-  * Build tools like Make: useful, but you can get there with a shell script that runs programs
-  * Defensive programming: not as useful for one-off exploratory work
-  * Unit tests: ditto
-  * Profiling: performance tuning is an engineering task
-  * Documentation: you'll start doing it as your work grows
-  * Code reviews: you're probably not sharing
-  * Pair programming: ditto
-  * Issue tracking: a notes file in version control is enough
+1.  Everything created by a human being goes under version control
+2.  Sub-directories in each project are organized according to Noble's rules:
+    *   `doc` for documents (such as papers)
+    *   `src` for source code of compiled programs (if any)
+    *   `bin` for executable scripts and programs
+    *   `data` for raw data files (or metadata needed to fetch data)
+    *   `results` for generated (intermediate) files
+3.  New development is done on branches
+    1.  All branches are created from master and merged to master
+    2.  If two or more people are working on the project, all changed are reviewed by someone other than their author before merging
+4.  The project repository contains a checklist of things that must pass before the merge can be done
+    1.  Style guidelines met
+    2.  Tests pass
+
+## Data Management
+
+1.  All data is stored in well-defined widely-used formats:
+    *   CSV or HDF5 for tabular data
+    *   JSON or YAML for referential data
+2.  All data is normalized:
+    *   Atomic values
+    *   Explicit units
+    *   Each fact stored once
+    *   Keys to identify and correct records
+3.  Filenames and directory names are semantically meaningful and structured to facilitate globbing
+    *   Files as field-field-field.type
+    *   Dates as yyyy-mm-dd
+
+## Software
+
+1.  Every analysis step is represented textually (complete with parameter values)
+2.  Programs of all kinds (including "scripts") are broken into functions that:
+    *   Are no more than one page long (60 lines, including spaces and comments)
+    *   Do not use global variables (constants are OK)
+    *   Take no more than half a dozen parameters
+3.  Functions are re-used, not duplicated
+4.  Functions and variables have meaningful names
+    *   The larger the scope, the more informative the name
+5.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
+
+## Papers
+
+1.  Papers are written in a plain text format such as LaTeX or Markdown
+    *   Sadly necessary to play nicely with version control
+2.  Tools needed to compile paper are managed just like tools used to do simulation or analysis
+
+## Collaboration
+
+1.  Every project has a short README file explaining its purpose
+    *   Includes a contact address that actually works
+2.  And a LICENSE file
+    *   CC-0 or CC-BY for data and text
+    *   MIT/BSD for code
+3.  And a CITATION file
+
+## What's Not on This List
+
+*   Build tools: you can get there with a shell script that re-runs programs
+*   Defensive programming and unit tests: don't always pay off for one-off exploratory work
+*   Profiling: performance tuning is an engineering task
+*   Data structures (e.g. dictionaries in Python): too many/too language-specific to single out
+*   Documentation: don't write until you have collaborators who will read it
+*   Code reviews and pair programming: you're probably not sharing
+*   Issue tracking: a notes file in version control is enough to start with
