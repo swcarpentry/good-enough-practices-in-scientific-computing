@@ -1,0 +1,3 @@
+*   Clarify what's meant by "documentation".
+*   Remember: Subversion worked.
+*   Use Google Docs to start - once you're comfortable with version control, switch to text.

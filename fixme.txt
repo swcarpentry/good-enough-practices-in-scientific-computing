@@ -1,1 +1,0 @@
-*   Clarify what's meant by "documentation".
