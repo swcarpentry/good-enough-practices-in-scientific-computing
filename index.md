@@ -29,6 +29,8 @@ It draws inspiration from several sources, including:
     "[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]"
 *   Hadley Wickham's
     "[Tidy Data][wickham-tidy]"
+*   Justin Kitzes' notes on
+    "[Creating a Reproducible Workflow][kitzes-reproducible]"
 
 A practice is included in this minimal list if:
 
@@ -36,27 +38,6 @@ A practice is included in this minimal list if:
     *   No point recommending something people won't be ready to do
 2.  The majority of our learners will actually adopt it after a workshop
     *   No point teaching something people aren't going to use
-
-## Version Control
-
-1.  Everything created by a human being goes under version control
-    *   With the possible exception of papers (discussed below)
-2.  Sub-directories in each project are organized according to Noble's rules:
-    *   `doc` for documents (such as papers, if you're storing them in version control)
-    *   `src` for source code of programs written in compiled languages like Fortran and Java (if any)
-    *   `bin` for executable scripts and programs
-        *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
-    *   `data` for raw data and metadata (including links for fetching data)
-    *   `results` for generated (intermediate) files
-        *   Most programmers frown on storing generated files (because you can regenerate them)
-        *   Researchers should so that they can easily tell if generated results have changed
-        *   Note that figures, tables, and other things expected to go into publications count as generated results
-3.  The project repository contains a checklist of things that must pass before the merge can be done
-    *   Style guidelines met
-    *   Tests pass
-    *   To-do list updated
-4.  The repository is mirrored on at least one machine that *isn't* the researcher's laptop
-    *   E.g., pushed to GitHub or sync'd with a departmental server
 
 ## Data Management
 
@@ -81,7 +62,11 @@ A practice is included in this minimal list if:
 ## Software
 
 1.  Every analysis step is represented textually (complete with parameter values)
-    *   Note: sometimes not possible (e.g., selection of region of interest in image)
+    *   Sometimes not possible to store the verb as text (e.g., selection of region of interest in image)
+    *   But should still store the result
+    *   Quoting Jonah Duckles,
+        "Duplicating the weather that generated a temperature log timeseries isn't going to happen, but we have a log of it.
+        I feel the same is true of hand-digitizing an AOI, we are concerned with the artifact, not necessarily how it came to be."
 2.  Every program or script has a brief explanatory comment at the start
     *   Which includes at least one example of use
 3.  Programs of all kinds (including "scripts") are broken into functions that:
@@ -92,6 +77,37 @@ A practice is included in this minimal list if:
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
+
+## Collaboration
+
+1.  Every project has a short README file explaining its purpose
+    *   Includes a contact address that actually works
+2.  And a LICENSE file
+    *   CC-0 or CC-BY for data and text
+    *   MIT/BSD for code
+3.  And a CITATION file
+4.  And a notes.txt file containing the to-do list and things people really need to know
+
+## Version Control
+
+1.  Everything created by a human being goes under version control
+    *   With the possible exception of papers (discussed below)
+2.  Sub-directories in each project are organized according to Noble's rules:
+    *   `doc` for documents (such as papers, if you're storing them in version control)
+    *   `src` for source code of programs written in compiled languages like Fortran and Java (if any)
+    *   `bin` for executable scripts and programs
+        *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
+    *   `data` for raw data and metadata (including links for fetching data)
+    *   `results` for generated (intermediate) files
+        *   Most programmers frown on storing generated files (because you can regenerate them)
+        *   Researchers should so that they can easily tell if generated results have changed
+        *   Note that figures, tables, and other things expected to go into publications count as generated results
+3.  The project repository contains a checklist of things that must pass before the merge can be done
+    *   Style guidelines met
+    *   Tests pass
+    *   To-do list updated
+4.  The repository is mirrored on at least one machine that *isn't* the researcher's laptop
+    *   E.g., pushed to GitHub or sync'd with a departmental server
 
 ## Papers
 
@@ -118,6 +134,21 @@ But to quote [Stephen Turner][turner-rebuttal]:
 > it always comes down to "just give me a Word document with tracked changes," or similar.
 > There's always a least common denominator who just isn't going to be on board for writing like this.
 
+and from [Jenny Bryant][bryant-rebuttal]:
+
+> Text is an area of consistent agony for me,
+> even when collaborating with people who have bought in to plain text,
+> version control, etc.
+> It is exacerbated when I have a collaborator who has never even heard of line endings or encoding.
+>
+> Those plain text files we all love?
+> If you've got people editing or even opening/closing them on different platforms,
+> possibly with locale set to something other than US English,
+> things can get weird.
+> Line endings cycle through \n, \r\n, and \r and "smart quotes" drive you crazy.
+>
+> Then you get large and uninformative diffs or the dreaded �.
+
 We therefore recommend:
 
 *   *Either:*
@@ -128,17 +159,10 @@ We therefore recommend:
     2.  A short text file is added to the `doc` directory with metadata about each online paper
         *   Just as the `data` directory might contain links rather than actual data
     3.  The paper is downloaded and saved in `doc` in an editable form (e.g., `.docx` or `.odt`) after major changes
-*   Either way, use vector graphics (e.g., SVG) for everything that isn't intrinsically raster (such as photographs)
-
-## Collaboration
-
-1.  Every project has a short README file explaining its purpose
-    *   Includes a contact address that actually works
-2.  And a LICENSE file
-    *   CC-0 or CC-BY for data and text
-    *   MIT/BSD for code
-3.  And a CITATION file
-4.  And a notes.txt file
+*   Either way, use a distributed web-based system for managing the paper so that everyone can collaborate on an equal footing
+*   Also, store graphics in vector formats (e.g., SVG) so that they can be resized without graininess
+    *   Use JPEG/PNG for actual images
+    *   And if the journal requires it
 
 ## What's Not on This List
 
@@ -151,6 +175,7 @@ We therefore recommend:
 *   Defensive programming and unit tests: usually aren't compelling for solo exploratory work at this stage in people's careers
     *   Note the lack of a `test` directory in [Noble's rules][noble-rules]
 *   Profiling: performance tuning is an engineering task
+*   Semantic Web: even simplified things like [Dublin Core][dublin-core] are rarely encountered in the wild
 *   Data structures (e.g. dictionaries in Python): too many/too language-specific to single out
 *   Documentation:
     *   In practice, people won't write comprehensive docs until they have collaborators who will read it
@@ -160,7 +185,10 @@ We therefore recommend:
 
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
+[bryant-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
+[dubin-core]: http://dublincore.org/
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
+[kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [wickham-tidy]: http://vita.had.co.nz/papers/tidy-data.pdf
