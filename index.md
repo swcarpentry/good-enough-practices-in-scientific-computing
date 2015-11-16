@@ -134,7 +134,7 @@ But to quote [Stephen Turner][turner-rebuttal]:
 > it always comes down to "just give me a Word document with tracked changes," or similar.
 > There's always a least common denominator who just isn't going to be on board for writing like this.
 
-and from [Jenny Bryant][bryant-rebuttal]:
+and from [Jenny Bryan][bryan-rebuttal]:
 
 > Text is an area of consistent agony for me,
 > even when collaborating with people who have bought in to plain text,
@@ -159,7 +159,7 @@ We therefore recommend:
     2.  A short text file is added to the `doc` directory with metadata about each online paper
         *   Just as the `data` directory might contain links rather than actual data
     3.  The paper is downloaded and saved in `doc` in an editable form (e.g., `.docx` or `.odt`) after major changes
-*   Either way, use a distributed web-based system for managing the paper so that everyone can collaborate on an equal footing
+*   Either way, use a distributed web-based system for managing the paper so that the master document is clearly defined and everyone can collaborate on an equal footing
 *   Also, store graphics in vector formats (e.g., SVG) so that they can be resized without graininess
     *   Use JPEG/PNG for actual images
     *   And if the journal requires it
