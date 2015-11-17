@@ -183,8 +183,8 @@ We therefore recommend:
 
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
-[bryant-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
-[dubin-core]: http://dublincore.org/
+[bryan-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
+[dublin-core]: http://dublincore.org/
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
