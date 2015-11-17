@@ -59,6 +59,22 @@ A practice is included in this minimal list if:
     *   Meanings and units of fields
     *   Stored as data not as text (e.g., a CSV table of data descriptors, not paragraphs of prose)
 
+Remember that even text---often thought of as a lowest common denominator---can be painful.
+[Jenny Bryan][bryan-rebuttal] writes:
+
+> Text is an area of consistent agony for me,
+> even when collaborating with people who have bought in to plain text,
+> version control, etc.
+> It is exacerbated when I have a collaborator who has never even heard of line endings or encoding.
+>
+> Those plain text files we all love?
+> If you've got people editing or even opening/closing them on different platforms,
+> possibly with locale set to something other than US English,
+> things can get weird.
+> Line endings cycle through \n, \r\n, and \r and "smart quotes" drive you crazy.
+>
+> Then you get large and uninformative diffs or the dreaded �.
+
 ## Software
 
 1.  Every analysis step is represented textually (complete with parameter values)
@@ -134,21 +150,6 @@ But to quote [Stephen Turner][turner-rebuttal]:
 > it always comes down to "just give me a Word document with tracked changes," or similar.
 > There's always a least common denominator who just isn't going to be on board for writing like this.
 
-and from [Jenny Bryan][bryan-rebuttal]:
-
-> Text is an area of consistent agony for me,
-> even when collaborating with people who have bought in to plain text,
-> version control, etc.
-> It is exacerbated when I have a collaborator who has never even heard of line endings or encoding.
->
-> Those plain text files we all love?
-> If you've got people editing or even opening/closing them on different platforms,
-> possibly with locale set to something other than US English,
-> things can get weird.
-> Line endings cycle through \n, \r\n, and \r and "smart quotes" drive you crazy.
->
-> Then you get large and uninformative diffs or the dreaded �.
-
 We therefore recommend:
 
 *   *Either:*
@@ -160,9 +161,6 @@ We therefore recommend:
         *   Just as the `data` directory might contain links rather than actual data
     3.  The paper is downloaded and saved in `doc` in an editable form (e.g., `.docx` or `.odt`) after major changes
 *   Either way, use a distributed web-based system for managing the paper so that the master document is clearly defined and everyone can collaborate on an equal footing
-*   Also, store graphics in vector formats (e.g., SVG) so that they can be resized without graininess
-    *   Use JPEG/PNG for actual images
-    *   And if the journal requires it
 
 ## What's Not on This List
 
