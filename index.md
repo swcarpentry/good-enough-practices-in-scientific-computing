@@ -31,6 +31,10 @@ It draws inspiration from several sources, including:
     "[Tidy Data][wickham-tidy]"
 *   Justin Kitzes' notes on
     "[Creating a Reproducible Workflow][kitzes-reproducible]"
+*   Sandve et al's
+    "[Ten Simple Rules for Reproducible Computational Research][sandve-reproducible]"
+*   Hart et al's
+    "[Ten Simple Rules for Digital Data Storage][hart-storage]"
 
 A practice is included in this minimal list if:
 
@@ -95,7 +99,10 @@ Remember that even text---often thought of as a lowest common denominator---can 
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
-7.  Submit code to a reputable DOI-issuing repository just like data
+7.  Commenting/uncommenting are not routinely used to control program behavior
+    *   Use if/else to control behavior
+    *   Use configuration files or command-line arguments for parameters
+8.  Submit code to a reputable DOI-issuing repository just like data
 
 ## Collaboration
 
@@ -191,7 +198,9 @@ We therefore recommend:
 [bryan-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
 [dublin-core]: http://dublincore.org/
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
+[hart-storage]: https://peerj.com/preprints/1448/
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
+[sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [wickham-tidy]: http://vita.had.co.nz/papers/tidy-data.pdf
