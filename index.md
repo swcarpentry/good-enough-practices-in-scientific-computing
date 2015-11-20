@@ -104,26 +104,29 @@ Remember that even text---often thought of as a lowest common denominator---can 
 3.  And a CITATION file
 4.  And a notes.txt file containing the to-do list and things people really need to know
 
+## Project Organization
+
+Sub-directories in each project are organized according to Noble's rules:
+
+1.  `doc` for documents (such as papers, if you're storing them in version control)
+2.  `src` for source code of programs written in compiled languages like Fortran and Java (if any)
+3.  `bin` for executable scripts and programs
+    *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
+4.  `data` for raw data and metadata (including links for fetching data)
+5.  `results` for generated (intermediate) files
+    *   Most programmers frown on storing generated files (because you can regenerate them)
+    *   Researchers should so that they can easily tell if generated results have changed
+    *   Note that figures, tables, and other things expected to go into publications count as generated results
+
 ## Version Control
 
 1.  Everything created by a human being goes under version control
     *   With the possible exception of papers (discussed below)
-2.  Sub-directories in each project are organized according to Noble's rules:
-    *   `doc` for documents (such as papers, if you're storing them in version control)
-    *   `src` for source code of programs written in compiled languages like Fortran and Java (if any)
-    *   `bin` for executable scripts and programs
-        *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
-    *   `data` for raw data and metadata (including links for fetching data)
-    *   `results` for generated (intermediate) files
-        *   Most programmers frown on storing generated files (because you can regenerate them)
-        *   Researchers should so that they can easily tell if generated results have changed
-        *   Note that figures, tables, and other things expected to go into publications count as generated results
-3.  The project repository contains a checklist of things that must pass before the merge can be done
-    *   Style guidelines met
-    *   Tests pass
-    *   To-do list updated
-4.  The repository is mirrored on at least one machine that *isn't* the researcher's laptop
+2.  The repository is mirrored on at least one machine that *isn't* the researcher's laptop
     *   E.g., pushed to GitHub or sync'd with a departmental server
+3.  The project repository contains a checklist of things that must pass before a change is shared with the world
+    *   Style guidelines met, to-do list updated, automated tests pass (if there are any)
+    *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's laptop
 
 ## Papers
 
