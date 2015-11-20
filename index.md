@@ -100,7 +100,8 @@ Remember that even text---often thought of as a lowest common denominator---can 
 
 1.  Every project has a short README file explaining its purpose
     *   Includes a contact address that actually works
-2.  And a notes.txt file containing the to-do list and things people really need to know
+2.  And a notes.txt file containing the to-do list
+    *   Aimed at contributors, where README is aimed at users
 3.  And a LICENSE file
     *   CC-0 or CC-BY for data and text
     *   MIT/BSD for code
