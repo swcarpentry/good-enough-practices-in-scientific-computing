@@ -93,6 +93,9 @@ Remember that even text---often thought of as a lowest common denominator---can 
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
+7.  Commenting/uncommenting are not routinely used to control program behavior
+    *   Use if/else to control behavior
+    *   Use configuration files or command-line arguments for parameters
 
 ## Collaboration
 
