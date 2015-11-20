@@ -46,6 +46,8 @@ A practice is included in this minimal list if:
         if a large volume of data is received
         in a format that is storage-inefficient or computationally inefficient to work with,
         transform it for storage with a lossless, well-documented procedure.
+    *   Prefer open non-proprietary formats to closed ones (they'll likely last longer)
+        *   See [this guide][uiuc-file-formats]
     *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
@@ -194,4 +196,5 @@ We therefore recommend:
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
+[uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickham-tidy]: http://vita.had.co.nz/papers/tidy-data.pdf
