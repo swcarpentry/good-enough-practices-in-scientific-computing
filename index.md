@@ -121,7 +121,9 @@ Remember that even text---often thought of as a lowest common denominator---can 
 Sub-directories in each project are organized according to Noble's rules:
 
 1.  `doc` for documents (such as papers, if you're storing them in version control)
-2.  `src` for source code of programs written in compiled languages like Fortran and Java (if any)
+2.  `src` for source code of programs written in compiled languages like Fortran, C++ and Java (if any)
+    *   Within that, obey languages rules or strong conventions about where source files have to go
+        (e.g., C++ header files, Python package structure)
 3.  `bin` for executable scripts and programs
     *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
 4.  `data` for raw data and metadata (including links for fetching data)
