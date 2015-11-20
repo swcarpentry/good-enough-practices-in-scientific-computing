@@ -49,7 +49,7 @@ A practice is included in this minimal list if:
     *   Each value is *atomic*, i.e., has no sub-parts
         *   Example: store personal and family names in separate fields
     *   Every record has a unique *key* so that it can be selected precisely
-4.  *Normalization* (the process of putting data into this form) is treated as a processing step
+4.  *Normalization* (the process of making data adhere to the rules in the preceding point) is treated as a processing step
     *   Raw data files are stored as they came
     *   Normalization steps are recorded textually in repeatable way
 5.  Filenames and directory names are semantically meaningful and structured to facilitate globbing
