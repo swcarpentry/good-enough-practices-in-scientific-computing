@@ -46,7 +46,7 @@ A practice is included in this minimal list if:
 ## Data Management
 
 1.  All raw data is stored in the format it came in (JPEG for photographs, WAV for birdsong recordings)
-2.  All syntheiszed data is stored in well-defined widely-used formats:
+2.  All synthetized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
     *   JSON or YAML for referential data
 3.  All data follows a few basic rules:
