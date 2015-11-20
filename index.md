@@ -41,8 +41,13 @@ A practice is included in this minimal list if:
 
 ## Data Management
 
-1.  All raw data is stored in the format it came in (JPEG for photographs, WAV for birdsong recordings)
-2.  All syntheiszed data is stored in well-defined widely-used formats:
+1.  Raw data should be stored exactly as it arrived (e.g., raw JPEGs for photographs)
+    *   But use common sense:
+        if a large volume of data is received
+        in a format that is storage-inefficient or computationally inefficient to work with,
+        transform it for storage with a lossless, well-documented procedure.
+    *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
+2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
     *   JSON or YAML for referential data
 3.  All data is normalized:
