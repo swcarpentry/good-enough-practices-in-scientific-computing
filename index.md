@@ -45,10 +45,11 @@ A practice is included in this minimal list if:
 2.  All syntheiszed data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
     *   JSON or YAML for referential data
-3.  All data is normalized:
-    *   Atomic values
-    *   Keys to identify and correct records
-4.  Normalization is treated as a processing step
+3.  All data follows a few basic rules:
+    *   Each value is *atomic*, i.e., has no sub-parts
+        *   Example: store personal and family names in separate fields
+    *   Every record has a unique *key* so that it can be selected precisely
+4.  *Normalization* (the process of putting data into this form) is treated as a processing step
     *   Raw data files are stored as they came
     *   Normalization steps are recorded textually in repeatable way
 5.  Filenames and directory names are semantically meaningful and structured to facilitate globbing
@@ -58,6 +59,7 @@ A practice is included in this minimal list if:
     *   Source(s) of data
     *   Meanings and units of fields
     *   Stored as data not as text (e.g., a CSV table of data descriptors, not paragraphs of prose)
+7.  Submit data to a reputable DOI-issuing repository so that others can access and cite it
 
 Remember that even text---often thought of as a lowest common denominator---can be painful.
 [Jenny Bryan][bryan-rebuttal] writes:
@@ -93,6 +95,7 @@ Remember that even text---often thought of as a lowest common denominator---can 
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
+7.  Submit code to a reputable DOI-issuing repository just like data
 
 ## Collaboration
 
@@ -102,6 +105,8 @@ Remember that even text---often thought of as a lowest common denominator---can 
     *   CC-0 or CC-BY for data and text
     *   MIT/BSD for code
 3.  And a CITATION file
+    *   How to cite this project overall
+    *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
 4.  And a notes.txt file containing the to-do list and things people really need to know
 
 ## Version Control
