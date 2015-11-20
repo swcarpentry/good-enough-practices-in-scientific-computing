@@ -87,7 +87,7 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 >
 > Formally structured metadata is often a valueless effort if the dataset will be stored independently
 > and not somewhere in a formal repository...
-> Beautifully filled out metadata XML files are for ingestion into a repository and/or directory.
+> Beautifully filled out metadata files are for ingestion into a repository and/or directory.
 > If the audience is humans, write it for humans.
 > If the audience includes metadata harvesters,
 > fill out the formal metadata and do a README for the humans.
