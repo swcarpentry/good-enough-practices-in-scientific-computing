@@ -122,11 +122,11 @@ Sub-directories in each project are organized according to Noble's rules:
 
 1.  Everything created by a human being goes under version control
     *   With the possible exception of papers (discussed below)
-2.  The repository is mirrored on at least one machine that *isn't* the researcher's laptop
+2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
 3.  The project repository contains a checklist of things that must pass before a change is shared with the world
     *   Style guidelines met, to-do list updated, automated tests pass (if there are any)
-    *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's laptop
+    *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's computer
 
 ## Papers
 
