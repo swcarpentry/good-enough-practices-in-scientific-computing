@@ -45,7 +45,14 @@ A practice is included in this minimal list if:
 
 ## Data Management
 
-1.  All raw data is stored in the format it came in (JPEG for photographs, WAV for birdsong recordings)
+1.  Raw data should be stored exactly as it arrived (e.g., raw JPEGs for photographs)
+    *   But use common sense:
+        if a large volume of data is received
+        in a format that is storage-inefficient or computationally inefficient to work with,
+        transform it for storage with a lossless, well-documented procedure.
+    *   Prefer open non-proprietary formats to closed ones (they'll likely last longer)
+        *   See [this guide][uiuc-file-formats]
+    *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
     *   JSON or YAML for referential data
@@ -208,4 +215,5 @@ We therefore recommend:
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
+[uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickham-tidy]: http://vita.had.co.nz/papers/tidy-data.pdf
