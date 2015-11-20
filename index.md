@@ -57,7 +57,8 @@ A practice is included in this minimal list if:
 6.  Metadata is stored explicitly in `data` as well
     *   Source(s) of data
     *   Meanings and units of fields
-    *   Stored as data not as text (e.g., a CSV table of data descriptors, not paragraphs of prose)
+    *   Stored in machine-readable form whenever possible
+        *   E.g., a CSV table of data descriptors, not paragraphs of prose
 
 Remember that even text---often thought of as a lowest common denominator---can be painful.
 [Jenny Bryan][bryan-comment-text] writes:
