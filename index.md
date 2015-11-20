@@ -106,7 +106,7 @@ Remember that even text---often thought of as a lowest common denominator---can 
 
 ## Version Control
 
-1.  Everything created by a human being goes under version control
+1.  Everything created by a human being goes under version control as soon as it's created
     *   With the possible exception of papers (discussed below)
 2.  Sub-directories in each project are organized according to Noble's rules:
     *   `doc` for documents (such as papers, if you're storing them in version control)
