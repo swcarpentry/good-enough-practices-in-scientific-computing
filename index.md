@@ -32,6 +32,8 @@ It draws inspiration from several sources, including:
 *   Justin Kitzes' notes on
     "[Creating a Reproducible Workflow][kitzes-reproducible]"
 
+Our audience is researchers who are working alone or with a small number of collaborators,
+and who are just starting to move beyond saving spreadsheets called `results-updated-3-revised.xlsx` in Dropbox.
 A practice is included in this minimal list if:
 
 1.  We routinely teach the skills needed to implement it in a two-day workshop
@@ -98,11 +100,16 @@ Remember that even text---often thought of as a lowest common denominator---can 
 
 1.  Every project has a short README file explaining its purpose
     *   Includes a contact address that actually works
-2.  And a LICENSE file
+2.  And a notes.txt file containing the to-do list and things people really need to know
+3.  And a LICENSE file
     *   CC-0 or CC-BY for data and text
     *   MIT/BSD for code
-3.  And a CITATION file
-4.  And a notes.txt file containing the to-do list and things people really need to know
+4.  And a CITATION file
+
+The first and second are to help you as well as other people---remember,
+your most important collaborator is yourself six months from now.
+The third and fourth items are there to make it easy for other people to help you
+and give you credit for your work.
 
 ## Version Control
 
