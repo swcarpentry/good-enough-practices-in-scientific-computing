@@ -100,7 +100,7 @@ Remember that even text---often thought of as a lowest common denominator---can 
     *   Includes a contact address that actually works
 2.  And a LICENSE file
     *   CC-0 or CC-BY for data and text
-    *   MIT/BSD for code
+    *   Permissive license (e.g., MIT/BSD/Apache) for software
 3.  And a CITATION file
 4.  And a notes.txt file containing the to-do list and things people really need to know
 
