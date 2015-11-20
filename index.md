@@ -31,6 +31,10 @@ It draws inspiration from several sources, including:
     "[Tidy Data][wickham-tidy]"
 *   Justin Kitzes' notes on
     "[Creating a Reproducible Workflow][kitzes-reproducible]"
+*   Sandve et al's
+    "[Ten Simple Rules for Reproducible Computational Research][sandve-reproducible]"
+*   Hart et al's
+    "[Ten Simple Rules for Digital Data Storage][hart-storage]"
 
 A practice is included in this minimal list if:
 
@@ -42,13 +46,14 @@ A practice is included in this minimal list if:
 ## Data Management
 
 1.  All raw data is stored in the format it came in (JPEG for photographs, WAV for birdsong recordings)
-2.  All syntheiszed data is stored in well-defined widely-used formats:
+2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
     *   JSON or YAML for referential data
-3.  All data is normalized:
-    *   Atomic values
-    *   Keys to identify and correct records
-4.  Normalization is treated as a processing step
+3.  All data follows a few basic rules:
+    *   Each value is *atomic*, i.e., has no sub-parts
+        *   Example: store personal and family names in separate fields
+    *   Every record has a unique *key* so that it can be selected precisely
+4.  *Normalization* (the process of making data adhere to the rules in the preceding point) is treated as a processing step
     *   Raw data files are stored as they came
     *   Normalization steps are recorded textually in repeatable way
 5.  Filenames and directory names are semantically meaningful and structured to facilitate globbing
@@ -58,6 +63,7 @@ A practice is included in this minimal list if:
     *   Source(s) of data
     *   Meanings and units of fields
     *   Stored as data not as text (e.g., a CSV table of data descriptors, not paragraphs of prose)
+7.  Submit data to a reputable DOI-issuing repository so that others can access and cite it
 
 Remember that even text---often thought of as a lowest common denominator---can be painful.
 [Jenny Bryan][bryan-rebuttal] writes:
@@ -93,6 +99,10 @@ Remember that even text---often thought of as a lowest common denominator---can 
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
+7.  Commenting/uncommenting are not routinely used to control program behavior
+    *   Use if/else to control behavior
+    *   Use configuration files or command-line arguments for parameters
+8.  Submit code to a reputable DOI-issuing repository just like data
 
 ## Collaboration
 
@@ -102,30 +112,33 @@ Remember that even text---often thought of as a lowest common denominator---can 
     *   CC-0 or CC-BY for data and text
     *   MIT/BSD for code
 3.  And a CITATION file
+    *   How to cite this project overall
+    *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
 4.  And a notes.txt file containing the to-do list and things people really need to know
+
+## Project Organization
+
+Sub-directories in each project are organized according to Noble's rules:
+
+1.  `doc` for documents (such as papers, if you're storing them in version control)
+2.  `src` for source code of programs written in compiled languages like Fortran and Java (if any)
+3.  `bin` for executable scripts and programs
+    *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
+4.  `data` for raw data and metadata (including links for fetching data)
+5.  `results` for generated (intermediate) files
+    *   Most programmers frown on storing generated files (because you can regenerate them)
+    *   Researchers should so that they can easily tell if generated results have changed
+    *   Note that figures, tables, and other things expected to go into publications count as generated results
 
 ## Version Control
 
 1.  Everything created by a human being goes under version control
     *   With the possible exception of papers (discussed below)
-2.  Sub-directories in each project are organized according to Noble's rules:
-    *   `doc` for documents (such as papers, if you're storing them in version control)
-    *   `src` for source code of programs written in compiled languages like Fortran, C++, and Java (if any)
-        *   Footnote: some languages have rules or strong conventions about where source files have to go
-            (e.g., C++ header files or Python package structure)
-    *   `bin` for executable scripts and programs
-        *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
-    *   `data` for raw data and metadata (including links for fetching data)
-    *   `results` for generated (intermediate) files
-        *   Most programmers frown on storing generated files (because you can regenerate them)
-        *   Researchers should so that they can easily tell if generated results have changed
-        *   Note that figures, tables, and other things expected to go into publications count as generated results
-3.  The project repository contains a checklist of things that must pass before the merge can be done
-    *   Style guidelines met
-    *   Tests pass
-    *   To-do list updated
-4.  The repository is mirrored on at least one machine that *isn't* the researcher's laptop
+2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
+3.  The project repository contains a checklist of things that must pass before a change is shared with the world
+    *   Style guidelines met, to-do list updated, automated tests pass (if there are any)
+    *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's computer
 
 ## Papers
 
@@ -188,7 +201,9 @@ We therefore recommend:
 [bryan-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
 [dublin-core]: http://dublincore.org/
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
+[hart-storage]: https://peerj.com/preprints/1448/
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
+[sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [wickham-tidy]: http://vita.had.co.nz/papers/tidy-data.pdf
