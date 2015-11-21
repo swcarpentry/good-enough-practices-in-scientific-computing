@@ -154,7 +154,7 @@ and give you credit for your work.
 
 Sub-directories in each project are organized according to Noble's rules:
 
-1.  `doc` for documents (such as papers, if you're storing them in version control)
+1.  `doc` for documents (such as manuscripts, if you're storing them in version control)
 2.  `src` for source code of programs written in compiled languages like Fortran, C++ and Java (if any)
     *   Within that, obey languages rules or strong conventions about where source files have to go
         (e.g., C++ header files, Python package structure)
@@ -169,7 +169,7 @@ Sub-directories in each project are organized according to Noble's rules:
 ## Version Control
 
 1.  Everything created by a human being goes under version control as soon as it's created
-    *   With the possible exception of papers (discussed below)
+    *   With the possible exception of manuscripts (discussed below)
 2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
 3.  The project repository contains a checklist of things that must pass before a change is shared with the world
@@ -180,12 +180,12 @@ Version control is useful even when you're working alone because it lets your pa
 For example, diff'ing the submitted and current revisions of a paper
 help with preparing a list of changes for the reply to referees.
 
-## Papers
+## Manuscripts
 
-We would like to require this:
+We would like to require this for papers, theses, technical reports, and other manuscripts:
 
-1.  Papers are written in a plain text format such as LaTeX or Markdown that plays nicely with version control
-2.  Tools needed to compile paper are managed just like tools used to do simulation or analysis
+1.  Manuscripts are written in a plain text format such as LaTeX or Markdown that plays nicely with version control
+2.  Tools needed to compile manuscripts are managed just like tools used to do simulation or analysis
 
 But to quote [Stephen Turner][turner-comment-docs]:
 
@@ -208,14 +208,14 @@ But to quote [Stephen Turner][turner-comment-docs]:
 We therefore recommend:
 
 *   *Either:*
-    1.  Papers are written in a plain text format such as LaTeX or Markdown that plays nicely with version control
-    2.  Tools needed to compile paper are managed just like tools used to do simulation or analysis
+    1.  Manuscripts are written in a plain text format such as LaTeX or Markdown that plays nicely with version control
+    2.  Tools needed to compile manuscripts are managed just like tools used to do simulation or analysis
 *   *Or:*
-    1.  Papers are written using Google Docs or some other online tools with rich formatting and change tracking
-    2.  A short text file is added to the `doc` directory with metadata about each online paper
+    1.  Manuscripts are written using Google Docs or some other online tools with rich formatting and change tracking
+    2.  A short text file is added to the `doc` directory with metadata about each online manuscript
         *   Just as the `data` directory might contain links rather than actual data
-    3.  The paper is downloaded and saved in `doc` in an editable form (e.g., `.docx` or `.odt`) after major changes
-*   Either way, use a distributed web-based system for managing the paper
+    3.  The manuscript is downloaded and saved in `doc` in an editable form (e.g., `.docx` or `.odt`) after major changes
+*   Either way, use a distributed web-based system for managing the manuscript
     so that the master document is clearly defined and everyone can collaborate on an equal footing
 
 Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
