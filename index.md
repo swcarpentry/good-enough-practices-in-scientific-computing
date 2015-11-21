@@ -69,11 +69,12 @@ A practice is included in this minimal list if:
 6.  Metadata is stored explicitly in `data` as well
     *   Source(s) of data
     *   Meanings and units of fields
-    *   Stored as data not as text (e.g., a CSV table of data descriptors, not paragraphs of prose)
+    *   Stored in machine-readable form whenever possible
+        *   E.g., a CSV table of data descriptors, not paragraphs of prose
 7.  Submit data to a reputable DOI-issuing repository so that others can access and cite it
 
 Remember that even text---often thought of as a lowest common denominator---can be painful.
-[Jenny Bryan][bryan-rebuttal] writes:
+[Jenny Bryan][bryan-comment-text] writes:
 
 > Text is an area of consistent agony for me,
 > even when collaborating with people who have bought in to plain text,
@@ -87,6 +88,22 @@ Remember that even text---often thought of as a lowest common denominator---can 
 > Line endings cycle through \n, \r\n, and \r and "smart quotes" drive you crazy.
 >
 > Then you get large and uninformative diffs or the dreaded �.
+
+Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
+
+> ...two types of metadata that often get conflated in dataset discussions:
+> metadata about the dataset as a whole
+> and metadata about the content within the dataset.
+> Most metadata schemas...are for the former use.
+> They are to describe the dataset as a unit,
+> e.g. author, funder, relevant papers, etc.
+>
+> Formally structured metadata is often a valueless effort if the dataset will be stored independently
+> and not somewhere in a formal repository...
+> Beautifully filled out metadata files are for ingestion into a repository and/or directory.
+> If the audience is humans, write it for humans.
+> If the audience includes metadata harvesters,
+> fill out the formal metadata and do a README for the humans.
 
 ## Software
 
@@ -158,7 +175,7 @@ We would like to require this:
 1.  Papers are written in a plain text format such as LaTeX or Markdown that plays nicely with version control
 2.  Tools needed to compile paper are managed just like tools used to do simulation or analysis
 
-But to quote [Stephen Turner][turner-rebuttal]:
+But to quote [Stephen Turner][turner-comment-docs]:
 
 > ...try explain the notion of compiling a document to an overworked physician you collaborate with.
 > Oh, but before that, you have to explain the difference between plain text and word processing.
@@ -221,7 +238,7 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
-[bryan-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
+[bryan-comment-text]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
 [dublin-core]: http://dublincore.org/
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
 [hart-storage]: https://peerj.com/preprints/1448/
@@ -229,6 +246,7 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
-[turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
+[turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
+[wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
 [wickham-tidy]: http://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf
