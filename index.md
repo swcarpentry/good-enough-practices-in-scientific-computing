@@ -261,4 +261,4 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
-[wickham-tidy]: http://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf
+[wickham-tidy]: http://www.jstatsoft.org/article/view/v059i10
