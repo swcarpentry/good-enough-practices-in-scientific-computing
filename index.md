@@ -141,7 +141,7 @@ Sub-directories in each project are organized according to Noble's rules:
 
 ## Version Control
 
-1.  Everything created by a human being goes under version control
+1.  Everything created by a human being goes under version control as soon as it's created
     *   With the possible exception of papers (discussed below)
 2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
