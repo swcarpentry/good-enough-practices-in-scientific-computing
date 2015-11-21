@@ -57,7 +57,7 @@ A practice is included in this minimal list if:
     *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
-    *   JSON or YAML for referential data
+    *   JSON, YAML, or XML for referential data, i.e. data that does not naturally form a rectangle
 3.  All data follows a few basic rules:
     *   Each value is *atomic*, i.e., has no sub-parts
         *   Example: store personal and family names in separate fields
