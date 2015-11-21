@@ -184,7 +184,19 @@ We therefore recommend:
     2.  A short text file is added to the `doc` directory with metadata about each online paper
         *   Just as the `data` directory might contain links rather than actual data
     3.  The paper is downloaded and saved in `doc` in an editable form (e.g., `.docx` or `.odt`) after major changes
-*   Either way, use a distributed web-based system for managing the paper so that the master document is clearly defined and everyone can collaborate on an equal footing
+*   Either way, use a distributed web-based system for managing the paper
+    so that the master document is clearly defined and everyone can collaborate on an equal footing
+
+Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
+
+> BK: I'm still not convinced about the necessity to track the manuscript for a single author.
+>
+> GW: The reviews I'm getting on this outline, and the ease of doing pre-commit review, convinces me.
+>
+> BK: That's because you have friends who care about and understand what you are writing.
+> This intersection is often empty for, say, a grad student.
+>
+> GW: Maybe if we provide better tools, we can help fix that.
 
 ## What's Not on This List
 
@@ -212,6 +224,7 @@ We therefore recommend:
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
 [hart-storage]: https://peerj.com/preprints/1448/
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
+[konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
