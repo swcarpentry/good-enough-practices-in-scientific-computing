@@ -102,7 +102,9 @@ Remember that even text---often thought of as a lowest common denominator---can 
     *   Are no more than one page long (60 lines, including spaces and comments)
     *   Do not use global variables (constants are OK)
     *   Take no more than half a dozen parameters
-4.  Functions are re-used, not duplicated
+4.  No duplication
+    *   Write and re-use functions instead of copying and pasting source code
+    *   Use data structures instead of variables like `score1`, `score2`, `score3`, etc.
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
