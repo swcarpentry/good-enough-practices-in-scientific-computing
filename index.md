@@ -36,6 +36,8 @@ It draws inspiration from several sources, including:
 *   Hart et al's
     "[Ten Simple Rules for Digital Data Storage][hart-storage]"
 
+Our audience is researchers who are working alone or with a small number of collaborators,
+and who are just starting to move beyond saving spreadsheets called `results-updated-3-revised.xlsx` in Dropbox.
 A practice is included in this minimal list if:
 
 1.  We routinely teach the skills needed to implement it in a two-day workshop
@@ -134,13 +136,19 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 
 1.  Every project has a short README file explaining its purpose
     *   Includes a contact address that actually works
-2.  And a LICENSE file
+2.  And a notes.txt file containing the to-do list
+    *   Aimed at contributors, where README is aimed at users
+3.  And a LICENSE file
     *   CC-0 or CC-BY for data and text
     *   Permissive license (e.g., MIT/BSD/Apache) for software
-3.  And a CITATION file
+4.  And a CITATION file
     *   How to cite this project overall
     *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
-4.  And a notes.txt file containing the to-do list and things people really need to know
+
+The first and second are to help you as well as other people---remember,
+your most important collaborator is yourself six months from now.
+The third and fourth items are there to make it easy for other people to help you
+and give you credit for your work.
 
 ## Project Organization
 
@@ -167,6 +175,10 @@ Sub-directories in each project are organized according to Noble's rules:
 3.  The project repository contains a checklist of things that must pass before a change is shared with the world
     *   Style guidelines met, to-do list updated, automated tests pass (if there are any)
     *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's computer
+
+Version control is useful even when you're working alone because it lets your past self collaborate with you.
+For example, diff'ing the submitted and current revisions of a paper
+help with preparing a list of changes for the reply to referees.
 
 ## Papers
 
