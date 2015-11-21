@@ -22,7 +22,7 @@ at the minimum every researcher should do.
 It draws inspiration from several sources, including:
 
 *   William Stafford Noble's
-    "[A Quick Guide to Organizing Computational Biology Projects rules][noble-rules]"
+    "[A Quick Guide to Organizing Computational Biology Projects][noble-rules]"
 *   Titus Brown's
     "[How to grow a sustainable software development process][brown-sustainable]"
 *   Matthew Gentzkow and Jesse Shapiro's
@@ -216,4 +216,4 @@ We therefore recommend:
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [turner-rebuttal]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
-[wickham-tidy]: http://vita.had.co.nz/papers/tidy-data.pdf
+[wickham-tidy]: http://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf
