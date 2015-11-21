@@ -65,8 +65,8 @@ A practice is included in this minimal list if:
 4.  *Normalization* (the process of making data adhere to the rules in the preceding point) is treated as a processing step
     *   Raw data files are stored as they came
     *   Normalization steps are recorded textually in repeatable way
-5.  Filenames and directory names are semantically meaningful and structured to facilitate globbing
-    *   Files as field-field-field.type
+5.  Filenames and directory names are semantically meaningful and anticipate the need to list and filter them programmatically, e.g. via regular expressions or "globbing".
+    *   Files as field-field-field.extension
     *   Dates as yyyy-mm-dd
 6.  Metadata is stored explicitly in `data` as well
     *   Source(s) of data
