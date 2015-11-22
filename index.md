@@ -112,14 +112,14 @@ Remember that even text---often thought of as a lowest common denominator---can 
 
 Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 
-> ...two types of metadata that often get conflated in dataset discussions:
-> metadata about the dataset as a whole
-> and metadata about the content within the dataset.
+> ...two types of metadata that often get conflated in data set discussions:
+> metadata about the data set as a whole
+> and metadata about the content within the data set.
 > Most metadata schemas...are for the former use.
-> They are to describe the dataset as a unit,
+> They are to describe the data set as a unit,
 > e.g. author, funder, relevant papers, etc.
 >
-> Formally structured metadata is often a valueless effort if the dataset will be stored independently
+> Formally structured metadata is often a valueless effort if the data set will be stored independently
 > and not somewhere in a formal repository...
 > Beautifully filled out metadata files are for ingestion into a repository and/or directory.
 > If the audience is humans, write it for humans.
@@ -142,8 +142,8 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
     *   Sometimes not possible to store the verb as text (e.g., selection of region of interest in image)
     *   But should still store the result
     *   Quoting Jonah Duckles,
-        "Duplicating the weather that generated a temperature log timeseries isn't going to happen, but we have a log of it.
-        I feel the same is true of hand-digitizing an AOI, we are concerned with the artifact, not necessarily how it came to be."
+        "Duplicating the weather that generated a temperature log time series isn't going to happen, but we have a log of it.
+        I feel the same is true of hand-digitizing an area of interest, we are concerned with the artifact, not necessarily how it came to be."
 2.  Every program or script has a brief explanatory comment at the start
     *   Which includes at least one example of use
 3.  Programs of all kinds (including "scripts") are broken into functions that:
@@ -338,7 +338,7 @@ We therefore recommend:
 
 ## FIXME
 
-*   Need to find link for "[The Hard Life of Open Source Software Project Newcomers by Stienmacher et al][steinmacher-newcomers]"
+*   Need to find link for "[The Hard Life of Open Source Software Project Newcomers by Steinmacher et al][steinmacher-newcomers]"
 
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
