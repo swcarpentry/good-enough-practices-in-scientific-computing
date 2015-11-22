@@ -56,8 +56,10 @@ A practice is included in this minimal list if:
         *   See [this guide][uiuc-file-formats]
     *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
-    *   CSV or HDF5 for tabular data
-    *   JSON, YAML, or XML for referential data, i.e. data that does not naturally form a rectangle
+    *   CSV for simple tabular data
+    *   JSON, YAML, or XML for non-tabular data such as graphs (the node-and-arc kind)
+    *   Note: prefer structured text for its longevity,
+        but HDF5 and other standardized formats should be used where appropriate
 3.  All data follows a few basic rules:
     *   Each value is *atomic*, i.e., has no sub-parts
         *   Example: store personal and family names in separate fields
@@ -65,7 +67,9 @@ A practice is included in this minimal list if:
 4.  *Normalization* (the process of making data adhere to the rules in the preceding point) is treated as a processing step
     *   Raw data files are stored as they came
     *   Normalization steps are recorded textually in repeatable way
-5.  Filenames and directory names are semantically meaningful and anticipate the need to list and filter them programmatically, e.g. via regular expressions or "globbing".
+5.  Filenames and directory names are semantically meaningful
+    and anticipate the need to list and filter them programmatically,
+    e.g. via regular expressions or "globbing".
     *   Files as field-field-field.extension
     *   Dates as yyyy-mm-dd
 6.  Metadata is stored explicitly in `data` as well
