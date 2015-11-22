@@ -176,9 +176,18 @@ Sub-directories in each project are organized according to Noble's rules:
     *   Style guidelines met, to-do list updated, automated tests pass (if there are any)
     *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's computer
 
-Version control is useful even when you're working alone because it lets your past self collaborate with you.
-For example, diff'ing the submitted and current revisions of a paper
-help with preparing a list of changes for the reply to referees.
+Motivations for version control include:
+
+*   *Reproducibility:*
+    for your future self (when you get the referee's report a year from now),
+    your lab-mates and collaborators (in case you leave the project),
+    and (heaven forbid) the person who accuses you of making up your data.
+*   *Efficiency:*
+    if data and files are stored in a standard way,
+    your future self can come back to a project in 6 months and not have to spend 2 days figuring out what's what.
+    Ditto for someone else trying to take what you've done and go in a new direction.
+*   *Fixability:*
+    version control of code, figures, and data helps you figure out why Figure 4 looks different now from last week.
 
 ## Manuscripts
 
