@@ -57,7 +57,7 @@ A practice is included in this minimal list if:
     *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV or HDF5 for tabular data
-    *   JSON or YAML for referential data
+    *   JSON, YAML, or XML for referential data, i.e. data that does not naturally form a rectangle
 3.  All data follows a few basic rules:
     *   Each value is *atomic*, i.e., has no sub-parts
         *   Example: store personal and family names in separate fields
@@ -65,8 +65,8 @@ A practice is included in this minimal list if:
 4.  *Normalization* (the process of making data adhere to the rules in the preceding point) is treated as a processing step
     *   Raw data files are stored as they came
     *   Normalization steps are recorded textually in repeatable way
-5.  Filenames and directory names are semantically meaningful and structured to facilitate globbing
-    *   Files as field-field-field.type
+5.  Filenames and directory names are semantically meaningful and anticipate the need to list and filter them programmatically, e.g. via regular expressions or "globbing".
+    *   Files as field-field-field.extension
     *   Dates as yyyy-mm-dd
 6.  Metadata is stored explicitly in `data` as well
     *   Source(s) of data
@@ -261,4 +261,4 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
-[wickham-tidy]: http://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf
+[wickham-tidy]: http://www.jstatsoft.org/article/view/v059i10
