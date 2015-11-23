@@ -2,9 +2,11 @@
 ---
 # Good Enough Practices for Scientific Computing
 
-## Greg Wilson
-
-## December 2015
+> Jenny Bryan, Lex Nederbragt, and Greg Wilson
+>
+> December 2015
+>
+> [https://github.com/swcarpentry/good-enough-practices-in-scientific-computing][repo-url]
 
 Two years ago we wrote a paper called
 *[Best Practices for Scientific Computing][best-practices]*
@@ -261,6 +263,7 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
+[repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
