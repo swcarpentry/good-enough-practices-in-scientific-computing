@@ -265,6 +265,26 @@ FIXME
 
 FIXME
 
+Many new learners find version control software
+confusing and difficult to grasp.
+Furthermore, many of the benefits of version control only become apparent
+for very large projects, with many collaborators.
+It can be tempting for novice learners to want to revert back to using
+"Save As" when they update files,
+or relying on an automated backup system
+like Apple's Time Machine or Dropbox
+to save the history of a project.
+
+Even given the extra work for novices,
+we advise making the effort to use version control software right away.
+There are several features that version control software provides
+that helps meet the Goals above, particularly for code files.
+
+-   It encourages atomic changes to files (see data management) that can be more easily found, discussed, and if necessary undone, as compared to one large change. This is especially important for isolating code bugs.
+-   Version control provides an automated way to merge many different changes from different collaborators, especially important if several people are working on one file simultaneously
+-   Web services like GitHub provide an easy and discoverable way to easily publish and share projects and their updates
+-   Learning version control now will scale small projects to large ones without needing to retool
+
 ## Manuscripts
 
 ### Goals
