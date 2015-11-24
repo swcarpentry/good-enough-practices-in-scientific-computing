@@ -18,7 +18,7 @@ so "best practices" are what only a minority does.
 
 This paper therefore looks instead at "good enough" practices,
 i.e.,
-at the minimum every researcher should do.
+at the minimum set of recommendations we address to every researcher.
 (Note that English lacks a good word for this:
 "mediocre" and "sufficient" aren't exactly right.)
 It draws inspiration from several sources, including:
