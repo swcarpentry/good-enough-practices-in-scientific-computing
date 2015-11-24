@@ -320,6 +320,10 @@ We therefore recommend:
 
 ### Discussion
 
+PLACEHOLDER: Why not Microsoft Word or OpenOffice?
+
+PLACEHOLDER: Should we recommend automated bibliography tools of some kind?
+
 [Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
 
 > BK: I'm still not convinced about the necessity to track the manuscript for a single author.
