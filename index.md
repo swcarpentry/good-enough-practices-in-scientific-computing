@@ -255,6 +255,7 @@ FIXME
 
 1.  Everything created by a human being goes under version control as soon as it's created
     *   With the possible exception of manuscripts (discussed below)
+    *   And the possible exception of raw data, especially if large
 2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
 3.  The project repository contains a checklist of things that must pass before a change is shared with the world
@@ -284,6 +285,14 @@ that helps meet the Goals above, particularly for code files.
 -   Version control provides an automated way to merge many different changes from different collaborators, especially important if several people are working on one file simultaneously
 -   Web services like GitHub provide an easy and discoverable way to easily publish and share projects and their updates
 -   Learning version control now will scale small projects to large ones without needing to retool
+
+Raw data, when saved in its initial input state, needs to be backed up,
+but may or may not be a good candidate for version control.
+If a file is small, placing data in a version control repository
+allows it to travel with the project, supporting reproducibility.
+However very large data sets,
+or those for which legal restrictions prohibit sharing,
+may be left out of a version control repository.
 
 ## Manuscripts
 
