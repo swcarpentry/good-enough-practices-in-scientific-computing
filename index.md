@@ -2,9 +2,11 @@
 ---
 # Good Enough Practices for Scientific Computing
 
-## Greg Wilson
-
-## December 2015
+> Jenny Bryan, Lex Nederbragt, and Greg Wilson
+>
+> December 2015
+>
+> [https://github.com/swcarpentry/good-enough-practices-in-scientific-computing][repo-url]
 
 Two years ago we wrote a paper called
 *[Best Practices for Scientific Computing][best-practices]*
@@ -156,14 +158,14 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
     *   Take no more than half a dozen parameters
 4.  No duplication
     *   Write and re-use functions instead of copying and pasting source code
-    *   Use data structures instead of variables like `score1`, `score2`, `score3`, etc.
+    *   Use data structures, e.g. a list called `scores` instead of lots of variables called `score1`, `score2`, `score3`, etc.
 5.  Functions and variables have meaningful names
     *   The larger the scope, the more informative the name
 6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
 7.  Commenting/uncommenting are not routinely used to control program behavior
     *   Use if/else to control behavior
     *   Use configuration files or command-line arguments for parameters
-8.  Submit code to a reputable DOI-issuing repository just like data
+8.  Submit code to a reputable DOI-issuing repository upon submission of paper, just like data
 
 ### Discussion
 
@@ -186,7 +188,7 @@ FIXME
 
 1.  Every project has a short README file explaining its purpose
     *   Includes a contact address that actually works
-2.  And a notes.txt file containing the to-do list
+2.  And a plain text file (often called notes.txt or todo.txt) containing the to-do list
     *   Aimed at contributors, where README is aimed at users
 3.  And a LICENSE file
     *   CC-0 or CC-BY for data and text
@@ -194,12 +196,14 @@ FIXME
 4.  And a CITATION file
     *   How to cite this project overall
     *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
+5.  And a simple simple example or test data set to run to tell if it's working at all
+    *   A *smoke test*
 
 ### Discussion
 
 The first and second are to help you as well as other people---remember,
 your most important collaborator is yourself six months from now.
-The third and fourth items are there to make it easy for other people to help you
+The third, fourth, and fifth items are there to make it easy for other people to help you
 and give you credit for your work.
 
 ## Project Organization
@@ -254,7 +258,7 @@ FIXME
 2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
 3.  The project repository contains a checklist of things that must pass before a change is shared with the world
-    *   Style guidelines met, to-do list updated, automated tests pass (if there are any)
+    *   Style guidelines met, to-do list updated, smoke test(s) pass
     *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's computer
 
 ### Discussion
@@ -354,6 +358,7 @@ We therefore recommend:
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
+[repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [steinmacher-newcomers]: FIXME
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
