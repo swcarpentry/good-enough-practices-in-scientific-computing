@@ -47,7 +47,24 @@ A practice is included in this minimal list if:
 2.  The majority of our learners will actually adopt it after a workshop
     *   No point teaching something people aren't going to use
 
+Many rules are for the benefit of your future self,
+because your past self doesn't answer email.
+
 ## Data Management
+
+### Goals
+
+1.  Data should be [findable, accessible, interoperable and reusable][fair-data]
+    so that people (including your future self) can use it in ways you didn't anticipate,
+    without pestering you with questions.
+2.  Data should also be comprehensible (also called "human readable"),
+    i.e.,
+    potential collaborators should easily be able to understand what the data contains.
+3.  Data should be *machine readable*,
+    i.e.,
+    programs should be able to load data correctly without extra programming effort.
+
+### Rules
 
 1.  Raw data should be stored exactly as it arrived (e.g., raw JPEGs for photographs)
     *   But use common sense:
@@ -81,6 +98,8 @@ A practice is included in this minimal list if:
         *   E.g., a CSV table of data descriptors, not paragraphs of prose
 7.  Submit data to a reputable DOI-issuing repository so that others can access and cite it
 
+### Discussion
+
 Remember that even text---often thought of as a lowest common denominator---can be painful.
 [Jenny Bryan][bryan-comment-text] writes:
 
@@ -99,14 +118,14 @@ Remember that even text---often thought of as a lowest common denominator---can 
 
 Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 
-> ...two types of metadata that often get conflated in dataset discussions:
-> metadata about the dataset as a whole
-> and metadata about the content within the dataset.
+> ...two types of metadata that often get conflated in data set discussions:
+> metadata about the data set as a whole
+> and metadata about the content within the data set.
 > Most metadata schemas...are for the former use.
-> They are to describe the dataset as a unit,
+> They are to describe the data set as a unit,
 > e.g. author, funder, relevant papers, etc.
 >
-> Formally structured metadata is often a valueless effort if the dataset will be stored independently
+> Formally structured metadata is often a valueless effort if the data set will be stored independently
 > and not somewhere in a formal repository...
 > Beautifully filled out metadata files are for ingestion into a repository and/or directory.
 > If the audience is humans, write it for humans.
@@ -115,12 +134,22 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 
 ## Software
 
+### Goals
+
+1.  Make it easy for people (again, including your future self) to understand and (re)use your code
+    *   The easier software is to use, the more likely people are to do so
+    *   Which in turn makes them more likely to collaborate with you and/or give you credit for your work
+2.  Modular, comprehensible, reusable, and testable all come together
+    *   Building software this way also happens to be the key to productivity
+
+### Rules
+
 1.  Every analysis step is represented textually (complete with parameter values)
     *   Sometimes not possible to store the verb as text (e.g., selection of region of interest in image)
     *   But should still store the result
     *   Quoting Jonah Duckles,
-        "Duplicating the weather that generated a temperature log timeseries isn't going to happen, but we have a log of it.
-        I feel the same is true of hand-digitizing an AOI, we are concerned with the artifact, not necessarily how it came to be."
+        "Duplicating the weather that generated a temperature log time series isn't going to happen, but we have a log of it.
+        I feel the same is true of hand-digitizing an area of interest, we are concerned with the artifact, not necessarily how it came to be."
 2.  Every program or script has a brief explanatory comment at the start
     *   Which includes at least one example of use
 3.  Programs of all kinds (including "scripts") are broken into functions that:
@@ -138,7 +167,26 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
     *   Use configuration files or command-line arguments for parameters
 8.  Submit code to a reputable DOI-issuing repository upon submission of paper, just like data
 
+### Discussion
+
+FIXME
+
 ## Collaboration
+
+### Goals
+
+1.  Again, the easier it is for people to collaborate, the more likely they are to do so
+    (and to give you credit)
+2.  Two most reported barriers from [Steinmacher et al][steinmacher-newcomers]
+    are finding a task to start on
+    and problems setting up the local workspace to start work
+    *   So remove those
+3.  Additional disincentive is uncertainty: what am I allowed to do?
+    *   So remove that as well
+    *   Lack of an explicit license implies the author is keeping all rights
+        and others are not allowed to re-use
+
+### Rules
 
 1.  Every project has a short README file explaining its purpose
     *   Includes a contact address that actually works
@@ -153,12 +201,24 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 5.  And a simple simple example or test data set to run to tell if it's working at all
     *   A *smoke test*
 
+### Discussion
+
 The first and second are to help you as well as other people---remember,
 your most important collaborator is yourself six months from now.
 The third, fourth, and fifth items are there to make it easy for other people to help you
 and give you credit for your work.
 
 ## Project Organization
+
+### Goals
+
+1.  Convention over configuration
+    (why add cognitive load of different layout unless there's significant demonstrable advantage?)
+2.  Support the ways tools work and reduce possibility for error
+    *   E.g., separating source data from processed data reduces odds of mistakenly re-processing files
+3.  Project should be able to grow and be revisited without major reorganization or inconsistency
+
+### Rules
 
 Sub-directories in each project are organized according to Noble's rules:
 
@@ -174,7 +234,26 @@ Sub-directories in each project are organized according to Noble's rules:
     *   Researchers should so that they can easily tell if generated results have changed
     *   Note that figures, tables, and other things expected to go into publications count as generated results
 
+### Discussion
+
+FIXME
+
 ## Version Control
+
+### Goals
+
+*   *Reproducibility:*
+    for your future self (when you get the referee's report a year from now),
+    your lab-mates and collaborators (in case you leave the project),
+    and (heaven forbid) the person who accuses you of making up your data.
+*   *Efficiency:*
+    if data and files are stored in a standard way,
+    your future self can come back to a project in 6 months and not have to spend 2 days figuring out what's what.
+    Ditto for someone else trying to take what you've done and go in a new direction.
+*   *Fixability:*
+    version control of code, figures, and data helps you figure out why Figure 4 looks different now from last week.
+
+### Rules
 
 1.  Everything created by a human being goes under version control as soon as it's created
     *   With the possible exception of manuscripts (discussed below)
@@ -184,11 +263,20 @@ Sub-directories in each project are organized according to Noble's rules:
     *   Style guidelines met, to-do list updated, smoke test(s) pass
     *   Note: "shared with the world" means "pushed to GitHub" or however else changes are copied off the researcher's computer
 
-Version control is useful even when you're working alone because it lets your past self collaborate with you.
-For example, diff'ing the submitted and current revisions of a paper
-help with preparing a list of changes for the reply to referees.
+### Discussion
+
+FIXME
 
 ## Manuscripts
+
+### Goals
+
+1.  Reduce chances of work being lost or people overwriting each other's work.
+2.  Make it easy to track revisions.
+3.  Make it easy to regenerate the final shared form (e.g., the PDF),
+    and to tell if the PDF in hand is up to date.
+
+### Rules
 
 We would like to require this for papers, theses, technical reports, and other manuscripts:
 
@@ -226,7 +314,9 @@ We therefore recommend:
 *   Either way, use a distributed web-based system for managing the manuscript
     so that the master document is clearly defined and everyone can collaborate on an equal footing
 
-Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
+### Discussion
+
+[Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
 
 > BK: I'm still not convinced about the necessity to track the manuscript for a single author.
 >
@@ -256,10 +346,15 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 *   Code reviews and pair programming: you're probably not sharing or collaborating at this stage
 *   Issue tracking: a notes file in version control is enough to start with
 
+## FIXME
+
+*   Need to find link for "[The Hard Life of Open Source Software Project Newcomers by Steinmacher et al][steinmacher-newcomers]"
+
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
 [bryan-comment-text]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
 [dublin-core]: http://dublincore.org/
+[fair-data]: http://datafairport.org/fair-principles-living-document-menu
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
 [hart-storage]: https://peerj.com/preprints/1448/
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
@@ -267,6 +362,7 @@ Regarding collaboration, [Bernhard Konrad][konrad-comment-tracking] and the lead
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
+[steinmacher-newcomers]: FIXME
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
