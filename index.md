@@ -183,6 +183,8 @@ FIXME
     *   So remove those
 3.  Additional disincentive is uncertainty: what am I allowed to do?
     *   So remove that as well
+    *   Lack of an explicit license implies the author is keeping all rights
+        and others are not allowed to re-use
 
 ### Rules
 
