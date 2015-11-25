@@ -229,6 +229,9 @@ Sub-directories in each project are organized according to Noble's rules:
 3.  `bin` for executable scripts and programs
     *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
 4.  `data` for raw data and metadata (including links for fetching data)
+    *   Use a sub-directory for each data set if the project uses more than one
+    *   Modern file systems can handle hundreds of thousands of files in a directory,
+        but displaying contents is problematic
 5.  `results` for generated (intermediate) files
     *   Most programmers frown on storing generated files (because you can regenerate them)
     *   Researchers should so that they can easily tell if generated results have changed
