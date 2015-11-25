@@ -393,10 +393,6 @@ but discussion of those is outside the scope of this paper.
 *   Code reviews and pair programming: you're probably not sharing or collaborating at this stage
 *   Issue tracking: a notes file in version control is enough to start with
 
-## FIXME
-
-*   Need to find link for "[The Hard Life of Open Source Software Project Newcomers by Steinmacher et al][steinmacher-newcomers]"
-
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
 [bryan-comment-text]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
@@ -409,7 +405,7 @@ but discussion of those is outside the scope of this paper.
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
-[steinmacher-newcomers]: FIXME
+[steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673 "Steinmacher et al, The hard life of open source software project newcomers, Procs. 7th Int. Workshop on Cooperative and Human Aspects of Software Engineering. ACM, 2014."
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
