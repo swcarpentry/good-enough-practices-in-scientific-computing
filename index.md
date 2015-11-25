@@ -325,9 +325,17 @@ We therefore recommend:
 
 ### Discussion
 
-PLACEHOLDER: Why not Microsoft Word or OpenOffice?
+We recommend against traditional desktop tools like LibreOffice and Microsoft Word
+because they make collaboration more difficult than either of our recommended alternatives:
 
-PLACEHOLDER: Should we recommend automated bibliography tools of some kind?
+*   If the document lives online (Google Docs),
+    then everyone's changes are in one place,
+    and hence don't need to be merged manually.
+*   If the document lives in a version control system,
+    it provides good support for finding and merging differences resulting from concurrent changes.
+
+We also believe that researchers should use a bibliography manager of some sort,
+but discussion of those is outside the scope of this paper.
 
 [Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
 
