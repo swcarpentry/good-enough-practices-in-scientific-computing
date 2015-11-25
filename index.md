@@ -263,6 +263,7 @@ FIXME
 
 1.  Everything created by a human being goes under version control as soon as it's created
     *   With the possible exception of manuscripts (discussed below)
+    *   And the possible exception of raw data, especially if large
 2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer
     *   E.g., pushed to GitHub or sync'd with a departmental server
 3.  The project repository contains a checklist of things that must pass before a change is shared with the world
@@ -272,6 +273,34 @@ FIXME
 ### Discussion
 
 FIXME
+
+Many new learners find version control software
+confusing and difficult to grasp.
+Furthermore, many of the benefits of version control only become apparent
+for very large projects, with many collaborators.
+It can be tempting for novice learners to want to revert back to using
+"Save As" when they update files,
+or relying on an automated backup system
+like Apple's Time Machine or Dropbox
+to save the history of a project.
+
+Even given the extra work for novices,
+we advise making the effort to use version control software right away.
+There are several features that version control software provides
+that helps meet the Goals above, particularly for code files.
+
+-   It encourages atomic changes to files (see data management) that can be more easily found, discussed, and if necessary undone, as compared to one large change. This is especially important for isolating code bugs.
+-   Version control provides an automated way to merge many different changes from different collaborators, especially important if several people are working on one file simultaneously
+-   Web services like GitHub provide an easy and discoverable way to easily publish and share projects and their updates
+-   Learning version control now will scale small projects to large ones without needing to retool
+
+Raw data, when saved in its initial input state, needs to be backed up,
+but may or may not be a good candidate for version control.
+If a file is small, placing data in a version control repository
+allows it to travel with the project, supporting reproducibility.
+However very large data sets,
+or those for which legal restrictions prohibit sharing,
+may be left out of a version control repository.
 
 ## Manuscripts
 
