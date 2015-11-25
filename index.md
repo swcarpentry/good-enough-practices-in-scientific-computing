@@ -54,13 +54,14 @@ because your past self doesn't answer email.
 
 ### Goals
 
-1.  Data should be [findable, accessible, interoperable and reusable][fair-data]
+1.  You should never lose data.
+2.  Data should be [findable, accessible, interoperable and reusable][fair-data]
     so that people (including your future self) can use it in ways you didn't anticipate,
     without pestering you with questions.
-2.  Data should also be comprehensible (also called "human readable"),
+3.  Data should also be comprehensible (also called "human readable"),
     i.e.,
     potential collaborators should easily be able to understand what the data contains.
-3.  Data should be *machine readable*,
+4.  Data should be *machine readable*,
     i.e.,
     programs should be able to load data correctly without extra programming effort.
 
@@ -255,6 +256,8 @@ FIXME
     Ditto for someone else trying to take what you've done and go in a new direction.
 *   *Fixability:*
     version control of code, figures, and data helps you figure out why Figure 4 looks different now from last week.
+*   *Sharing and Collaboration:*
+    version control tools make it easy to share projects and update them, sometimes simultaneously, with other collaborators
 
 ### Rules
 
@@ -274,10 +277,13 @@ FIXME
 
 ### Goals
 
-1.  Reduce chances of work being lost or people overwriting each other's work.
-2.  Make it easy to track revisions.
+1.  Make text accessible to yourself and others now and in the future
+2.  Reduce chances of work being lost or people overwriting each other's work.
+2.  Make it easy to track and combine contributions from multiple collaborators.
+3.  Avoid duplication and manual entry of information, particularly in constructing bibliographies, tables of contents, and lists
 3.  Make it easy to regenerate the final shared form (e.g., the PDF),
     and to tell if the PDF in hand is up to date.
+4.  Make it easy to share the final version with collaborators and submit it to journals
 
 ### Rules
 
@@ -318,6 +324,10 @@ We therefore recommend:
     so that the master document is clearly defined and everyone can collaborate on an equal footing
 
 ### Discussion
+
+PLACEHOLDER: Why not Microsoft Word or OpenOffice?
+
+PLACEHOLDER: Should we recommend automated bibliography tools of some kind?
 
 [Bernhard Konrad][konrad-comment-tracking] and the lead author had this exchange:
 
