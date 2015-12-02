@@ -166,7 +166,9 @@ Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
 7.  Commenting/uncommenting are not routinely used to control program behavior
     *   Use if/else to control behavior
     *   Use configuration files or command-line arguments for parameters
-8.  Submit code to a reputable DOI-issuing repository upon submission of paper, just like data
+8.  And a simple example or test data set to run to tell if it's working at all and whether it gives a known correct output for a simple known input
+    *   A system/integration test that checks that the entire program at once for a case similar to the real analysis
+9.  Submit code to a reputable DOI-issuing repository upon submission of paper, just like data
 
 ### Discussion
 
@@ -199,8 +201,6 @@ FIXME
 4.  And a CITATION file
     *   How to cite this project overall
     *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
-5.  And a simple simple example or test data set to run to tell if it's working at all
-    *   A *smoke test*
 
 ### Discussion
 
