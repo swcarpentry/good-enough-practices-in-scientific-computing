@@ -2,7 +2,7 @@
 ---
 # Good Enough Practices for Scientific Computing
 
-> Jenny Bryan, Karen Cranston, Lex Nederbragt, and Greg Wilson
+> Jenny Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy Teal, and Greg Wilson
 >
 > December 2015
 >
