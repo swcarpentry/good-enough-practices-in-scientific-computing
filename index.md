@@ -2,11 +2,11 @@
 ---
 # Good Enough Practices for Scientific Computing
 
-> Jenny Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy Teal, and Greg Wilson
->
-> December 2015
->
-> [https://github.com/swcarpentry/good-enough-practices-in-scientific-computing][repo-url]
+*   Jenny Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy Teal, and Greg Wilson
+*   January 2016
+*   [https://github.com/swcarpentry/good-enough-practices-in-scientific-computing][repo-url]
+
+## Introduction
 
 Two years ago we wrote a paper called
 *[Best Practices for Scientific Computing][best-practices]*
@@ -376,22 +376,102 @@ but discussion of those is outside the scope of this paper.
 
 ## What's Not on This List
 
-*   Branches:
-    *   We got along fine without them in the days of CVS and Subversion
-    *   And they can be added later without disrupting anything
-*   Build tools: you can get there with a shell script that re-runs programs
-*   Automated pre-commit checks: will emerge naturally as people become comfortable with automating repetitive tasks
-*   Continuous integration: comes after use of build tools and automating pre-commit checks
-*   Defensive programming and unit tests: usually aren't compelling for solo exploratory work at this stage in people's careers
-    *   Note the lack of a `test` directory in [Noble's rules][noble-rules]
-*   Profiling: performance tuning is an engineering task
-*   Semantic Web: even simplified things like [Dublin Core][dublin-core] are rarely encountered in the wild
-*   Data structures (e.g. dictionaries in Python): too many/too language-specific to single out
-*   Documentation:
-    *   In practice, people won't write comprehensive docs until they have collaborators who will read it
-    *   But they will quickly see the point of a brief explanatory comment at the start of each script
-*   Code reviews and pair programming: you're probably not sharing or collaborating at this stage
-*   Issue tracking: a notes file in version control is enough to start with
+We have deliberately left many good tools and practices off our list,
+including some that we use daily.
+
+**Branches**
+:   A *branch* is a "parallel universe" within a version control repository.
+    Developers create branches so that they can make multiple changes to a project independently.
+    They are central to the way that experienced developers use systems like Git,
+    but they add an extra layer of complexity to version control for newcomers.
+    Programmers got along fine in the days of CVS and Subversion without relying heavily on branching,
+    and branching can be adopted without significant disruption after people have mastered a basic edit-commit workflow.
+
+**Build Tools**
+:   Tools like [Make][make] were originally developed to recompile pieces of software that had fallen out of date.
+    They are now used to regenerate data and entire papers:
+    when one or more raw input files change,
+    Make can automatically re-run those parts of the analysis that are affected,
+    regenerate tables and plots,
+    and then regenerate the human-readable PDF that depends on them.
+    However,
+    novices can achieve the same behavior by writing shell scripts;
+    these may do unnecessary work,
+    but given the speed of today's machines,
+    that is unimportant for small projects.
+
+**Unit Tests**
+:   A *unit test* is a small test of one particular feature of a piece of software.
+    Projects rely on unit tests to prevent *regression*,
+    i.e.,
+    to ensure that a change to one part of the software doesn't break other parts.
+    While unit tests are essential to the health of large libraries and programs,
+    we have found that they usually aren't compelling for solo exploratory work in the early stages of people's careers.
+    (Note, for example, the lack of a `test` directory in [Noble's rules][noble-rules].)
+    Rather than advocating something which people are unlikely to adopt,
+    we have left unit testing off this list.
+
+**Continuous Integration**
+:   Tools like [Travis-CI][travis] automatically run a set of user-defined commands
+    whenever changes are made to a version control repository.
+    These commands typically execute tests to make sure that software hasn't regressed,
+    i.e., that things which used to work still do.
+    These tests can be run either before the commit takes place
+    (in which case the changes can be rejected if something fails)
+    or after
+    (in which case the project's contributors can be notified of the breakage).
+    CI systems are invaluable in large projects with many contributors,
+    but pay fewer dividends in smaller projects where code is being written to do specific analyses.
+
+**Profiling and Performance Tuning**
+:   *Profiling* is the act of measuring where a program spends its time,
+    and is an essential first step in *tuning* the program
+    (i.e., making it run faster).
+    Both are worth doing,
+    but only when the program's performance is actually a bottleneck:
+    in our experience,
+    most users spend more time getting the program right in the first place.
+
+**The Semantic Web**
+:   Ontologies and other formal definitions of data are useful,
+    but in our experience,
+    even simplified things like [Dublin Core][dublin-core] are rarely encountered in the wild.
+
+**Data Structures**
+:   Associative data structures (e.g., Python's dictionaries),
+    graphs (of the node-and-arc kind),
+    Bloom filters,
+    and many other data structures are essential to making programs both correct and efficient,
+    but there are too many,
+    and they are too specific to particular problems,
+    for us to single any out for this list.
+
+**Documentation**
+:   Good documentation is a key factor in software adoption,
+    but in practice,
+    people won't write comprehensive documentation until they have collaborators who will use it.
+    They will,
+    however,
+    quickly see the point of a brief explanatory comment at the start of each script,
+    so we have recommended that as a first step.
+
+**Code Reviews and Pair Programming**
+:   These practices are valuable in projects with multiple contributors,
+    but are hard to adopt in single-author/single-user situations,
+    which includes most of the intended audience for this paper.
+
+**Issue Tracking**
+:   An issue tracking system is essentially a shared to-do list for a project.
+    Again,
+    such systems are invaluable in large, long-lived projects,
+    but to begin with,
+    a text file in the project's version control repository containing
+    a few bullet points describing known problems and outstanding work
+    is sufficient.
+
+## Conclusion
+
+FIXME
 
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
@@ -402,10 +482,12 @@ but discussion of those is outside the scope of this paper.
 [hart-storage]: https://peerj.com/preprints/1448/
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
+[make]: https://www.gnu.org/software/make/
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
-[steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673 "Steinmacher et al, The hard life of open source software project newcomers, Procs. 7th Int. Workshop on Cooperative and Human Aspects of Software Engineering. ACM, 2014."
+[steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673
+[travis]: https://travis-ci.org/
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
