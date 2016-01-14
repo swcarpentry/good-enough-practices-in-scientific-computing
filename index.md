@@ -213,34 +213,34 @@ and give you credit for your work.
 
 ### Goals
 
-1.  Convention over configuration
-    (why add cognitive load of different layout unless there's significant demonstrable advantage?)
-2.  Support the ways tools work and reduce possibility for error
-    *   E.g., separating source data from processed data reduces odds of mistakenly re-processing files
-3.  Project should be able to grow and be revisited without major reorganization or inconsistency
+The previous sections have described practices for creating, naming, and
+storing the files that make up a research project. Organizing these files
+in a logical and consistent directory structure will help you to keep track
+of these files and help others to easily review your work.
+
+1.  *Ease of Use*: Following simple, standard conventions for project organization makes it simple and efficient for you to find different subparts of your work, and makes your project easier for others to understand
+2.  *Reduce error*: Separating types of files and avoiding duplication reduces the risk of accidentally mixing up files, such as raw and processed data
+3.  *Growth*: A project should be able to expand or be revised without the entire project needing major reorganization 
 
 ### Rules
 
-Sub-directories in each project are organized according to Noble's rules:
+Files should be placed into a main directory named for the project, and organized into a standard set of subdirectories following [William Noble's][noble-rules] recommendations:
 
-1.  `doc` for documents (such as manuscripts, if you're storing them in version control)
-2.  `src` for source code of programs written in compiled languages like Fortran, C++ and Java (if any)
-    *   Within that, obey languages rules or strong conventions about where source files have to go
-        (e.g., C++ header files, Python package structure)
-3.  `bin` for executable scripts and programs
-    *   Footnote: the name is old Unix shorthand for "binary", meaning "the output of the compiler"
-4.  `data` for raw data and metadata (including links for fetching data)
-    *   Use a sub-directory for each data set if the project uses more than one
-    *   Modern file systems can handle hundreds of thousands of files in a directory,
-        but displaying contents is problematic
-5.  `results` for generated (intermediate) files
-    *   Most programmers frown on storing generated files (because you can regenerate them)
-    *   Researchers should so that they can easily tell if generated results have changed
-    *   Note that figures, tables, and other things expected to go into publications count as generated results
+1.  `doc` contains text documents associated with the project. This may include files for manuscripts, documentation for source code, and/or an electronic lab notebook recording your experiments. Subdirectories may be created for these different classes of files.
+2.  `data` contains raw data and metadata, organized into subdirectories if needed. Note that this directory contains only unprocessed data, cleaned or otherwise modified data files are considered a result.
+3.  `src` contains the source code for scripts and programs, which may be written in interpreted languages such as R or Python or compiled languages like Fortran, C++, or Java.
+4.  `bin` contains executable scripts and programs that are brought in from other sources or compiled from code in the `src` directory. Projects that use only modern interpreted languages, such as R or Python, will not require this directory.
+5.  `results` for all files that are generated as part of the project. This includes both intermediate results, such as cleaned data sets or simulated data, as well as final results such as figures and tables.
 
 ### Discussion
 
-FIXME
+The `src` directory often contains two conceptually distinct types of files that should be distinguished either by clear file names or by additional subdirectories. The first type are individual files, or related groups of files, that contain functions to perform the core analysis of the research. If there are more than one or two of these files, these should be organized into additional subdirectories following language-specific rules or conventions (e.g., C++ header files, Python or R package structure).
+
+A second type of file in this directory are controller or driver scripts that combine the core analytical functions with specific analysis parameters and data input and output commands in order to execute the entire project analysis, from start to finish. A simple controller script, for example, may read in a raw data table, import and apply several analysis functions from the other files in this directory, and create and save a figure. For a small project with one main output, a single controller script should be placed in the main `src` directory and distinguished clearly from the other scientific code by a name such as "runall".
+
+The `results` directory will also generally require additional structure for all but the simplest projects. At a minimum, intermediate files such as cleaned data, statistical tables, and final publication-ready figures or tables should be separated clearly by file naming conventions or placed into different subdirectories.
+
+In an ideal project, a controller script should be able to create all of the results found in the `results` directory automatically, using the contents of `data`, `src`, and/or `bin`, with no manual human intervention. This helps to ensure both provenance, so that results can always be associated with the upstream files that generated them, and reproducibility, so that you or others can recreate the outputs of any analysis. If this goal is achieved, then the contents of the `results` directory do not need to be placed under version control (see below), as they do not contain any unique information.
 
 ## Version Control
 
