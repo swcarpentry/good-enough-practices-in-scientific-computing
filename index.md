@@ -52,7 +52,21 @@ because your past self doesn't answer email.
 
 ## Data Management
 
+When you need to decide what to do with data files, these guiding principles can help:
+
+**Do no harm.** Save data in the rawest form available and resist the temptation to overwrite these files with cleaner versions. This could be the data file produced by an instrument or raw results from a survey, with all of their mystifying imperfections. Faithful retention guarantees you can re-run your analysis, nachos to cheesecake, in the future. Long-term, this level of reproducibility enhances everyone's confidence in your final results. The more immediate payoff is the ability to recover gracefully from analytical mishaps and the freedom to experiment without fear.
+
+**Be the raw data you wish to see in the world.** From the raw data, make the dataset you *wish* you had received and that you will enjoy having as the start point for downstream analyses, some of which have not even dreamed of yet. This is the place to maximize machine and human readability, preferably at the same time. It is neither the place to do vigorous data filtering nor to the time to bring in external information. Approach this initial preparation as internal to the existing dataset and non-destructive, both of data and its general "shape". Enhance machine readability by converting from proprietary and high-friction formats (e.g., Microsoft Excel or XML) to open and simple formats (e.g., comma delimited plain text). Enhance human readability by replacing inscrutable variable names and artificial data codes with self-explaining alternatives. For example, rename the variable SOME_AWFUL_GENERIC_NAME to SOMETHING_DESCRIPTIVE *(JB: anyone ... got a good example that real/realistic but will resonate with many?)*, recode the treatment variable from `1` vs. `2` to `untreated` vs. `treated`, and replace artifical codes, such as "-99" for missing data, with proper `NA`s. Enhance machine and human readability by storing especially useful metadata as part of the filename itself.
+
+*write about tidy data here ... sometimes it is combined with previous step and sometimes (usually?) not ... talk about putting things into standard formats, such as standard date-time formats or standardizing case ... notion of a key? ... this too is mostly internal, though we enforce external standards ... we might create variables here, by splitting and combining existing variables*
+
+**WHAT TO CALL THIS?** Marshal complementary data in files with the same high standard for openness and simplicity as above. Frequently the raw data does not and indeed cannot fully explain itself. For example, if each well of a microtitre plate is used to study a specific gene knockout, the prepared raw data will have a `well` variable taking on values like "A1" and "G12", but the plate reader cannot possibly know what's in each well. That information will be absent from the primary data file. You must create a supplementary file in order to look this up. Head off future join headaches by taking care to use the same variable name and data codes when columns in two datasets refer to the same thing.
+
+*final prep: dropping rows, dropping variables, joining to supplementary data ... now you really create purpose-built data sets for your specific questions, figures, tables, etc. ... this can be highly destructive/creative*
+
 ### Goals
+
+*I didn't touch these but certainly tried to incorprate in my prose!*
 
 1.  You should never lose data.
 2.  Data should be [findable, accessible, interoperable and reusable][fair-data]
@@ -74,7 +88,8 @@ because your past self doesn't answer email.
         transform it for storage with a lossless, well-documented procedure.
     *   Prefer open non-proprietary formats to closed ones (they'll likely last longer)
         *   See [this guide][uiuc-file-formats]
-    *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
+    *   Consider revoking your own write permission, so it is harder to damage raw data by accident or to hand edit it in a moment of weakness.
+    *   Don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV for simple tabular data
     *   JSON, YAML, or XML for non-tabular data such as graphs (the node-and-arc kind)
@@ -100,6 +115,10 @@ because your past self doesn't answer email.
 7.  Submit data to a reputable DOI-issuing repository so that others can access and cite it
 
 ### Discussion
+
+*turn this into prose*
+
+*idea to add: make it easy to re-run start to finish but also to drop in at various intermediate points and pick up there*
 
 Remember that even text---often thought of as a lowest common denominator---can be painful.
 [Jenny Bryan][bryan-comment-text] writes:
