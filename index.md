@@ -63,7 +63,7 @@ Your project data may need to exist in various forms, ranging from raw to highly
   1. Columns that contain more than one variable's worth of information. For example, the inclusion of units is problematic, e.g., "3.4 kg". The presence of "kg" will cause most analytical environments to read this in as character data, whereas you'll probably want to do numeric things with it, like take averages and use in plots. This should be split into two variables, the mass "3.4" and the units "kg" (or the units should be recorded in the variable name and/or metadata). When in doubt, try to make each variable correspond to an atomic, imminently usable piece of information.
   2. Multiple columns that -- only when taken together -- contain one variable's worth of information. This is characteristic of data that has been laid out for human eyeballs or for manual data entry. For example, there might be one row per field site and then columns for measurements made at each of several time points. For data entry and inspection, it is convenient to store this in a "short and wide" form, but for most analyses it will be advantageous to gather these columns into a variable of measurements, accompanied by a companion variable indicating the time point.
 
-The goal of all this variable splitting, combining, spreading, and gathering is to create so-called "tidy data", which can be a powerful accelerator for analysis (cite Wickham, White, et al here). Other considerations: this is a good place to make sure your data will play nicely with your analytical environment and plans. For example, reformat a date-time to match one of those recognized automatically or standardize the casing on a character variable. This pass through the data likely does not change the amount of data, but may dramatically alter its form.
+The goal of all this variable splitting, combining, spreading, and gathering is to create so-called "tidy data", which can be a powerful accelerator for analysis ([Tidy Data][wickham-tidy], [Nine simple ways][white-simple-reuse]). Other considerations: this is a good place to make sure your data will play nicely with your analytical environment and plans. For example, reformat a date-time to match one of those recognized automatically or standardize the casing on a character variable. This pass through the data likely does not change the amount of data, but may dramatically alter its form.
 
 *This may still need something about observations and rows and the notion of a key?*
 
@@ -123,41 +123,11 @@ The goal of all this variable splitting, combining, spreading, and gathering is 
 
 ### Discussion
 
-*turn this into prose*
+The data processing strategy advocated above is divided into steps and produces intermediate data files, with increasing levels of cleanliness and task-specificity. While there is growing appreciation for reproducibility -- i.e., being able to re-run an analysis start to finish -- it is is also extremely useful to be able to re-run *parts* of a pipeline. The reasons are similar to those given for modularity in computer code: by breaking data preparation into steps, it becomes easier to revisit later and to only tinker with specific data cleaning operations.
 
-*idea to add: make it easy to re-run start to finish but also to drop in at various intermediate points and pick up there*
+We propose delimited plain text as an appealing "lowest common denominator" data form, that offers high usability across time, people, operating systems, and analytical environments. We must admit that plain text is, however, no panacea. In particular, when collaborating with others, be aware of and, when possible, standardize on file encoding, line endings, and the elimination of prose-oriented features, such as "smart quotes". Differences between collaborators in these pesky details can cause the "diffs" between file versions to be unnecessarily large and, therefore, to be substantially less informative.
 
-Remember that even text---often thought of as a lowest common denominator---can be painful.
-[Jenny Bryan][bryan-comment-text] writes:
-
-> Text is an area of consistent agony for me,
-> even when collaborating with people who have bought in to plain text,
-> version control, etc.
-> It is exacerbated when I have a collaborator who has never even heard of line endings or encoding.
->
-> Those plain text files we all love?
-> If you've got people editing or even opening/closing them on different platforms,
-> possibly with locale set to something other than US English,
-> things can get weird.
-> Line endings cycle through \n, \r\n, and \r and "smart quotes" drive you crazy.
->
-> Then you get large and uninformative diffs or the dreaded �.
-
-Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
-
-> ...two types of metadata that often get conflated in data set discussions:
-> metadata about the data set as a whole
-> and metadata about the content within the data set.
-> Most metadata schemas...are for the former use.
-> They are to describe the data set as a unit,
-> e.g. author, funder, relevant papers, etc.
->
-> Formally structured metadata is often a valueless effort if the data set will be stored independently
-> and not somewhere in a formal repository...
-> Beautifully filled out metadata files are for ingestion into a repository and/or directory.
-> If the audience is humans, write it for humans.
-> If the audience includes metadata harvesters,
-> fill out the formal metadata and do a README for the humans.
+[Elizabeth Wickes][wickes-comment-metadata] provides a useful classification for metadata, with implications for it how it should be represented. She notes it is easy to conflate metadata about the dataset as a whole with metadata about the content, e.g., individual columns. Most metadata schemas are aimed at the former, i.e. they detail the author, funder, related publications, etc. When considering how to store metadata, consider the intended audience. Is it humans? Write a README. Is it machines, such as metadata harvesters and formal repostiories? Create an impeccably formated metadata file.
 
 ## Software
 
@@ -434,5 +404,6 @@ but discussion of those is outside the scope of this paper.
 [steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673 "Steinmacher et al, The hard life of open source software project newcomers, Procs. 7th Int. Workshop on Cooperative and Human Aspects of Software Engineering. ACM, 2014."
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
+[white-simple-reuse]: http://library.queensu.ca/ojs/index.php/IEE/article/view/4608
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
 [wickham-tidy]: http://www.jstatsoft.org/article/view/v059i10
