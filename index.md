@@ -301,6 +301,8 @@ should therefore not be put in a version control repository.
 
 ## Manuscripts
 
+Many of the the same tools and workflows we describe for research will be equally beneficial for manuscript preparation: making the writing version controlled, collaborative, and reproducible. It is important, however, to have all authors agree on a particular collaborative writing workflow in advance of starting the actual writing of the manuscript. Once you agree, as lead author, don't hesitate to lay out some ground rules that you expect the others to adhere to - even if they are many years your senior.
+
 ### Goals
 
 A common, but unfortunate, practice is that the lead author at different points in the writing process sends around versions to coauthors for collecting feedback, and receiving multiple documents back with comments. This leads to a lot of files to keep track of and much manual labor to merge all the comments into the updated 'master' document. This section describes alternatives to this workflow that will satisfy the following goals:
