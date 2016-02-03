@@ -395,7 +395,7 @@ including some that we use daily.
     regenerate tables and plots,
     and then regenerate the human-readable PDF that depends on them.
     However,
-    novices can achieve the same behavior by writing shell scripts;
+    novices can achieve the same behavior by writing shell scripts that re-run everything;
     these may do unnecessary work,
     but given the speed of today's machines,
     that is unimportant for small projects.
