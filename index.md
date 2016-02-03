@@ -305,11 +305,11 @@ should therefore not be put in a version control repository.
 
 1.  Make text accessible to yourself and others now and in the future
 2.  Reduce chances of work being lost or people overwriting each other's work.
-2.  Make it easy to track and combine contributions from multiple collaborators.
-3.  Avoid duplication and manual entry of information, particularly in constructing bibliographies, tables of contents, and lists
-3.  Make it easy to regenerate the final shared form (e.g., the PDF),
+3.  Make it easy to track and combine contributions from multiple collaborators.
+4.  Avoid duplication and manual entry of information, particularly in constructing bibliographies, tables of contents, and lists
+5.  Make it easy to regenerate the final shared form (e.g., the PDF),
     and to tell if the PDF in hand is up to date.
-4.  Make it easy to share the final version with collaborators and submit it to journals
+6.  Make it easy to share the final version with collaborators and submit it to journals
 
 ### Rules
 
@@ -320,7 +320,7 @@ We would like to require this for papers, theses, technical reports, and other m
 
 But to quote [Stephen Turner][turner-comment-docs]:
 
-> ...try explain the notion of compiling a document to an overworked physician you collaborate with.
+> ...try to explain the notion of compiling a document to an overworked physician you collaborate with.
 > Oh, but before that, you have to explain the difference between plain text and word processing.
 > And text editors.
 > And markdown/LaTeX compilers.
