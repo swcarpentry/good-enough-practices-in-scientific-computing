@@ -178,36 +178,35 @@ FIXME
 
 ### Goals
 
-1.  Again, the easier it is for people to collaborate, the more likely they are to do so
-    (and to give you credit)
-2.  Two most reported barriers from [Steinmacher et al][steinmacher-newcomers]
-    are finding a task to start on
-    and problems setting up the local workspace to start work
-    *   So remove those
-3.  Additional disincentive is uncertainty: what am I allowed to do?
-    *   So remove that as well
-    *   Lack of an explicit license implies the author is keeping all rights
-        and others are not allowed to re-use
+You may work on your project with others, your known collaborators. But, even at an early stage, you may be interested to open your project so that you can attract new, as yet unknown collaborators. This section lists approaches for making it straightforward for others to start collaborating on your project. To enhance collaboration, aim for:
+
+1.  *Simplicity:* the easier it is for people to collaborate, the more likely they are to do so (and to give you credit)
+2.  *Low entry:* Remove the two most reported barriers to contributing from [Steinmacher et al][steinmacher-newcomers]:
+    * finding a task to start on
+    * setting up the local workspace to start work
+3.  *Clarity:* remove uncertainty around what a potential collaborator is allowed to do
 
 ### Rules
 
-1.  Every project has a short README file explaining its purpose
-    *   Includes a contact address that actually works
-2.  And a plain text file (often called notes.txt or todo.txt) containing the to-do list
-    *   Aimed at contributors, where README is aimed at users
-3.  And a LICENSE file
-    *   CC-0 or CC-BY for data and text
-    *   Permissive license (e.g., MIT/BSD/Apache) for software
-4.  And a CITATION file
+1.  Have a short README file explaining the project's purpose.  
+This file should includes contact information that actually works. This file is often the first thing users of your project will look at, so make it explicit already here that you welcome contributors and point them to the ways to help out. Consider using a CONTRIBUTION file to describe any steps needed to start working: dependencies that need to be installed, running of (unit) tests, guidelines or rules that your project adheres to (e.g. on commit messages or checklists you may use before accepting a suggested change).
+2.  Have a shared public to-do list  
+This could be a plain text file containing the to-do list, called `notes.txt` or `todo.txt` or something similar. Alternatively, on sites such as Github or BitBucket, you could use the *issue* functionality, and create a new issue for each to-do item (you can even add labels such as 'low hanging fruit' to point people to where to get started). Whatever your system of choice, make the descriptions of the items clear enough so that they make sense for new collaborators.
+3.  Have a LICENSE file.  
+Lack of an explicit license implies the author is keeping all rights and others are not allowed to re-use or modify the material. We recommend:
+    *   For data and text, use Creative Common licenses, either [CC-0](https://creativecommons.org/about/cc0/), the "No Rights Reserved" license, or [CC-BY](https://creativecommons.org/licenses/by/4.0/), the "Attribution" license, allowing sharing and reuse but requiring giving appropriate credit to the creator(s)
+    *   A permissive license (e.g., [MIT/BSD/Apache](https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html)) for software
+4.  Have a CITATION file.
+This file describes:
     *   How to cite this project overall
     *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
 
+FIXME add example CITATION
+
 ### Discussion
 
-The first and second are to help you as well as other people---remember,
-your most important collaborator is yourself six months from now.
-The third, fourth, and fifth items are there to make it easy for other people to help you
-and give you credit for your work.
+The first and second are to help you as well as other people ---remember, your most important collaborator is yourself six months from now. The third, fourth, and fifth items are there to make it easy for other people to help you and give you credit for your work.
+
 
 ## Project Organization
 
