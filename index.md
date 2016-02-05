@@ -231,16 +231,39 @@ Files should be placed into a main directory named for the project, and organize
 3.  `src` contains the source code for scripts and programs, which may be written in interpreted languages such as R or Python or compiled languages like Fortran, C++, or Java.
 4.  `bin` contains executable scripts and programs that are brought in from other sources or compiled from code in the `src` directory. Projects that use only modern interpreted languages, such as R or Python, will not require this directory.
 5.  `results` for all files that are generated as part of the project. This includes both intermediate results, such as cleaned data sets or simulated data, as well as final results such as figures and tables.
+6. Files should be named clearly and transparently according to their contents (e.g., `bird_count_table.csv`, `manuscript.md`) or their functionality (e.g., `sightings_analysis.py`), not using sequential numbers (e.g., `result1.csv`, `result2.csv`) or a location in a final manuscript which is subject to change (e.g., `fig_3_a.png`)
 
 ### Discussion
 
-The `src` directory often contains two conceptually distinct types of files that should be distinguished either by clear file names or by additional subdirectories. The first type are individual files, or related groups of files, that contain functions to perform the core analysis of the research. If there are more than one or two of these files, these should be organized into additional subdirectories following language-specific rules or conventions (e.g., C++ header files, Python or R package structure).
+The `src` directory often contains two conceptually distinct types of files that should be distinguished either by clear file names or by additional subdirectories. The first type are individual files, or related groups of files, that contain functions to perform the core analysis of the research. There may be one file, for example, that contains functions used for data cleaning, and another file containing functions that contain statistical analysis. As a project grows, these can be organized into additional subdirectories. These files can be thought of as the "scientific guts" of the project. If a project were to include formal unit tests (see _What's Not in This List_), these would be the functions that should be tested.
 
-A second type of file in this directory are controller or driver scripts that combine the core analytical functions with specific analysis parameters and data input and output commands in order to execute the entire project analysis, from start to finish. A simple controller script, for example, may read in a raw data table, import and apply several analysis functions from the other files in this directory, and create and save a figure. For a small project with one main output, a single controller script should be placed in the main `src` directory and distinguished clearly from the other scientific code by a name such as "runall".
+A second type of file in this directory are controller or driver scripts that combine the core analytical functions with particular parameters and data input and output commands in order to execute the entire project analysis, from start to finish. A controller script for a simple project, for example, may read in a raw data table, import and apply several analysis functions from the other files in this directory, and create and save a numeric result. For a small project with one main output, a single controller script should be placed in the main `src` directory and distinguished clearly from the other scientific code by a name such as "runall".
+
+The controller script should be thought of simply as the "glue" that holds the analysis together and allows a single command, such as `python runall.py`, to re-run the entire analysis, from start to finish. These scripts should be short, no more than 100-200 lines at most, and be very easy to understand. If this script becomes longer than this, or begins to include code that would require a new collaborator more than a minute or two to understand, these portions of the code should be moved out of the controller script and into other core analysis files in this directory.
 
 The `results` directory will also generally require additional structure for all but the simplest projects. At a minimum, intermediate files such as cleaned data, statistical tables, and final publication-ready figures or tables should be separated clearly by file naming conventions or placed into different subdirectories.
 
-In an ideal project, a controller script should be able to create all of the results found in the `results` directory automatically, using the contents of `data`, `src`, and/or `bin`, with no manual human intervention. This helps to ensure both provenance, so that results can always be associated with the upstream files that generated them, and reproducibility, so that you or others can recreate the outputs of any analysis. If this goal is achieved, then the contents of the `results` directory do not need to be placed under version control (see below), as they do not contain any unique information.
+As prevously noted, in an ideal project, a controller script should be able to create all of the results found in the `results` directory automatically, using the contents of `data`, `src`, and/or `bin`, with no manual human intervention. This helps to ensure both provenance, so that results can always be associated with the upstream files that generated them, and reproducibility, so that you or others can recreate the outputs of any analysis. If this goal is achieved, then the contents of the `results` directory do not need to be placed under version control (see below), as they do not contain any unique information.
+
+The figure below provides a concrete example of how a simple project might be organized following these rules. The `data` directory contains a single CSV file with tabular data on bird counts, and an associated `README.txt` file provides documentation for this table (a formal metadata file could also be included here). The `src` directory contains an analytic file `sightings_analysis.py`, a Python file containing functions that summarize the tabular data, and a controller script `runall.py` that loads the data table, applies functions imported from `sightings_analysis.py`, and saves a table of summarized results in the `results` directory.
+
+When using interpreted languages such as Python or R, the `bin` directory is often empty as in this example. The `doc` directory contains two text files written in Markdown, one containing a running lab notebook describing various ideas for the project and how these were implemented and the other containing a running draft of a manuscript describing the project findings. 
+
+```
+.
+|-- bin
+|-- data
+|   |-- birds_count_table.csv
+|   |-- README.txt
+|-- doc
+|   |-- notebook.md
+|   |-- manuscript.md
+|-- results
+|   |-- summarized_results.csv
+|-- src
+|   |-- sightings_analysis.py
+|   |-- runall.py
+```
 
 ## Version Control
 
