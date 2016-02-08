@@ -72,14 +72,14 @@ preferably at the same time.
 It is neither the place to do vigorous data filtering nor to the time to bring in external information.
 Approach this initial preparation as internal to the existing dataset and non-destructive,
 both of the data and its general "shape".
-Enhance machine readability by converting from proprietary and high-friction formats (e.g., Microsoft Excel or XML)
+Enhance machine readability by converting from proprietary or high-friction formats (e.g., Microsoft Excel or XML)
 to open and simple formats (e.g., comma delimited plain text).
 Enhance human readability by replacing inscrutable variable names and artificial data codes with self-explaining alternatives.
-For example, rename the variable ADJUSTMENT to TEMPERATURE_SCALING,
+For example, rename the variables `name1` and `name2` to `personal_name` and `family_name`,
 recode the treatment variable from `1` vs. `2` to `untreated` vs. `treated`,
 and replace artificial codes, such as "-99" for missing data, with proper `NA`s.
-Both human and machine readability can be enhanced storing especially useful metadata as part of the filename itself,
-while keeping the filename regular-expression-friendly.
+Both human and machine readability can be enhanced by storing especially useful metadata as part of the filename itself,
+while keeping the filename regular enough for easy pattern matching.
 
 **Create analysis-friendly data.**
 Well-prepared raw data can still present many barriers to analysis and visualization.
@@ -128,7 +128,7 @@ so the main changes here are likely to be data reduction and the amalgamation of
 
 ### Goals
 
-*I didn't touch these but certainly tried to incorprate in my prose!*
+*I didn't touch these but certainly tried to incorporate in my prose!*
 
 1.  You should never lose data.
 2.  Data should be [findable, accessible, interoperable and reusable][fair-data]
@@ -150,7 +150,8 @@ so the main changes here are likely to be data reduction and the amalgamation of
         transform it for storage with a lossless, well-documented procedure.
     *   Prefer open non-proprietary formats to closed ones (they'll likely last longer)
         *   See [this guide][uiuc-file-formats]
-    *   Consider revoking your own write permission, so it is harder to damage raw data by accident or to hand edit it in a moment of weakness.
+    *   Consider restricting file permissions to read-only, even (or especially) for yourself,
+        so it is harder to damage raw data by accident or to hand edit it in a moment of weakness.
     *   Don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV for simple tabular data
@@ -191,8 +192,8 @@ that offers high usability across time, people, operating systems, and analytica
 We must admit that plain text is, however, no panacea.
 In particular, when collaborating with others, be aware of and, when possible, standardize on
 file encoding, line endings, and the elimination of prose-oriented features, such as "smart quotes".
-Differences between collaborators in these pesky details can cause the "diffs" between file versions to be unnecessarily large
-and therefore to be substantially less informative.
+Differences between collaborators in these pesky details can cause the changes between file versions to be large
+and therefore substantially less comprehensible.
 
 [Elizabeth Wickes][wickes-comment-metadata] provides a useful classification for metadata,
 with implications for it how it should be represented.
@@ -203,8 +204,8 @@ i.e., they detail the author, funder, related publications, etc.
 When considering how to store metadata, consider the intended audience.
 Is it humans?
 Write a README.
-Is it machines, such as metadata harvesters and formal repostiories?
-Create an impeccably formated metadata file.
+Is it machines, such as metadata harvesters and formal repositories?
+Create an impeccably formatted metadata file.
 
 ## Software
 
@@ -275,7 +276,7 @@ To enhance collaboration, aim for:
 2.  Have a shared public to-do list.
     This could be a plain text file containing the to-do list called `notes.txt` or `todo.txt` or something similar.
     Alternatively,
-    on sites such as Github or BitBucket,
+    on sites such as GitHub or Bitbucket,
     you could use the *issue* functionality, and create a new issue for each to-do item
     (you can even add labels such as 'low hanging fruit' to point people to where to get started).
     Whatever your system of choice, make the descriptions of the items clear enough so that they make sense for new collaborators.
@@ -372,7 +373,7 @@ The `results` directory will also generally require additional structure for all
 At a minimum, intermediate files such as cleaned data, statistical tables, and final publication-ready figures or tables
 should be separated clearly by file naming conventions or placed into different subdirectories.
 
-As prevously noted,
+As previously noted,
 in an ideal project a controller script should be able to create all of the results found in the `results` directory automatically,
 using the contents of `data`, `src`, and/or `bin`, with no manual human intervention.
 This helps to ensure both provenance,
@@ -416,7 +417,7 @@ and the other containing a running draft of a manuscript describing the project 
 
 Keeping track of changes that you or your collaborators make to data files, software, and project organization is a critical part of research.
 Using a formal version control system allows you to easily see what changed, when it changed, and who changed it.
-The most common version control sytems are git, Subversion and Mercurial, although there are many others.   
+The most common version control systems are git, Subversion and Mercurial, although there are many others.   
 
 ### Goals
 
@@ -582,7 +583,7 @@ We therefore also recommend an alternative:
     This is analogous to the `data` directory,
     which might contain links to the location of the data file(s) rather than the actual files.
 
-We realise that in many cases, even this solution is asking too much from the coauthor who will continue to say,
+We realize that in many cases, even this solution is asking too much from the coauthor who will continue to say,
 "Just give me a Word document with tracked changes," or something similar.
 To satisfy this person,
 convert the manuscript to an editable file format (e.g., `.docx` or `.odt`) after major changes,
@@ -614,11 +615,11 @@ Finally,
 regardless of the approach you choose the writing,
 make sure to agree on a single method to provide feedback,
 be it an email thread or mailing list,
-an issue tracker (like the ones provided by Github and Bitbucket),
+an issue tracker (like the ones provided by GitHub and Bitbucket),
 or some sort of shared online to-do list.
 
 As an example of an implementation of these recommendations,
-this paper was written using a central online repository (Github),
+this paper was written using a central online repository (GitHub),
 the *issue* functionality for discussing the outline and text,
 and *pull requests* for reviewing the contributions from different authors,
 including collecting comments and suggestions on them,
