@@ -52,7 +52,83 @@ because your past self doesn't answer email.
 
 ## Data Management
 
+Your project data may need to exist in various forms, ranging from raw to highly processed.
+Here are some guiding principles to help you move data through this developmental process:
+
+**First, do no harm.**
+Save data in the rawest form available and resist the temptation to overwrite these files with cleaner versions.
+This could be the data file produced by an instrument or raw results from a survey,
+with all of their mystifying imperfections.
+Faithful retention guarantees you can re-run your analysis, nachos to cheesecake, in the future.
+Long-term, this level of reproducibility enhances everyone's confidence in your final results.
+The more immediate payoff is the ability to recover gracefully from analytical mishaps and the freedom to experiment without fear.
+
+**Be the raw data you wish to see in the world.**
+From the raw data, make the dataset you *wish* you had received
+and that you will enjoy having as the start point for downstream analyses,
+some of which you have not even dreamed of yet.
+This is the place to maximize machine and human readability,
+preferably at the same time.
+It is neither the place to do vigorous data filtering nor to the time to bring in external information.
+Approach this initial preparation as internal to the existing dataset and non-destructive,
+both of the data and its general "shape".
+Enhance machine readability by converting from proprietary and high-friction formats (e.g., Microsoft Excel or XML)
+to open and simple formats (e.g., comma delimited plain text).
+Enhance human readability by replacing inscrutable variable names and artificial data codes with self-explaining alternatives.
+For example, rename the variable ADJUSTMENT to TEMPERATURE_SCALING,
+recode the treatment variable from `1` vs. `2` to `untreated` vs. `treated`,
+and replace artificial codes, such as "-99" for missing data, with proper `NA`s.
+Both human and machine readability can be enhanced storing especially useful metadata as part of the filename itself,
+while keeping the filename regular-expression-friendly.
+
+**Create analysis-friendly data.**
+Well-prepared raw data can still present many barriers to analysis and visualization.
+For example, columns in the dataset may not represent the variables that are most conducive to analysis.
+There are (at least!) two classes of problems:
+
+1.  Columns that contain more than one variable's worth of information.
+    For example, the inclusion of units is problematic, e.g., "3.4 kg".
+    The presence of "kg" will cause most analytical environments to read this in as character data,
+    whereas you'll probably want to do numeric things with it, like take averages and use in plots.
+    This should be split into two variables, the mass "3.4" and the units "kg",
+    or the units should be recorded in the variable name and/or metadata.
+    When in doubt, try to make each variable correspond to an atomic, imminently usable piece of information.
+2.  Multiple columns that only contain one variable's worth of information when taken together.
+    This is characteristic of data that has been laid out for human eyeballs or for manual data entry.
+    For example, there might be one row per field site and then columns for measurements made at each of several time points.
+    It is convenient to store this in a "short and wide" form for data entry and inspection,
+    but for most analyses it will be advantageous to gather these columns into a variable of measurements,
+    accompanied by a companion variable indicating the time point.
+
+The goal of all this variable splitting, combining, spreading, and gathering is to create so-called "tidy data",
+which can be a powerful accelerator for analysis ([Tidy Data][wickham-tidy], [Nine simple ways][white-simple-reuse]).
+This is a good place to make sure your data will play nicely with your analytical environment and plans.
+For example, reformat a date-time to match one of those recognized automatically or standardize the casing on a character variable.
+This pass through the data likely does not change the amount of data, but may dramatically alter its form.
+
+*FIXME: this may still need something about observations and rows and the notion of a key?*
+
+**Choose your friends wisely.**
+Marshal complementary data in files with the same high standard for openness and simplicity as above.
+Frequently the raw data does not and indeed cannot fully explain itself.
+For example, if each well of a microtitre plate is used to study a specific gene knockout,
+the prepared raw data will have a `well` variable taking on values like "A1" and "G12",
+but the plate reader cannot possibly know what's in each well.
+That information will be absent from the primary data file.
+You must create a supplementary file in order to look this up.
+Head off future join headaches by taking care to use the same names and codes when variables in two datasets refer to the same thing
+and will be used for merging or table lookup.
+
+**The right data for the job.**
+Now is the time to create a dataset purpose-built for specific analyses and figures.
+This probably involves filtering rows, selecting relevant variables, and merging with external information.
+Depending on how you well executed the previous stage, this can often be surprisingly straightforward.
+The basic form of the data was hopefully set earlier,
+so the main changes here are likely to be data reduction and the amalgamation of multiple datasets.
+
 ### Goals
+
+*I didn't touch these but certainly tried to incorprate in my prose!*
 
 1.  You should never lose data.
 2.  Data should be [findable, accessible, interoperable and reusable][fair-data]
@@ -74,7 +150,8 @@ because your past self doesn't answer email.
         transform it for storage with a lossless, well-documented procedure.
     *   Prefer open non-proprietary formats to closed ones (they'll likely last longer)
         *   See [this guide][uiuc-file-formats]
-    *   And don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
+    *   Consider revoking your own write permission, so it is harder to damage raw data by accident or to hand edit it in a moment of weakness.
+    *   Don't duplicate contents of stable, long-lived repositories (i.e., don't clone GenBank)
 2.  All synthesized data is stored in well-defined widely-used formats:
     *   CSV for simple tabular data
     *   JSON, YAML, or XML for non-tabular data such as graphs (the node-and-arc kind)
@@ -101,37 +178,33 @@ because your past self doesn't answer email.
 
 ### Discussion
 
-Remember that even text---often thought of as a lowest common denominator---can be painful.
-[Jenny Bryan][bryan-comment-text] writes:
+The data processing strategy advocated above is divided into steps and produces intermediate data files,
+with increasing levels of cleanliness and task-specificity.
+While there is growing appreciation for reproducibility---i.e., being able to re-run an analysis start to finish---it is is also extremely useful
+to be able to re-run *parts* of a pipeline.
+The reasons are similar to those given for modularity in computer code:
+by breaking data preparation into steps,
+it becomes easier to revisit later and to only tinker with specific data cleaning operations.
 
-> Text is an area of consistent agony for me,
-> even when collaborating with people who have bought in to plain text,
-> version control, etc.
-> It is exacerbated when I have a collaborator who has never even heard of line endings or encoding.
->
-> Those plain text files we all love?
-> If you've got people editing or even opening/closing them on different platforms,
-> possibly with locale set to something other than US English,
-> things can get weird.
-> Line endings cycle through \n, \r\n, and \r and "smart quotes" drive you crazy.
->
-> Then you get large and uninformative diffs or the dreaded �.
+We propose delimited plain text as an appealing "lowest common denominator" data form
+that offers high usability across time, people, operating systems, and analytical environments.
+We must admit that plain text is, however, no panacea.
+In particular, when collaborating with others, be aware of and, when possible, standardize on
+file encoding, line endings, and the elimination of prose-oriented features, such as "smart quotes".
+Differences between collaborators in these pesky details can cause the "diffs" between file versions to be unnecessarily large
+and therefore to be substantially less informative.
 
-Regarding metadata, [Elizabeth Wickes][wickes-comment-metadata] writes:
-
-> ...two types of metadata that often get conflated in data set discussions:
-> metadata about the data set as a whole
-> and metadata about the content within the data set.
-> Most metadata schemas...are for the former use.
-> They are to describe the data set as a unit,
-> e.g. author, funder, relevant papers, etc.
->
-> Formally structured metadata is often a valueless effort if the data set will be stored independently
-> and not somewhere in a formal repository...
-> Beautifully filled out metadata files are for ingestion into a repository and/or directory.
-> If the audience is humans, write it for humans.
-> If the audience includes metadata harvesters,
-> fill out the formal metadata and do a README for the humans.
+[Elizabeth Wickes][wickes-comment-metadata] provides a useful classification for metadata,
+with implications for it how it should be represented.
+She notes it is easy to conflate metadata about the dataset as a whole with metadata about the content,
+e.g., individual columns.
+Most metadata schemas are aimed at the former,
+i.e., they detail the author, funder, related publications, etc.
+When considering how to store metadata, consider the intended audience.
+Is it humans?
+Write a README.
+Is it machines, such as metadata harvesters and formal repostiories?
+Create an impeccably formated metadata file.
 
 ## Software
 
@@ -178,26 +251,45 @@ FIXME
 
 ### Goals
 
-You may work on your project with others, your known collaborators. But, even at an early stage, you may be interested to open your project so that you can attract new, as yet unknown collaborators. This section lists approaches for making it straightforward for others to start collaborating on your project. To enhance collaboration, aim for:
+You may work on your project with others, your known collaborators.
+But, even at an early stage, you may be interested to open your project so that you can attract new, as yet unknown collaborators.
+This section lists approaches for making it straightforward for others to start collaborating on your project.
+To enhance collaboration, aim for:
 
 1.  *Simplicity:* the easier it is for people to collaborate, the more likely they are to do so (and to give you credit)
 2.  *Low entry:* Remove the two most reported barriers to contributing from [Steinmacher et al][steinmacher-newcomers]:
-    * finding a task to start on
-    * setting up the local workspace to start work
+    *   finding a task to start on
+    *   setting up the local workspace to start work
 3.  *Clarity:* remove uncertainty around what a potential collaborator is allowed to do
 
 ### Rules
 
 1.  Have a short README file explaining the project's purpose.  
-This file should includes contact information that actually works. This file is often the first thing users of your project will look at, so make it explicit already here that you welcome contributors and point them to the ways to help out. Consider using a CONTRIBUTION file to describe any steps needed to start working: dependencies that need to be installed, running of (unit) tests, guidelines or rules that your project adheres to (e.g. on commit messages or checklists you may use before accepting a suggested change).
-2.  Have a shared public to-do list  
-This could be a plain text file containing the to-do list, called `notes.txt` or `todo.txt` or something similar. Alternatively, on sites such as Github or BitBucket, you could use the *issue* functionality, and create a new issue for each to-do item (you can even add labels such as 'low hanging fruit' to point people to where to get started). Whatever your system of choice, make the descriptions of the items clear enough so that they make sense for new collaborators.
+    This file should includes contact information that actually works.
+    This file is often the first thing users of your project will look at,
+    so make it explicit already here that you welcome contributors and point them to the ways to help out.
+    Consider using a CONTRIBUTION file to describe any steps needed to start working:
+    dependencies that need to be installed,
+    running of (unit) tests,
+    and guidelines or rules that your project adheres to (e.g. on commit messages or checklists you may use before accepting a suggested change).
+2.  Have a shared public to-do list.
+    This could be a plain text file containing the to-do list called `notes.txt` or `todo.txt` or something similar.
+    Alternatively,
+    on sites such as Github or BitBucket,
+    you could use the *issue* functionality, and create a new issue for each to-do item
+    (you can even add labels such as 'low hanging fruit' to point people to where to get started).
+    Whatever your system of choice, make the descriptions of the items clear enough so that they make sense for new collaborators.
 3.  Have a LICENSE file.  
-Lack of an explicit license implies the author is keeping all rights and others are not allowed to re-use or modify the material. We recommend:
-    *   For data and text, use Creative Common licenses, either [CC-0](https://creativecommons.org/about/cc0/), the "No Rights Reserved" license, or [CC-BY](https://creativecommons.org/licenses/by/4.0/), the "Attribution" license, allowing sharing and reuse but requiring giving appropriate credit to the creator(s)
-    *   A permissive license (e.g., [MIT/BSD/Apache](https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html)) for software
+    Lack of an explicit license implies the author is keeping all rights and others are not allowed to re-use or modify the material.
+    We recommend:
+    *   Use Creative Common licenses for data and text,
+        either [CC-0](https://creativecommons.org/about/cc0/), the "No Rights Reserved" license,
+        or [CC-BY](https://creativecommons.org/licenses/by/4.0/), the "Attribution" license,
+        allowing sharing and reuse but requiring giving appropriate credit to the creator(s).
+    *   A permissive license (e.g., [MIT/BSD/Apache](https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html))
+        for software
 4.  Have a CITATION file.
-This file describes:
+    This file describes:
     *   How to cite this project overall
     *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
 
@@ -205,8 +297,8 @@ FIXME add example CITATION
 
 ### Discussion
 
-The first and second are to help you as well as other people ---remember, your most important collaborator is yourself six months from now. The third, fourth, and fifth items are there to make it easy for other people to help you and give you credit for your work.
-
+The first and second are to help you as well as other people---remember, your most important collaborator is yourself six months from now.
+The third, fourth, and fifth items are there to make it easy for other people to help you and give you credit for your work.
 
 ## Project Organization
 
@@ -217,38 +309,94 @@ storing the files that make up a research project. Organizing these files
 in a logical and consistent directory structure will help you to keep track
 of these files and help others to easily review your work.
 
-1.  *Ease of Use*: Following simple, standard conventions for project organization makes it simple and efficient for you to find different subparts of your work, and makes your project easier for others to understand
-2.  *Reduce error*: Separating types of files and avoiding duplication reduces the risk of accidentally mixing up files, such as raw and processed data
+1.  *Ease of Use*:
+    Following simple, standard conventions for project organization makes it simple and efficient for you to find different subparts of your work,
+    and makes your project easier for others to understand
+2.  *Reduce error*:
+    Separating types of files and avoiding duplication reduces the risk of accidentally mixing up files, such as raw and processed data
 3.  *Growth*: A project should be able to expand or be revised without the entire project needing major reorganization 
 
 ### Rules
 
-Files should be placed into a main directory named for the project, and organized into a standard set of subdirectories following [William Noble's][noble-rules] recommendations:
+Files should be placed into a main directory named for the project
+and organized into a standard set of subdirectories following [William Noble's][noble-rules] recommendations:
 
-1.  `doc` contains text documents associated with the project. This may include files for manuscripts, documentation for source code, and/or an electronic lab notebook recording your experiments. Subdirectories may be created for these different classes of files.
-2.  `data` contains raw data and metadata, organized into subdirectories if needed. Note that this directory contains only unprocessed data, cleaned or otherwise modified data files are considered a result.
-3.  `src` contains the source code for scripts and programs, which may be written in interpreted languages such as R or Python or compiled languages like Fortran, C++, or Java.
-4.  `bin` contains executable scripts and programs that are brought in from other sources or compiled from code in the `src` directory. Projects that use only modern interpreted languages, such as R or Python, will not require this directory.
-5.  `results` for all files that are generated as part of the project. This includes both intermediate results, such as cleaned data sets or simulated data, as well as final results such as figures and tables.
-6. Files should be named clearly and transparently according to their contents (e.g., `bird_count_table.csv`, `manuscript.md`) or their functionality (e.g., `sightings_analysis.py`), not using sequential numbers (e.g., `result1.csv`, `result2.csv`) or a location in a final manuscript which is subject to change (e.g., `fig_3_a.png`)
+1.  `doc` contains text documents associated with the project.
+    This may include files for manuscripts, documentation for source code, and/or an electronic lab notebook recording your experiments.
+    Subdirectories may be created for these different classes of files.
+2.  `data` contains raw data and metadata, organized into subdirectories if needed.
+    Note that this directory contains only unprocessed data, cleaned or otherwise modified data files are considered a result.
+3.  `src` contains the source code for scripts and programs,
+    which may be written in interpreted languages such as R or Python or compiled languages like Fortran, C++, or Java.
+4.  `bin` contains executable scripts and programs that are brought in from other sources or compiled from code in the `src` directory.
+    Projects that use only modern interpreted languages, such as R or Python, will not require this directory.
+5.  `results` for all files that are generated as part of the project.
+    This includes both intermediate results, such as cleaned data sets or simulated data,
+    as well as final results such as figures and tables.
+6.  Files should be named clearly and transparently according to their contents (e.g., `bird_count_table.csv`, `manuscript.md`)
+    or their functionality (e.g., `sightings_analysis.py`),
+    not using sequential numbers (e.g., `result1.csv`, `result2.csv`)
+    or a location in a final manuscript which is subject to change (e.g., `fig_3_a.png`)
 
 ### Discussion
 
-The `src` directory often contains two conceptually distinct types of files that should be distinguished either by clear file names or by additional subdirectories. The first type are individual files, or related groups of files, that contain functions to perform the core analysis of the research. There may be one file, for example, that contains functions used for data cleaning, and another file containing functions that contain statistical analysis. As a project grows, these can be organized into additional subdirectories. These files can be thought of as the "scientific guts" of the project. If a project were to include formal unit tests (see _What's Not in This List_), these would be the functions that should be tested.
+The `src` directory often contains two conceptually distinct types of files
+that should be distinguished either by clear file names or by additional subdirectories.
+The first type are individual files, or related groups of files,
+that contain functions to perform the core analysis of the research.
+There may be one file, for example, that contains functions used for data cleaning,
+and another file containing functions that contain statistical analysis.
+As a project grows, these can be organized into additional subdirectories.
+These files can be thought of as the "scientific guts" of the project.
+If a project were to include formal unit tests (see _What's Not in This List_),
+these would be the functions that should be tested.
 
-A second type of file in this directory are controller or driver scripts that combine the core analytical functions with particular parameters and data input and output commands in order to execute the entire project analysis, from start to finish. A controller script for a simple project, for example, may read in a raw data table, import and apply several analysis functions from the other files in this directory, and create and save a numeric result. For a small project with one main output, a single controller script should be placed in the main `src` directory and distinguished clearly from the other scientific code by a name such as "runall".
+A second type of file in this directory are controller or driver scripts
+that combine the core analytical functions with particular parameters and data input and output commands
+in order to execute the entire project analysis, from start to finish.
+A controller script for a simple project, for example, may read in a raw data table,
+import and apply several analysis functions from the other files in this directory,
+and create and save a numeric result.
+For a small project with one main output, a single controller script should be placed in the main `src` directory
+and distinguished clearly from the other scientific code by a name such as "runall".
 
-The controller script should be thought of simply as the "glue" that holds the analysis together and allows a single command, such as `python runall.py`, to re-run the entire analysis, from start to finish. These scripts should be short, no more than 100-200 lines at most, and be very easy to understand. If this script becomes longer than this, or begins to include code that would require a new collaborator more than a minute or two to understand, these portions of the code should be moved out of the controller script and into other core analysis files in this directory.
+The controller script should be thought of simply as the "glue" that holds the analysis together and allows a single command,
+such as `python runall.py`,
+to re-run the entire analysis, from start to finish.
+These scripts should be short, no more than 100-200 lines at most, and be very easy to understand.
+If this script becomes longer than this,
+or begins to include code that would require a new collaborator more than a minute or two to understand,
+these portions of the code should be moved out of the controller script and into other core analysis files in this directory.
 
-The `results` directory will also generally require additional structure for all but the simplest projects. At a minimum, intermediate files such as cleaned data, statistical tables, and final publication-ready figures or tables should be separated clearly by file naming conventions or placed into different subdirectories.
+The `results` directory will also generally require additional structure for all but the simplest projects.
+At a minimum, intermediate files such as cleaned data, statistical tables, and final publication-ready figures or tables
+should be separated clearly by file naming conventions or placed into different subdirectories.
 
-As prevously noted, in an ideal project, a controller script should be able to create all of the results found in the `results` directory automatically, using the contents of `data`, `src`, and/or `bin`, with no manual human intervention. This helps to ensure both provenance, so that results can always be associated with the upstream files that generated them, and reproducibility, so that you or others can recreate the outputs of any analysis. If this goal is achieved, then the contents of the `results` directory do not need to be placed under version control (see below), as they do not contain any unique information.
+As prevously noted,
+in an ideal project a controller script should be able to create all of the results found in the `results` directory automatically,
+using the contents of `data`, `src`, and/or `bin`, with no manual human intervention.
+This helps to ensure both provenance,
+so that results can always be associated with the upstream files that generated them,
+and reproducibility, so that you or others can recreate the outputs of any analysis.
+If this goal is achieved,
+then the contents of the `results` directory do not need to be placed under version control (see below),
+as they do not contain any unique information.
 
-The figure below provides a concrete example of how a simple project might be organized following these rules. The `data` directory contains a single CSV file with tabular data on bird counts, and an associated `README.txt` file provides documentation for this table (a formal metadata file could also be included here). The `src` directory contains an analytic file `sightings_analysis.py`, a Python file containing functions that summarize the tabular data, and a controller script `runall.py` that loads the data table, applies functions imported from `sightings_analysis.py`, and saves a table of summarized results in the `results` directory.
+The figure below provides a concrete example of how a simple project might be organized following these rules.
+The `data` directory contains a single CSV file with tabular data on bird counts,
+and an associated `README.txt` file provides documentation for this table (a formal metadata file could also be included here).
+The `src` directory contains an analytic file `sightings_analysis.py`,
+a Python file containing functions that summarize the tabular data,
+and a controller script `runall.py` that loads the data table,
+applies functions imported from `sightings_analysis.py`,
+and saves a table of summarized results in the `results` directory.
 
-When using interpreted languages such as Python or R, the `bin` directory is often empty as in this example. The `doc` directory contains two text files written in Markdown, one containing a running lab notebook describing various ideas for the project and how these were implemented and the other containing a running draft of a manuscript describing the project findings. 
+When using interpreted languages such as Python or R, the `bin` directory is often empty as in this example.
+The `doc` directory contains two text files written in Markdown,
+one containing a running lab notebook describing various ideas for the project and how these were implemented
+and the other containing a running draft of a manuscript describing the project findings. 
 
-```
+~~~
 .
 |-- bin
 |-- data
@@ -262,16 +410,19 @@ When using interpreted languages such as Python or R, the `bin` directory is oft
 |-- src
 |   |-- sightings_analysis.py
 |   |-- runall.py
-```
+~~~
 
 ## Version Control
 
-Keeping track of changes that you or your collaborators make to data files, software, and project organization is a critical part of research. Using a formal version control system allows you to easily see what changed, when it changed, and who changed it. The most common version control sytems are git, Subversion and Mercurial, although there are many others.   
+Keeping track of changes that you or your collaborators make to data files, software, and project organization is a critical part of research.
+Using a formal version control system allows you to easily see what changed, when it changed, and who changed it.
+The most common version control sytems are git, Subversion and Mercurial, although there are many others.   
 
 ### Goals
 
 *   *Reproducibility:*
-    Version control allows you to easily reference or retrieve a specific version of the entire project. This is invaluable for your future self (when you finally get the reviews back for your paper),
+    Version control allows you to easily reference or retrieve a specific version of the entire project.
+    This is invaluable for your future self (when you finally get the reviews back for your paper),
     for your lab-mates and collaborators (in case you leave the project),
     and reviewers / editors / other scientists who want to convince themselves of the conclusions in your published research.
 *   *Efficiency:*
@@ -311,7 +462,7 @@ Version control is probably the most technical section of this guide,
 and the one with the steepest learning curve.
 Most newcomers find version control systems confusing,
 in part because some of their benefits only become apparent in large projects with many collaborators.
-It can be therefore be tempting to revert to using "Save As" with a version number in the file's name,
+It can therefore be tempting to revert to using "Save As" with a version number in the file's name,
 or to rely on backup systems to save the history of a project.
 
 We nevertheless recommend learning version control and using it on all projects,
@@ -604,5 +755,6 @@ FIXME
 [travis]: https://travis-ci.org/
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
+[white-simple-reuse]: http://library.queensu.ca/ojs/index.php/IEE/article/view/4608
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
 [wickham-tidy]: http://www.jstatsoft.org/article/view/v059i10
