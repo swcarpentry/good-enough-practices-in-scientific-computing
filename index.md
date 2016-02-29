@@ -8,27 +8,27 @@
 
 ## Introduction
 
-Two years ago we wrote a paper called
-*[Best Practices for Scientific Computing][best-practices]*
-That might have been misguided:
-many novices find the catalog intimidating,
+Two years ago a group of researchers involved in [Software Carpentry][swc-website]
+and [Data Carpentry][dc-website]
+wrote a paper called "[Best Practices for Scientific Computing][best-practices]".
+It was well received,
+but in retrospect it might have been misguided:
+many novices found its catalog of tools and techniques intimidating,
 and by definition,
 the "best" are a minority,
 so "best practices" are what only a minority does.
 
-This paper therefore looks instead at "good enough" practices,
+This paper therefore looks instead at "good enough" practices ([1](#footnote-1)),
 i.e.,
-at the minimum set of recommendations we address to every researcher.
-(Note that English lacks a good word for this:
-"mediocre" and "sufficient" aren't exactly right.)
+at the minimum set of practices we believe every researcher can and should adopt.
 It draws inspiration from several sources, including:
 
+*   Matthew Gentzkow and Jesse Shapiro's
+    "[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]"
 *   William Stafford Noble's
     "[A Quick Guide to Organizing Computational Biology Projects][noble-rules]"
 *   Titus Brown's
     "[How to grow a sustainable software development process][brown-sustainable]"
-*   Matthew Gentzkow and Jesse Shapiro's
-    "[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]"
 *   Hadley Wickham's
     "[Tidy Data][wickham-tidy]"
 *   Justin Kitzes' notes on
@@ -38,17 +38,27 @@ It draws inspiration from several sources, including:
 *   Hart et al's
     "[Ten Simple Rules for Digital Data Storage][hart-storage]"
 
-Our audience is researchers who are working alone or with a small number of collaborators,
+Our intended audience is researchers who are working alone or with a handful of collaborators
+on projects lasting a few days to a few months,
 and who are just starting to move beyond saving spreadsheets called `results-updated-3-revised.xlsx` in Dropbox.
-A practice is included in this minimal list if:
+A practice is included in our list if large numbers of *computationally competent* ([2](#footnote-2)) researchers use it,
+and if large numbers of novices try it after a short introduction,
+and are still using it months after first trying it out.
+We use these criteria because there's no point recommending things that people
+don't actually use,
+won't try,
+or abandon after a few days or weeks because they don't perceive value.
 
-1.  We routinely teach the skills needed to implement it in a two-day workshop
-    *   No point recommending something people won't be ready to do
-2.  The majority of our learners will actually adopt it after a workshop
-    *   No point teaching something people aren't going to use
-
-Many rules are for the benefit of your future self,
-because your past self doesn't answer email.
+That last stipulation is important.
+Many of our rules are for the benefit of the collaborator every researcher cares about most:
+their future self.
+(As the joke goes, your past self doesn't answer email...)
+If researchers don't see those benefits quickly enough to pay for
+the slowdown that inevitably occurs when adopting a new tool or practice,
+they will almost certainly switch back to their old way of doing things.
+As we discuss [below](#whats-not-on-this-list),
+this rules out many practices such as code review
+that we feel are essential for larger-scale development.
 
 ## Data Management
 
@@ -739,9 +749,23 @@ including some that we use daily.
 
 FIXME
 
+## Footnotes
+
+<a name="footnote-1">(1)</a>
+Note that English lacks a good word for this:
+"mediocre", "adequate", and "sufficient" aren't exactly right.
+
+<a name="footnote-2">(2)</a>
+We use the term "computationally competent"
+(a) to make it clear that we're trying to inculcate the equivalent good lab skills,
+rather than turn researchers into professional programmers,
+and (b) because the terms "computational literacy" and "computational thinking" have been used in so many ways
+that it's hard to know what they mean any more.
+
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
 [bryan-comment-text]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
+[dc-website]: http://datacarpentry.org/
 [dublin-core]: http://dublincore.org/
 [fair-data]: http://datafairport.org/fair-principles-living-document-menu
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
@@ -753,6 +777,7 @@ FIXME
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673
+[swc-website]: http://software-carpentry.org/
 [travis]: https://travis-ci.org/
 [turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
