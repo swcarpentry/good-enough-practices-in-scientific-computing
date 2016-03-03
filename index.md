@@ -52,77 +52,102 @@ because your past self doesn't answer email.
 
 ## Data Management
 
-Your project data may need to exist in various forms, ranging from raw to highly processed.
-Here are some guiding principles to help you move data through this developmental process:
+Project data may need to exist in various forms,
+ranging from raw to highly processed.
+We recommend three guiding principles to manage it:
 
-**First, do no harm.**
-Save data in the rawest form available and resist the temptation to overwrite these files with cleaner versions.
-This could be the data file produced by an instrument or raw results from a survey,
-with all of their mystifying imperfections.
-Faithful retention guarantees you can re-run your analysis, nachos to cheesecake, in the future.
-Long-term, this level of reproducibility enhances everyone's confidence in your final results.
-The more immediate payoff is the ability to recover gracefully from analytical mishaps and the freedom to experiment without fear.
+### Save data in the rawest form available.
 
-**Be the raw data you wish to see in the world.**
-From the raw data, make the dataset you *wish* you had received
-and that you will enjoy having as the start point for downstream analyses,
-some of which you have not even dreamed of yet.
-This is the place to maximize machine and human readability,
-preferably at the same time.
-It is neither the place to do vigorous data filtering nor to the time to bring in external information.
-Approach this initial preparation as internal to the existing dataset and non-destructive,
+Where possible,
+save the data file produced by an instrument or raw results from a survey,
+with all of its mystifying imperfections.
+It is tempting to overwrite raw data files with cleaned-up versions,
+but faithful retention is essential to being able to re-run analyses from start to finish.
+Being able to produce the raw data also enhances confidence in your final results.
+More immediately,
+having the raw data helps allows you to recover from analytical mishaps
+and allows you to experiment without fear.
+
+### Create the data you wish to see in the world.
+
+Create the dataset you *wish* you had received from the raw data
+and use that as the starting point for downstream analyses
+(including those you didn't initially think of doing).
+This is the time to maximize both machine and human readability,
+but *not* to do vigorous data filtering nor to bring in external information.
+
+Approach this initial tidying up as internal to the existing dataset and non-destructive,
 both of the data and its general "shape".
 Enhance machine readability by converting from proprietary or high-friction formats (e.g., Microsoft Excel or XML)
-to open and simple formats (e.g., comma delimited plain text).
+to open and simple formats (e.g., comma-separated values).
 Enhance human readability by replacing inscrutable variable names and artificial data codes with self-explaining alternatives.
-For example, rename the variables `name1` and `name2` to `personal_name` and `family_name`,
+For example,
+rename the variables `name1` and `name2` to `personal_name` and `family_name`,
 recode the treatment variable from `1` vs. `2` to `untreated` vs. `treated`,
 and replace artificial codes, such as "-99" for missing data, with proper `NA`s.
-Both human and machine readability can be enhanced by storing especially useful metadata as part of the filename itself,
+
+Both human and machine readability can be enhanced
+by storing especially useful metadata as part of the filename itself,
 while keeping the filename regular enough for easy pattern matching.
+For example,
+a filename like `2016-05-alaska-b.csv` makes it easy for both people and programs to
+select by year (`2016-*.csv`),
+by location (`*-alaska-*.csv`),
+and so on.
 
-**Create analysis-friendly data.**
-Well-prepared raw data can still present many barriers to analysis and visualization.
-For example, columns in the dataset may not represent the variables that are most conducive to analysis.
-There are (at least!) two classes of problems:
+### Create analysis-friendly data.
 
-1.  Columns that contain more than one variable's worth of information.
-    For example, the inclusion of units is problematic, e.g., "3.4 kg".
-    The presence of "kg" will cause most analytical environments to read this in as character data,
-    whereas you'll probably want to do numeric things with it, like take averages and use in plots.
-    This should be split into two variables, the mass "3.4" and the units "kg",
+You can do this by reformatting data to eliminate processing steps
+between loading the data set and doing the analysis.
+
+1.  Columns that contain more than one variable's worth of information should be split.
+    For example,
+    the presence of "kg" in "3.4 kg" will cause most analytical environments to read this in as character data
+    rather than numeric.
+    It should be split into two columns
+    (the mass "3.4" and the units "kg"),
     or the units should be recorded in the variable name and/or metadata.
-    When in doubt, try to make each variable correspond to an atomic, imminently usable piece of information.
-2.  Multiple columns that only contain one variable's worth of information when taken together.
+2.  Multiple columns that only contain one variable's worth of information when taken together should be combined.
     This is characteristic of data that has been laid out for human eyeballs or for manual data entry.
     For example, there might be one row per field site and then columns for measurements made at each of several time points.
     It is convenient to store this in a "short and wide" form for data entry and inspection,
     but for most analyses it will be advantageous to gather these columns into a variable of measurements,
     accompanied by a companion variable indicating the time point.
+3.  Reformat values as needed to match your environment's built-in parsing rules.
+    For example,
+    use date-time format that will be recognized automatically.
 
-The goal of all this variable splitting, combining, spreading, and gathering is to create so-called "tidy data",
+The goal of this refactoring is to create "tidy data",
 which can be a powerful accelerator for analysis ([Tidy Data][wickham-tidy], [Nine simple ways][white-simple-reuse]).
-This is a good place to make sure your data will play nicely with your analytical environment and plans.
-For example, reformat a date-time to match one of those recognized automatically or standardize the casing on a character variable.
+This is the time to make sure your data will play nicely with your analytical environment and plans.
 This pass through the data likely does not change the amount of data, but may dramatically alter its form.
 
-*FIXME: this may still need something about observations and rows and the notion of a key?*
+> [OpenRefine][openrefine] is an excellent tool for this stage of data cleanup.
+> It combines a spreadsheet-like interface to tabular data
+> with a large set of cleanup heuristics,
+> and can generate a trace of cleanup steps to ensure reproducibility.
 
-**Choose your friends wisely.**
-Marshal complementary data in files with the same high standard for openness and simplicity as above.
-Frequently the raw data does not and indeed cannot fully explain itself.
-For example, if each well of a microtitre plate is used to study a specific gene knockout,
+### Give every record a unique key.
+
+FIXME: fill in.
+
+### Marshal complementary data in files that meet the same standards.
+
+Raw data frequently does not fully explain itself.
+For example,
+if each well of a microtitre plate is used to study a specific gene knockout,
 the prepared raw data will have a `well` variable taking on values like "A1" and "G12",
 but the plate reader cannot possibly know what's in each well.
-That information will be absent from the primary data file.
-You must create a supplementary file in order to look this up.
-Head off future join headaches by taking care to use the same names and codes when variables in two datasets refer to the same thing
-and will be used for merging or table lookup.
+That information will be absent from the primary data file,
+so you must create a supplementary file in order to look this up.
+Make sure to use the same names and codes when variables in two datasets refer to the same thing
+to simplify merging and lookup (and make them less error-prone).
 
-**The right data for the job.**
-Now is the time to create a dataset purpose-built for specific analyses and figures.
+### Create a dataset purpose-built for specific analyses and figures.
+
 This probably involves filtering rows, selecting relevant variables, and merging with external information.
-Depending on how you well executed the previous stage, this can often be surprisingly straightforward.
+If the preceding steps have been done,
+this can often be surprisingly straightforward.
 The basic form of the data was hopefully set earlier,
 so the main changes here are likely to be data reduction and the amalgamation of multiple datasets.
 
@@ -181,7 +206,8 @@ so the main changes here are likely to be data reduction and the amalgamation of
 
 The data processing strategy advocated above is divided into steps and produces intermediate data files,
 with increasing levels of cleanliness and task-specificity.
-While there is growing appreciation for reproducibility---i.e., being able to re-run an analysis start to finish---it is is also extremely useful
+While there is growing appreciation for reproducibility---i.e.,
+being able to re-run an analysis start to finish---it is also extremely useful
 to be able to re-run *parts* of a pipeline.
 The reasons are similar to those given for modularity in computer code:
 by breaking data preparation into steps,
@@ -189,23 +215,23 @@ it becomes easier to revisit later and to only tinker with specific data cleanin
 
 We propose delimited plain text as an appealing "lowest common denominator" data form
 that offers high usability across time, people, operating systems, and analytical environments.
-We must admit that plain text is, however, no panacea.
+We recognize, though, that plain text is not a panacea.
 In particular, when collaborating with others, be aware of and, when possible, standardize on
 file encoding, line endings, and the elimination of prose-oriented features, such as "smart quotes".
 Differences between collaborators in these pesky details can cause the changes between file versions to be large
 and therefore substantially less comprehensible.
 
-[Elizabeth Wickes][wickes-comment-metadata] provides a useful classification for metadata,
-with implications for it how it should be represented.
-She notes it is easy to conflate metadata about the dataset as a whole with metadata about the content,
-e.g., individual columns.
-Most metadata schemas are aimed at the former,
-i.e., they detail the author, funder, related publications, etc.
-When considering how to store metadata, consider the intended audience.
-Is it humans?
-Write a README.
-Is it machines, such as metadata harvesters and formal repositories?
-Create an impeccably formatted metadata file.
+> [Elizabeth Wickes][wickes-comment-metadata] provides a useful classification for metadata,
+> with implications for it how it should be represented.
+> She notes it is easy to conflate metadata about the dataset as a whole with metadata about the content,
+> e.g., individual columns.
+> Most metadata schemas are aimed at the former,
+> i.e., they detail the author, funder, related publications, etc.
+> When considering how to store metadata, consider the intended audience.
+> Is it humans?
+> Write a README.
+> Is it machines, such as metadata harvesters and formal repositories?
+> Create an impeccably formatted metadata file.
 
 ## Software
 
@@ -750,6 +776,7 @@ FIXME
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
 [make]: https://www.gnu.org/software/make/
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
+[openrefine]: http://openrefine.org/
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673
