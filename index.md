@@ -47,8 +47,17 @@ A practice is included in this minimal list if:
 2.  The majority of our learners will actually adopt it after a workshop
     *   No point teaching something people aren't going to use
 
-Many rules are for the benefit of your future self,
-because your past self doesn't answer email.
+### You're Really Helping Yourself
+
+Many of these rules are phrased in terms of helping other people,
+such as current and future collaborators.
+In all cases,
+though,
+the most important "other person" you're helping is your future self:
+for example,
+a good to-do list will save you time when you come back to your project next year.
+It's always tempting to cut corners,
+but your past self doesn't answer email.
 
 ## Data Management
 
