@@ -95,10 +95,10 @@ There are (at least!) two classes of problems:
     When in doubt, try to make each variable correspond to an atomic, imminently usable piece of information.
 2.  Multiple columns that only contain one variable's worth of information when taken together.
     This is characteristic of data that has been laid out for human eyeballs or for manual data entry.
-    For example, there might be one row per field site and then columns for measurements made at each of several time points.
+    For example, there might be one row per study site and then columns for measurements made at each of several time points.
     It is convenient to store this in a "short and wide" form for data entry and inspection,
-    but for most analyses it will be advantageous to gather these columns into a variable of measurements,
-    accompanied by a companion variable indicating the time point.
+    but for most analyses it will be advantageous to gather these columns into a variable of measurements at each time point,
+    accompanied by a companion variable indicating the study site, even if this means repeating the site values in that column. {# A simple figure here would be very helpful #}
 
 The goal of all this variable splitting, combining, spreading, and gathering is to create so-called "tidy data",
 which can be a powerful accelerator for analysis ([Tidy Data][wickham-tidy], [Nine simple ways][white-simple-reuse]).
