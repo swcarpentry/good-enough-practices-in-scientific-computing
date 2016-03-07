@@ -519,49 +519,71 @@ and the other containing a running draft of a manuscript describing the project 
 
 ## Version Control
 
-Keeping track of changes that you or your collaborators make to data files, software, and project organization is a critical part of research.
-Using a formal version control system allows you to easily see what changed, when it changed, and who changed it.
-The most common version control systems are git, Subversion and Mercurial, although there are many others.   
+Keeping track of changes that you or your collaborators make to data, software, and manuscripts
+is a critical part of research.
+Using a version control system makes it easy to see what changed when
+and who made the change.
 
-### Goals
+Version control aids *reproducibility*
+by allowing you to reference or retrieve a specific version of the entire project.
+This is invaluable for your future self (when you finally get the reviews back for your paper),
+for your lab-mates and collaborators (in case you leave the project),
+and for reviewers, editors, and others who want to convince themselves of the conclusions in your published research.
+It also helps your future self come back to a project after a long field season
+and *not* have to spend days remembering what you did last
+or figuring out what your collaborators have changed while you have been gone.
 
-*   *Reproducibility:*
-    Version control allows you to easily reference or retrieve a specific version of the entire project.
-    This is invaluable for your future self (when you finally get the reviews back for your paper),
-    for your lab-mates and collaborators (in case you leave the project),
-    and reviewers / editors / other scientists who want to convince themselves of the conclusions in your published research.
-*   *Efficiency:*
-    If data and files are stored in a standard way,
-    your future self can come back to a project after a long field season and not have to spend days remembering what you did last, or what your collaborators have changed while you have been gone.
-    This is also true for someone else who wants to take what you've done and go in a new direction.
-*   *Fixability:*
-    Having access to every version of code, figures, and data helps you figure out why Figure 4 looks different now from last week.
-*   *Sharing and Collaboration:*
-    Version control tools make it easy to share projects and update them, sometimes simultaneously, with other collaborators.
+Version control also aids *fixability*:
+having access to every version of code, figures, and data helps you figure out
+why Figure 4 looks different now than it did last week.
+And finally,
+all of this aids *sharing and collaboration*,
+particularly by managing the process of merging independent changes made by different people,
+and distributing those changes back to everyone in a controlled, traceable way.
 
-### Rules
+> ### Which System?
+>
+> The most commonly-used version control systems today are Git, Mercurial, and Subversion,
+> though there are many others.   
+> They all provide the same basic functionality,
+> so in the end,
+> the best one to choose is whichever one your collaborators are already using.
 
-1.  Everything created by a human being goes under version control as soon as it is created.
-    This includes scripts for data management, cleaning and analyses; software packages; and documentation.
-    Some types of files may not be appropriate for version control:
-    *   raw and / or synthesized data (see section on data, below)
-    *   manuscripts, depending on the format, but see the Manuscript section for details  
-    *   intermediate files that can be regenerated
-2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer.
-    The other machine might be a lab or departmental server, or a public site such as GitHub or Bitbucket.
-3.  You share your changes frequently, and incorporate changes from others frequently.
-    Don't allow your local version of the project repository to drift apart from copies on other machines.  
-3.  Decide (along with any collaborators) on your own checklist for committing and sharing changes to the project
-    and document this checklist in the repository.
-    ("Sharing" means moving changes from your computer onto another machine / site).
-    The list might include things such as:
-    *   writing commit messages that clearly explain any changes,
-    *   size and content of single commits,
-    *   style guidelines for code,
-    *   updating to-do lists, and
-    *   bans on committing half-done work or broken code.
+The first rule for using version control is that
+everything created by a human being goes under version control as soon as it is created.
+This includes scripts and programs of all kinds,
+software packages that your project depends on (with some caveats discussed below),
+and documentation.
+Files that may *not* be appropriate for version control include:
 
-### Discussion
+*   raw and/or synthesized data (also discussed below)
+*   manuscripts (depending on the format---see [the discussion of Manuscripts](#manuscripts) below)
+*   intermediate files that can be automatically regenerated
+
+Second,
+the repository should be mirrored on at least one machine that *isn't* the researcher's computer.
+This may be a lab or departmental server,
+or a public site such as GitHub or Bitbucket.
+Whichever is chosen,
+make sure that server is backed up regularly.
+
+Third,
+everyone working on the project should share their changes frequently,
+and incorporate changes from others just as frequently.
+Do not allow local versions of the project repository to drift apart,
+as the effort required to merge differences goes up faster than the size of the difference.
+
+Finally,
+decide on a checklist for committing and sharing changes to the project,
+document the checklist in the repository,
+and *use it*.
+The list might include:
+
+*   writing commit messages that clearly explain any changes,
+*   size and content of single commits,
+*   style guidelines for code,
+*   updating to-do lists, and
+*   bans on committing half-done work or broken code.
 
 Version control is probably the most technical section of this guide,
 and the one with the steepest learning curve.
@@ -597,13 +619,15 @@ Putting synthesized or modified data sets into version control may not be necess
 if you can re-generate these files from raw data and data-cleaning scripts
 (which definitely *are* under version control!).  
 
-The format of your data may not be amenable to version control.
-Version control is designed to work with text files where the lines are in a specific order (such as a document, or source code).
+Unfortunately,
+some data formats are not amenable to version control,
+which is designed to work with text files where the lines are in a specific order
+(such as source code or plain-text documentation).
 Binary files (such as HDF5) can be put in a version control system,
 but you won't be able to see specific changes.
-Similarly, tabular data (such as csv files) can be put in version control,
-but changing the order of the rows would create a big change for the version control system,
-even though the data itself has not changed.
+Similarly, tabular data (such as CSV files) can be put in version control,
+but changing the order of the rows or columns will create a big change for the version control system,
+even if the data itself has not changed.
 
 Finally,
 researchers dealing with data subject to legal restrictions that prohibit sharing (such as medical data)
