@@ -60,6 +60,18 @@ As we discuss [below](#whats-not-on-this-list),
 this rules out many practices such as code review
 that we feel are essential for larger-scale development.
 
+### You're Really Helping Yourself
+
+Many of these rules are phrased in terms of helping other people,
+such as current and future collaborators.
+In all cases,
+though,
+the most important "other person" you're helping is your future self:
+for example,
+a good to-do list will save you time when you come back to your project next year.
+It's always tempting to cut corners,
+but your past self doesn't answer email.
+
 ## Data Management
 
 Project data may need to exist in various forms,
@@ -286,11 +298,14 @@ FIXME
 
 ## Collaboration
 
-### Goals
+You may start working on your project by yourself
+or with a small group of collaborators whom you now.
+But even at an early stage,
+you may want to open your project so that you can attract potential new collaborators
+whom you *don't* already know.
+Even if you choose not to do this at the start of the project,
+following a few simple rules will make it easier to do so later.
 
-You may work on your project with others, your known collaborators.
-But, even at an early stage, you may be interested to open your project so that you can attract new, as yet unknown collaborators.
-This section lists approaches for making it straightforward for others to start collaborating on your project.
 To enhance collaboration, aim for:
 
 1.  *Simplicity:* the easier it is for people to collaborate, the more likely they are to do so (and to give you credit)
@@ -299,38 +314,91 @@ To enhance collaboration, aim for:
     *   setting up the local workspace to start work
 3.  *Clarity:* remove uncertainty around what a potential collaborator is allowed to do
 
-### Rules
+### Create an Overview
 
-1.  Have a short README file explaining the project's purpose.  
-    This file should includes contact information that actually works.
-    This file is often the first thing users of your project will look at,
-    so make it explicit already here that you welcome contributors and point them to the ways to help out.
-    Consider using a CONTRIBUTION file to describe any steps needed to start working:
-    dependencies that need to be installed,
-    running of (unit) tests,
-    and guidelines or rules that your project adheres to (e.g. on commit messages or checklists you may use before accepting a suggested change).
-2.  Have a shared public to-do list.
-    This could be a plain text file containing the to-do list called `notes.txt` or `todo.txt` or something similar.
-    Alternatively,
-    on sites such as GitHub or Bitbucket,
-    you could use the *issue* functionality, and create a new issue for each to-do item
-    (you can even add labels such as 'low hanging fruit' to point people to where to get started).
-    Whatever your system of choice, make the descriptions of the items clear enough so that they make sense for new collaborators.
-3.  Have a LICENSE file.  
-    Lack of an explicit license implies the author is keeping all rights and others are not allowed to re-use or modify the material.
-    We recommend:
-    *   Use Creative Common licenses for data and text,
-        either [CC-0](https://creativecommons.org/about/cc0/), the "No Rights Reserved" license,
-        or [CC-BY](https://creativecommons.org/licenses/by/4.0/), the "Attribution" license,
-        allowing sharing and reuse but requiring giving appropriate credit to the creator(s).
-    *   A permissive license (e.g., [MIT/BSD/Apache](https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html))
-        for software
-4.  Have a CITATION file.
-    This file describes:
-    *   How to cite this project overall
-    *   Where to find/how to cite data sets, code, figures, and other things that have their own DOIs
+Have a short `README` file explaining the project's purpose in an easy-to-find place
+(such as the project's home directory).
+This file is often the first thing users of your project will look at,
+so make it explicit already here that you welcome contributors and point them to the ways to help out.
 
-FIXME add example CITATION
+The `README` file (which may be called that, or `README.txt`, or `README.html`)
+should contain:
+
+*   the project's title,
+*   a brief description (similar to the abstract of a paper), and
+*   contact information that actually works.
+
+You should also create a `CONTRIBUTING` file that describes
+what people need to do in order to get the project going and contribute to it:
+dependencies that need to be installed,
+tests that can be run to ensure the software has been installed correctly,
+and guidelines or rules that your project adheres to
+(e.g., checklists you may use before accepting a suggested change).
+
+### Create a Shared To-Do List
+
+Have a shared public to-do list.
+This could be a plain text file containing the to-do list called `notes.txt` or `todo.txt` or something similar.
+Alternatively,
+you could use the *issue* functionality on sites such as GitHub or Bitbucket
+to create a new issue for each to-do item.
+(You can even add labels such as "low hanging fruit" to point newcomers at issues that are good starting points.)
+Whatever your system of choice,
+make the descriptions of the items clear enough so that they make sense for new collaborators.
+
+### Make the License Explicit
+
+Have a `LICENSE` file in the project's home directory
+that clearly states what license(s) apply to the project's software, data, and manuscripts.
+Lack of an explicit license does not mean there isn't one;
+rather, it implies the author is keeping all rights and others are not allowed to re-use or modify the material.
+We recommend:
+
+*   Use Creative Commons licenses for data and text,
+    either [CC-0][cc0], the "No Rights Reserved" license,
+    or [CC-BY][ccby], the "Attribution" license,
+    allowing sharing and reuse but requiring giving appropriate credit to the creator(s).
+*   Use a permissive license (e.g., the [MIT, BSD, or Apache][license-descriptions] licenses) for software.
+
+We recommend *against* the "no commercial use" variations of the Creative Commons licenses because
+they may impede some forms of re-use.
+For example,
+if a researcher in a developing country is being paid by her government to compile a public health report,
+and wishes to include some of your data,
+she will be unable to do so if the license says "non-commercial".
+We recommend permissive software licenses rather than the [GNU General Public License][gpl] (GPL)
+because it is easier to integrate permissively-licensed software into other projects.
+(Note that it is straightforward to switch from a permissive license to the GPL if you should change your mind later
+but rather more complicated to go in the other direction.)
+
+### Make the Project Citable
+
+Include a `CITATION` file in the project's home directory that describes:
+
+*   how to cite this project as a whole, and
+*   where to find, and how to cite, any data sets, code, figures, and other artefacts that have their own DOIs.
+
+For example,
+the `CITATION` file for the Software Carpentry project reads:
+
+~~~
+To reference Software Carpentry in publications, please cite:
+
+Greg Wilson: "Software Carpentry: Lessons Learned". F1000Research,
+2016, 3:62 (doi: 10.12688/f1000research.3-62.v2).
+
+@online{wilson-software-carpentry-2016,
+  author      = {Greg Wilson},
+  title       = {Software Carpentry: Lessons Learned},
+  version     = {2},
+  date        = {2016-01-28},
+  url         = {http://f1000research.com/articles/3-62/v2},
+  doi         = {10.12688/f1000research.3-62.v2}
+}
+~~~
+
+For an example of a more detailed `CITATION` file,
+see the one for the [khmer project][khmer-citation].
 
 ### Discussion
 
@@ -791,13 +859,18 @@ that it's hard to know what they mean any more.
 [best-practices]: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 [brown-sustainable]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
 [bryan-comment-text]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/10#issue-117003028
+[cc0]: https://creativecommons.org/about/cc0/
+[ccby]: https://creativecommons.org/licenses/by/4.0/
 [dc-website]: http://datacarpentry.org/
 [dublin-core]: http://dublincore.org/
 [fair-data]: http://datafairport.org/fair-principles-living-document-menu
 [gentzkow-shapiro]: https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf
+[gpl]: https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch03.html
 [hart-storage]: https://peerj.com/preprints/1448/
+[khmer-citation]: https://github.com/dib-lab/khmer/blob/master/CITATION
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
+[license-descriptions]: https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html
 [make]: https://www.gnu.org/software/make/
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [openrefine]: http://openrefine.org/
