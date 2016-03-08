@@ -613,51 +613,66 @@ so it is worth checking with your IT department.
 
 ## Manuscripts
 
-A common, but unfortunate, practice is that the lead author at different points in the writing process
-sends around versions to coauthors for collecting feedback, and receiving multiple documents back with comments.
-This leads to a lot of files to keep track of and much manual labor
-to merge all the comments into the updated 'master' document.
-Instead, we recommend mirroring the practices we describe for managing software and data
-as they are equally beneficial for the process of manuscript preparation:
-making the writing version controlled, collaborative, and reproducible.
-It is important, however, to have all authors agree on a particular collaborative writing workflow
-*before* starting the actual writing.
-Once you agree, as lead author, don't hesitate to lay out some ground rules
-that you expect the others to adhere to --- even if they are many years your senior.
+Gathering data,
+analyzing it,
+and figuring out what it means is the first 90% of any project;
+writing up is the other 90%.
+While this step is often skipped over,
+computing has changed it just as much as it has changed the research itself.
 
-### Goals
+A common, but unfortunate, practice is for
+the lead author to send successive versions of a manuscript to coauthors to collect feedback,
+which is received as multiple documents with changes,
+as comments on the document,
+in email,
+or a mix of all three.
+The result is a lot of files to keep track of
+and much tedious manual labor to merge all the comments
+to create a new master version,
+at which point the process begins again.
 
-This section describes workflows for manuscript preparation that aim to satisfy the following goals:
+FIXME: following paragraph will need to be changed if version control is rewritten as either/or.
 
-1.  Make text accessible to yourself and others now and in the future
-    by using a single point of access for the master document that is accessible to all coauthors at all times.
-2.  Reduce chances of work being lost or people overwriting each other's work.
+Instead of an email-based workflow,
+we recommend mirroring good practices for managing software and data,
+to make writing scalable, collaborative, and reproducible.
+In contrast to our other recommendations,
+however,
+we suggest that groups choose one of two different approaches for managing manuscripts.
+The most important rule is
+to have all authors agree on one or the other *before* writing starts.
+
+The goals of both of the workflows outlined below are:
+
+1.  Ensure that text accessible to yourself and others
+    now and in the future
+    by making a single master document accessible to all coauthors at all times.
+2.  Reduce the chances of work being lost or people overwriting each other's work.
 3.  Make it easy to track and combine contributions from multiple collaborators.
-4.  Avoid duplication and manual entry of information, particularly in constructing bibliographies, tables of contents, and lists
-5.  Make it easy to regenerate the final shared form (e.g., the PDF), and to tell if the PDF in hand is up to date.
-6.  Make it easy to share the final version with collaborators and to submit it to a journal.
+4.  Avoid duplication and manual entry of information,
+    particularly in constructing bibliographies, tables of contents, and lists.
+5.  Make it easy to regenerate the final published form (e.g., a PDF)
+    and to tell if it is up to date.
+6.  Make it easy to share that final version with collaborators
+    and to submit it to a journal.
 
-### Rules
+The first approach treats papers exactly like software,
+and has been used by researchers in mathematics, astronomy, physics, and related disciplines for decades:
 
-In contrast to our other proposals,
-we recommend that groups choose one of two different approaches for managing manuscripts.
-
-#### Plain-Text Manuscripts Compiled to Produce Papers
-
-This approach treats papers exactly like software.
-It is technically more complicated,
-but has been used by researchers in mathematics, astronomy, physics, and related disciplines for decades.
-
-1.  The manuscript is written in a plain text format such as LaTeX or Markdown
-    that enables version control for the files involved,
-    and programatically converted to other formats such as PDF as needed.
+1.  The manuscript is written in a plain text format such as
+    [LaTeX][latex] or [Markdown][markdown]
+    that permits version control of the files involved,
+    and then converted to other formats such as PDF as needed
+    using scriptable tools.
 2.  Tools needed to compile manuscripts (e.g., Makefiles or LaTeX style files)
     are included in the project folder
     and kept under version control
     just like tools used to do simulation or analysis.
 
-This works,
-but as [Stephen Turner commented][turner-comment-docs] during the production of this paper:
+This approach re-uses the version control toosl and skills used to manage data and software,
+and is a good starting point for fully-reproducible research.
+However,
+as [Stephen Turner commented][turner-comment-docs] during the production of this paper:
 
 > ...try to explain the notion of compiling a document to an overworked physician you collaborate with.
 > Oh, but before that, you have to explain the difference between plain text and word processing.
@@ -675,44 +690,45 @@ but as [Stephen Turner commented][turner-comment-docs] during the production of 
 > it always comes down to "just give me a Word document with tracked changes," or similar.
 > There's always a least common denominator who just isn't going to be on board for writing like this.
 
-#### Distributed Web-Based System
-
 We therefore also recommend an alternative:
 
 1.  A manuscript is written using Google Docs or some other online tool with rich formatting,
     change tracking,
     and reference management.
-2.  In project folder,
-    add a short text file called PUBLICATIONS to the `doc` directory with metadata about each online manuscript (e.g., the URL).
+2.  The project's `doc` directory includes a short text file called PUBLICATIONS
+    containing metadata about each online manuscript (e.g., their URLs).
     This is analogous to the `data` directory,
     which might contain links to the location of the data file(s) rather than the actual files.
 
-We realize that in many cases, even this solution is asking too much from the coauthor who will continue to say,
+We realize that in many cases,
+even this solution is asking too much from the coauthor who will continue to say,
 "Just give me a Word document with tracked changes," or something similar.
 To satisfy this person,
-convert the manuscript to an editable file format (e.g., `.docx` or `.odt`) after major changes,
-download it,
-and save it in the `doc` folder.
+the manuscript can be converted to a desktop editor file format
+(e.g., Microsoft Word's `.docx` or LibreOffice's `.odt`)
+after major changes,
+then downloaded and saved in the `doc` folder.
 
 Unfortunately,
-this means manually merging in the changes and suggestions of this person,
-as there do not seem to be tools to do this automatically
-when switching from a proprietary format to text and back (although the `pandoc` program goes a long way).
+this means merging some changes and suggestions manually,
+as existing tools cannot always do this automatically
+when switching from a desktop file format to text and back
+(although `[pandoc][pandoc]` can go a long way).
 
 ### Discussion
 
 We recommend against traditional desktop tools like LibreOffice and Microsoft Word
 because they make collaboration more difficult than either of our recommended alternatives:
 
-*   If the document lives online (e.g. Google Docs), then everyone's changes are in one place,
+*   If the document lives online (e.g., in Google Docs)
+    then everyone's changes are in one place,
     and hence don't need to be merged manually.
 *   If the document lives in a version control system,
     it provides good support for finding and merging differences resulting from concurrent changes.
-    It also adds the possibility of using the pull-request model for suggestions, additions and pre-merge review.
+    It also provides a convenient platform for making comments and performing review.
+*   Both of our recommendations clearly define the master document
+    and allow everyone to contribute to it on an equal footing.
 
-Importantly,
-our recommendations clearly define the master document allowing everyone to collaborate on an equal footing.
-For the same reason, even if you are writing the manuscript all by yourself, we recommend using one of these strategies.
 We also believe that researchers should use a bibliography manager of some sort,
 but discussion of those is outside the scope of this paper.
 Finally,
@@ -729,20 +745,20 @@ and *pull requests* for reviewing the contributions from different authors,
 including collecting comments and suggestions on them,
 and other contributors before merging them in.
 
-#### A note on supplementary materials
-
-Supplementary materials often contain much of the work that went into the project:
-tables and figures with results,
-and more elaborate descriptions of the algorithms, software, methods, and analyses.
-In order to make these materials as accessible to others as possible,
-don't solely rely on the PDF format.
-PDFs are notoriously hard to mine for data:
-e.g., extracting a table from a PDF is often not an easy task.
-We recommend separating the results that you may expect others to reuse
-(e.g., data in tables, data behind figures) into separate, text-based formats
-such as comma- or tab-separated files.
-The same holds for any commands or code you want to include as supplementary material:
-use the format that most easily enables reuse (source code files, Unix shell scripts etc).
+> ### Supplementary Materials
+>
+> Supplementary materials often contain much of the work that went into the project,
+> such tables and figures
+> or more elaborate descriptions of the algorithms, software, methods, and analyses.
+> In order to make these materials as accessible to others as possible,
+> do not rely solely on the PDF format,
+> since extracting data from PDFs is notoriously hard.
+> Instead,
+> we recommend separating the results that you may expect others to reuse
+> (e.g., data in tables, data behind figures)
+> into separate, text-format files.
+> The same holds for any commands or code you want to include as supplementary material:
+> use the format that most easily enables reuse (source code files, Unix shell scripts etc).
 
 ## What's Not on This List
 
@@ -870,10 +886,13 @@ that it's hard to know what they mean any more.
 [khmer-citation]: https://github.com/dib-lab/khmer/blob/master/CITATION
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
+[latex]: http://www.latex-project.org/
 [license-descriptions]: https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html
 [make]: https://www.gnu.org/software/make/
+[markdown]: http://daringfireball.net/projects/markdown/
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [openrefine]: http://openrefine.org/
+[pandoc]: http://pandoc.org/
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673
