@@ -387,7 +387,7 @@ but rather more complicated to go in the other direction.)
 Include a `CITATION` file in the project's home directory that describes:
 
 *   how to cite this project as a whole, and
-*   where to find, and how to cite, any data sets, code, figures, and other artefacts that have their own DOIs.
+*   where to find, and how to cite, any data sets, code, figures, and other artifacts that have their own DOIs.
 
 For example,
 the `CITATION` file for the Software Carpentry project reads:
@@ -561,49 +561,71 @@ and the other containing a running draft of a manuscript describing the project 
 
 ## Version Control
 
-Keeping track of changes that you or your collaborators make to data files, software, and project organization is a critical part of research.
-Using a formal version control system allows you to easily see what changed, when it changed, and who changed it.
-The most common version control systems are git, Subversion and Mercurial, although there are many others.   
+Keeping track of changes that you or your collaborators make to data, software, and manuscripts
+is a critical part of research.
+Using a version control system makes it easy to see what changed when
+and who made the change.
 
-### Goals
+Version control aids *reproducibility*
+by allowing you to reference or retrieve a specific version of the entire project.
+This is invaluable for your future self (when you finally get the reviews back for your paper),
+for your lab-mates and collaborators (in case you leave the project),
+and for reviewers, editors, and others who want to convince themselves of the conclusions in your published research.
+It also helps your future self come back to a project after a long field season
+and *not* have to spend days remembering what you did last
+or figuring out what your collaborators have changed while you have been gone.
 
-*   *Reproducibility:*
-    Version control allows you to easily reference or retrieve a specific version of the entire project.
-    This is invaluable for your future self (when you finally get the reviews back for your paper),
-    for your lab-mates and collaborators (in case you leave the project),
-    and reviewers / editors / other scientists who want to convince themselves of the conclusions in your published research.
-*   *Efficiency:*
-    If data and files are stored in a standard way,
-    your future self can come back to a project after a long field season and not have to spend days remembering what you did last, or what your collaborators have changed while you have been gone.
-    This is also true for someone else who wants to take what you've done and go in a new direction.
-*   *Fixability:*
-    Having access to every version of code, figures, and data helps you figure out why Figure 4 looks different now from last week.
-*   *Sharing and Collaboration:*
-    Version control tools make it easy to share projects and update them, sometimes simultaneously, with other collaborators.
+Version control also aids *fixability*:
+having access to every version of code, figures, and data helps you figure out
+why Figure 4 looks different now than it did last week.
+And finally,
+all of this aids *sharing and collaboration*,
+particularly by managing the process of merging independent changes made by different people,
+and distributing those changes back to everyone in a controlled, traceable way.
 
-### Rules
+> ### Which System?
+>
+> The most commonly-used version control systems today are Git, Mercurial, and Subversion,
+> though there are many others.   
+> They all provide the same basic functionality,
+> so in the end,
+> the best one to choose is whichever one your collaborators are already using.
 
-1.  Everything created by a human being goes under version control as soon as it is created.
-    This includes scripts for data management, cleaning and analyses; software packages; and documentation.
-    Some types of files may not be appropriate for version control:
-    *   raw and / or synthesized data (see section on data, below)
-    *   manuscripts, depending on the format, but see the Manuscript section for details  
-    *   intermediate files that can be regenerated
-2.  The repository is mirrored on at least one machine that *isn't* the researcher's computer.
-    The other machine might be a lab or departmental server, or a public site such as GitHub or Bitbucket.
-3.  You share your changes frequently, and incorporate changes from others frequently.
-    Don't allow your local version of the project repository to drift apart from copies on other machines.  
-3.  Decide (along with any collaborators) on your own checklist for committing and sharing changes to the project
-    and document this checklist in the repository.
-    ("Sharing" means moving changes from your computer onto another machine / site).
-    The list might include things such as:
-    *   writing commit messages that clearly explain any changes,
-    *   size and content of single commits,
-    *   style guidelines for code,
-    *   updating to-do lists, and
-    *   bans on committing half-done work or broken code.
+The first rule for using version control is that
+everything created by a human being goes under version control as soon as it is created.
+This includes scripts and programs of all kinds,
+software packages that your project depends on (with some caveats discussed below),
+and documentation.
+Files that may *not* be appropriate for version control include:
 
-### Discussion
+*   raw and/or synthesized data (also discussed below)
+*   manuscripts (depending on the format---see [the discussion of Manuscripts](#manuscripts) below)
+*   intermediate files that can be automatically regenerated
+
+Second,
+the repository should be mirrored on at least one machine that *isn't* the researcher's computer.
+This may be a lab or departmental server,
+or a public site such as GitHub or Bitbucket.
+Whichever is chosen,
+make sure that server is backed up regularly.
+
+Third,
+everyone working on the project should share their changes frequently,
+and incorporate changes from others just as frequently.
+Do not allow local versions of the project repository to drift apart,
+as the effort required to merge differences goes up faster than the size of the difference.
+
+Finally,
+decide on a checklist for committing and sharing changes to the project,
+document the checklist in the repository,
+and *use it*.
+The list might include:
+
+*   writing commit messages that clearly explain any changes,
+*   size and content of single commits,
+*   style guidelines for code,
+*   updating to-do lists, and
+*   bans on committing half-done work or broken code.
 
 Version control is probably the most technical section of this guide,
 and the one with the steepest learning curve.
@@ -639,13 +661,15 @@ Putting synthesized or modified data sets into version control may not be necess
 if you can re-generate these files from raw data and data-cleaning scripts
 (which definitely *are* under version control!).  
 
-The format of your data may not be amenable to version control.
-Version control is designed to work with text files where the lines are in a specific order (such as a document, or source code).
+Unfortunately,
+some data formats are not amenable to version control,
+which is designed to work with text files where the lines are in a specific order
+(such as source code or plain-text documentation).
 Binary files (such as HDF5) can be put in a version control system,
 but you won't be able to see specific changes.
-Similarly, tabular data (such as csv files) can be put in version control,
-but changing the order of the rows would create a big change for the version control system,
-even though the data itself has not changed.
+Similarly, tabular data (such as CSV files) can be put in version control,
+but changing the order of the rows or columns will create a big change for the version control system,
+even if the data itself has not changed.
 
 Finally,
 researchers dealing with data subject to legal restrictions that prohibit sharing (such as medical data)
@@ -655,51 +679,67 @@ so it is worth checking with your IT department.
 
 ## Manuscripts
 
-A common, but unfortunate, practice is that the lead author at different points in the writing process
-sends around versions to coauthors for collecting feedback, and receiving multiple documents back with comments.
-This leads to a lot of files to keep track of and much manual labor
-to merge all the comments into the updated 'master' document.
-Instead, we recommend mirroring the practices we describe for managing software and data
-as they are equally beneficial for the process of manuscript preparation:
-making the writing version controlled, collaborative, and reproducible.
-It is important, however, to have all authors agree on a particular collaborative writing workflow
-*before* starting the actual writing.
-Once you agree, as lead author, don't hesitate to lay out some ground rules
-that you expect the others to adhere to --- even if they are many years your senior.
+Gathering data,
+analyzing it,
+and figuring out what it means is the first 90% of any project;
+writing up is the other 90%.
+While this step is often skipped over,
+computing has changed it just as much as it has changed the research itself.
 
-### Goals
+A common, but unfortunate, practice is for
+the lead author to send successive versions of a manuscript to coauthors to collect feedback,
+which is received as multiple documents with changes,
+as comments on the document,
+in email,
+or a mix of all three.
+The result is a lot of files to keep track of
+and much tedious manual labor to merge all the comments
+to create a new master version,
+at which point the process begins again.
 
-This section describes workflows for manuscript preparation that aim to satisfy the following goals:
+FIXME: following paragraph will need to be changed if version control is rewritten as either/or.
 
-1.  Make text accessible to yourself and others now and in the future
-    by using a single point of access for the master document that is accessible to all coauthors at all times.
-2.  Reduce chances of work being lost or people overwriting each other's work.
+Instead of an email-based workflow,
+we recommend mirroring good practices for managing software and data,
+to make writing scalable, collaborative, and reproducible.
+In contrast to our other recommendations,
+however,
+we suggest that groups choose one of two different approaches for managing manuscripts.
+The most important rule is
+to have all authors agree on one or the other *before* writing starts.
+
+The goals of both of the workflows outlined below are:
+
+1.  Ensure that text is accessible to yourself and others
+    now and in the future
+    by making a single master document
+    that is available to all coauthors at all times.
+2.  Reduce the chances of work being lost or people overwriting each other's work.
 3.  Make it easy to track and combine contributions from multiple collaborators.
-4.  Avoid duplication and manual entry of information, particularly in constructing bibliographies, tables of contents, and lists
-5.  Make it easy to regenerate the final shared form (e.g., the PDF), and to tell if the PDF in hand is up to date.
-6.  Make it easy to share the final version with collaborators and to submit it to a journal.
+4.  Avoid duplication and manual entry of information,
+    particularly in constructing bibliographies, tables of contents, and lists.
+5.  Make it easy to regenerate the final published form (e.g., a PDF)
+    and to tell if it is up to date.
+6.  Make it easy to share that final version with collaborators
+    and to submit it to a journal.
 
-### Rules
+The first approach treats papers exactly like software,
+and has been used by researchers in mathematics, astronomy, physics, and related disciplines for decades:
 
-In contrast to our other proposals,
-we recommend that groups choose one of two different approaches for managing manuscripts.
-
-#### Plain-Text Manuscripts Compiled to Produce Papers
-
-This approach treats papers exactly like software.
-It is technically more complicated,
-but has been used by researchers in mathematics, astronomy, physics, and related disciplines for decades.
-
-1.  The manuscript is written in a plain text format such as LaTeX or Markdown
-    that enables version control for the files involved,
-    and programatically converted to other formats such as PDF as needed.
+1.  The manuscript is written in a plain text format such as
+    [LaTeX][latex] or [Markdown][markdown]
+    that permits version control of the files involved,
+    and then converted to other formats such as PDF as needed
+    using scriptable tools.
 2.  Tools needed to compile manuscripts (e.g., Makefiles or LaTeX style files)
     are included in the project folder
     and kept under version control
     just like tools used to do simulation or analysis.
 
-This works,
-but as [Stephen Turner commented][turner-comment-docs] during the production of this paper:
+This approach re-uses the version control tools and skills used to manage data and software,
+and is a good starting point for fully-reproducible research.
+However,
+as [Stephen Turner commented][turner-comment-docs] during the production of this paper:
 
 > ...try to explain the notion of compiling a document to an overworked physician you collaborate with.
 > Oh, but before that, you have to explain the difference between plain text and word processing.
@@ -717,44 +757,45 @@ but as [Stephen Turner commented][turner-comment-docs] during the production of 
 > it always comes down to "just give me a Word document with tracked changes," or similar.
 > There's always a least common denominator who just isn't going to be on board for writing like this.
 
-#### Distributed Web-Based System
-
-We therefore also recommend an alternative:
+We therefore also recommend an alternative approach:
 
 1.  A manuscript is written using Google Docs or some other online tool with rich formatting,
     change tracking,
     and reference management.
-2.  In project folder,
-    add a short text file called PUBLICATIONS to the `doc` directory with metadata about each online manuscript (e.g., the URL).
+2.  The project's `doc` directory includes a short text file called PUBLICATIONS
+    containing metadata about each online manuscript (e.g., their URLs).
     This is analogous to the `data` directory,
     which might contain links to the location of the data file(s) rather than the actual files.
 
-We realize that in many cases, even this solution is asking too much from the coauthor who will continue to say,
+We realize that in many cases,
+even this solution is asking too much from the coauthor who will continue to say,
 "Just give me a Word document with tracked changes," or something similar.
 To satisfy this person,
-convert the manuscript to an editable file format (e.g., `.docx` or `.odt`) after major changes,
-download it,
-and save it in the `doc` folder.
+the manuscript can be converted to a desktop editor file format
+(e.g., Microsoft Word's `.docx` or LibreOffice's `.odt`)
+after major changes,
+then downloaded and saved in the `doc` folder.
 
 Unfortunately,
-this means manually merging in the changes and suggestions of this person,
-as there do not seem to be tools to do this automatically
-when switching from a proprietary format to text and back (although the `pandoc` program goes a long way).
+this means merging some changes and suggestions manually,
+as existing tools cannot always do this automatically
+when switching from a desktop file format to text and back
+(although `[pandoc][pandoc]` can go a long way).
 
 ### Discussion
 
 We recommend against traditional desktop tools like LibreOffice and Microsoft Word
 because they make collaboration more difficult than either of our recommended alternatives:
 
-*   If the document lives online (e.g. Google Docs), then everyone's changes are in one place,
+*   If the document lives online (e.g., in Google Docs)
+    then everyone's changes are in one place,
     and hence don't need to be merged manually.
 *   If the document lives in a version control system,
     it provides good support for finding and merging differences resulting from concurrent changes.
-    It also adds the possibility of using the pull-request model for suggestions, additions and pre-merge review.
+    It also provides a convenient platform for making comments and performing review.
+*   Both of our recommendations clearly define the master document
+    and allow everyone to contribute to it on an equal footing.
 
-Importantly,
-our recommendations clearly define the master document allowing everyone to collaborate on an equal footing.
-For the same reason, even if you are writing the manuscript all by yourself, we recommend using one of these strategies.
 We also believe that researchers should use a bibliography manager of some sort,
 but discussion of those is outside the scope of this paper.
 Finally,
@@ -771,20 +812,20 @@ and *pull requests* for reviewing the contributions from different authors,
 including collecting comments and suggestions on them,
 and other contributors before merging them in.
 
-#### A note on supplementary materials
-
-Supplementary materials often contain much of the work that went into the project:
-tables and figures with results,
-and more elaborate descriptions of the algorithms, software, methods, and analyses.
-In order to make these materials as accessible to others as possible,
-don't solely rely on the PDF format.
-PDFs are notoriously hard to mine for data:
-e.g., extracting a table from a PDF is often not an easy task.
-We recommend separating the results that you may expect others to reuse
-(e.g., data in tables, data behind figures) into separate, text-based formats
-such as comma- or tab-separated files.
-The same holds for any commands or code you want to include as supplementary material:
-use the format that most easily enables reuse (source code files, Unix shell scripts etc).
+> ### Supplementary Materials
+>
+> Supplementary materials often contain much of the work that went into the project,
+> such as tables and figures
+> or more elaborate descriptions of the algorithms, software, methods, and analyses.
+> In order to make these materials as accessible to others as possible,
+> do not rely solely on the PDF format,
+> since extracting data from PDFs is notoriously hard.
+> Instead,
+> we recommend separating the results that you may expect others to reuse
+> (e.g., data in tables, data behind figures)
+> into separate, text-format files.
+> The same holds for any commands or code you want to include as supplementary material:
+> use the format that most easily enables reuse (source code files, Unix shell scripts etc).
 
 ## What's Not on This List
 
@@ -818,7 +859,7 @@ including some that we use daily.
     i.e.,
     to ensure that a change to one part of the software doesn't break other parts.
     While unit tests are essential to the health of large libraries and programs,
-    we have found that they usually aren't compelling for solo exploratory work in the early stages of people's careers.
+    we have found that they usually aren't compelling for solo exploratory work.
     (Note, for example, the lack of a `test` directory in [Noble's rules][noble-rules].)
     Rather than advocating something which people are unlikely to adopt,
     we have left unit testing off this list.
@@ -843,6 +884,16 @@ including some that we use daily.
     but only when the program's performance is actually a bottleneck:
     in our experience,
     most users spend more time getting the program right in the first place.
+
+**Coverage**
+:   Every modern programming language comes with tools to report
+    the *coverage* of a set of test cases,
+    i.e.,
+    the set of lines that are and aren't actually executed when those tests are run.
+    Mature projects run these tools periodically to find code that isn't being used any more,
+    but as with unit testing,
+    this only starts to pay off once the project grows larger,
+    and is therefore not recommended here.
 
 **The Semantic Web**
 :   Ontologies and other formal definitions of data are useful,
@@ -872,14 +923,21 @@ including some that we use daily.
     but are hard to adopt in single-author/single-user situations,
     which includes most of the intended audience for this paper.
 
-**Issue Tracking**
-:   An issue tracking system is essentially a shared to-do list for a project.
-    Again,
-    such systems are invaluable in large, long-lived projects,
-    but to begin with,
-    a text file in the project's version control repository containing
-    a few bullet points describing known problems and outstanding work
-    is sufficient.
+One important observation about this list is that
+many experienced programmers actually do some or all of these things
+even for small projects.
+It makes sense for them to do so because
+(a) they've already paid the learning cost of the tool,
+so the time required to implement for the "next" project is small,
+and (b) they understand that their project will need some or all of these things as it scales,
+so they might as well put it in place now.
+
+The problem comes when those experienced developers give advice to novices
+who *haven't* already mastered the tools,
+and *don't* realize (yet) that they will save time if and when their project grows.
+In that situation,
+advocating unit testing with coverage checking and continuous integration
+is as likely to scare novices off than to aid them.
 
 ## Conclusion
 
@@ -912,10 +970,13 @@ that it's hard to know what they mean any more.
 [khmer-citation]: https://github.com/dib-lab/khmer/blob/master/CITATION
 [kitzes-reproducible]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 [konrad-comment-tracking]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/15#issuecomment-158361612
+[latex]: http://www.latex-project.org/
 [license-descriptions]: https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html
 [make]: https://www.gnu.org/software/make/
+[markdown]: http://daringfireball.net/projects/markdown/
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [openrefine]: http://openrefine.org/
+[pandoc]: http://pandoc.org/
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 [steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673
