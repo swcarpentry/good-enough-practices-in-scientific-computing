@@ -519,15 +519,25 @@ should be separated clearly by file naming conventions or placed into different 
 those belonging to different papers or other publications
 should be grouped together.
 
-There is some question whether the `results` directory should be placed under version control.
-If we borrow conventions from software development (just as we borrowed version control itself!),
-the answer is no. But in data analytical projects, there can be benefits to putting results
-under version control. First, it's nice for any collaborator to have immediate access to current
-processed data, results, figures, etc., without needing to regenerate it all. Second, version
-control facilitates *diffing*, i.e. seeing a file before and after some operation. It can be very
-interesting to use diffs to see the downstream effects of actions like upgrading a piece of software,
-refactoring a script, or starting with a slightly different dataset. If the files involved aren't
-inconveniently large, it is often a good idea to keep `results` under version control.
+Opinion is divided on whether the `results` directory should be placed under version control.
+If we borrow conventions from software development
+(just as we borrowed version control itself)
+the answer is no.
+But there are some benefits to putting results under version control in data analysis projects.
+First,
+it gives collaborators immediate access to current processed data, results, figures, etc.,
+without needing to regenerate it all.
+Second, version control facilitates *diffing*,
+i.e.,
+seeing the differences between old and new states of files.
+Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
+refactoring a script,
+or starting with a slightly different dataset.
+
+If results files are kilobytes or a few megabytes in size,
+we therefore recommend keeping them under version control.
+Anything more than this,
+and something else should be used for management.
 
 The figure below provides a concrete example of how a simple project might be organized following these rules.
 The `data` directory contains a single CSV file with tabular data on bird counts,
