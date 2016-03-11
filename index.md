@@ -376,7 +376,7 @@ but rather more complicated to go in the other direction.)
 Include a `CITATION` file in the project's home directory that describes:
 
 *   how to cite this project as a whole, and
-*   where to find, and how to cite, any data sets, code, figures, and other artefacts that have their own DOIs.
+*   where to find, and how to cite, any data sets, code, figures, and other artifacts that have their own DOIs.
 
 For example,
 the `CITATION` file for the Software Carpentry project reads:
@@ -644,9 +644,10 @@ to have all authors agree on one or the other *before* writing starts.
 
 The goals of both of the workflows outlined below are:
 
-1.  Ensure that text accessible to yourself and others
+1.  Ensure that text is accessible to yourself and others
     now and in the future
-    by making a single master document accessible to all coauthors at all times.
+    by making a single master document
+    that is available to all coauthors at all times.
 2.  Reduce the chances of work being lost or people overwriting each other's work.
 3.  Make it easy to track and combine contributions from multiple collaborators.
 4.  Avoid duplication and manual entry of information,
@@ -669,7 +670,7 @@ and has been used by researchers in mathematics, astronomy, physics, and related
     and kept under version control
     just like tools used to do simulation or analysis.
 
-This approach re-uses the version control toosl and skills used to manage data and software,
+This approach re-uses the version control tools and skills used to manage data and software,
 and is a good starting point for fully-reproducible research.
 However,
 as [Stephen Turner commented][turner-comment-docs] during the production of this paper:
@@ -690,7 +691,7 @@ as [Stephen Turner commented][turner-comment-docs] during the production of this
 > it always comes down to "just give me a Word document with tracked changes," or similar.
 > There's always a least common denominator who just isn't going to be on board for writing like this.
 
-We therefore also recommend an alternative:
+We therefore also recommend an alternative approach:
 
 1.  A manuscript is written using Google Docs or some other online tool with rich formatting,
     change tracking,
@@ -748,7 +749,7 @@ and other contributors before merging them in.
 > ### Supplementary Materials
 >
 > Supplementary materials often contain much of the work that went into the project,
-> such tables and figures
+> such as tables and figures
 > or more elaborate descriptions of the algorithms, software, methods, and analyses.
 > In order to make these materials as accessible to others as possible,
 > do not rely solely on the PDF format,
