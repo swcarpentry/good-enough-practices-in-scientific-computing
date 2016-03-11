@@ -6,6 +6,17 @@
 *   January 2016
 *   [https://github.com/swcarpentry/good-enough-practices-in-scientific-computing][repo-url]
 
+1.  [Introduction](#introduction)
+1.  [Data Management](#data-management)
+1.  [Software](#software)
+1.  [Collaboration](#collaboration)
+1.  [Project Organization](#project-organization)
+1.  [Version Control](#version-control)
+1.  [Manuscripts](#manuscripts)
+1.  [What's Not on This List](#whats-not-on-this-list)
+1.  [Conclusion](#conclusion)
+1.  [Footnotes](#footnotes)
+
 ## Introduction
 
 Two years ago a group of researchers involved in [Software Carpentry][swc-website]
@@ -23,15 +34,15 @@ i.e.,
 at the minimum set of practices we believe every researcher can and should adopt.
 It draws inspiration from several sources, including:
 
-*   Matthew Gentzkow and Jesse Shapiro's
+*   Gentzkow and Shapiro's
     "[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]"
-*   William Stafford Noble's
+*   Noble's
     "[A Quick Guide to Organizing Computational Biology Projects][noble-rules]"
-*   Titus Brown's
+*   Brown's
     "[How to grow a sustainable software development process][brown-sustainable]"
-*   Hadley Wickham's
+*   Wickham's
     "[Tidy Data][wickham-tidy]"
-*   Justin Kitzes' notes on
+*   Kitzes' notes on
     "[Creating a Reproducible Workflow][kitzes-reproducible]"
 *   Sandve et al's
     "[Ten Simple Rules for Reproducible Computational Research][sandve-reproducible]"
@@ -60,17 +71,17 @@ As we discuss [below](#whats-not-on-this-list),
 this rules out many practices such as code review
 that we feel are essential for larger-scale development.
 
-### You're Really Helping Yourself
-
-Many of these rules are phrased in terms of helping other people,
-such as current and future collaborators.
-In all cases,
-though,
-the most important "other person" you're helping is your future self:
-for example,
-a good to-do list will save you time when you come back to your project next year.
-It's always tempting to cut corners,
-but your past self doesn't answer email.
+> ### You're Really Helping Yourself
+>
+> Many of these rules are phrased in terms of helping other people,
+> such as current and future collaborators.
+> In all cases,
+> though,
+> the most important "other person" you're helping is your future self:
+> for example,
+> a good to-do list will save you time when you come back to your project next year.
+> It's always tempting to cut corners,
+> but your past self doesn't answer email.
 
 ## Data Management
 
@@ -407,96 +418,139 @@ The third, fourth, and fifth items are there to make it easy for other people to
 
 ## Project Organization
 
-### Goals
+The previous sections have described practices for creating, naming, and storing
+the files that make up a research project.
+Organizing these files in a logical and consistent directory structure
+will help you keep track of them
+and help others review your work more easily.
 
-The previous sections have described practices for creating, naming, and
-storing the files that make up a research project. Organizing these files
-in a logical and consistent directory structure will help you to keep track
-of these files and help others to easily review your work.
-
-1.  *Ease of Use*:
-    Following simple, standard conventions for project organization makes it simple and efficient for you to find different subparts of your work,
-    and makes your project easier for others to understand
-2.  *Reduce error*:
-    Separating types of files and avoiding duplication reduces the risk of accidentally mixing up files, such as raw and processed data
-3.  *Growth*: A project should be able to expand or be revised without the entire project needing major reorganization 
-
-### Rules
-
-Files should be placed into a main directory named for the project
-and organized into a standard set of subdirectories following [William Noble's][noble-rules] recommendations:
+Our recommendations are drawn from
+Noble's "[A Quick Guide to Organizing Computational Biology Projects][noble-rules]"
+with a healthy admixture from Gentzkow and Shapiro's
+"[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]".
+Each project should be in its own directory,
+which should be named after the project,
+and should contain the following subdirectories:
 
 1.  `doc` contains text documents associated with the project.
-    This may include files for manuscripts, documentation for source code, and/or an electronic lab notebook recording your experiments.
+    This may include files for manuscripts,
+    documentation for source code,
+    and/or an electronic lab notebook recording your experiments.
     Subdirectories may be created for these different classes of files.
 2.  `data` contains raw data and metadata, organized into subdirectories if needed.
-    Note that this directory contains only unprocessed data, cleaned or otherwise modified data files are considered a result.
+    Note that this directory contains only unprocessed data:
+    cleaned or otherwise modified data files are treated like results.
 3.  `src` contains the source code for scripts and programs,
-    which may be written in interpreted languages such as R or Python or compiled languages like Fortran, C++, or Java.
-4.  `bin` contains executable scripts and programs that are brought in from other sources or compiled from code in the `src` directory.
-    Projects that use only modern interpreted languages, such as R or Python, will not require this directory.
+    both that written in interpreted languages such as R or Python
+    and that written compiled languages like Fortran, C++, or Java.
+    Shell scripts,
+    snippets of SQL used to pull information from databases,
+    and everything else needed to regenerate the results
+    are all managed like source code.
+4.  `bin` contains executable scripts and programs that are brought in from other sources
+    or compiled from code in the `src` directory.
+    Projects that use only interpreted languages,
+    such as R, Python, or the Unix shell,
+    will not require this directory.
 5.  `results` for all files that are generated as part of the project.
-    This includes both intermediate results, such as cleaned data sets or simulated data,
+    This includes both intermediate results,
+    such as cleaned data sets or simulated data,
     as well as final results such as figures and tables.
-6.  Files should be named clearly and transparently according to their contents (e.g., `bird_count_table.csv`, `manuscript.md`)
-    or their functionality (e.g., `sightings_analysis.py`),
-    not using sequential numbers (e.g., `result1.csv`, `result2.csv`)
-    or a location in a final manuscript which is subject to change (e.g., `fig_3_a.png`)
 
-### Discussion
+All files should be named clearly
+to reflect their contents (e.g., `bird_count_table.csv`, `manuscript.md`)
+or their functionality (e.g., `sightings_analysis.py`),
+*not* using sequential numbers (e.g., `result1.csv`, `result2.csv`)
+or a location in a final manuscript (e.g., `fig_3_a.png`),
+since those numbers will almost certainly change as the project evolves.
+
+> ### What's a "Project"?
+>
+> FIXME: explain how to decide what's in one project rather than another.
 
 The `src` directory often contains two conceptually distinct types of files
 that should be distinguished either by clear file names or by additional subdirectories.
-The first type are individual files, or related groups of files,
+The first type are individual files or related groups of files
 that contain functions to perform the core analysis of the research.
-There may be one file, for example, that contains functions used for data cleaning,
-and another file containing functions that contain statistical analysis.
-As a project grows, these can be organized into additional subdirectories.
-These files can be thought of as the "scientific guts" of the project.
-If a project were to include formal unit tests (see _What's Not in This List_),
-these would be the functions that should be tested.
+One file,
+for example,
+may contain functions used for data cleaning,
+while another contains functions to do certain statistical analyses.
+These files can be thought of as the "scientific guts" of the project,
+and as the project grows,
+they can be organized into additional subdirectories.
+If a project were to include formal unit tests
+(see [What's Not in This List](#whats-not-on-this-list)),
+these are the functions that would be tested.
 
-A second type of file in this directory are controller or driver scripts
-that combine the core analytical functions with particular parameters and data input and output commands
-in order to execute the entire project analysis, from start to finish.
-A controller script for a simple project, for example, may read in a raw data table,
-import and apply several analysis functions from the other files in this directory,
+The second type of file in the `src` directory is controller or driver scripts
+that combine the core analytical functions
+with particular parameters and data input/output commands
+in order to execute the entire project analysis from start to finish.
+A controller script for a simple project,
+for example,
+may read a raw data table,
+import and apply several cleanup and analysis functions from the other files in this directory,
 and create and save a numeric result.
-For a small project with one main output, a single controller script should be placed in the main `src` directory
-and distinguished clearly from the other scientific code by a name such as "runall".
+For a small project with one main output,
+a single controller script should be placed in the main `src` directory
+and distinguished clearly by a name such as "runall".
 
-The controller script should be thought of simply as the "glue" that holds the analysis together and allows a single command,
+The controller script is the glue that holds the analysis together
+and allows a single command,
 such as `python runall.py`,
-to re-run the entire analysis, from start to finish.
-These scripts should be short, no more than 100-200 lines at most, and be very easy to understand.
-If this script becomes longer than this,
+to re-run the entire analysis from start to finish.
+These scripts should be short (no more than 100-200 lines at most),
+and be very easy to understand:
+in particular,
+while they may contain loops (to process multiple data files or sweep across parameter ranges)
+they should contain few if any conditional statements
+or new function definitions.
+If a control script becomes longer or more complicated than this,
 or begins to include code that would require a new collaborator more than a minute or two to understand,
-these portions of the code should be moved out of the controller script and into other core analysis files in this directory.
+those portions of the code should be moved out of the controller script
+and into other core analysis files in this directory.
 
-The `results` directory will also generally require additional structure for all but the simplest projects.
-At a minimum, intermediate files such as cleaned data, statistical tables, and final publication-ready figures or tables
-should be separated clearly by file naming conventions or placed into different subdirectories.
+The `results` directory will generally require additional subdirectories for all but the simplest projects.
+Intermediate files such as cleaned data,
+statistical tables,
+and final publication-ready figures or tables
+should be separated clearly by file naming conventions or placed into different subdirectories;
+those belonging to different papers or other publications
+should be grouped together.
 
-As previously noted,
-in an ideal project a controller script should be able to create all of the results found in the `results` directory automatically,
-using the contents of `data`, `src`, and/or `bin`, with no manual human intervention.
-This helps to ensure both provenance,
-so that results can always be associated with the upstream files that generated them,
-and reproducibility, so that you or others can recreate the outputs of any analysis.
-If this goal is achieved,
-then the contents of the `results` directory do not need to be placed under version control (see below),
-as they do not contain any unique information.
+Opinion is divided on whether the `results` directory should be placed under version control.
+If we borrow conventions from software development
+(just as we borrowed version control itself)
+the answer is no.
+But there are some benefits to putting results under version control in data analysis projects.
+First,
+it gives collaborators immediate access to current processed data, results, figures, etc.,
+without needing to regenerate it all.
+Second, version control facilitates *diffing*,
+i.e.,
+seeing the differences between old and new states of files.
+Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
+refactoring a script,
+or starting with a slightly different dataset.
+
+If results files are kilobytes or a few megabytes in size,
+we therefore recommend keeping them under version control.
+Anything more than this,
+and something else should be used for management.
 
 The figure below provides a concrete example of how a simple project might be organized following these rules.
 The `data` directory contains a single CSV file with tabular data on bird counts,
-and an associated `README.txt` file provides documentation for this table (a formal metadata file could also be included here).
-The `src` directory contains an analytic file `sightings_analysis.py`,
-a Python file containing functions that summarize the tabular data,
+and an associated `README.txt` file provides documentation for this table
+(machine-readable metadata could also be included here).
+The `src` directory contains `sightings_analysis.py`,
+a Python file containing functions to summarize the tabular data,
 and a controller script `runall.py` that loads the data table,
 applies functions imported from `sightings_analysis.py`,
 and saves a table of summarized results in the `results` directory.
 
-When using interpreted languages such as Python or R, the `bin` directory is often empty as in this example.
+The `bin` directory is empty,
+since this project does not rely on any compiled software.
 The `doc` directory contains two text files written in Markdown,
 one containing a running lab notebook describing various ideas for the project and how these were implemented
 and the other containing a running draft of a manuscript describing the project findings. 
