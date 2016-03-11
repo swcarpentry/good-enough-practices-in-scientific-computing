@@ -519,13 +519,15 @@ should be separated clearly by file naming conventions or placed into different 
 those belonging to different papers or other publications
 should be grouped together.
 
-If the controller script(s) can automatically regenerate all of the results in a few minutes,
-the `results` directory should probably not be put under version control.
-If regeneration is not completely automatic,
-or takes more than a few minutes,
-results *should* be archived.
-(A benefit of archiving is that
-the version control system will then be able to report when results have changed.)
+There is some question whether the `results` directory should be placed under version control.
+If we borrow conventions from software development (just as we borrowed version control itself!),
+the answer is no. But in data analytical projects, there can be benefits to putting results
+under version control. First, it's nice for any collaborator to have immediate access to current
+processed data, results, figures, etc., without needing to regenerate it all. Second, version
+control facilitates *diffing*, i.e. seeing a file before and after some operation. It can be very
+interesting to use diffs to see the downstream effects of actions like upgrading a piece of software,
+refactoring a script, or starting with a slightly different dataset. If the files involved aren't
+inconveniently large, it is often a good idea to keep `results` under version control.
 
 The figure below provides a concrete example of how a simple project might be organized following these rules.
 The `data` directory contains a single CSV file with tabular data on bird counts,
