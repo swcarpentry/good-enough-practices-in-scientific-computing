@@ -776,7 +776,7 @@ including some that we use daily.
     i.e.,
     to ensure that a change to one part of the software doesn't break other parts.
     While unit tests are essential to the health of large libraries and programs,
-    we have found that they usually aren't compelling for solo exploratory work in the early stages of people's careers.
+    we have found that they usually aren't compelling for solo exploratory work.
     (Note, for example, the lack of a `test` directory in [Noble's rules][noble-rules].)
     Rather than advocating something which people are unlikely to adopt,
     we have left unit testing off this list.
@@ -801,6 +801,16 @@ including some that we use daily.
     but only when the program's performance is actually a bottleneck:
     in our experience,
     most users spend more time getting the program right in the first place.
+
+**Coverage**
+:   Every modern programming language comes with tools to report
+    the *coverage* of a set of test cases,
+    i.e.,
+    the set of lines that are and aren't actually executed when those tests are run.
+    Mature projects run these tools periodically to find code that isn't being used any more,
+    but as with unit testing,
+    this only starts to pay off once the project grows larger,
+    and is therefore not recommended here.
 
 **The Semantic Web**
 :   Ontologies and other formal definitions of data are useful,
@@ -830,14 +840,21 @@ including some that we use daily.
     but are hard to adopt in single-author/single-user situations,
     which includes most of the intended audience for this paper.
 
-**Issue Tracking**
-:   An issue tracking system is essentially a shared to-do list for a project.
-    Again,
-    such systems are invaluable in large, long-lived projects,
-    but to begin with,
-    a text file in the project's version control repository containing
-    a few bullet points describing known problems and outstanding work
-    is sufficient.
+One important observation about this list is that
+many experienced programmers actually do some or all of these things
+even for small projects.
+It makes sense for them to do so because
+(a) they've already paid the learning cost of the tool,
+so the time required to implement for the "next" project is small,
+and (b) they understand that their project will need some or all of these things as it scales,
+so they might as well put it in place now.
+
+The problem comes when those experienced developers give advice to novices
+who *haven't* already mastered the tools,
+and *don't* realize (yet) that they will save time if and when their project grows.
+In that situation,
+advocating unit testing with coverage checking and continuous integration
+is as likely to scare novices off than to aid them.
 
 ## Conclusion
 
