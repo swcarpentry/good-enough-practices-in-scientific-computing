@@ -34,15 +34,15 @@ i.e.,
 at the minimum set of practices we believe every researcher can and should adopt.
 It draws inspiration from several sources, including:
 
-*   Matthew Gentzkow and Jesse Shapiro's
+*   Gentzkow and Shapiro's
     "[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]"
-*   William Stafford Noble's
+*   Noble's
     "[A Quick Guide to Organizing Computational Biology Projects][noble-rules]"
-*   Titus Brown's
+*   Brown's
     "[How to grow a sustainable software development process][brown-sustainable]"
-*   Hadley Wickham's
+*   Wickham's
     "[Tidy Data][wickham-tidy]"
-*   Justin Kitzes' notes on
+*   Kitzes' notes on
     "[Creating a Reproducible Workflow][kitzes-reproducible]"
 *   Sandve et al's
     "[Ten Simple Rules for Reproducible Computational Research][sandve-reproducible]"
@@ -519,13 +519,25 @@ should be separated clearly by file naming conventions or placed into different 
 those belonging to different papers or other publications
 should be grouped together.
 
-If the controller script(s) can automatically regenerate all of the results in a few minutes,
-the `results` directory should probably not be put under version control.
-If regeneration is not completely automatic,
-or takes more than a few minutes,
-results *should* be archived.
-(A benefit of archiving is that
-the version control system will then be able to report when results have changed.)
+Opinion is divided on whether the `results` directory should be placed under version control.
+If we borrow conventions from software development
+(just as we borrowed version control itself)
+the answer is no.
+But there are some benefits to putting results under version control in data analysis projects.
+First,
+it gives collaborators immediate access to current processed data, results, figures, etc.,
+without needing to regenerate it all.
+Second, version control facilitates *diffing*,
+i.e.,
+seeing the differences between old and new states of files.
+Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
+refactoring a script,
+or starting with a slightly different dataset.
+
+If results files are kilobytes or a few megabytes in size,
+we therefore recommend keeping them under version control.
+Anything more than this,
+and something else should be used for management.
 
 The figure below provides a concrete example of how a simple project might be organized following these rules.
 The `data` directory contains a single CSV file with tabular data on bird counts,
