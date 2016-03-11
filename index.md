@@ -34,15 +34,15 @@ i.e.,
 at the minimum set of practices we believe every researcher can and should adopt.
 It draws inspiration from several sources, including:
 
-*   Matthew Gentzkow and Jesse Shapiro's
+*   Gentzkow and Shapiro's
     "[Code and Data for the Social Sciences: A Practitioner's Guide][gentzkow-shapiro]"
-*   William Stafford Noble's
+*   Noble's
     "[A Quick Guide to Organizing Computational Biology Projects][noble-rules]"
-*   Titus Brown's
+*   Brown's
     "[How to grow a sustainable software development process][brown-sustainable]"
-*   Hadley Wickham's
+*   Wickham's
     "[Tidy Data][wickham-tidy]"
-*   Justin Kitzes' notes on
+*   Kitzes' notes on
     "[Creating a Reproducible Workflow][kitzes-reproducible]"
 *   Sandve et al's
     "[Ten Simple Rules for Reproducible Computational Research][sandve-reproducible]"
