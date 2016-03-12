@@ -581,7 +581,7 @@ and the other containing a running draft of a manuscript describing the project 
 Keeping track of changes that you or your collaborators make to data, software, and manuscripts
 is a critical part of research.
 Version control systems keep track of what has changed in a file, and when
-and who made the change.These changes are often synchronized to a central server so that many users can track the same set of files.
+and who made the change. These changes are often synchronized to a central server so that many users can track the same set of files.
 
 Version control aids *reproducibility*
 by allowing you to reference or retrieve a specific version of the entire project.
@@ -703,7 +703,7 @@ analyzing it,
 and figuring out what it means is the first 90% of any project;
 writing up is the other 90%.
 While the writing step is rarely addressed in discussions of scientific computing,
-computing has changed the process manuscript generation just as much as it has changed the research itself.
+computing has changed the process of manuscript generation just as much as it has changed the research itself.
 
 A common, but unfortunate, practice is for
 the lead author to send successive versions of a manuscript to coauthors to collect feedback,
