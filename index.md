@@ -278,6 +278,8 @@ and therefore substantially less comprehensible.
 
 ### Rules
 
+FIXME: "the verb" below is not going to be clear to everyone...
+
 1.  Every analysis step is represented textually (complete with parameter values)
     *   Sometimes not possible to store the verb as text (e.g., selection of region of interest in image)
     *   But should still store the result
@@ -332,7 +334,7 @@ Have a short `README` file explaining the project's purpose in an easy-to-find p
 This file is often the first thing users of your project will look at,
 so make it explicit already here that you welcome contributors and point them to the ways to help out.
 
-The `README` file (which may be called that, or `README.txt`, or `README.html`)
+The `README` file (which may be called that, or `README.md`, or `README.html`)
 should contain:
 
 *   the project's title,
@@ -413,6 +415,8 @@ see the one for the [khmer project][khmer-citation].
 
 ### Discussion
 
+FIXME: These numbers don't correspond well to the sections above. There are 3 numbered things "to aim for" and four sections after that: Overview, To Do list, License, Citable... I don't see the 5th (Contributing?) Recommend spelling them out.
+
 The first and second are to help you as well as other people---remember, your most important collaborator is yourself six months from now.
 The third, fourth, and fifth items are there to make it easy for other people to help you and give you credit for your work.
 
@@ -479,7 +483,7 @@ while another contains functions to do certain statistical analyses.
 These files can be thought of as the "scientific guts" of the project,
 and as the project grows,
 they can be organized into additional subdirectories.
-If a project were to include formal unit tests
+If a project were to include formal <!-- Can we just say "tests" here? --> tests
 (see [What's Not in This List](#whats-not-on-this-list)),
 these are the functions that would be tested.
 
@@ -540,9 +544,10 @@ Anything more than this,
 and something else should be used for management.
 
 The figure below provides a concrete example of how a simple project might be organized following these rules.
-The `data` directory contains a single CSV file with tabular data on bird counts,
-and an associated `README.txt` file provides documentation for this table
-(machine-readable metadata could also be included here).
+FIXME: the documentation above suggests `README` in the main project directory, not in the `data` subdirectory. If anything, I would expect it in the `doc/` folder, or there could be two, with a detailed one in the data folder...
+The `README.txt` file provides documentation for this project giving an overview of the scripts, installation, and processing steps.
+The `data` directory contains a single CSV file with tabular data on bird counts.
+(Machine-readable metadata could also be included here).
 The `src` directory contains `sightings_analysis.py`,
 a Python file containing functions to summarize the tabular data,
 and a controller script `runall.py` that loads the data table,
@@ -557,16 +562,16 @@ and the other containing a running draft of a manuscript describing the project 
 
 ~~~
 .
-|-- bin
-|-- data
+|-- README.txt
+|-- bin/
+|-- data/
 |   |-- birds_count_table.csv
-|   |-- README.txt
-|-- doc
+|-- doc/
 |   |-- notebook.md
 |   |-- manuscript.md
-|-- results
+|-- results/
 |   |-- summarized_results.csv
-|-- src
+|-- src/
 |   |-- sightings_analysis.py
 |   |-- runall.py
 ~~~
@@ -575,12 +580,12 @@ and the other containing a running draft of a manuscript describing the project 
 
 Keeping track of changes that you or your collaborators make to data, software, and manuscripts
 is a critical part of research.
-Using a version control system makes it easy to see what changed when
-and who made the change.
+Version control systems keep track of what has changed in a file, and when
+and who made the change.These changes are often synchronized to a central server so that many users can track the same set of files.
 
 Version control aids *reproducibility*
 by allowing you to reference or retrieve a specific version of the entire project.
-This is invaluable for your future self (when you finally get the reviews back for your paper),
+This is valuable for your future self (when you finally get the reviews back for your paper),
 for your lab-mates and collaborators (in case you leave the project),
 and for reviewers, editors, and others who want to convince themselves of the conclusions in your published research.
 It also helps your future self come back to a project after a long field season
@@ -613,6 +618,8 @@ Files that may *not* be appropriate for version control include:
 *   raw and/or synthesized data (also discussed below)
 *   manuscripts (depending on the format---see [the discussion of Manuscripts](#manuscripts) below)
 *   intermediate files that can be automatically regenerated
+
+FIXME: mention above images as a kind of raw data or plot figures as something that can be regenerated?
 
 Second,
 the repository should be mirrored on at least one machine that *isn't* the researcher's computer.
@@ -658,7 +665,7 @@ since its features best address the goals listed above:
 
 ### Version Control for Data?
 
-Data should be backed up,
+Data should be backed up and made publically available where appropriate,
 but may or may not be a good candidate for version control.
 The size of data sets can be a problem.
 If a file is small,
@@ -678,7 +685,7 @@ some data formats are not amenable to version control,
 which is designed to work with text files where the lines are in a specific order
 (such as source code or plain-text documentation).
 Binary files (such as HDF5) can be put in a version control system,
-but you won't be able to see specific changes.
+but you won't be able to see specific changes, although GitHub has some clever tools for monitoring changes in image files.
 Similarly, tabular data (such as CSV files) can be put in version control,
 but changing the order of the rows or columns will create a big change for the version control system,
 even if the data itself has not changed.
@@ -695,8 +702,8 @@ Gathering data,
 analyzing it,
 and figuring out what it means is the first 90% of any project;
 writing up is the other 90%.
-While this step is often skipped over,
-computing has changed it just as much as it has changed the research itself.
+While the writing step is rarely addressed in discussions of scientific computing,
+computing has changed the process manuscript generation just as much as it has changed the research itself.
 
 A common, but unfortunate, practice is for
 the lead author to send successive versions of a manuscript to coauthors to collect feedback,
@@ -742,7 +749,7 @@ and has been used by researchers in mathematics, astronomy, physics, and related
     [LaTeX][latex] or [Markdown][markdown]
     that permits version control of the files involved,
     and then converted to other formats such as PDF as needed
-    using scriptable tools.
+    using scriptable tools like Pandoc.
 2.  Tools needed to compile manuscripts (e.g., Makefiles or LaTeX style files)
     are included in the project folder
     and kept under version control
@@ -767,7 +774,7 @@ as [Stephen Turner commented][turner-comment-docs] during the production of this
 > the barrier to collaborating on papers in this framework is simply too high to overcome.
 > Good intentions aside,
 > it always comes down to "just give me a Word document with tracked changes," or similar.
-> There's always a least common denominator who just isn't going to be on board for writing like this.
+> There's always a least-common denominator who just isn't going to be on board for writing like this.
 
 We therefore also recommend an alternative approach:
 
@@ -778,6 +785,8 @@ We therefore also recommend an alternative approach:
     containing metadata about each online manuscript (e.g., their URLs).
     This is analogous to the `data` directory,
     which might contain links to the location of the data file(s) rather than the actual files.
+
+FIXME: Are this text below and the long pull-quote above both going to stay? If so, should delete the "just give me a Word document" repetition
 
 We realize that in many cases,
 even this solution is asking too much from the coauthor who will continue to say,
@@ -843,6 +852,7 @@ and other contributors before merging them in.
 
 We have deliberately left many good tools and practices off our list,
 including some that we use daily.
+FIXME: I think this section could be minimized to at most a bullet list of each item. It seems more of a concession to the SWC community ("we'll mention your favorite orphaned tool") than helpful to the reader? Semantic web dublin core ontologies -- not going to mean anything to the target audience. Perhaps mention another paper that talks about these things in-depth as another resource for them to follow-up with.
 
 **Branches**
 :   A *branch* is a "parallel universe" within a version control repository.
