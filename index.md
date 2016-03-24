@@ -468,7 +468,20 @@ since those numbers will almost certainly change as the project evolves.
 
 > ### What's a "Project"?
 >
-> FIXME: explain how to decide what's in one project rather than another.
+> Similar to the process of deciding when a chunk of code needs to be moved into its own function,
+> dividing your research into distinct projects is something of a personal choice,
+> and one with the ultimate goal of helping you, and others, best understand your work.
+> Many researchers create a separate "project" for each manuscript that they write,
+> for example,
+> while others will group all research on a common theme, data set, or algorithm
+> into a single project.
+> As a first rule of thumb, you might divide your work into projects
+> based on the overlap in data and code files.
+> If two conceptually distinct research efforts share no data or code files in common,
+> they're almost certainly separate projects.
+> If they share more than half of their data and code files,
+> they are probably best managed practically as a single project.
+> Anything in between depends on your view as to what is easiest and most transparent.
 
 The `src` directory often contains two conceptually distinct types of files
 that should be distinguished either by clear file names or by additional subdirectories.
