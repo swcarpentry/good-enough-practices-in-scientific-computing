@@ -535,26 +535,6 @@ should be separated clearly by file naming conventions or placed into different 
 those belonging to different papers or other publications
 should be grouped together.
 
-Opinion is divided on whether the `results` directory should be placed under version control.
-If we borrow conventions from software development
-(just as we borrowed version control itself)
-the answer is no.
-But there are some benefits to putting results under version control in data analysis projects.
-First,
-it gives collaborators immediate access to current processed data, results, figures, etc.,
-without needing to regenerate it all.
-Second, version control facilitates *diffing*,
-i.e.,
-seeing the differences between old and new states of files.
-Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
-refactoring a script,
-or starting with a slightly different dataset.
-
-If results files are kilobytes or a few megabytes in size,
-we therefore recommend keeping them under version control.
-Anything more than this,
-and something else should be used for management.
-
 The figure below provides a concrete example of how a simple project might be organized following these rules.
 The root directory contains a `README` file that provides an overview of the project as a whole
 and a `CITATION` file that explains how to reference it.
@@ -592,12 +572,13 @@ and the other containing a running draft of a manuscript describing the project 
 
 Keeping track of changes that you or your collaborators make to data, software, and manuscripts
 is a critical part of research.
-Version control systems keep track of what has changed in a file when,
+The concept of version control involves keeping track of what has changed in a file when,
 and who made the change.
 These changes are often synchronized to a central server
 so that many users can track the same set of files.
 
-Version control aids *reproducibility*
+Any approach to version control has three main benefits for a researcher.
+First, version control aids *reproducibility*
 by allowing you to reference or retrieve a specific version of the entire project.
 This is valuable for your future self (when you finally get the reviews back for your paper),
 for your lab-mates and collaborators (in case you leave the project),
@@ -606,7 +587,7 @@ It also helps your future self come back to a project after a long field season
 and *not* have to spend days remembering what you did last
 or figuring out what your collaborators have changed while you have been gone.
 
-Version control also aids *fixability*:
+Second, version control aids *fixability*:
 having access to every version of code, figures, and data helps you figure out
 why Figure 4 looks different now than it did last week.
 And finally,
@@ -614,39 +595,106 @@ all of this aids *sharing and collaboration*,
 particularly by managing the process of merging independent changes made by different people,
 and distributing those changes back to everyone in a controlled, traceable way.
 
-> ### Which System?
->
-> The most commonly-used version control systems today are Git, Mercurial, and Subversion,
-> though there are many others.   
-> They all provide the same basic functionality,
-> so in the end,
-> the best one to choose is whichever one your collaborators are already using.
+At a technical level, a good version control system should thus
+give a researcher the ability to
 
-The first rule for using version control is that
+1.  Understand and review the entire development history of a file,
+    including identifying when a particular change was made and who made it.
+2.  Locate the place in the history where a particular change was introduced,
+    easily and quickly.
+3.  Evaluate an individual change to a file so that its effects can be understood
+    and, if necessary, undone.
+    This is especially useful for isolating bugs in software.
+4.  Manage concurrent changes from many different collaborators
+5.  Make projects discoverable through portals like GitHub.
+
+We believe that the best tools for providing these five capabilities are
+the major version control software that are widely used in software development.
+These include Git, Mercurial, and Subversion, all of which provide the same basic functionality.
+We thus recommend that scientific computing beginners
+learn to use one of these "big three" version control tools as soon as possible.
+
+However, it is important to distinguish between version control as a concept, as described above,
+and these particular software tools.
+We recognize that many novices find these tools particularly difficult to learn
+and that the benefits of version control tools become most apparent
+for projects that are larger and more complex
+than those undertaken by early stage researchers.
+We thus also suggest a second, manual approach for managing file versions
+that can be appropriate for small-scale projects with few investigators working closely together.
+
+For a manual approach to version control,
+we suggest adding a file called `CHANGELOG.txt` to the `docs` subfolder inside of a project folder.
+This file should contain a single line that starts with a version number,
+beginning with `001`, followed by a description of changes made to the project
+between the previous version and the current version.
+The line with the largest number always refers to the most recent version.
+A change log might look like the following:
+
+~~~
+003 Modify script to perform linear regression
+002 Add script to read data table
+001 Set up project structure
+~~~
+
+The key to this manual system is that each time a addition or modification is made to any file in the directory,
+a line must be added to this change log describing the change and
+a new copy of the entire directory must be made to preserve the state of all files at that version.
+The directory copy should contain the project name and the version number,
+such as `tomato_project_001`.
+
+While requiring committed discipline from a researcher,
+this manual procedure provides the first three abilities of a version control system
+without the use of any new tool.
+If multiple researchers are working on the same project,
+they will need to coordinate efforts so that only a single person is working at any given time
+and incrementing the version number of the project.
+This procedure does not directly assist with the fifth goal of a good version control system,
+making the project widely available for collaboration.
+
+Once again, we stress that common version control tools will greatly assist a user
+in performing essentially the same tasks as this manual procedure,
+while also providing a formal framework that will better scale to larger projects.
+Abilities to branch, merge, collaborate simultaneously on files, and interact with other software developers
+are not parts of what we consider to be "good enough practices",
+but they are important components of our best practices.
+Novice users are encouraged to graduate from manual systems such as this one
+to one of the major version control tools as soon as is practical.
+
+Regardless of whether a formal tool or a manual approach is chosen,
+the first rule for using version control is that nearly
 everything created by a human being goes under version control as soon as it is created.
 This includes scripts and programs of all kinds,
-software packages that your project depends on (with some caveats discussed below),
+software packages that your project depends on,
 and documentation.
-Files that may *not* be appropriate for version control include:
-
-*   raw and/or synthesized data (also discussed below)
-*   manuscripts (depending on the format---see [the discussion of Manuscripts](#manuscripts) below)
-*   intermediate files that can be automatically regenerated
-
-FIXME: mention above images as a kind of raw data or plot figures as something that can be regenerated? 
+A few exceptions to this rule are discussed below.
 
 Second,
+each change committed to a version control system or added to a change log
+should not be so large as to make the change tracking irrelevant.
+For example, a single change such as "Revise script file" that adds or changes several hundred lines
+is likely too large, as it will not allow changes to different components of an analysis
+to be investigated separately.
+Similarly, changes should not be broken up into pieces that are too small,
+although we find that this is less of a danger with novices.
+As a rule of thumb, a good size for a single change is a group of edits
+that you could imagine wanting to undo in one step at some point in the future.
+
+Third,
 the repository should be mirrored on at least one machine that *isn't* the researcher's computer.
 This may be a lab or departmental server,
-or a public site such as GitHub or Bitbucket.
+a public site such as GitHub or Bitbucket.
+or a cloud-based backup service such as Dropbox.
 Whichever is chosen,
 make sure that server is backed up regularly.
 
-Third,
+Fourth,
 everyone working on the project should share their changes frequently,
 and incorporate changes from others just as frequently.
-Do not allow local versions of the project repository to drift apart,
+Do not allow individual investigator's versions of the project repository to drift apart,
 as the effort required to merge differences goes up faster than the size of the difference.
+This is particularly important for the manual version control procedure describe above,
+which does not provide any assistance for merging simultaneous changes.
 
 Finally,
 decide on a checklist for committing and sharing changes to the project,
@@ -660,26 +708,12 @@ The list might include:
 *   updating to-do lists, and
 *   bans on committing half-done work or broken code.
 
-Version control is probably the most technical section of this guide,
-and the one with the steepest learning curve.
-Most newcomers find version control systems confusing,
-in part because some of their benefits only become apparent in large projects with many collaborators.
-It can therefore be tempting to revert to using "Save As" with a version number in the file's name,
-or to rely on backup systems to save the history of a project.
+### When is version control not necessary?
 
-We nevertheless recommend learning version control and using it on all projects,
-right from the start,
-since its features best address the goals listed above:
+Despite the benefits of version control systems,
+there are some types of files that may *not* be appropriate for version control.
 
-*   It facilitates small changes to files that can then be found, discussed, and if necessary undone.
-    This is especially useful for isolating bugs in software.
-*   It can manage concurrent changes from many different collaborators
-    much better than the alternatives.
-*   Portals like GitHub make projects discoverable, greatly enhancing reproducibility.
-
-### Version Control for Data?
-
-Data should be backed up,
+First, data should be backed up,
 but may or may not be a good candidate for version control ([3](#footnote-3)).
 The size of data sets can be a problem.
 If a file is small,
@@ -705,11 +739,40 @@ Similarly, tabular data (such as CSV files) can be put in version control,
 but changing the order of the rows or columns will create a big change for the version control system,
 even if the data itself has not changed.
 
-Finally,
+Also,
 researchers dealing with data subject to legal restrictions that prohibit sharing (such as medical data)
 should be careful not to put data in public version control systems.
 Some institutions may provide access to private version control systems,
 so it is worth checking with your IT department.
+
+Second,
+opinion is divided on whether the `results` directory and other intermediate, generated files
+should be placed under version control.
+If we borrow conventions from software development
+(just as we borrowed version control itself)
+the answer is no.
+But there are some benefits to putting results under version control in data analysis projects.
+First,
+it gives collaborators immediate access to current processed data, results, figures, etc.,
+without needing to regenerate it all.
+Second, version control facilitates *diffing*,
+i.e.,
+seeing the differences between old and new states of files.
+Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
+refactoring a script,
+or starting with a slightly different dataset.
+
+If results files are kilobytes or a few megabytes in size,
+we therefore recommend keeping them under version control.
+Anything more than this,
+and something else should be used for management.
+
+Third,
+manuscripts and other similar text files may be written and managed using version control,
+or collaboration and changes to these files can be dealt with using more dedicated systems.
+This is described in the next section.
+
+FIXME: mention above images as a kind of raw data or plot figures as something that can be regenerated? 
 
 ## Manuscripts
 
@@ -731,13 +794,10 @@ and much tedious manual labor to merge all the comments
 to create a new master version,
 at which point the process begins again.
 
-FIXME: following paragraph will need to be changed if version control is rewritten as either/or.
-
 Instead of an email-based workflow,
 we recommend mirroring good practices for managing software and data,
 to make writing scalable, collaborative, and reproducible.
-In contrast to our other recommendations,
-however,
+Similar to our recommendations for version control in general,
 we suggest that groups choose one of two different approaches for managing manuscripts.
 The most important rule is
 to have all authors agree on one or the other *before* writing starts.
