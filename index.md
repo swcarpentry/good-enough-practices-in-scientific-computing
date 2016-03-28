@@ -268,44 +268,130 @@ and therefore substantially less comprehensible.
 
 ## Software
 
-### Goals
+If you or your group are creating tens of thousands of lines of software
+which is going to be used by hundreds of people you have never met,
+then you are doing software engineering.
+If you're writing a few pages now and again,
+and are probably going to be its only user,
+you can still make things easier on yourself by adopting a few key practices.
+What's more,
+adopting these practices will make it easy for people to understand and (re)use your code,
+which in turn makes it more likely that they collaborate with you
+and/or give you credit for your work.
 
-1.  Make it easy for people (again, including your future self) to understand and (re)use your code
-    *   The easier software is to use, the more likely people are to do so
-    *   Which in turn makes them more likely to collaborate with you and/or give you credit for your work
-2.  Modular, comprehensible, reusable, and testable all come together
-    *   Building software this way also happens to be the key to productivity
+The core realization in these practices is that
+*readable*, *reusable*, and *testable* are not separate things.
+They are all side effects of *modular* code,
+i.e.,
+of building programs out of short, single-purpose functions
+with clearly-defined inputs and outputs.
+Building software this way is the key to both productivity and reproducibility.
 
-### Rules
+The first rule is that
+*every analysis step should be represented textually*
+(complete with parameter values).
+It isn't always possible to store steps as text
+(e.g., manual selection of region of interest in image),
+but it is always possible to store the result for later checking.
 
-1.  Every analysis step is represented textually (complete with parameter values)
-    *   Sometimes not possible to store the action as text (e.g., manual selection of region of interest in image)
-    *   But should still store the result
-    *   Quoting Jonah Duckles,
-        "Duplicating the weather that generated a temperature log time series isn't going to happen, but we have a log of it.
-        I feel the same is true of hand-digitizing an area of interest, we are concerned with the artifact, not necessarily how it came to be."
-2.  Every program or script has a brief explanatory comment at the start
-    *   Which includes at least one example of use
-3.  Programs of all kinds (including "scripts") are broken into functions that:
-    *   Are no more than one page long (60 lines, including spaces and comments)
-    *   Do not use global variables (constants are OK)
-    *   Take no more than half a dozen parameters
-4.  No duplication
-    *   Write and re-use functions instead of copying and pasting source code
-    *   Use data structures, e.g. a list called `scores` instead of lots of variables called `score1`, `score2`, `score3`, etc.
-5.  Functions and variables have meaningful names
-    *   The larger the scope, the more informative the name
-6.  Dependencies and requirements are explicit (e.g., a requirements.txt file)
-7.  Commenting/uncommenting are not routinely used to control program behavior
-    *   Use if/else to control behavior
-    *   Use configuration files or command-line arguments for parameters
-8.  Use a simple example or test data set to run to tell if it's working at all and whether it gives a known correct output for a simple known input
-    *   A system/integration test that checks the entire program at once for a case similar to the real analysis
-9.  Submit code to a reputable DOI-issuing repository upon submission of paper, just like data
+Second,
+*place a brief explanatory comment at the start of every program*,
+no matter how short it is.
+That comment should include at least one example of how the program is used:
+remember,
+an example is worth a thousand words.
+Where possible,
+the comment should also indicate reasonable values for parameters.
+For example:
 
-### Discussion
+~~~
+Synthesize image files for testing circularity estimation algorithm.
 
-FIXME
+Usage: generate_images.py -d p_diameter -f p_flaws -r rand_seed  -s image_size
+
+where:
+-f fuzzing     = fuzzing range of blobs (typically 0.0-0.2)
+-n p_flaws     = p(success) for geometric distribution of # flaws/sample (typically 0.5-0.8)
+-o output_file = name of output file
+-r p_radius    = p(success) for geometric distribution of flaw radius (typically 0.1-0.4)
+-s rand_seed   = RNG seed (large integer)
+-v             = verbose
+-w size        = image width/height in pixels (typically 480-800)
+~~~
+
+Third,
+*decompose programs into functions* that:
+
+*   are no more than one page long (60 lines, including spaces and comments),
+*   do not use global variables (constants are OK), and
+*   take no more than half a dozen parameters.
+
+The key motivation here is to fit the program into the most limited memory of all: ours.
+Human short-term memory is famously incapable of holding more than about seven (plus or minus two) items at once.
+If we are to understand what our software is doing,
+we must break it into chunks that obey this limit,
+then create programs by composing chunks into larger chunks and so on.
+
+Fourth,
+*be ruthless about eliminating duplication*.
+Write and re-use functions instead of copying and pasting source code,
+and use data structures like lists rather than creating
+lots of variables called `score1`, `score2`, `score3`, etc.
+
+This rule applies with even greater force to libraries.
+The easiest code to debug and maintain is code that you didn't actually write,
+so *always search for libraries that do what you need*
+before writing new code yourself.
+
+Fifth,
+*give functions and variables meaningful names*,
+both to document their purpose and to make the program easier to read.
+As a rule of thumb,
+the greater the scope of a variable,
+the more informative its name should be:
+while it's acceptable to call the counter variable in a loop `i` or `j`,
+the main grid for your simulation should *not* have a one-letter name.
+
+Sixth,
+*make dependencies and requirements explicit*.
+This is usually done on a per-project rather than per-program basis,
+i.e.,
+by adding a file called something like `requirements.txt` to the root directory of the project,
+or by adding a "Getting Started" section to the `README` file.
+(More sophisticated users may structure the requirements in a way that installation management tools can use.)
+
+Seventh,
+*do not comment and uncomment sections of code to control a program's behavior*,
+since this is error prone and makes it difficult or impossible to automate analyses.
+Instead,
+put if/else statements in the program to control what it does.
+
+> ### Logging
+>
+> One special case of this rule is to use a logging library
+> such as Java's `log4j`
+> for debugging messages.
+> When this is done,
+> messages are left in the code,
+> but their activity is controlled by an external configuration file.
+
+Eighth,
+*provide a simple example or test data set*
+that users (including yourself)
+can run to determine whether the program is working at all
+and whether it gives a known correct output for a simple known input.
+Such as "build and smoke test" is particularly helpful
+when supposedly-innocent changes are being made to the program,
+or when it has to run on several different machines,
+e.g.,
+the developer's laptop and the department's cluster.
+
+Ninth and last,
+*submit code to a reputable DOI-issuing repository*
+upon submission of paper,
+just as you do with data.
+Your software is as much a product of your research as your papers,
+and should be as easy for people to credit.
 
 ## Collaboration
 
