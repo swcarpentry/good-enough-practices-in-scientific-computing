@@ -554,20 +554,18 @@ since those numbers will almost certainly change as the project evolves.
 
 > ### What's a "Project"?
 >
-> Similar to the process of deciding when a chunk of code needs to be moved into its own function,
-> dividing your research into distinct projects is something of a personal choice,
-> and one with the ultimate goal of helping you, and others, best understand your work.
-> Many researchers create a separate "project" for each manuscript that they write,
-> for example,
-> while others will group all research on a common theme, data set, or algorithm
-> into a single project.
-> As a first rule of thumb, you might divide your work into projects
-> based on the overlap in data and code files.
-> If two conceptually distinct research efforts share no data or code files in common,
-> they're almost certainly separate projects.
-> If they share more than half of their data and code files,
-> they are probably best managed practically as a single project.
-> Anything in between depends on your view as to what is easiest and most transparent.
+> Like deciding when a chunk of code should be made a function,
+> the ultimate goal of dividing research into distinct projects is
+> to help you and others best understand your work.
+> Some researchers create a separate project for each manuscript they are working on,
+> while others group all research on a common theme, data set, or algorithm into a single project.
+>
+> As a rule of thumb, divide work into projects based on the overlap in data and code files.
+> If two research efforts share no data or code,
+> they will probably be easiest to manage independently.
+> If they share more than half of their data and code,
+> they are probably best managed together.
+> Anything in between can be decided based on the set of people you're collaborating with.
 
 The `src` directory often contains two conceptually distinct types of files
 that should be distinguished either by clear file names or by additional subdirectories.
@@ -658,9 +656,9 @@ and the other containing a running draft of a manuscript describing the project 
 
 Keeping track of changes that you or your collaborators make to data, software, and manuscripts
 is a critical part of research.
-The concept of version control involves keeping track of what has changed in a file when,
-and who made the change.
-These changes are often synchronized to a central server
+Version control systems were developed to do exactly this for software:
+they keep track of what was changed in a file when and by whom,
+and usually synchronize changes to a central server
 so that many users can track the same set of files.
 
 Any approach to version control has three main benefits for a researcher.
@@ -681,33 +679,37 @@ all of this aids *sharing and collaboration*,
 particularly by managing the process of merging independent changes made by different people,
 and distributing those changes back to everyone in a controlled, traceable way.
 
-At a technical level, a good version control system should thus
-give a researcher the ability to
+A good version control system should allow a researcher to:
 
-1.  Understand and review the entire development history of a file,
-    including identifying when a particular change was made and who made it.
-2.  Locate the place in the history where a particular change was introduced,
-    easily and quickly.
-3.  Evaluate an individual change to a file so that its effects can be understood
-    and, if necessary, undone.
-    This is especially useful for isolating bugs in software.
-4.  Manage concurrent changes from many different collaborators
-5.  Make projects discoverable through portals like GitHub.
+1.  understand and review the entire development history of a file,
+    including identifying when a particular change was made and who made it;
+2.  locate the place in the history where a particular change was introduced,
+    easily and quickly;
+3.  evaluate an individual change to a file so that its effects can be understood
+    and, if necessary, undone;
+4.  manage concurrent changes from many different collaborators; and
+5.  make projects discoverable through portals like GitHub.
 
-We believe that the best tools for providing these five capabilities are
-the major version control software that are widely used in software development.
-These include Git, Mercurial, and Subversion, all of which provide the same basic functionality.
-We thus recommend that scientific computing beginners
-learn to use one of these "big three" version control tools as soon as possible.
+We believe that the best tools for providing these capabilities are
+version control systems that are widely used in software development,
+such as Git, Mercurial, and Subversion
+(which all provide the same basic functionality).
+We therefore recommend that researchers use one of these.
 
-However, it is important to distinguish between version control as a concept, as described above,
-and these particular software tools.
-We recognize that many novices find these tools particularly difficult to learn
-and that the benefits of version control tools become most apparent
-for projects that are larger and more complex
-than those undertaken by early stage researchers.
-We thus also suggest a second, manual approach for managing file versions
-that can be appropriate for small-scale projects with few investigators working closely together.
+However,
+it is important to distinguish between the concept of version control and particular implementations.
+In particular,
+we recognize that many newcomers find these tools difficult to learn
+and that the benefits of version control tools may only become apparent
+on projects that are larger and more complex
+than the "solo researcher" projects common in many academic fields.
+
+We therefore also suggest a second, manual approach for managing changes
+that can be appropriate for small projects
+with one or a few investigators working closely together.
+
+**FIXME: Justin, I've never seen this CHANGELOG approach implemented -
+can you please point us at a project where you or one of your colleagues do this?**
 
 For a manual approach to version control,
 we suggest adding a file called `CHANGELOG.txt` to the `docs` subfolder inside of a project folder.
@@ -794,11 +796,10 @@ The list might include:
 *   updating to-do lists, and
 *   bans on committing half-done work or broken code.
 
-### When is version control not necessary?
+### When is Version Control Not Necessary?
 
 Despite the benefits of version control systems,
 there are some types of files that may *not* be appropriate for version control.
-
 First, data should be backed up,
 but may or may not be a good candidate for version control ([3](#footnote-3)).
 The size of data sets can be a problem.
@@ -836,17 +837,17 @@ opinion is divided on whether the `results` directory and other intermediate, ge
 should be placed under version control.
 If we borrow conventions from software development
 (just as we borrowed version control itself)
-the answer is no.
-But there are some benefits to putting results under version control in data analysis projects.
-First,
-it gives collaborators immediate access to current processed data, results, figures, etc.,
-without needing to regenerate it all.
-Second, version control facilitates *diffing*,
-i.e.,
-seeing the differences between old and new states of files.
-Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
-refactoring a script,
-or starting with a slightly different dataset.
+the answer is no,
+but there are some benefits to putting results under version control in data analysis projects:
+
+1.  It gives collaborators immediate access to current processed data, results, figures, etc.,
+    without needing to regenerate it all.
+2.  version control facilitates *diffing*,
+    i.e.,
+    seeing the differences between old and new states of files.
+    Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
+    refactoring a script,
+    or starting with a slightly different dataset.
 
 If results files are kilobytes or a few megabytes in size,
 we therefore recommend keeping them under version control.
