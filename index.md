@@ -948,9 +948,9 @@ Our first recommended approach is as follows:
     which might contain links to the location of the data file(s) rather than the actual files.
 
 We realize that in many cases,
-even this solution is asking too much from the coauthor who will continue to say,
-"Just give me a Word document with tracked changes," or something similar.
-To satisfy this person,
+even this solution is asking too much from those who see no reason to move forward
+from desktop GUI tools.
+To satisfy them,
 the manuscript can be converted to a desktop editor file format
 (e.g., Microsoft Word's `.docx` or LibreOffice's `.odt`)
 after major changes,
@@ -1003,7 +1003,6 @@ For example, Stephen Turner wrote:
 > the barrier to collaborating on papers in this framework is simply too high to overcome.
 > Good intentions aside,
 > it always comes down to "just give me a Word document with tracked changes," or similar.
-> There's always a least common denominator who just isn't going to be on board for writing like this.
 
 In keeping with our goal of recommending "good enough" practices,
 we have therefore included online storage in something like Google Docs.
