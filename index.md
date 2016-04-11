@@ -155,6 +155,8 @@ which can be a powerful accelerator for analysis ([Tidy Data][wickham-tidy], [Ni
 This is the time to make sure your data will play nicely with your analytical environment and plans.
 This pass through the data likely does not change the amount of data, but may dramatically alter its form.
 
+> ### OpenRefine
+>
 > [OpenRefine][openrefine] is an excellent tool for this stage of data cleanup.
 > It combines a spreadsheet-like interface to tabular data
 > with a large set of cleanup heuristics,
@@ -254,6 +256,8 @@ file encoding, line endings, and the elimination of prose-oriented features, suc
 Differences between collaborators in these pesky details can cause the changes between file versions to be large
 and therefore substantially less comprehensible.
 
+> ### Choosing Metadata
+>
 > [Elizabeth Wickes][wickes-comment-metadata] provides a useful classification for metadata,
 > with implications for it how it should be represented.
 > She notes it is easy to conflate metadata about the dataset as a whole with metadata about the content,
@@ -870,11 +874,10 @@ writing up is the other 90%.
 While the writing step is rarely addressed in discussions of scientific computing,
 computing has changed the process of manuscript generation just as much as it has changed the research itself.
 
-A common, but unfortunate, practice is for
-the lead author to send successive versions of a manuscript to coauthors to collect feedback,
-which is received as multiple documents with changes,
-as comments on the document,
-in email,
+A common practice is for the lead author to send successive versions of a manuscript to coauthors to collect feedback,
+which is returned as changes to the document,
+comments on the document,
+plain text in email,
 or a mix of all three.
 The result is a lot of files to keep track of
 and much tedious manual labor to merge all the comments
@@ -884,12 +887,9 @@ at which point the process begins again.
 Instead of an email-based workflow,
 we recommend mirroring good practices for managing software and data,
 to make writing scalable, collaborative, and reproducible.
-Similar to our recommendations for version control in general,
+As with our recommendations for version control in general,
 we suggest that groups choose one of two different approaches for managing manuscripts.
-The most important rule is
-to have all authors agree on one or the other *before* writing starts.
-
-The goals of both of the workflows outlined below are:
+The goals of both alternatives are to:
 
 1.  Ensure that text is accessible to yourself and others
     now and in the future
@@ -903,6 +903,15 @@ The goals of both of the workflows outlined below are:
     and to tell if it is up to date.
 6.  Make it easy to share that final version with collaborators
     and to submit it to a journal.
+
+> ### The First Rule Is...
+>
+> Which workflow is chosen is less important than
+> having all authors agree on one or the other *before* writing starts.
+> Make sure to also agree on a single method to provide feedback,
+> be it an email thread or mailing list,
+> an issue tracker (like the ones provided by GitHub and Bitbucket),
+> or some sort of shared online to-do list.
 
 Our first recommended approach is as follows:
 
@@ -922,7 +931,6 @@ the manuscript can be converted to a desktop editor file format
 (e.g., Microsoft Word's `.docx` or LibreOffice's `.odt`)
 after major changes,
 then downloaded and saved in the `doc` folder.
-
 Unfortunately,
 this means merging some changes and suggestions manually,
 as existing tools cannot always do this automatically
@@ -945,13 +953,38 @@ and has been used by researchers in mathematics, astronomy, physics, and related
 This approach re-uses the version control tools and skills used to manage data and software,
 and is a good starting point for fully-reproducible research.
 However,
-it requires a practical understanding of a much larger set of tools (markdown/LaTeX compilers, make, BiBTeX, Git/GitHub) by all involved authors.
-
+it requires all contributors to understand a much larger set of tools,
+including markdown or LaTeX,
+make,
+BiBTeX,
+and Git/GitHub.
 
 ### Discussion
 
-We recommend against traditional desktop tools like LibreOffice and Microsoft Word
-because they make collaboration more difficult than either of our recommended alternatives:
+An early draft of this paper recommended plain text in version control as the best way to manage manuscripts,
+but several reviewers pushed back forcefully.
+For example, Stephen Turner wrote:
+
+> ...try to explain the notion of compiling a document to an overworked physician you collaborate with.
+> Oh, but before that, you have to explain the difference between plain text and word processing.
+> And text editors.
+> And markdown/LaTeX compilers.
+> And BiBTeX.
+> And Git.
+> And GitHub. Etc.
+> Meanwhile he/she is getting paged from the OR...
+>
+> ...as much as we want to convince ourselves otherwise,
+> when you have to collaborate with those outside the scientific computing bubble,
+> the barrier to collaborating on papers in this framework is simply too high to overcome.
+> Good intentions aside,
+> it always comes down to "just give me a Word document with tracked changes," or similar.
+> There's always a least common denominator who just isn't going to be on board for writing like this.
+
+In keeping with our goal of recommending "good enough" practices,
+we have therefore included online storage in something like Google Docs.
+We still recommend *against* traditional desktop tools like LibreOffice and Microsoft Word
+because they make collaboration more difficult than necessary:
 
 *   If the document lives online (e.g., in Google Docs)
     then everyone's changes are in one place,
@@ -961,15 +994,6 @@ because they make collaboration more difficult than either of our recommended al
     It also provides a convenient platform for making comments and performing review.
 *   Both of our recommendations clearly define the master document
     and allow everyone to contribute to it on an equal footing.
-
-We also believe that researchers should use a bibliography manager of some sort,
-but discussion of those is outside the scope of this paper.
-Finally,
-regardless of the approach you choose the writing,
-make sure to agree on a single method to provide feedback,
-be it an email thread or mailing list,
-an issue tracker (like the ones provided by GitHub and Bitbucket),
-or some sort of shared online to-do list.
 
 As an example of an implementation of these recommendations,
 this paper was written using a central online repository (GitHub),
@@ -1084,6 +1108,12 @@ including some that we use daily.
     quickly see the point of a brief explanatory comment at the start of each script,
     so we have recommended that as a first step.
 
+**A Bibliography Manager**
+:   Researchers should use a reference manager of some sort,
+    such as [Zotero][zotero],
+    and should also obtain and use an [ORCID][orcid] to identify themselves in their publications,
+    but discussion of those is outside the scope of this paper.
+
 **Code Reviews and Pair Programming**
 :   These practices are valuable in projects with multiple contributors,
     but are hard to adopt in single-author/single-user situations,
@@ -1148,6 +1178,7 @@ but that is a separate issue.
 [markdown]: http://daringfireball.net/projects/markdown/
 [noble-rules]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
 [openrefine]: http://openrefine.org/
+[orcid]: http://orcid.org/
 [pandoc]: http://pandoc.org/
 [repo-url]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing
 [sandve-reproducible]: http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
@@ -1158,3 +1189,4 @@ but that is a separate issue.
 [white-simple-reuse]: http://library.queensu.ca/ojs/index.php/IEE/article/view/4608
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
 [wickham-tidy]: http://www.jstatsoft.org/article/view/v059i10
+[zotero]: http://zotero.org/
