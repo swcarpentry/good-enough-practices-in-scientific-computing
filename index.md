@@ -904,41 +904,7 @@ The goals of both of the workflows outlined below are:
 6.  Make it easy to share that final version with collaborators
     and to submit it to a journal.
 
-The first approach treats papers exactly like software,
-and has been used by researchers in mathematics, astronomy, physics, and related disciplines for decades:
-
-1.  The manuscript is written in a plain text format such as
-    [LaTeX][latex] or [Markdown][markdown]
-    that permits version control of the files involved,
-    and then converted to other formats such as PDF as needed
-    using scriptable tools like [Pandoc][pandoc].
-2.  Tools needed to compile manuscripts (e.g., Makefiles or LaTeX style files)
-    are included in the project folder
-    and kept under version control
-    just like tools used to do simulation or analysis.
-
-This approach re-uses the version control tools and skills used to manage data and software,
-and is a good starting point for fully-reproducible research.
-However,
-as [Stephen Turner commented][turner-comment-docs] during the production of this paper:
-
-> ...try to explain the notion of compiling a document to an overworked physician you collaborate with.
-> Oh, but before that, you have to explain the difference between plain text and word processing.
-> And text editors.
-> And markdown/LaTeX compilers.
-> And BiBTeX.
-> And Git.
-> And GitHub. Etc.
-> Meanwhile he/she is getting paged from the OR...
->
-> ...as much as we want to convince ourselves otherwise,
-> when you have to collaborate with those outside the scientific computing bubble,
-> the barrier to collaborating on papers in this framework is simply too high to overcome.
-> Good intentions aside,
-> it always comes down to "just give me a Word document with tracked changes," or similar.
-> There's always a least common denominator who just isn't going to be on board for writing like this.
-
-We therefore also recommend an alternative approach:
+Our first recommended approach is as follows:
 
 1.  A manuscript is written using Google Docs or some other online tool with rich formatting,
     change tracking,
@@ -947,9 +913,6 @@ We therefore also recommend an alternative approach:
     containing metadata about each online manuscript (e.g., their URLs).
     This is analogous to the `data` directory,
     which might contain links to the location of the data file(s) rather than the actual files.
-
-FIXME: Are the text below and the long pull-quote above both going to stay?
-If so, should delete the "just give me a Word document" repetition.
 
 We realize that in many cases,
 even this solution is asking too much from the coauthor who will continue to say,
@@ -965,6 +928,25 @@ this means merging some changes and suggestions manually,
 as existing tools cannot always do this automatically
 when switching from a desktop file format to text and back
 (although `[pandoc][pandoc]` can go a long way).
+
+The second approach treats papers exactly like software,
+and has been used by researchers in mathematics, astronomy, physics, and related disciplines for decades:
+
+1.  The manuscript is written in a plain text format such as
+    [LaTeX][latex] or [Markdown][markdown]
+    that permits version control of the files involved,
+    and then converted to other formats such as PDF as needed
+    using scriptable tools like [Pandoc][pandoc].
+2.  Tools needed to compile manuscripts (e.g., Makefiles or LaTeX style files)
+    are included in the project folder
+    and kept under version control
+    just like tools used to do simulation or analysis.
+
+This approach re-uses the version control tools and skills used to manage data and software,
+and is a good starting point for fully-reproducible research.
+However,
+it requires a practical understanding of a much larger set of tools (markdown/LaTeX compilers, make, BiBTeX, Git/GitHub) by all involved authors.
+
 
 ### Discussion
 
@@ -1172,7 +1154,6 @@ but that is a separate issue.
 [steinmacher-newcomers]: http://lapessc.ime.usp.br/work.jsf?p1=15673
 [swc-website]: http://software-carpentry.org/
 [travis]: https://travis-ci.org/
-[turner-comment-docs]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/2#issue-116784345
 [uiuc-file-formats]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 [white-simple-reuse]: http://library.queensu.ca/ojs/index.php/IEE/article/view/4608
 [wickes-comment-metadata]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442
