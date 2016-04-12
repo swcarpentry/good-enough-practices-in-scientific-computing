@@ -10,6 +10,9 @@ build :
 
 ## clean      : clean up junk files.
 clean :
-	rm -rf _site
-	find . -name '*~' -exec rm {} \;
-	find . -name .DS_Store -exec rm {} \;
+	@rm -rf _site
+	@find . -name '*~' -exec rm {} \;
+	@find . -name '*.aux' -exec rm {} \;
+	@find . -name '*.bak' -exec rm {} \;
+	@find . -name '*.log' -exec rm {} \;
+	@find . -name .DS_Store -exec rm {} \;
