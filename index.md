@@ -665,97 +665,150 @@ they keep track of what was changed in a file when and by whom,
 and usually synchronize changes to a central server
 so that many users can track the same set of files.
 
-Any approach to version control has three main benefits for a researcher.
-First, version control aids *reproducibility*
-by allowing you to reference or retrieve a specific version of the entire project.
-This is valuable for your future self (when you finally get the reviews back for your paper),
-for your lab-mates and collaborators (in case you leave the project),
-and for reviewers, editors, and others who want to convince themselves of the conclusions in your published research.
-It also helps your future self come back to a project after a long field season
-and *not* have to spend days remembering what you did last
-or figuring out what your collaborators have changed while you have been gone.
-
-Second, version control aids *fixability*:
-having access to every version of code, figures, and data helps you figure out
-why Figure 4 looks different now than it did last week.
-And finally,
-all of this aids *sharing and collaboration*,
-particularly by managing the process of merging independent changes made by different people,
-and distributing those changes back to everyone in a controlled, traceable way.
-
-A good version control system should allow a researcher to:
-
-1.  understand and review the entire development history of a file,
-    including identifying when a particular change was made and who made it;
-2.  locate the place in the history where a particular change was introduced,
-    easily and quickly;
-3.  evaluate an individual change to a file so that its effects can be understood
-    and, if necessary, undone;
-4.  manage concurrent changes from many different collaborators; and
-5.  make projects discoverable through portals like GitHub.
-
 We believe that the best tools for providing these capabilities are
 version control systems that are widely used in software development,
 such as Git, Mercurial, and Subversion
 (which all provide the same basic functionality).
-We therefore recommend that researchers use one of these.
-
 However,
-it is important to distinguish between the concept of version control and particular implementations.
-In particular,
-we recognize that many newcomers find these tools difficult to learn
-and that the benefits of version control tools may only become apparent
+many newcomers find these tools difficult to learn,
+and their benefits often only become apparent
 on projects that are larger and more complex
 than the "solo researcher" projects common in many academic fields.
 
-We therefore also suggest a second, manual approach for managing changes
+For those not yet ready to adopt version control,
+we recommend a systematic manual approach for managing changes
 that can be appropriate for small projects
 with one or a few investigators working closely together.
 
-**FIXME: Justin, I've never seen this CHANGELOG approach implemented -
-can you please point us at a project where you or one of your colleagues do this?**
+Whatever approach is adopted should help with the following:
 
-For a manual approach to version control,
-we suggest adding a file called `CHANGELOG.txt` to the `docs` subfolder inside of a project folder.
-This file should contain a single line that starts with a version number,
-beginning with `001`, followed by a description of changes made to the project
-between the previous version and the current version.
-The line with the largest number always refers to the most recent version.
-A change log might look like the following:
+1.  It should aid *reproducibility*
+    by allowing you to reference or retrieve a specific version of the entire project.
+    This is valuable for your future self (when you finally get the reviews back for your paper),
+    for your lab-mates and collaborators (in case you leave the project),
+    and for reviewers, editors, and others who want to convince themselves of the conclusions in your published research.
+    It also helps your future self come back to a project after a long field season
+    and *not* have to spend days remembering what you did last
+    or figuring out what your collaborators have changed while you have been gone.
+2.  It should aid *fixability*:
+    having access to every version of code, figures, and data helps you figure out
+    why Figure 4 looks different now than it did last week.
+3.  It should support *sharing and collaboration*,
+    particularly by managing the process of merging independent changes made by different people,
+    and distributing those changes back to everyone in a controlled, traceable way.
+
+Our first suggested approach,
+in which everything is done by hand,
+has three parts.
+First,
+store each project in a folder that is mirrored off the researcher's working machine
+by a system such as Dropbox,
+and synchronize that folder at least daily.
+It may take a few minutes,
+but that time can be spent catching up on email,
+and is repaid the moment a laptop is stolen or its hard drive fails.
+
+Second,
+add a file called `CHANGELOG.txt` to the project's `docs` subfolder,
+and make dated notes about changes to the project in this file
+in reverse chronological order
+(i.e., most recent first).
+An example of such a file is:
 
 ~~~
-003 Modify script to perform linear regression
-002 Add script to read data table
-001 Set up project structure
+## 2016-04-08
+
+* Switched to cubic interpolation as default.
+* Moved question about family's TB history to end of questionnaire.
+
+## 2016-04-06
+
+* Added option for cubic interpolation.
+* Removed question about staph exposure (can be inferred from blood test results).
 ~~~
 
-The key to this manual system is that each time a addition or modification is made to any file in the directory,
-a line must be added to this change log describing the change and
-a new copy of the entire directory must be made to preserve the state of all files at that version.
-The directory copy should contain the project name and the version number,
-such as `tomato_project_001`.
+Third,
+whenever a significant change has been made
+(i.e., one that materially affects the results being produced),
+copy the entire project into a sub-folder in the area that's being synchronized
+whose name reflects the date.
+This approach results in projects being organized like this:
 
-While requiring committed discipline from a researcher,
-this manual procedure provides the first three abilities of a version control system
-without the use of any new tool.
+~~~
+.
+|-- project_name/
+|   \-- current
+|       \-- ...project content as described earlier...
+|   \-- 2016-03-01
+|       \-- ...content of 'current' on Mar 1, 2016
+|   \-- 2016-02-19
+|       \-- ...content of 'current' on Feb 19, 2016
+~~~
+
+Here,
+the `project_name` folder is mapped to external storage (such as Dropbox),
+`current` is where development is done,
+and other folders within `project_name` are old versions.
+
+Coyping everything like this may seem wasteful,
+since many files won't have changed,
+but consider:
+a terabyte hard drive costs about $50 retail,
+which means that 50 GByte costs less than a latte.
+Provided large data files are kept out of the backed-up area (discussed below),
+this approach costs less than the time it would take to select files by hand for copying.
+
+This manual procedure meets the core requirements outlined above
+without needing any new tools.
 If multiple researchers are working on the same project,
-they will need to coordinate efforts so that only a single person is working at any given time
-and incrementing the version number of the project.
-This procedure does not directly assist with the fifth goal of a good version control system,
-making the project widely available for collaboration.
+though,
+they will need to coordinate so that only a single person is working on specific files at any time.
+In particular,
+they may wish to create one change log file per contributor,
+and to merge those files whenever a backup copy is made.
 
-Once again, we stress that common version control tools will greatly assist a user
-in performing essentially the same tasks as this manual procedure,
-while also providing a formal framework that will better scale to larger projects.
-Abilities to branch, merge, collaborate simultaneously on files, and interact with other software developers
-are not parts of what we consider to be "good enough practices",
-but they are important components of our best practices.
-Novice users are encouraged to graduate from manual systems such as this one
-to one of the major version control tools as soon as is practical.
+What the manual process described above requires most is self-discipline.
+The version control tools that underpin our second approach---the one we all now use for our projects---don't just
+accelerate the manual process:
+they also automate some steps while enforcing others,
+and thereby require less self-discipline for more reliable results.
 
-Regardless of whether a formal tool or a manual approach is chosen,
-the first rule for using version control is that nearly
-everything created by a human being goes under version control as soon as it is created.
+A version control system stores snapshots of a project's files in a repository.
+Users can modify their working copy of the project at will,
+and then commit changes to the repository
+when they wish to make a permanent record and/or share their work with colleagues.
+The version control system automatically records when the change was made and by whom
+along with the changes themselves.
+
+Crucially,
+if several people have edited files simultaneously,
+the version control system will detect the collision
+and require them to resolve any conflicts before recording the changes.
+Modern version control systems also allow repositories to be synchronized with each other,
+so that no one repository becomes a single point of failure.
+Together,
+these features have several benefits:
+
+1.  Instead of requiring users to copy everything into subfolders,
+    version control safely stores just enough information
+    to allow old versions of files to be re-created on demand.
+    This saves both space and time.
+2.  Instead of relying on users to choose sensible names for backup copies,
+    the version control system timestamps all saved changes automatically.
+3.  Instead of requiring users to be disciplined about writing log comments,
+    version control systems prompt them every time a change is saved.
+    They also keep a 100% accurate record of what was *actually* changed,
+    as opposed to what the user *thought* they changed,
+    which can be invaluable when problems crop up later.
+4.  Instead of simply copying files to remote storage,
+    version control checks to see whether doing that would overwrite anyone else's work.
+    This turns out to be the key to supporting large-scale ad hoc collaboration.
+
+### Discussion
+
+Regardless of which approach is taken,
+the first rule for using version control is that
+almost everything created by a human being should be backed up as soon as it is created.
 This includes scripts and programs of all kinds,
 software packages that your project depends on,
 and documentation.
@@ -764,23 +817,17 @@ A few exceptions to this rule are discussed below.
 Second,
 each change committed to a version control system or added to a change log
 should not be so large as to make the change tracking irrelevant.
-For example, a single change such as "Revise script file" that adds or changes several hundred lines
-is likely too large, as it will not allow changes to different components of an analysis
-to be investigated separately.
+For example,
+a single change such as "Revise script file" that adds or changes several hundred lines
+is likely too large,
+as it will not allow changes to different components of an analysis to be investigated separately.
 Similarly, changes should not be broken up into pieces that are too small,
 although we find that this is less of a danger with novices.
-As a rule of thumb, a good size for a single change is a group of edits
+As a rule of thumb,
+a good size for a single change is a group of edits
 that you could imagine wanting to undo in one step at some point in the future.
 
 Third,
-the repository should be mirrored on at least one machine that *isn't* the researcher's computer.
-This may be a lab or departmental server,
-a public site such as GitHub or Bitbucket.
-or a cloud-based backup service such as Dropbox.
-Whichever is chosen,
-make sure that server is backed up regularly.
-
-Fourth,
 everyone working on the project should share their changes frequently,
 and incorporate changes from others just as frequently.
 Do not allow individual investigator's versions of the project repository to drift apart,
@@ -837,7 +884,8 @@ Some institutions may provide access to private version control systems,
 so it is worth checking with your IT department.
 
 Second,
-opinion is divided on whether the `results` directory and other intermediate, generated files
+opinion is divided on whether the `results` directory
+and other generated files such as figures
 should be placed under version control.
 If we borrow conventions from software development
 (just as we borrowed version control itself)
@@ -846,7 +894,7 @@ but there are some benefits to putting results under version control in data ana
 
 1.  It gives collaborators immediate access to current processed data, results, figures, etc.,
     without needing to regenerate it all.
-2.  version control facilitates *diffing*,
+2.  Version control facilitates *diffing*,
     i.e.,
     seeing the differences between old and new states of files.
     Diffs can be used to see the downstream effects of actions like upgrading a piece of software,
@@ -857,13 +905,6 @@ If results files are kilobytes or a few megabytes in size,
 we therefore recommend keeping them under version control.
 Anything more than this,
 and something else should be used for management.
-
-Third,
-manuscripts and other similar text files may be written and managed using version control,
-or collaboration and changes to these files can be dealt with using more dedicated systems.
-This is described in the next section.
-
-FIXME: mention above images as a kind of raw data or plot figures as something that can be regenerated? 
 
 ## Manuscripts
 
@@ -924,9 +965,9 @@ Our first recommended approach is as follows:
     which might contain links to the location of the data file(s) rather than the actual files.
 
 We realize that in many cases,
-even this solution is asking too much from the coauthor who will continue to say,
-"Just give me a Word document with tracked changes," or something similar.
-To satisfy this person,
+even this solution is asking too much from those who see no reason to move forward
+from desktop GUI tools.
+To satisfy them,
 the manuscript can be converted to a desktop editor file format
 (e.g., Microsoft Word's `.docx` or LibreOffice's `.odt`)
 after major changes,
@@ -979,7 +1020,6 @@ For example, Stephen Turner wrote:
 > the barrier to collaborating on papers in this framework is simply too high to overcome.
 > Good intentions aside,
 > it always comes down to "just give me a Word document with tracked changes," or similar.
-> There's always a least common denominator who just isn't going to be on board for writing like this.
 
 In keeping with our goal of recommending "good enough" practices,
 we have therefore included online storage in something like Google Docs.

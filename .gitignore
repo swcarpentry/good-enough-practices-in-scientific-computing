@@ -1,6 +1,7 @@
+*.aux
 *.bak
+*.log
 *~
 .DS_Store
 .Rproj.user
 _site
-index.html
