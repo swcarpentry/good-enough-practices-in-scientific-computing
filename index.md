@@ -1,5 +1,7 @@
 ---
 ---
+# NOTE: we have now switched to LaTeX for formatting.
+
 # Good Enough Practices for Scientific Computing
 
 *   Jenny Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy Teal, and Greg Wilson
