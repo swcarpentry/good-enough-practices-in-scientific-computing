@@ -697,7 +697,9 @@ Whatever approach is adopted should help with the following:
     particularly by managing the process of merging independent changes made by different people,
     and distributing those changes back to everyone in a controlled, traceable way.
 
-The "by hand" approach has three steps.
+Our first suggested approach,
+in which everything is done by hand,
+has three parts.
 First,
 store each project in a folder that is mirrored off the researcher's working machine
 by a system such as Dropbox,
@@ -756,8 +758,7 @@ which means that 50 GByte costs less than a latte.
 Provided large data files are kept out of the backed-up area (discussed below),
 this approach costs less than the time it would take to select files by hand for copying.
 
-While requiring discipline from a researcher,
-this manual procedure meets the core requirements outlined above
+This manual procedure meets the core requirements outlined above
 without needing any new tools.
 If multiple researchers are working on the same project,
 though,
@@ -766,25 +767,41 @@ In particular,
 they may wish to create one change log file per contributor,
 and to merge those files whenever a backup copy is made.
 
-Version control tools like Git, Mercurial, and Subversion essentially automate and accelerate
-the manual process just described:
+What the manual process described above requires most is self-discipline.
+The version control tools that underpin our second approach---the one we all now use for our projects---don't just
+accelerate the manual process:
+they also automate some steps while enforcing others,
+and thereby require less self-discipline for more reliable results.
+
+A version control system stores snapshots of a project's files in a repository.
+Users can modify their working copy of the project at will,
+and then commit changes to the repository
+when they wish to make a permanent record and/or share their work with colleagues.
+The version control system automatically records when the change was made and by whom
+along with the changes themselves.
+
+Crucially,
+if several people have edited files simultaneously,
+the version control system will detect the collision
+and require them to resolve any conflicts before recording the changes.
+Modern version control systems also allow repositories to be synchronized with each other,
+so that no one repository becomes a single point of failure.
+Together,
+these features have several benefits:
 
 1.  Instead of requiring users to copy everything into subfolders,
     version control safely stores just enough information
     to allow old versions of files to be re-created on demand.
     This saves both space and time.
-2.  Instead of requiring users to be disciplined about writing log comments,
+2.  Instead of relying on users to choose sensible names for backup copies,
+    the version control system timestamps all saved changes automatically.
+3.  Instead of requiring users to be disciplined about writing log comments,
     version control systems prompt them every time a change is saved.
     They also keep a 100% accurate record of what was *actually* changed,
     as opposed to what the user *thought* they changed,
     which can be invaluable when problems crop up later.
-3.  Instead of simply copying files to remote storage,
+4.  Instead of simply copying files to remote storage,
     version control checks to see whether doing that would overwrite anyone else's work.
-    If so,
-    the version control system notifies the user
-    and gives her the option of keeping her changes,
-    those already in the shared repository,
-    or merging them.
     This turns out to be the key to supporting large-scale ad hoc collaboration.
 
 ### Discussion
