@@ -1,5 +1,7 @@
 *.aux
 *.bak
+*.bbl
+*.blg
 *.log
 *~
 .DS_Store

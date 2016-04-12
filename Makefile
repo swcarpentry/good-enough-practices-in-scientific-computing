@@ -1,8 +1,19 @@
+LATEX=pdflatex
+BIBTEX=bibtex
+STEM=good-enough-practices-for-scientific-computing
+
 all : commands
 
 ## commands   : show all commands.
 commands :
 	@grep -E '^##' Makefile | sed -e 's/## //g'
+
+## pdf        : re-generate PDF
+pdf :
+	${LATEX} ${STEM}
+	${BIBTEX} ${STEM}
+	${LATEX} ${STEM}
+	${LATEX} ${STEM}
 
 ## build      : build HTML files.
 build : 
