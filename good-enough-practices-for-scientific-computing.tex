@@ -120,25 +120,26 @@ there's no point recommending things that people don't actually use,
 won't try, or abandon after a few days or weeks because they don't
 perceive value.
 
-That last stipulation is important. Many of our rules are for the
-benefit of the collaborator every researcher cares about most: their
-future self. (As the joke goes, your past self doesn't answer
-email{\ldots}) If researchers don't see those benefits quickly enough to
-pay for the slowdown that inevitably occurs when adopting a new tool or
-practice, they will almost certainly switch back to their old way of
-doing things. As we discuss in Section~\ref{whats-not-on-this-list}
-this rules out many practices such as code review that we feel are
-essential for larger-scale development.
+That last stipulation is important. Many of our recommendations are
+for the benefit of the collaborator every researcher cares about most:
+their future self. (As the joke goes, your past self doesn't answer
+email{\ldots}) If researchers don't see those benefits quickly enough
+to pay for the slowdown that inevitably occurs when adopting a new
+tool or practice, they will almost certainly switch back to their old
+way of doing things. As we discuss in
+Section~\ref{whats-not-on-this-list} this rules out many practices
+such as code review that we feel are essential for larger-scale
+development.
 
 \begin{quote}
 \subsection*{You're Really Helping Yourself}\label{youre-really-helping-yourself}
 
-Many of these rules are phrased in terms of helping other people, such
-as current and future collaborators. In all cases, though, the most
-important ``other person'' you're helping is your future self: for
-example, a good to-do list will save you time when you come back to your
-project next year. It's always tempting to cut corners, but your past
-self doesn't answer email.
+Many of these guidelines are phrased in terms of helping other people,
+such as current and future collaborators. In all cases, though, the
+most important ``other person'' you're helping is your future self:
+for example, a good to-do list will save you time when you come back
+to your project next year. It's always tempting to cut corners, but
+your past self doesn't answer email.
 \end{quote}
 
 \section{Data Management}\label{data-management}
@@ -288,7 +289,7 @@ to be data reduction and the amalgamation of multiple datasets.
   to load data correctly without extra programming effort.
 \end{enumerate}
 
-\subsection*{Rules}
+\subsection*{Reccomendations}
 
 \begin{enumerate}
 \item
@@ -347,8 +348,9 @@ to be data reduction and the amalgamation of multiple datasets.
     precisely
   \end{itemize}
 \item
-  \emph{Normalization} (the process of making data adhere to the rules
-  in the preceding point) is treated as a processing step
+  \emph{Normalization} (the process of making data adhere to the
+  recommendations in the preceding point) is treated as a processing
+  step
 
   \begin{itemize}
   \item
@@ -443,11 +445,11 @@ of short, single-purpose functions with clearly-defined inputs and
 outputs. Building software this way is the key to both productivity and
 reproducibility.
 
-The first rule is that \emph{every analysis step should be represented
-textually} (complete with parameter values). It isn't always possible to
-store steps as text (e.g., manual selection of region of interest in
-image), but it is always possible to store the result for later
-checking.
+The first recommendation is that \emph{every analysis step should be
+  represented textually} (complete with parameter values). It isn't
+always possible to store steps as text (e.g., manual selection of
+region of interest in image), but it is always possible to store the
+result for later checking.
 
 Second, \emph{place a brief explanatory comment at the start of every
 program}, no matter how short it is. That comment should include at
@@ -503,7 +505,7 @@ re-use functions instead of copying and pasting source code, and use
 data structures like lists rather than creating lots of variables called
 \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
-This rule applies with even greater force to libraries. The easiest code
+This applies with even greater force to libraries. The easiest code
 to debug and maintain is code that you didn't actually write, so
 \emph{always search for libraries that do what you need} before writing
 new code yourself.
@@ -531,10 +533,10 @@ the program to control what it does.
 \begin{quote}
 \subsection*{Logging}
 
-One special case of this rule is to use a logging library such as Java's
-\texttt{log4j} for debugging messages. When this is done, messages are
-left in the code, but their activity is controlled by an external
-configuration file.
+One special case of this recommendation is to use a logging library
+such as Java's \texttt{log4j} for debugging messages. When this is
+done, messages are left in the code, but their activity is controlled
+by an external configuration file.
 \end{quote}
 
 Eighth, \emph{provide a simple example or test data set} that users
@@ -812,7 +814,7 @@ or placed into different subdirectories; those belonging to different
 papers or other publications should be grouped together.
 
 The figure below provides a concrete example of how a simple project
-might be organized following these rules. The root directory contains a
+might be organized following these recommendations. The root directory contains a
 \texttt{README} file that provides an overview of the project as a whole
 and a \texttt{CITATION} file that explains how to reference it. The
 \texttt{data} directory contains a single CSV file with tabular data on
