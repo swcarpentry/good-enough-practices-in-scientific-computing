@@ -235,7 +235,17 @@ generate a trace of cleanup steps to ensure reproducibility.
 
 \subsubsection*{Give every record a unique key.}
 
-FIXME: fill in.
+In a well-organized data set,
+it's easy to select a specific record to update or delete.
+Using fields in the data (such as people's names or addresses) does not guarantee this;
+using row numbers in tables does,
+but those numbers will change as records are added, removed, or moved.
+
+We therefore recommend giving each record a unique, persistent key
+that has no other purpose than identifying the record\footnote{Student
+  numbers and similar identifiers serve this purpose in institutional
+  databases.} The provision of such a key also makes it much easier to
+link data sets together.
 
 \subsection*{Marshal complementary data in files that meet the same standards.}
 
