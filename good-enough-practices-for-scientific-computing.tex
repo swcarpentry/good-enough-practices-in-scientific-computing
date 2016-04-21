@@ -1,6 +1,7 @@
 \documentclass[10pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{framed}
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{color} 
@@ -22,6 +23,8 @@
 
 \pagestyle{myheadings}
 
+\newcommand{\fixme}[1]{\textsc{\textbf{#1}}}
+\newcommand{\recommend}[1]{\textit{#1}}
 \newcommand{\withurl}[2]{{#1}\footnote{\texttt{#2}}}
 
 \begin{document}
@@ -30,26 +33,22 @@
 {\Large
 \textbf{Good Enough Practices for Scientific Computing}
 }
-% Insert Author names, affiliations and corresponding author email.
-\\
+
 {Greg~Wilson}$^{1,\ast}$,
 {Jenny~Bryan}$^{2}$,
 {Karen~Cranston}$^{3}$,
 {Justin~Kitzes}$^{4}$,
-{Lex~Nederbragt}$^{5}$,
-{Tracy~Teal}$^{6}$
+{Lex~Nederbragt}$^{5}$
 \\
-\bf{1} Software Carpentry Foundation / gvwilson@software-carpentry.org
+1) Software Carpentry Foundation / gvwilson@software-carpentry.org
 \\
-\bf{2} University of British Columbia / jenny@stat.ubc.ca
+2) University of British Columbia / jenny@stat.ubc.ca
 \\
-\bf{3} Duke University / karen.cranston@duke.edu
+3) Duke University / karen.cranston@duke.edu
 \\
-\bf{4} University of California, Berkeley / jkitzes@berkeley.edu
+4) University of California, Berkeley / jkitzes@berkeley.edu
 \\
-\bf{5} University of Oslo / lex.nederbragt@ibv.uio.no
-\\
-\bf{6} Data Carpentry Foundation / tkteal@datacarpentry.org
+5) University of Oslo / lex.nederbragt@ibv.uio.no
 \\
 $\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
 \end{flushleft}
@@ -98,17 +97,16 @@ perceive value.
 
 That last stipulation is important. Many of our recommendations are
 for the benefit of the collaborator every researcher cares about most:
-their future self. (As the joke goes, your past self doesn't answer
-email{\ldots}) If researchers don't see those benefits quickly enough
-to pay for the slowdown that inevitably occurs when adopting a new
-tool or practice, they will almost certainly switch back to their old
-way of doing things. As we discuss in
+their future self\footnote{As the joke goes, your past self doesn't
+  answer email{\ldots}}. If researchers don't see those benefits
+quickly enough to pay for the slowdown that inevitably occurs when
+adopting a new tool or practice, they will almost certainly switch
+back to their old way of doing things. As we discuss in
 Section~\ref{whats-not-on-this-list} this rules out many practices
 such as code review that we feel are essential for larger-scale
 development.
 
-\begin{quote}
-\subsection*{You're Really Helping Yourself}\label{youre-really-helping-yourself}
+\fixme{add pointers to papers or projects that follow these rules.}
 
 Many of these guidelines are phrased in terms of helping other people,
 such as current and future collaborators. In all cases, though, the
@@ -116,33 +114,39 @@ most important ``other person'' you're helping is your future self:
 for example, a good to-do list will save you time when you come back
 to your project next year. It's always tempting to cut corners, but
 your past self doesn't answer email.
-\end{quote}
-
-FIXME: add citations of papers or projects that follow these rules.
 
 \section{Data Management}\label{data-management}
 
-Project data may need to exist in various forms, ranging from raw to
-highly processed. We recommend three guiding principles to manage it:
+Project data may need to exist in various forms, ranging from what
+first arrives to what's included in the final publication.  We
+recommend that researchers follow six rules.
 
-\subsection*{Save data in the rawest form available.}
+First, \recommend{save data in the rawest form available}.  Where
+possible, save the data file produced by an instrument or raw results
+from a survey, with all of its mystifying imperfections (e.g., raw
+JPEGs for photographs). It is tempting to overwrite raw data files
+with cleaned-up versions, but faithful retention is essential to being
+able to re-run analyses from start to finish. Being able to produce
+the raw data also enhances confidence in your final results. More
+immediately, having the raw data helps allows you to recover from
+analytical mishaps and allows you to experiment without fear.
 
-Where possible, save the data file produced by an instrument or raw
-results from a survey, with all of its mystifying imperfections. It is
-tempting to overwrite raw data files with cleaned-up versions, but
-faithful retention is essential to being able to re-run analyses from
-start to finish. Being able to produce the raw data also enhances
-confidence in your final results. More immediately, having the raw data
-helps allows you to recover from analytical mishaps and allows you to
-experiment without fear.
+But use common sense: if a large volume of data is received in a
+format that is storage-inefficient or computationally inefficient to
+work with, transform it for storage with a lossless, well-documented
+procedure.  Equally, don't duplicate contents of stable, long-lived
+repositories (i.e., don't clone GenBank)
 
-\subsection*{Create the data you wish to see in the world.}
+You may also consider restricting file permissions to read-only, even
+(or especially) for yourself, so it is harder to damage raw data by
+accident or to hand edit it in a moment of weakness.
 
-Create the dataset you \emph{wish} you had received from the raw data
+Second \recommend{create the data you wish to see in the world}, i.e.,
+create the dataset you \emph{wish} you had received from the raw data
 and use that as the starting point for downstream analyses (including
-those you didn't initially think of doing). This is the time to maximize
-both machine and human readability, but \emph{not} to do vigorous data
-filtering nor to bring in external information.
+those you didn't initially think of doing). This is the time to
+maximize both machine and human readability, but \emph{not} to do
+vigorous data filtering nor to bring in external information.
 
 Approach this initial tidying up as internal to the existing dataset and
 non-destructive, both of the data and its general ``shape''. Enhance
@@ -164,19 +168,30 @@ filename like \texttt{2016-05-alaska-b.csv} makes it easy for both
 people and programs to select by year (\texttt{2016-*.csv}), by location
 (\texttt{*-alaska-*.csv}), and so on.
 
-\subsection*{Create analysis-friendly data.}
+Where possible, use open non-proprietary formats to closed,
+proprietary format: they'll likely last longer.
+CSV is good for simple tabular data,
+JSON, YAML, or XML for non-tabular data such as graphs (the
+node-and-arc kind),
+and HDF5 for certain kinds of structured data.
+\withurl{This
+  guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
+has a few useful guidelines for choosing a file format.
 
-You can do this by reformatting data to eliminate processing steps
-between loading the data set and doing the analysis.
+Third, \recommend{create analysis-friendly data}.  You can do this by
+reformatting data to eliminate processing steps between loading the
+data set and doing the analysis.
 
 \begin{enumerate}
+
 \item
   Columns that contain more than one variable's worth of information
   should be split. For example, the presence of ``kg'' in ``3.4 kg''
   will cause most analytical environments to read this in as character
   data rather than numeric. It should be split into two columns (the
-  mass ``3.4'' and the units ``kg''), or the units should be recorded in
-  the variable name and/or metadata.
+  mass ``3.4'' and the units ``kg''), or the units should be recorded
+  in the variable name and/or metadata.
+
 \item
   Multiple columns that only contain one variable's worth of information
   when taken together should be combined. This is characteristic of data
@@ -187,37 +202,37 @@ between loading the data set and doing the analysis.
   inspection, but for most analyses it will be advantageous to gather
   these columns into a variable of measurements, accompanied by a
   companion variable indicating the time point.
+
 \item
   Reformat values as needed to match your environment's built-in parsing
   rules. For example, use date-time format that will be recognized
   automatically.
+
 \end{enumerate}
 
+And fourth, \recommend{always record the steps used to clean up data}:
+that's as much a part of your analysis as any statistics you might do.
+
 The goal of this refactoring is to create ``tidy data'', which can be
-a powerful accelerator for analysis (\withurl{Tidy
-  Data}{http://www.jstatsoft.org/article/view/v059i10}, \withurl{Nine
-  simple
-  ways}{http://library.queensu.ca/ojs/index.php/IEE/article/view/4608}). This
+a powerful accelerator for analysis \cite{wickham2014,hart2015}. This
 is the time to make sure your data will play nicely with your
 analytical environment and plans. This pass through the data likely
 does not change the amount of data, but may dramatically alter its
 form.
 
-\begin{quote}
-\subsection*{OpenRefine}
+\begin{framed}
+\noindent \textbf{OpenRefine}
 
 \withurl{OpenRefine}{http://openrefine.org/} is an excellent tool for
 this stage of data cleanup. It combines a spreadsheet-like interface
 to tabular data with a large set of cleanup heuristics, and can
 generate a trace of cleanup steps to ensure reproducibility.
-\end{quote}
+\end{framed}
 
-\subsubsection*{Give every record a unique key.}
-
-In a well-organized data set,
-it's easy to select a specific record to update or delete.
-Using fields in the data (such as people's names or addresses) does not guarantee this;
-using row numbers in tables does,
+Fifth, \recommend{give every record a unique key}.  In a
+well-organized data set, it's easy to select a specific record to
+update or delete.  Using fields in the data (such as people's names or
+addresses) does not guarantee this; using row numbers in tables does,
 but those numbers will change as records are added, removed, or moved.
 
 We therefore recommend giving each record a unique, persistent key
@@ -226,147 +241,30 @@ that has no other purpose than identifying the record\footnote{Student
   databases.} The provision of such a key also makes it much easier to
 link data sets together.
 
-\subsection*{Marshal complementary data in files that meet the same standards.}
+Sixth, \recommend{marshal complementary data in files that meet the
+  same standards}.  Raw data frequently does not fully explain
+itself. For example, if each well of a microtitre plate is used to
+study a specific gene knockout, the prepared raw data will have a
+\texttt{well} variable taking on values like ``A1'' and ``G12'', but
+the plate reader cannot possibly know what's in each well. That
+information will be absent from the primary data file, so you must
+create a supplementary file in order to look this up. Make sure to use
+the same names and codes when variables in two datasets refer to the
+same thing to simplify merging and lookup (and make them less
+error-prone).
 
-Raw data frequently does not fully explain itself. For example, if each
-well of a microtitre plate is used to study a specific gene knockout,
-the prepared raw data will have a \texttt{well} variable taking on
-values like ``A1'' and ``G12'', but the plate reader cannot possibly
-know what's in each well. That information will be absent from the
-primary data file, so you must create a supplementary file in order to
-look this up. Make sure to use the same names and codes when variables
-in two datasets refer to the same thing to simplify merging and lookup
-(and make them less error-prone).
+Seventh, \recommend{create a dataset purpose-built for specific analyses
+  and figures.}  This probably involves filtering rows, selecting
+relevant variables, and merging with external information. If the
+preceding steps have been done, this can often be surprisingly
+straightforward. The basic form of the data was hopefully set earlier,
+so the main changes here are likely to be data reduction and the
+amalgamation of multiple datasets.
 
-\subsection*{Create a dataset purpose-built for specific analyses and figures.}
-
-This probably involves filtering rows, selecting relevant variables, and
-merging with external information. If the preceding steps have been
-done, this can often be surprisingly straightforward. The basic form of
-the data was hopefully set earlier, so the main changes here are likely
-to be data reduction and the amalgamation of multiple datasets.
-
-\subsection*{Goals}
-
-\emph{I didn't touch these but certainly tried to incorporate in my prose!}
-
-\begin{enumerate}
-\item
-  You should never lose data.
-\item
-  Data should be \withurl{findable, accessible, interoperable and
-    reusable}{http://datafairport.org/fair-principles-living-document-menu}
-  so that people (including your future self) can use it in ways you
-  didn't anticipate, without pestering you with questions.
-\item
-  Data should also be comprehensible (also called ``human readable''),
-  i.e., potential collaborators should easily be able to understand what
-  the data contains.
-\item
-  Data should be \emph{machine readable}, i.e., programs should be able
-  to load data correctly without extra programming effort.
-\end{enumerate}
-
-\subsection*{Reccomendations}
-
-\begin{enumerate}
-\item
-  Raw data should be stored exactly as it arrived (e.g., raw JPEGs for
-  photographs)
-
-  \begin{itemize}
-  \item
-    But use common sense: if a large volume of data is received in a
-    format that is storage-inefficient or computationally inefficient to
-    work with, transform it for storage with a lossless, well-documented
-    procedure.
-  \item
-    Prefer open non-proprietary formats to closed ones (they'll likely
-    last longer)
-
-    \begin{itemize}
-      \item
-      See \withurl{this
-        guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
-    \end{itemize}
-  \item
-    Consider restricting file permissions to read-only, even (or
-    especially) for yourself, so it is harder to damage raw data by
-    accident or to hand edit it in a moment of weakness.
-  \item
-    Don't duplicate contents of stable, long-lived repositories (i.e.,
-    don't clone GenBank)
-  \end{itemize}
-\item
-  All synthesized data is stored in well-defined widely-used formats:
-
-  \begin{itemize}
-  \item
-    CSV for simple tabular data
-  \item
-    JSON, YAML, or XML for non-tabular data such as graphs (the
-    node-and-arc kind)
-  \item
-    Note: prefer structured text for its longevity, but HDF5 and other
-    standardized formats should be used where appropriate
-  \end{itemize}
-\item
-  All data follows a few basic rules:
-
-  \begin{itemize}
-  \item
-    Each value is \emph{atomic}, i.e., has no sub-parts
-
-    \begin{itemize}
-      \item
-      Example: store personal and family names in separate fields
-    \end{itemize}
-  \item
-    Every record has a unique \emph{key} so that it can be selected
-    precisely
-  \end{itemize}
-\item
-  \emph{Normalization} (the process of making data adhere to the
-  recommendations in the preceding point) is treated as a processing
-  step
-
-  \begin{itemize}
-  \item
-    Raw data files are stored as they came
-  \item
-    Normalization steps are recorded textually in repeatable way
-  \end{itemize}
-\item
-  Filenames and directory names are semantically meaningful and
-  anticipate the need to list and filter them programmatically, e.g.~via
-  regular expressions or ``globbing''.
-
-  \begin{itemize}
-  \item
-    Files as field-field-field.extension
-  \item
-    Dates as yyyy-mm-dd
-  \end{itemize}
-\item
-  Metadata is stored explicitly in \texttt{data} as well
-
-  \begin{itemize}
-  \item
-    Source(s) of data
-  \item
-    Meanings and units of fields
-  \item
-    Stored in machine-readable form whenever possible
-
-    \begin{itemize}
-      \item
-      E.g., a CSV table of data descriptors, not paragraphs of prose
-    \end{itemize}
-  \end{itemize}
-\item
-  Submit data to a reputable DOI-issuing repository so that others can
-  access and cite it
-\end{enumerate}
+Eighth and last, \recommend{submit data to a reputable DOI-issuing
+  repository so that others can access and cite it}.  Your data is as
+much a product of your research as the papers you write, and just as
+likely to be useful to others (if not more so).
 
 \subsection*{Discussion}
 
@@ -390,8 +288,8 @@ line endings, and the elimination of prose-oriented features, such as
 details can cause the changes between file versions to be large and
 therefore substantially less comprehensible.
 
-\begin{quote}
-\subsection*{Choosing Metadata}
+\begin{framed}
+\noindent \textbf{Choosing Metadata}
 
 \withurl{Elizabeth Wickes}{https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442}
 provides a useful classification for metadata, with implications for
@@ -403,7 +301,7 @@ etc. When considering how to store metadata, consider the intended
 audience. Is it humans? Write a README. Is it machines, such as
 metadata harvesters and formal repositories? Create an impeccably
 formatted metadata file.
-\end{quote}
+\end{framed}
 
 \section{Software}\label{software}
 
@@ -423,17 +321,17 @@ of short, single-purpose functions with clearly-defined inputs and
 outputs. Building software this way is the key to both productivity and
 reproducibility.
 
-The first recommendation is that \emph{every analysis step should be
-  represented textually} (complete with parameter values). It isn't
+The first recommendation is that \recommend{every analysis step should
+  be represented textually} (complete with parameter values). It isn't
 always possible to store steps as text (e.g., manual selection of
 region of interest in image), but it is always possible to store the
 result for later checking.
 
-Second, \emph{place a brief explanatory comment at the start of every
-program}, no matter how short it is. That comment should include at
-least one example of how the program is used: remember, an example is
-worth a thousand words. Where possible, the comment should also indicate
-reasonable values for parameters. For example:
+Second, \recommend{place a brief explanatory comment at the start of
+  every program}, no matter how short it is. That comment should
+include at least one example of how the program is used: remember, an
+example is worth a thousand words. Where possible, the comment should
+also indicate reasonable values for parameters. For example:
 
 \begin{verbatim}
 Synthesize image files for testing circularity estimation algorithm.
@@ -450,7 +348,7 @@ where:
 -w size        = image width/height in pixels (typically 480-800)
 \end{verbatim}
 
-Third, \emph{decompose programs into functions} that:
+Third, \recommend{decompose programs into functions} that:
 
 \begin{itemize}
 \item
@@ -469,16 +367,17 @@ are to understand what our software is doing, we must break it into
 chunks that obey this limit, then create programs by composing chunks
 into larger chunks and so on.
 
-\begin{quote}
-\subsection*{Orwell's Sixth Rule}
+\begin{framed}
+\noindent \textbf{Orwell's Sixth Rule}
+
 George Orwell's essay ``Politics and the English Language''
 presents six rules for writing well \cite{orwell2002}.
 The sixth and final states,
 ``Break any of these rules sooner than say anything outright barbarous,''
 which is good advice for writing software as well.
-\end{quote}
+\end{framed}
 
-Fourth, \emph{be ruthless about eliminating duplication}. Write and
+Fourth, \recommend{be ruthless about eliminating duplication}. Write and
 re-use functions instead of copying and pasting source code, and use
 data structures like lists rather than creating lots of variables called
 \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
@@ -488,14 +387,14 @@ to debug and maintain is code that you didn't actually write, so
 \emph{always search for libraries that do what you need} before writing
 new code yourself.
 
-Fifth, \emph{give functions and variables meaningful names}, both to
+Fifth, \recommend{give functions and variables meaningful names}, both to
 document their purpose and to make the program easier to read. As a rule
 of thumb, the greater the scope of a variable, the more informative its
 name should be: while it's acceptable to call the counter variable in a
 loop \texttt{i} or \texttt{j}, the main grid for your simulation should
 \emph{not} have a one-letter name.
 
-Sixth, \emph{make dependencies and requirements explicit}. This is
+Sixth, \recommend{make dependencies and requirements explicit}. This is
 usually done on a per-project rather than per-program basis, i.e., by
 adding a file called something like \texttt{requirements.txt} to the
 root directory of the project, or by adding a ``Getting Started''
@@ -503,21 +402,21 @@ section to the \texttt{README} file. (More sophisticated users may
 structure the requirements in a way that installation management tools
 can use.)
 
-Seventh, \emph{do not comment and uncomment sections of code to control
+Seventh, \recommend{do not comment and uncomment sections of code to control
 a program's behavior}, since this is error prone and makes it difficult
 or impossible to automate analyses. Instead, put if/else statements in
 the program to control what it does.
 
-\begin{quote}
-\subsection*{Logging}
+\begin{framed}
+\noindent \textbf{Logging}
 
 One special case of this recommendation is to use a logging library
 such as Java's \texttt{log4j} for debugging messages. When this is
 done, messages are left in the code, but their activity is controlled
 by an external configuration file.
-\end{quote}
+\end{framed}
 
-Eighth, \emph{provide a simple example or test data set} that users
+Eighth, \recommend{provide a simple example or test data set} that users
 (including yourself) can run to determine whether the program is working
 at all and whether it gives a known correct output for a simple known
 input. Such as ``build and smoke test'' is particularly helpful when
@@ -525,7 +424,7 @@ supposedly-innocent changes are being made to the program, or when it
 has to run on several different machines, e.g., the developer's laptop
 and the department's cluster.
 
-Ninth and last, \emph{submit code to a reputable DOI-issuing repository}
+Ninth and last, \recommend{submit code to a reputable DOI-issuing repository}
 upon submission of paper, just as you do with data. Your software is as
 much a product of your research as your papers, and should be as easy
 for people to credit.
@@ -561,13 +460,12 @@ To enhance collaboration, aim for:
   collaborator is allowed to do
 \end{enumerate}
 
-\subsection*{Create an Overview}
-
-Have a short \texttt{README} file explaining the project's purpose in an
-easy-to-find place (such as the project's home directory). This file is
-often the first thing users of your project will look at, so make it
-explicit already here that you welcome contributors and point them to
-the ways to help out.
+First, \recommend{create an overview of your project}.  Have a short
+\texttt{README} file explaining the project's purpose in an
+easy-to-find place (such as the project's home directory). This file
+is often the first thing users of your project will look at, so make
+it explicit already here that you welcome contributors and point them
+to the ways to help out.
 
 The \texttt{README} file (which may be called that, or
 \texttt{README.txt}, or something similar) should contain:
@@ -588,24 +486,22 @@ ensure the software has been installed correctly, and guidelines or
 rules that your project adheres to (e.g., checklists you may use before
 accepting a suggested change).
 
-\subsection*{Create a Shared To-Do List}
+Second, \recommend{create a shared public ``to-do'' list}.  This could
+be a plain text file containing the to-do list called
+\texttt{notes.txt} or \texttt{todo.txt} or something
+similar. Alternatively, you could use the \emph{issue} functionality
+on sites such as GitHub or Bitbucket to create a new issue for each
+to-do item. (You can even add labels such as ``low hanging fruit'' to
+point newcomers at issues that are good starting points.)  Whatever
+your system of choice, make the descriptions of the items clear enough
+so that they make sense for new collaborators.
 
-Have a shared public to-do list. This could be a plain text file
-containing the to-do list called \texttt{notes.txt} or \texttt{todo.txt}
-or something similar. Alternatively, you could use the \emph{issue}
-functionality on sites such as GitHub or Bitbucket to create a new issue
-for each to-do item. (You can even add labels such as ``low hanging
-fruit'' to point newcomers at issues that are good starting points.)
-Whatever your system of choice, make the descriptions of the items clear
-enough so that they make sense for new collaborators.
-
-\subsection*{Make the License Explicit}
-
-Have a \texttt{LICENSE} file in the project's home directory that
-clearly states what license(s) apply to the project's software, data,
-and manuscripts. Lack of an explicit license does not mean there isn't
-one; rather, it implies the author is keeping all rights and others are
-not allowed to re-use or modify the material. We recommend:
+Third, \recommend{make the license explicit}.  Have a \texttt{LICENSE}
+file in the project's home directory that clearly states what
+license(s) apply to the project's software, data, and
+manuscripts. Lack of an explicit license does not mean there isn't
+one; rather, it implies the author is keeping all rights and others
+are not allowed to re-use or modify the material. We recommend:
 
 \begin{itemize}
 \item
@@ -634,10 +530,8 @@ into other projects. (Note that it is straightforward to switch from a
 permissive license to the GPL if you should change your mind later but
 rather more complicated to go in the other direction.)
 
-\subsection*{Make the Project Citable}
-
-Include a \texttt{CITATION} file in the project's home directory that
-describes:
+Fourth, \recommend{make the project citable} by including a
+\texttt{CITATION} file in the project's home directory that describes:
 
 \begin{itemize}
 \item
@@ -679,19 +573,15 @@ for other people to help you and give you credit for your work.
 
 \section{Project Organization}\label{project-organization}
 
-The previous sections have described practices for creating, naming, and
-storing the files that make up a research project. Organizing these
-files in a logical and consistent directory structure will help you keep
-track of them and help others review your work more easily.
+The previous sections have described practices for creating, naming,
+and storing the files that make up a research project.  Organizing
+these files in a logical and consistent directory structure will help
+you keep track of them and help others review your work more easily.
 
-Our recommendations are drawn from Noble's ``\withurl{A Quick Guide to
-  Organizing Computational Biology
-  Projects}{http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424}''
-with a healthy admixture from Gentzkow and Shapiro's ``\withurl{Code and
-  Data for the Social Sciences: A Practitioner's
-  Guide}{https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf}''. Each
-project should be in its own directory, which should be named after
-the project, and should contain the following subdirectories:
+Our recommendations are drawn from \cite{noble2009}, with a healthy
+admixture from \cite{gentzkow2014}. Each project should be in its own
+directory, which should be named after the project, and should contain
+the following subdirectories:
 
 \begin{enumerate}
 \item
@@ -730,8 +620,8 @@ sequential numbers (e.g., \texttt{result1.csv}, \texttt{result2.csv}) or
 a location in a final manuscript (e.g., \texttt{fig\_3\_a.png}), since
 those numbers will almost certainly change as the project evolves.
 
-\begin{quote}
-\subsection*{What's a ``Project''?}
+\begin{framed}
+\noindent \textbf{What's a ``Project''?}
 
 Like deciding when a chunk of code should be made a function, the
 ultimate goal of dividing research into distinct projects is to help you
@@ -746,7 +636,7 @@ will probably be easiest to manage independently. If they share more
 than half of their data and code, they are probably best managed
 together. Anything in between can be decided based on the set of people
 you're collaborating with.
-\end{quote}
+\end{framed}
 
 The \texttt{src} directory often contains two conceptually distinct
 types of files that should be distinguished either by clear file names
@@ -792,23 +682,17 @@ or placed into different subdirectories; those belonging to different
 papers or other publications should be grouped together.
 
 The figure below provides a concrete example of how a simple project
-might be organized following these recommendations. The root directory contains a
-\texttt{README} file that provides an overview of the project as a whole
-and a \texttt{CITATION} file that explains how to reference it. The
-\texttt{data} directory contains a single CSV file with tabular data on
-bird counts (machine-readable metadata could also be included here). The
-\texttt{src} directory contains \texttt{sightings\_analysis.py}, a
-Python file containing functions to summarize the tabular data, and a
-controller script \texttt{runall.py} that loads the data table, applies
-functions imported from \texttt{sightings\_analysis.py}, and saves a
-table of summarized results in the \texttt{results} directory.
-
-This project doesn't have a \texttt{bin} directory, since it does not
-rely on any compiled software. The \texttt{doc} directory contains two
-text files written in Markdown, one containing a running lab notebook
-describing various ideas for the project and how these were implemented
-and the other containing a running draft of a manuscript describing the
-project findings.
+might be organized following these recommendations. The root directory
+contains a \texttt{README} file that provides an overview of the
+project as a whole and a \texttt{CITATION} file that explains how to
+reference it. The \texttt{data} directory contains a single CSV file
+with tabular data on bird counts (machine-readable metadata could also
+be included here). The \texttt{src} directory contains
+\texttt{sightings\_analysis.py}, a Python file containing functions to
+summarize the tabular data, and a controller script \texttt{runall.py}
+that loads the data table, applies functions imported from
+\texttt{sightings\_analysis.py}, and saves a table of summarized
+results in the \texttt{results} directory.
 
 \begin{verbatim}
 .
@@ -825,6 +709,13 @@ project findings.
 |   |-- sightings_analysis.py
 |   \-- runall.py
 \end{verbatim}
+
+This project doesn't have a \texttt{bin} directory, since it does not
+rely on any compiled software. The \texttt{doc} directory contains two
+text files written in Markdown, one containing a running lab notebook
+describing various ideas for the project and how these were implemented
+and the other containing a running draft of a manuscript describing the
+project findings.
 
 \section{Version Control}\label{version-control}
 
@@ -876,16 +767,16 @@ Whatever approach is adopted should help with the following:
 \end{enumerate}
 
 Our first suggested approach, in which everything is done by hand, has
-three parts. First, store each project in a folder that is mirrored off
-the researcher's working machine by a system such as Dropbox, and
-synchronize that folder at least daily. It may take a few minutes, but
-that time can be spent catching up on email, and is repaid the moment a
-laptop is stolen or its hard drive fails.
+three parts. First, \recommend{store each project in a folder that is
+  mirrored off the researcher's working machine} by a system such as
+Dropbox, and synchronize that folder at least daily. It may take a few
+minutes, but that time can be spent catching up on email, and is
+repaid the moment a laptop is stolen or its hard drive fails.
 
-Second, add a file called \texttt{CHANGELOG.txt} to the project's
-\texttt{docs} subfolder, and make dated notes about changes to the
-project in this file in reverse chronological order (i.e., most recent
-first). An example of such a file is:
+Second, \recommend{add a file called \texttt{CHANGELOG.txt} to the
+  project's \texttt{docs} subfolder}, and make dated notes about
+changes to the project in this file in reverse chronological order
+(i.e., most recent first). An example of such a file is:
 
 \begin{verbatim}
 ## 2016-04-08
@@ -899,11 +790,11 @@ first). An example of such a file is:
 * Removed question about staph exposure (can be inferred from blood test results).
 \end{verbatim}
 
-Third, whenever a significant change has been made (i.e., one that
-materially affects the results being produced), copy the entire project
-into a sub-folder in the area that's being synchronized whose name
-reflects the date. This approach results in projects being organized
-like this:
+Third, \recommend{copy the entire project whenever a significant
+  change has been made} (i.e., one that materially affects the results
+being produced), and store that copy in a sub-folder whose name
+reflects the date in the area that's being synchronized. This approach
+results in projects being organized like this:
 
 \begin{verbatim}
 .
@@ -1007,34 +898,37 @@ non-ideological reasons why one should use version control, and some
 consideration of the serious hassles associated with its use.
 \end{quote}
 
-Regardless of which approach is taken, the first rule for using version
-control is that almost everything created by a human being should be
-backed up as soon as it is created. This includes scripts and programs
-of all kinds, software packages that your project depends on, and
-documentation. A few exceptions to this rule are discussed below.
+Regardless of which approach is taken, the first rule for using
+version control is that \recommend{almost everything created by a
+  human being should be backed up as soon as it is created}. This
+includes scripts and programs of all kinds, software packages that
+your project depends on, and documentation. A few exceptions to this
+rule are discussed below.
 
-Second, each change committed to a version control system or added to a
-change log should not be so large as to make the change tracking
-irrelevant. For example, a single change such as ``Revise script file''
-that adds or changes several hundred lines is likely too large, as it
-will not allow changes to different components of an analysis to be
-investigated separately. Similarly, changes should not be broken up into
-pieces that are too small, although we find that this is less of a
-danger with novices. As a rule of thumb, a good size for a single change
-is a group of edits that you could imagine wanting to undo in one step
-at some point in the future.
+Second, \recommend{make changes small}.  Each change committed to a
+version control system or added to a change log should not be so large
+as to make the change tracking irrelevant. For example, a single
+change such as ``Revise script file'' that adds or changes several
+hundred lines is likely too large, as it will not allow changes to
+different components of an analysis to be investigated
+separately. Similarly, changes should not be broken up into pieces
+that are too small, although we find that this is less of a danger
+with novices. As a rule of thumb, a good size for a single change is a
+group of edits that you could imagine wanting to undo in one step at
+some point in the future.
 
-Third, everyone working on the project should share their changes
-frequently, and incorporate changes from others just as frequently. Do
-not allow individual investigator's versions of the project repository
-to drift apart, as the effort required to merge differences goes up
-faster than the size of the difference. This is particularly important
-for the manual version control procedure describe above, which does not
-provide any assistance for merging simultaneous changes.
+Third, everyone working on the project should \recommend{share changes
+  frequently}, and incorporate changes from others just as
+frequently. Do not allow individual investigator's versions of the
+project repository to drift apart, as the effort required to merge
+differences goes up faster than the size of the difference. This is
+particularly important for the manual version control procedure
+describe above, which does not provide any assistance for merging
+simultaneous changes.
 
-Finally, decide on a checklist for committing and sharing changes to the
-project, document the checklist in the repository, and \emph{use it}.
-The list might include:
+Finally, \recommend{create a checklist for committing and sharing
+  changes} to the project, document the checklist in the repository,
+and \emph{use it}.  The list might include:
 
 \begin{itemize}
 \item
@@ -1152,29 +1046,24 @@ to:
   submit it to a journal.
 \end{enumerate}
 
-\begin{quote}
-\subsection*{The First Rule Is{\ldots}}
+\begin{framed}
+\noindent \textbf{The First Rule Is{\ldots}}
 
 Which workflow is chosen is less important than having all authors agree
 on one or the other \emph{before} writing starts. Make sure to also
 agree on a single method to provide feedback, be it an email thread or
 mailing list, an issue tracker (like the ones provided by GitHub and
 Bitbucket), or some sort of shared online to-do list.
-\end{quote}
+\end{framed}
 
-Our first recommended approach is as follows:
-
-\begin{enumerate}
-\item
-  A manuscript is written using Google Docs or some other online tool
-  with rich formatting, change tracking, and reference management.
-\item
-  The project's \texttt{doc} directory includes a short text file called
-  PUBLICATIONS containing metadata about each online manuscript (e.g.,
-  their URLs). This is analogous to the \texttt{data} directory, which
-  might contain links to the location of the data file(s) rather than
-  the actual files.
-\end{enumerate}
+Our first recommended approach has two parts.  First, \recommend{write
+  manuscripts using online tools with rich formatting, change
+  tracking, and reference management}, such as Google Docs.  Second,
+\recommend{include a \texttt{PUBLICATIONS} file in the project's
+  \texttt{doc} directory} containing metadata about each online
+manuscript (e.g., their URLs). This is analogous to the \texttt{data}
+directory, which might contain links to the location of the data
+file(s) rather than the actual files.
 
 We realize that in many cases, even this solution is asking too much
 from those who see no reason to move forward from desktop GUI tools. To
@@ -1188,21 +1077,17 @@ automatically when switching from a desktop file format to text and back
 
 The second approach treats papers exactly like software, and has been
 used by researchers in mathematics, astronomy, physics, and related
-disciplines for decades:
+disciplines for decades.
 
-\begin{enumerate}
-\item
-  The manuscript is written in a plain text format such as
-  \withurl{LaTeX}{http://www.latex-project.org/} or
-  \withurl{Markdown}{http://daringfireball.net/projects/markdown/} that
-  permits version control of the files involved, and then converted to
-  other formats such as PDF as needed using scriptable tools like
-  \withurl{Pandoc}{http://pandoc.org/}.
-\item
-  Tools needed to compile manuscripts (e.g., Makefiles or LaTeX style
-  files) are included in the project folder and kept under version
-  control just like tools used to do simulation or analysis.
-\end{enumerate}
+First, \recommend{write the manuscript in a plain text format that
+  permits version control} such as
+\withurl{LaTeX}{http://www.latex-project.org/} or
+\withurl{Markdown}{http://daringfireball.net/projects/markdown/}, and
+then convert them to other formats such as PDF as needed using
+scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.  Second,
+\recommend{include tools needed to compile manuscripts in the project
+  folder} and keep them under version control just like tools used to
+do simulation or analysis.
 
 This approach re-uses the version control tools and skills used to
 manage data and software, and is a good starting point for
@@ -1257,7 +1142,6 @@ requests} for reviewing the contributions from different authors,
 including collecting comments and suggestions on them, and other
 contributors before merging them in.
 
-\begin{quote}
 \subsection*{Supplementary Materials}
 
 Supplementary materials often contain much of the work that went into
@@ -1270,7 +1154,6 @@ to reuse (e.g., data in tables, data behind figures) into separate,
 text-format files. The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
-\end{quote}
 
 \section{What's Not on This List}\label{whats-not-on-this-list}
 
@@ -1308,10 +1191,9 @@ after people have mastered a basic edit-commit workflow.
   are essential to the health of large libraries and programs, we have
   found that they usually aren't compelling for solo exploratory
   work. (Note, for example, the lack of a \texttt{test} directory in
-  \withurl{Noble's
-    rules}{http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424}.)
-  Rather than advocating something which people are unlikely to adopt,
-  we have left unit testing off this list.
+  Noble's rules \cite{noble2009}.)  Rather than advocating something
+  which people are unlikely to adopt, we have left unit testing off
+  this list.
 
 \item[\textbf{Continuous Integration}] Tools like
   \withurl{Travis-CI}{https://travis-ci.org/} automatically run a set of
@@ -1390,7 +1272,7 @@ them.
 
 \section{Conclusion}\label{conclusion}
 
-FIXME
+\fixme{write a conclusion}
 
 \bibliography{good-enough-practices-for-scientific-computing}
 
