@@ -99,7 +99,7 @@ won't try, or abandon after a few days or weeks because they don't
 perceive value.
 
 That last stipulation is important. Many of our recommendations are
-for the benefit of the collaborator every researcher cares about most:
+for the benefit of the collaborator every researcher should care about most:
 their future self\footnote{As the joke goes, your past self doesn't
   answer email{\ldots}}. If researchers don't see those benefits
 quickly enough to pay for the slowdown that inevitably occurs when
@@ -281,7 +281,7 @@ computer code: by breaking data preparation into steps, it becomes
 easier to revisit later and to only tinker with specific data cleaning
 operations.
 
-We propose delimited plain text as an appealing ``lowest common
+We propose comma- or tab-delimited plain text as an appealing ``lowest common
 denominator'' data form that offers high usability across time, people,
 operating systems, and analytical environments. We recognize, though,
 that plain text is not a panacea. In particular, when collaborating with
@@ -301,7 +301,7 @@ metadata about the dataset as a whole with metadata about the content,
 e.g., individual columns. Most metadata schemas are aimed at the
 former, i.e., they detail the author, funder, related publications,
 etc. When considering how to store metadata, consider the intended
-audience. Is it humans? Write a README. Is it machines, such as
+audience. Is it humans? Write a README file. Is it machines, such as
 metadata harvesters and formal repositories? Create an impeccably
 formatted metadata file.
 \end{framed}
@@ -401,7 +401,8 @@ Sixth, \recommend{make dependencies and requirements explicit}. This is
 usually done on a per-project rather than per-program basis, i.e., by
 adding a file called something like \texttt{requirements.txt} to the
 root directory of the project, or by adding a ``Getting Started''
-section to the \texttt{README} file. (More sophisticated users may
+section to the \texttt{README} file (which may be called that, or
+\texttt{README.txt}, or something similar). (More sophisticated users may
 structure the requirements in a way that installation management tools
 can use.)
 
@@ -470,8 +471,7 @@ is often the first thing users of your project will look at, so make
 it explicit already here that you welcome contributors and point them
 to the ways to help out.
 
-The \texttt{README} file (which may be called that, or
-\texttt{README.txt}, or something similar) should contain:
+The \texttt{README} file should contain:
 
 \begin{itemize}
 \item
@@ -640,6 +640,8 @@ than half of their data and code, they are probably best managed
 together. Anything in between can be decided based on the set of people
 you're collaborating with.
 \end{framed}
+
+\subsection*{Discussion}
 
 The \texttt{src} directory often contains two conceptually distinct
 types of files that should be distinguished either by clear file names
@@ -816,7 +818,7 @@ other folders within \texttt{project\_name} are old versions.
 
 Coyping everything like this may seem wasteful, since many files won't
 have changed, but consider: a terabyte hard drive costs about \$50
-retail, which means that 50 GByte costs less than a latte. Provided
+retail, which means that 50 GByte costs less than a coffee. Provided
 large data files are kept out of the backed-up area (discussed below),
 this approach costs less than the time it would take to select files by
 hand for copying.
@@ -1076,7 +1078,7 @@ format (e.g., Microsoft Word's \texttt{.docx} or LibreOffice's
 \texttt{doc} folder. Unfortunately, this means merging some changes and
 suggestions manually, as existing tools cannot always do this
 automatically when switching from a desktop file format to text and back
-(although \texttt{{[}pandoc{]}{[}pandoc{]}} can go a long way).
+(although \withurl{Pandoc}{http://pandoc.org/} can go a long way).
 
 The second approach treats papers exactly like software, and has been
 used by researchers in mathematics, astronomy, physics, and related
