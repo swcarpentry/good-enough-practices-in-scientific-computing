@@ -250,6 +250,14 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   amalgamation of multiple datasets.
 
 \item
+  \recommend{Represent every analysis step textually, complete with
+    parameter values.}  It isn't always possible to store the steps
+  themselves textually, but it is always possible to store the result
+  for later checking.  For example, choosing a region of intest in an
+  image is inherently interactive, but the region chosen can be stored
+  as a set of boundary coordinates.
+
+\item
   \recommend{Submit data to a reputable DOI-issuing
   repository so that others can access and cite it.}  Your data is as
   much a product of your research as the papers you write, and just as
@@ -276,8 +284,7 @@ therefore substantially less comprehensible.
 \begin{framed}
 \noindent \textbf{Choosing Metadata}
 
-\withurl{Elizabeth Wickes}{https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442}
-provides a useful classification for metadata, with implications for
+\cite{wickes2015} provides a useful classification for metadata, with implications for
 how to represent it. She notes it is important to distinguish
 metadata about the dataset as a whole (e.g., author and related publications)
 from metadata about the content (e.g., units for observations).
@@ -290,37 +297,117 @@ that they will easily be able to parse.
 \section{Software}\label{software}
 
 If you or your group are creating tens of thousands of lines of software
-which is going to be used by hundreds of people you have never met, then
-you are doing software engineering. If you're writing a few pages now
-and again, and are probably going to be its only user, you can still
-make things easier on yourself by adopting a few key practices. What's
-more, adopting these practices will make it easy for people to
-understand and (re)use your code, which in turn makes it more likely
-that they collaborate with you and/or give you credit for your work.
+for use by hundreds of people you have never met,
+you are doing software engineering. If you're writing a few dozen lines now
+and again, and are probably going to be its only user, you may not be doing engineering,
+but you can still
+make things easier on yourself by adopting a few key engineering practices. What's
+more, adopting these practices will make it easier for people to
+understand and (re)use your code.
 
 The core realization in these practices is that \emph{readable},
-\emph{reusable}, and \emph{testable} are not separate things. They are
-all side effects of \emph{modular} code, i.e., of building programs out
+\emph{reusable}, and \emph{testable} are
+all side effects of writing \emph{modular} code, i.e., of building programs out
 of short, single-purpose functions with clearly-defined inputs and
-outputs. Building software this way is the key to both productivity and
-reproducibility.
+outputs.
 
-The first recommendation is that \recommend{every analysis step should
-  be represented textually} (complete with parameter values). It isn't
-always possible to store steps as text (e.g., manual selection of
-region of interest in image), but it is always possible to store the
-result for later checking.
+\begin{enumerate}
 
-Second, \recommend{place a brief explanatory comment at the start of
-  every program}, no matter how short it is. That comment should
-include at least one example of how the program is used: remember, an
-example is worth a thousand words. Where possible, the comment should
-also indicate reasonable values for parameters. For example:
+\item  
+  \recommend{Place a brief explanatory comment at the start of
+    every program}, no matter how short it is. That comment should
+  include at least one example of how the program is used: remember, an
+  example is worth a thousand words. Where possible, the comment should
+  also indicate reasonable values for parameters.  Figure~\ref{doc-comment}
+  presents an example of of such a comment.
 
+\item
+  \recommend{Decompose programs into functions} that
+  are no more than one page long (i.e., 60 lines including spaces and comments),
+  do not use global variables (constants are OK),
+  and take no more than half a dozen parameters.
+  The key motivation here is to fit the program into the most limited
+  memory of all: ours. Human short-term memory is famously incapable of
+  holding more than about seven (plus or minus two) items at once. If we
+  are to understand what our software is doing, we must break it into
+  chunks that obey this limit, then create programs by composing chunks
+  into larger chunks and so on.
+
+\item
+  \recommend{Be ruthless about eliminating duplication}. Write and
+  re-use functions instead of copying and pasting source code, and use
+  data structures like lists rather than creating lots of variables called
+  \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
+
+  This applies with even greater force to using libraries. The easiest code
+  to debug and maintain is code you didn't actually write, so
+  always search for libraries that do what you need before writing
+  new code yourself.
+
+\item
+  \recommend{Give functions and variables meaningful names}, both to
+  document their purpose and to make the program easier to read. As a rule
+  of thumb, the greater the scope of a variable, the more informative its
+  name should be: while it's acceptable to call the counter variable in a
+  loop \texttt{i} or \texttt{j}, the main grid for your simulation should
+  \emph{not} have a one-letter name.
+
+  \begin{framed}
+    \noindent \textbf{Tab Completion}
+
+    Almost all modern text editors provide \emph{tab completion},
+    so that typing the first part of a variable name and then pressing the tab key
+    inserts the completed name of the variable.
+    Employing this means that meaningful variable names are no harder to type than short ones.
+
+  \end{framed}
+
+\item
+  \recommend{Make dependencies and requirements explicit.} This is
+  usually done on a per-project rather than per-program basis, i.e., by
+  adding a file called something like \texttt{requirements.txt} to the
+  root directory of the project, or by adding a ``Getting Started''
+  section to the \texttt{README} file. (More sophisticated users may
+  structure the requirements in a way that installation management tools
+  can use.)
+
+\item
+  \recommend{Do not comment and uncomment sections of code to control
+    a program's behavior}, since this is error prone and makes it difficult
+  or impossible to automate analyses. Instead, put if/else statements in
+  the program to control what it does.
+
+  \begin{framed}
+    \noindent \textbf{Logging}
+
+    One special case of this recommendation is to use a logging library
+    such as Java's \texttt{log4j} for debugging messages. When this is
+    done, messages are left in the code, but their activity is controlled
+    by an external configuration file.
+  \end{framed}
+
+\item
+  \recommend{Provide a simple example or test data set} that users
+  (including yourself) can run to determine whether the program is working
+  at all and whether it gives a known correct output for a simple known
+  input. Such as ``build and smoke test'' is particularly helpful when
+  supposedly-innocent changes are being made to the program, or when it
+  has to run on several different machines, e.g., the developer's laptop
+  and the department's cluster.
+
+\item
+  \recommend{Submit code to a reputable DOI-issuing repository}
+  upon submission of paper, just as you do with data. Your software is as
+  much a product of your research as your papers, and should be as easy
+  for people to credit.
+
+\end{enumerate}
+
+\begin{figure}
 \begin{verbatim}
 Synthesize image files for testing circularity estimation algorithm.
 
-Usage: generate_images.py -d p_diameter -f p_flaws -r rand_seed  -s image_size
+Usage: generate_images.py -d p_diameter -f p_flaws -r rand_seed -s image_size
 
 where:
 -f fuzzing     = fuzzing range of blobs (typically 0.0-0.2)
@@ -331,87 +418,9 @@ where:
 -v             = verbose
 -w size        = image width/height in pixels (typically 480-800)
 \end{verbatim}
-
-Third, \recommend{decompose programs into functions} that:
-
-\begin{itemize}
-\item
-  are no more than one page long (60 lines, including spaces and
-  comments),
-\item
-  do not use global variables (constants are OK), and
-\item
-  take no more than half a dozen parameters.
-\end{itemize}
-
-The key motivation here is to fit the program into the most limited
-memory of all: ours. Human short-term memory is famously incapable of
-holding more than about seven (plus or minus two) items at once. If we
-are to understand what our software is doing, we must break it into
-chunks that obey this limit, then create programs by composing chunks
-into larger chunks and so on.
-
-\begin{framed}
-\noindent \textbf{Orwell's Sixth Rule}
-
-George Orwell's essay ``Politics and the English Language''
-presents six rules for writing well \cite{orwell2002}.
-The sixth and final states,
-``Break any of these rules sooner than say anything outright barbarous,''
-which is good advice for writing software as well.
-\end{framed}
-
-Fourth, \recommend{be ruthless about eliminating duplication}. Write and
-re-use functions instead of copying and pasting source code, and use
-data structures like lists rather than creating lots of variables called
-\texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
-
-This applies with even greater force to libraries. The easiest code
-to debug and maintain is code that you didn't actually write, so
-\emph{always search for libraries that do what you need} before writing
-new code yourself.
-
-Fifth, \recommend{give functions and variables meaningful names}, both to
-document their purpose and to make the program easier to read. As a rule
-of thumb, the greater the scope of a variable, the more informative its
-name should be: while it's acceptable to call the counter variable in a
-loop \texttt{i} or \texttt{j}, the main grid for your simulation should
-\emph{not} have a one-letter name.
-
-Sixth, \recommend{make dependencies and requirements explicit}. This is
-usually done on a per-project rather than per-program basis, i.e., by
-adding a file called something like \texttt{requirements.txt} to the
-root directory of the project, or by adding a ``Getting Started''
-section to the \texttt{README} file. (More sophisticated users may
-structure the requirements in a way that installation management tools
-can use.)
-
-Seventh, \recommend{do not comment and uncomment sections of code to control
-a program's behavior}, since this is error prone and makes it difficult
-or impossible to automate analyses. Instead, put if/else statements in
-the program to control what it does.
-
-\begin{framed}
-\noindent \textbf{Logging}
-
-One special case of this recommendation is to use a logging library
-such as Java's \texttt{log4j} for debugging messages. When this is
-done, messages are left in the code, but their activity is controlled
-by an external configuration file.
-\end{framed}
-
-Eighth, \recommend{provide a simple example or test data set} that users
-(including yourself) can run to determine whether the program is working
-at all and whether it gives a known correct output for a simple known
-input. Such as ``build and smoke test'' is particularly helpful when
-supposedly-innocent changes are being made to the program, or when it
-has to run on several different machines, e.g., the developer's laptop
-and the department's cluster.
-
-Ninth and last, \recommend{submit code to a reputable DOI-issuing repository}
-upon submission of paper, just as you do with data. Your software is as
-much a product of your research as your papers, and should be as easy
-for people to credit.
+\label{doc-comment}
+\caption{A Good Explanatory Comment}
+\end{figure}
 
 \section{Collaboration}\label{collaboration}
 
