@@ -37,8 +37,7 @@
 {Jenny~Bryan}$^{2}$,
 {Karen~Cranston}$^{3}$,
 {Justin~Kitzes}$^{4}$,
-{Lex~Nederbragt}$^{5}$,
-{Tracy~K.~Teal}$^{6}$
+{Lex~Nederbragt}$^{5}$
 \\
 1) Software Carpentry Foundation / gvwilson@software-carpentry.org
 \\
@@ -49,8 +48,6 @@
 4) University of California, Berkeley / jkitzes@berkeley.edu
 \\
 5) University of Oslo / lex.nederbragt@ibv.uio.no
-\\
-6) Data Carpentry / tkteal@datacarpentry.org
 \\
 $\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
 \end{flushleft}
@@ -984,26 +981,25 @@ than this, and something else should be used for management.
 \section{Manuscripts}\label{sec:manuscripts}
 
 Gathering data, analyzing it, and figuring out what it means is the
-first 90\% of any project; writing up is the other 90\%. While the
-writing step is rarely addressed in discussions of scientific computing,
-computing has changed the process of manuscript generation just as much
-as it has changed the research itself.
+first 90\% of any project; writing up is the other 90\%. While writing
+is rarely addressed in discussions of scientific computing, computing
+has changed it just as much as it has changed research.
 
-A common practice is for the lead author to send successive versions of
-a manuscript to coauthors to collect feedback, which is returned as
-changes to the document, comments on the document, plain text in email,
-or a mix of all three. The result is a lot of files to keep track of and
-much tedious manual labor to merge all the comments to create a new
-master version, at which point the process begins again.
+A common practice in academic writing is for the lead author to send
+successive versions of a manuscript to coauthors to collect feedback,
+which is returned as changes to the document, comments on the
+document, plain text in email, or a mix of all three. This results in
+a lot of files to keep track of, and a lot of tedious manual labor to
+merge comments to create the next master version.
 
 Instead of an email-based workflow, we recommend mirroring good
-practices for managing software and data, to make writing scalable,
-collaborative, and reproducible. As with our recommendations for version
-control in general, we suggest that groups choose one of two different
-approaches for managing manuscripts. The goals of both alternatives are
+practices for managing software and data to make writing scalable,
+collaborative, and reproducible.  As with our recommendations for
+version control in general, we suggest that groups choose one of two
+different approaches for managing manuscripts.  The goals of both are
 to:
 
-\begin{enumerate}
+\begin{itemize}
 \item
   Ensure that text is accessible to yourself and others now and in the
   future by making a single master document that is available to all
@@ -1023,7 +1019,7 @@ to:
 \item
   Make it easy to share that final version with collaborators and to
   submit it to a journal.
-\end{enumerate}
+\end{itemize}
 
 \begin{framed}
 \noindent \textbf{The First Rule Is{\ldots}}
@@ -1035,14 +1031,25 @@ mailing list, an issue tracker (like the ones provided by GitHub and
 Bitbucket), or some sort of shared online to-do list.
 \end{framed}
 
-Our first recommended approach has two parts.  First, \recommend{write
-  manuscripts using online tools with rich formatting, change
-  tracking, and reference management}, such as Google Docs.  Second,
-\recommend{include a \texttt{PUBLICATIONS} file in the project's
-  \texttt{doc} directory} containing metadata about each online
-manuscript (e.g., their URLs). This is analogous to the \texttt{data}
-directory, which might contain links to the location of the data
-file(s) rather than the actual files.
+\subsection*{Single Master Online}
+
+Our first alternative has two parts:
+
+\begin{enumerate}
+
+\item
+  \recommend{Write manuscripts using online tools with rich
+    formatting, change tracking, and reference management}, such as
+  Google Docs.
+
+\item
+  \recommend{Include a \texttt{PUBLICATIONS} file in the project's
+    \texttt{doc} directory} with metadata about each online manuscript
+  (e.g., their URLs). This is analogous to the \texttt{data}
+  directory, which might contain links to the location of the data
+  file(s) rather than the actual files.
+
+\end{enumerate}
 
 We realize that in many cases, even this solution is asking too much
 from those who see no reason to move forward from desktop GUI tools. To
@@ -1052,21 +1059,30 @@ format (e.g., Microsoft Word's \texttt{.docx} or LibreOffice's
 \texttt{doc} folder. Unfortunately, this means merging some changes and
 suggestions manually, as existing tools cannot always do this
 automatically when switching from a desktop file format to text and back
-(although \texttt{{[}pandoc{]}{[}pandoc{]}} can go a long way).
+(although \withurl{\texttt{pandoc}}{http://pandoc.org/} can go a long way).
+
+\subsection*{Version Control}
 
 The second approach treats papers exactly like software, and has been
 used by researchers in mathematics, astronomy, physics, and related
-disciplines for decades.
+disciplines for decades:
 
-First, \recommend{write the manuscript in a plain text format that
-  permits version control} such as
-\withurl{LaTeX}{http://www.latex-project.org/} or
-\withurl{Markdown}{http://daringfireball.net/projects/markdown/}, and
-then convert them to other formats such as PDF as needed using
-scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.  Second,
-\recommend{include tools needed to compile manuscripts in the project
+\begin{enumerate}
+
+\item
+  \recommend{Write the manuscript in a plain text format that permits
+    version control} such as
+  \withurl{LaTeX}{http://www.latex-project.org/} or
+  \withurl{Markdown}{http://daringfireball.net/projects/markdown/},
+  and then convert them to other formats such as PDF as needed using
+  scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.
+
+\item
+  \recommend{Include tools needed to compile manuscripts in the project
   folder} and keep them under version control just like tools used to
-do simulation or analysis.
+  do simulation or analysis.
+
+\end{enumerate}
 
 This approach re-uses the version control tools and skills used to
 manage data and software, and is a good starting point for
@@ -1074,11 +1090,11 @@ fully-reproducible research. However, it requires all contributors to
 understand a much larger set of tools, including markdown or LaTeX,
 make, BiBTeX, and Git/GitHub.
 
-\subsection*{Discussion}
+\subsection*{Why Two?}
 
-An early draft of this paper recommended plain text in version control
-as the best way to manage manuscripts, but several reviewers pushed back
-forcefully. For example, Stephen Turner wrote:
+The first draft of this paper recommended always using plain text in
+version control to manage manuscripts, but several reviewers pushed
+back forcefully. For example, Stephen Turner wrote:
 
 \begin{quote}
 {\ldots}try to explain the notion of compiling a document to an
@@ -1114,42 +1130,59 @@ difficult than necessary:
   allow everyone to contribute to it on an equal footing.
 \end{itemize}
 
-As an example of an implementation of these recommendations, this paper
-was written using a central online repository (GitHub), the \emph{issue}
-functionality for discussing the outline and text, and \emph{pull
-requests} for reviewing the contributions from different authors,
-including collecting comments and suggestions on them, and other
-contributors before merging them in.
+\begin{framed}
+\noindent \textbf{Linking Instead of Embedding}
+
+One way to make desktop writing tools less error-prone is to insert a
+link to an image file rather than embedding the file directly.  This
+makes the document slightly more difficult to share, since the image
+must be sent along with the document, but the payoff is that when the
+image is updated, the document automatically reflects those changes.
+In particular, when a script is run to generate a new version of a
+figure, that figure automatically shows up in the right place in the
+paper.
+
+This trick does not work for tables: there is, for example, no way to
+link to a CSV file.  However, most scientific programming tools are
+able to generate tables as HTML; if this is viewed in the browser, it
+can then be copied and pasted into a document.  Doing this is not
+ideal, but is still better than copying and pasting individual values.
+
+\end{framed}
 
 \subsection*{Supplementary Materials}
 
 Supplementary materials often contain much of the work that went into
 the project, such as tables and figures or more elaborate descriptions
 of the algorithms, software, methods, and analyses. In order to make
-these materials as accessible to others as possible, do not rely solely
-on the PDF format, since extracting data from PDFs is notoriously hard.
-Instead, we recommend separating the results that you may expect others
-to reuse (e.g., data in tables, data behind figures) into separate,
-text-format files. The same holds for any commands or code you want to
-include as supplementary material: use the format that most easily
-enables reuse (source code files, Unix shell scripts etc).
+these materials as accessible to others as possible, do not rely
+solely on the PDF format, since extracting data from PDFs is
+notoriously hard.  Instead, we recommend separating the results that
+you may expect others to reuse (e.g., data in tables, data behind
+figures) into separate, text-format files. The same holds for any
+commands or code you want to include as supplementary material: use
+the format that most easily enables reuse (source code files, Unix
+shell scripts etc).
 
-\section{What's Not on This List}\label{sec:omitted}
+\section{What We Left Out}\label{sec:omitted}
 
 We have deliberately left many good tools and practices off our list,
-including some that we use daily.
+including some that we use daily, because they only make sense on top
+of the core practices described above, or because it takes a larger
+investment before they start to pay off.
 
 \begin{description}
 
 \item[\textbf{Branches}]
-A \emph{branch} is a ``parallel universe'' within a version control
-repository. Developers create branches so that they can make multiple
-changes to a project independently. They are central to the way that
-experienced developers use systems like Git, but they add an extra layer
-of complexity to version control for newcomers. Programmers got along
-fine in the days of CVS and Subversion without relying heavily on
-branching, and branching can be adopted without significant disruption
-after people have mastered a basic edit-commit workflow.
+  A \emph{branch} is a ``parallel universe'' within a version control
+  repository. Developers create branches so that they can make
+  multiple changes to a project independently. They are central to the
+  way that experienced developers use systems like Git, but they add
+  an extra layer of complexity to version control for newcomers.
+  Programmers got along fine in the days of CVS and Subversion without
+  relying heavily on branching, and branching can be adopted without
+  significant disruption after people have mastered a basic
+  edit-commit workflow.
 
 \item[\textbf{Build Tools}] Tools like
   \withurl{Make}{https://www.gnu.org/software/make/} were originally
@@ -1187,38 +1220,33 @@ after people have mastered a basic edit-commit workflow.
   code is being written to do specific analyses.
 
 \item[\textbf{Profiling and Performance Tuning}]
-\emph{Profiling} is the act of measuring where a program spends its
-time, and is an essential first step in \emph{tuning} the program (i.e.,
-making it run faster). Both are worth doing, but only when the program's
-performance is actually a bottleneck: in our experience, most users
-spend more time getting the program right in the first place.
+  \emph{Profiling} is the act of measuring where a program spends its
+  time, and is an essential first step in \emph{tuning} the program
+  (i.e., making it run faster). Both are worth doing, but only when
+  the program's performance is actually a bottleneck: in our
+  experience, most users spend more time getting the program right in
+  the first place.
 
 \item[\textbf{Coverage}]
-Every modern programming language comes with tools to report the
-\emph{coverage} of a set of test cases, i.e., the set of lines that are
-and aren't actually executed when those tests are run. Mature projects
-run these tools periodically to find code that isn't being used any
-more, but as with unit testing, this only starts to pay off once the
-project grows larger, and is therefore not recommended here.
+  Every modern programming language comes with tools to report the
+  \emph{coverage} of a set of test cases, i.e., the set of lines that
+  are and aren't actually executed when those tests are run. Mature
+  projects run these tools periodically to find code that isn't being
+  used any more, but as with unit testing, this only starts to pay off
+  once the project grows larger, and is therefore not recommended
+  here.
 
-\item[\textbf{The Semantic Web}] Ontologies and other formal
-  definitions of data are useful, but in our experience, even
-  simplified things like \withurl{Dublin Core}{http://dublincore.org/}
-  are rarely encountered in the wild.
-
-\item[\textbf{Data Structures}]
-Associative data structures (e.g., Python's dictionaries), graphs (of
-the node-and-arc kind), Bloom filters, and many other data structures
-are essential to making programs both correct and efficient, but there
-are too many, and they are too specific to particular problems, for us
-to single any out for this list.
+\item[\textbf{The Semantic Web}]
+  Ontologies and other formal definitions of data are useful, but in
+  our experience, even simplified things like \withurl{Dublin
+    Core}{http://dublincore.org/} are rarely encountered in the wild.
 
 \item[\textbf{Documentation}]
-Good documentation is a key factor in software adoption, but in
-practice, people won't write comprehensive documentation until they have
-collaborators who will use it. They will, however, quickly see the point
-of a brief explanatory comment at the start of each script, so we have
-recommended that as a first step.
+  Good documentation is a key factor in software adoption, but in
+  practice, people won't write comprehensive documentation until they
+  have collaborators who will use it. They will, however, quickly see
+  the point of a brief explanatory comment at the start of each
+  script, so we have recommended that as a first step.
 
 \item[\textbf{A Bibliography Manager}] Researchers should use a
   reference manager of some sort, such as
@@ -1228,9 +1256,9 @@ recommended that as a first step.
   paper.
 
 \item[\textbf{Code Reviews and Pair Programming}]
-These practices are valuable in projects with multiple contributors, but
-are hard to adopt in single-author/single-user situations, which
-includes most of the intended audience for this paper.
+  These practices are valuable in projects with multiple contributors,
+  but are hard to adopt in single-author/single-user situations, which
+  includes most of the intended audience for this paper \cite{petre2014}.
 
 \end{description}
 
