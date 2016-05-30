@@ -4,7 +4,6 @@
 \usepackage{framed}
 \usepackage{graphicx}
 \usepackage{cite}
-\usepackage{color} 
 
 \topmargin 0.0cm
 \oddsidemargin 0.5cm
@@ -56,7 +55,7 @@
 $\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
 \end{flushleft}
 
-\section{Introduction}\label{introduction}
+\section{Introduction}\label{sec:introduction}
 
 Two years ago a group of researchers involved in \withurl{Software
   Carpentry}{http://software-carpentry.org/} and \withurl{Data
@@ -99,11 +98,11 @@ adopting something new, they will almost certainly switch
 back to their old way of doing things.
 This rules out many practices
 such as code review that we feel are essential for larger-scale
-development (Section~\ref{whats-not-on-this-list}).
+development (Section~\ref{sec:omitted}).
 
 \fixme{add pointers to papers or projects that follow these rules.}
 
-\section{Data Management}\label{data-management}
+\section{Data Management}\label{sec:data}
 
 Project data may need to exist in various forms, ranging from what
 first arrives to what's included in the final publication.  The aim
@@ -294,7 +293,7 @@ metadata harvesters and formal repositories, create a metadata file
 that they will easily be able to parse.
 \end{framed}
 
-\section{Software}\label{software}
+\section{Software}\label{sec:software}
 
 If you or your group are creating tens of thousands of lines of software
 for use by hundreds of people you have never met,
@@ -318,7 +317,7 @@ outputs.
     every program}, no matter how short it is. That comment should
   include at least one example of how the program is used: remember, an
   example is worth a thousand words. Where possible, the comment should
-  also indicate reasonable values for parameters.  Figure~\ref{doc-comment}
+  also indicate reasonable values for parameters.  Figure~\ref{fig:comment}
   presents an example of of such a comment.
 
 \item
@@ -418,125 +417,102 @@ where:
 -v             = verbose
 -w size        = image width/height in pixels (typically 480-800)
 \end{verbatim}
-\label{doc-comment}
 \caption{A Good Explanatory Comment}
+\label{fig:comment}
 \end{figure}
 
-\section{Collaboration}\label{collaboration}
+\section{Collaboration}\label{sec:collaboration}
 
-You may start working on your project by yourself or with a small group
-of collaborators whom you now. But even at an early stage, you may want
-to open your project so that you can attract potential new collaborators
-whom you \emph{don't} already know. Even if you choose not to do this at
-the start of the project, following a few simple rules will make it
-easier to do so later.
-
-To enhance collaboration, aim for:
+You may start working on projects by yourself or with a small group of
+collaborators you already know, but you should still design it to
+attract new collaborators.  As summarized in \cite{steinmacher2015},
+the keys to doing this are to make it easy for people set up a local
+workspace so that they \emph{can} contribute, to help them find a
+simple first task so that they know \emph{what} to contribute, and
+to make the contribution process clear so that they know \emph{how}
+to contribute.
 
 \begin{enumerate}
-\item
-  \emph{Simplicity:} the easier it is for people to collaborate, the
-  more likely they are to do so (and to give you credit)
-\item
-  \emph{Low entry:} Remove the two most reported barriers to
-  contributing from \withurl{Steinmacher et
-    al}{http://lapessc.ime.usp.br/work.jsf?p1=15673}:
 
-  \begin{itemize}
-  \item
-    finding a task to start on
-  \item
-    setting up the local workspace to start work
-  \end{itemize}
 \item
-  \emph{Clarity:} remove uncertainty around what a potential
-  collaborator is allowed to do
+  \recommend{Create an overview of your project.}  Have a short
+  \texttt{README} file explaining the project's purpose in the
+  project's home directory.  This file (which may be called
+  \texttt{README}, \texttt{README.txt}, or something similar) should
+  contain the project's title, a brief description (similar to the
+  abstract of a paper), and contact information that actually works.
+  It is often the first thing users of your project will look at, so
+  make it explicit that you welcome contributors and point them to
+  ways they can help.
+  
+  You should also create a \texttt{CONTRIBUTING} file that describes
+  what people need to do in order to get the project going and
+  contribute to it, i.e., dependencies that need to be installed,
+  tests that can be run to ensure the software has been installed
+  correctly, and guidelines or checklists that your project adheres
+  to.
+
+\item
+  \recommend{Create a shared public ``to-do'' list}.  This can be a
+  plain text file called something like \texttt{notes.txt} or
+  \texttt{todo.txt}, or you can use sites such as GitHub or Bitbucket
+  to create a new \emph{issue} for each to-do item. (You can even add
+  labels such as ``low hanging fruit'' to point newcomers at issues
+  that are good starting points.)  Whatever you choose, describe the
+  items clearl so that they make sense to newcomers.
+
+\item
+  \recommend{Make the license explicit.}  Have a \texttt{LICENSE}
+  file in the project's home directory that clearly states what
+  license(s) apply to the project's software, data, and
+  manuscripts. Lack of an explicit license does not mean there isn't
+  one; rather, it implies the author is keeping all rights and others
+  are not allowed to re-use or modify the material.
+
+  We recommend Creative Commons licenses for data and text, either
+  \withurl{CC-0}{https://creativecommons.org/about/cc0/} (the ``No
+  Rights Reserved'' license) or
+  \withurl{CC-BY}{https://creativecommons.org/licenses/by/4.0/} (the
+  ``Attribution'' license, which sharing and reuse but requires people
+  to give appropriate credit to the creators).  For software, we
+  recommend a permissive license such as the MIT, BSD, or Apache
+  license \cite{laurent2004}.
+
+  \begin{framed}
+    \noindent \textbf{What Not To Do}
+
+    We recommend \emph{against} the ``no commercial use'' variations of
+    the Creative Commons licenses because they may impede some forms of
+    re-use.  For example, if a researcher in a developing country is being
+    paid by her government to compile a public health report, and wishes
+    to include some of your data, she will be unable to do so if the
+    license says ``non-commercial''. We recommend permissive software
+    licenses rather than the \withurl{GNU General Public
+      License}{https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch03.html}
+    (GPL) because it is easier to integrate permissively-licensed software
+    into other projects. (Note that it is straightforward to switch from a
+    permissive license to the GPL if you should change your mind later but
+    rather more complicated to go in the other direction.)
+  \end{framed}
+
+\item    
+  \recommend{Make the project citable} by including a
+  \texttt{CITATION} file in the project's home directory that
+  describes how to cite this project as a whole, and where to find,
+  and how to cite, any data sets, code, figures, and other artifacts
+  that have their own DOIs.  Figure~\ref{fig:citation} shows the
+  \texttt{CITATION} file for the Software Carpentry project.
+  For an example of a more detailed \texttt{CITATION} file, see the one
+  for the \withurl{khmer project}{https://github.com/dib-lab/khmer/blob/master/CITATION}.
+
 \end{enumerate}
 
-First, \recommend{create an overview of your project}.  Have a short
-\texttt{README} file explaining the project's purpose in an
-easy-to-find place (such as the project's home directory). This file
-is often the first thing users of your project will look at, so make
-it explicit already here that you welcome contributors and point them
-to the ways to help out.
+The overview and to-do list are to help you as well as other
+people---remember, your most important collaborator is yourself three
+months from now. The license and citation file are there to make it
+easy for other people to help you and give you credit for your work.
 
-The \texttt{README} file (which may be called that, or
-\texttt{README.txt}, or something similar) should contain:
-
-\begin{itemize}
-\item
-  the project's title,
-\item
-  a brief description (similar to the abstract of a paper), and
-\item
-  contact information that actually works.
-\end{itemize}
-
-You should also create a \texttt{CONTRIBUTING} file that describes what
-people need to do in order to get the project going and contribute to
-it: dependencies that need to be installed, tests that can be run to
-ensure the software has been installed correctly, and guidelines or
-rules that your project adheres to (e.g., checklists you may use before
-accepting a suggested change).
-
-Second, \recommend{create a shared public ``to-do'' list}.  This could
-be a plain text file containing the to-do list called
-\texttt{notes.txt} or \texttt{todo.txt} or something
-similar. Alternatively, you could use the \emph{issue} functionality
-on sites such as GitHub or Bitbucket to create a new issue for each
-to-do item. (You can even add labels such as ``low hanging fruit'' to
-point newcomers at issues that are good starting points.)  Whatever
-your system of choice, make the descriptions of the items clear enough
-so that they make sense for new collaborators.
-
-Third, \recommend{make the license explicit}.  Have a \texttt{LICENSE}
-file in the project's home directory that clearly states what
-license(s) apply to the project's software, data, and
-manuscripts. Lack of an explicit license does not mean there isn't
-one; rather, it implies the author is keeping all rights and others
-are not allowed to re-use or modify the material. We recommend:
-
-\begin{itemize}
-\item
-  Use Creative Commons licenses for data and text, either
-  \withurl{CC-0}{https://creativecommons.org/about/cc0/}, the ``No Rights
-  Reserved'' license, or
-  \withurl{CC-BY}{https://creativecommons.org/licenses/by/4.0/}, the
-  ``Attribution'' license, allowing sharing and reuse but requiring
-  giving appropriate credit to the creator(s).
-\item
-  Use a permissive license (e.g., the \withurl{MIT, BSD, or
-    Apache}{https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch02.html}
-  licenses) for software.
-\end{itemize}
-
-We recommend \emph{against} the ``no commercial use'' variations of
-the Creative Commons licenses because they may impede some forms of
-re-use.  For example, if a researcher in a developing country is being
-paid by her government to compile a public health report, and wishes
-to include some of your data, she will be unable to do so if the
-license says ``non-commercial''. We recommend permissive software
-licenses rather than the \withurl{GNU General Public
-  License}{https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch03.html}
-(GPL) because it is easier to integrate permissively-licensed software
-into other projects. (Note that it is straightforward to switch from a
-permissive license to the GPL if you should change your mind later but
-rather more complicated to go in the other direction.)
-
-Fourth, \recommend{make the project citable} by including a
-\texttt{CITATION} file in the project's home directory that describes:
-
-\begin{itemize}
-\item
-  how to cite this project as a whole, and
-\item
-  where to find, and how to cite, any data sets, code, figures, and
-  other artifacts that have their own DOIs.
-\end{itemize}
-
-For example, the \texttt{CITATION} file for the Software Carpentry
-project reads:
-
+\begin{figure}
 \begin{verbatim}
 To reference Software Carpentry in publications, please cite:
 
@@ -552,19 +528,11 @@ Greg Wilson: "Software Carpentry: Lessons Learned". F1000Research,
   doi         = {10.12688/f1000research.3-62.v2}
 }
 \end{verbatim}
+\caption{Example CITATION File}
+\label{fig:citation}
+\end{figure}
 
-For an example of a more detailed \texttt{CITATION} file, see the one
-for the \withurl{khmer
-  project}{https://github.com/dib-lab/khmer/blob/master/CITATION}.
-
-\subsection*{Discussion}
-
-The overview and to-do list are to help you as well as other
-people---remember, your most important collaborator is yourself six
-months from now. The license and citation file are there to make it easy
-for other people to help you and give you credit for your work.
-
-\section{Project Organization}\label{project-organization}
+\section{Project Organization}\label{sec:project}
 
 The previous sections have described practices for creating, naming,
 and storing the files that make up a research project.  Organizing
@@ -641,7 +609,7 @@ statistical analyses. These files can be thought of as the
 ``scientific guts'' of the project, and as the project grows, they can
 be organized into additional subdirectories. If a project were to
 include re-runnable tests (such as unit tests or regression
-tests---see Section~\ref{whats-not-on-this-list}), these are the
+tests---see Section~\ref{sec:omitted}), these are the
 functions that would be tested.
 
 The second type of file in the \texttt{src} directory is controller or
@@ -710,7 +678,7 @@ describing various ideas for the project and how these were implemented
 and the other containing a running draft of a manuscript describing the
 project findings.
 
-\section{Version Control}\label{version-control}
+\section{Version Control}\label{sec:versioning}
 
 Keeping track of changes that you or your collaborators make to data,
 software, and manuscripts is a critical part of research. Version
@@ -995,7 +963,7 @@ If results files are kilobytes or a few megabytes in size, we therefore
 recommend keeping them under version control. Anything more than this,
 and something else should be used for management.
 
-\section{Manuscripts}\label{manuscripts}
+\section{Manuscripts}\label{sec:manuscripts}
 
 Gathering data, analyzing it, and figuring out what it means is the
 first 90\% of any project; writing up is the other 90\%. While the
@@ -1148,7 +1116,7 @@ text-format files. The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
 
-\section{What's Not on This List}\label{whats-not-on-this-list}
+\section{What's Not on This List}\label{sec:omitted}
 
 We have deliberately left many good tools and practices off our list,
 including some that we use daily.
@@ -1263,7 +1231,7 @@ In that situation, advocating unit testing with coverage checking and
 continuous integration is as likely to scare novices off than to aid
 them.
 
-\section{Conclusion}\label{conclusion}
+\section{Conclusion}\label{sec:conclusion}
 
 \fixme{write a conclusion}
 
