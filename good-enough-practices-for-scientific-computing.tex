@@ -534,127 +534,147 @@ Greg Wilson: "Software Carpentry: Lessons Learned". F1000Research,
 
 \section{Project Organization}\label{sec:project}
 
-The previous sections have described practices for creating, naming,
-and storing the files that make up a research project.  Organizing
-these files in a logical and consistent directory structure will help
-you keep track of them and help others review your work more easily.
-
-Our recommendations are drawn from \cite{noble2009}, with a healthy
-admixture from \cite{gentzkow2014}. Each project should be in its own
-directory, which should be named after the project, and should contain
-the following subdirectories:
+Organizing the files that make up a project in a logical and
+consistent directory structure will help you and others keep track of
+them.  Our recommendations for doing this are drawn primarily from
+\cite{noble2009,gentzkow2014}.
 
 \begin{enumerate}
+
 \item
-  \texttt{doc} contains text documents associated with the project. This
-  may include files for manuscripts, documentation for source code,
-  and/or an electronic lab notebook recording your experiments.
-  Subdirectories may be created for these different classes of files.
+  \recommend{Put each project in its own directory, which is named
+    after the project.}  Like deciding when a chunk of code should be
+  made a function, the ultimate goal of dividing research into
+  distinct projects is to help you and others best understand your
+  work. Some researchers create a separate project for each manuscript
+  they are working on, while others group all research on a common
+  theme, data set, or algorithm into a single project.
+    
+  As a rule of thumb, divide work into projects based on the overlap
+  in data and code files. If two research efforts share no data or
+  code, they will probably be easiest to manage independently. If they
+  share more than half of their data and code, they are probably best
+  managed together. Anything in between can be decided based on the
+  set of people you're collaborating with.
+
 \item
-  \texttt{data} contains raw data and metadata, organized into
-  subdirectories if needed. Note that this directory contains only
-  unprocessed data: cleaned or otherwise modified data files are treated
-  like results.
+  \recommend{Put text documents associated with the projectin the
+    \texttt{doc} directory.} This includes files for manuscripts,
+  documentation for source code, and/or an electronic lab notebook
+  recording your experiments.  Subdirectories may be created for these
+  different classes of files in large projects.
+
 \item
-  \texttt{src} contains the source code for scripts and programs, both
-  that written in interpreted languages such as R or Python and that
-  written compiled languages like Fortran, C++, or Java. Shell scripts,
-  snippets of SQL used to pull information from databases, and
-  everything else needed to regenerate the results are all managed like
-  source code.
+  \recommend{Put raw data and metadata in a \texttt{data} directory,
+    and files generated during cleanup and analysis in a
+    \texttt{results} directory}, where ``generated files'' includes
+  intermediate results, such as cleaned data sets or simulated data,
+  as well as final results such as figures and tables.
+
+  The \texttt{src} directory may contain subdirectories if there are
+  many data sets.  The \texttt{results} directory will \emph{usually}
+  require additional subdirectories for all but the simplest
+  projects. Intermediate files such as cleaned data, statistical
+  tables, and final publication-ready figures or tables should be
+  separated clearly by file naming conventions or placed into
+  different subdirectories; those belonging to different papers or
+  other publications should be grouped together.
+
 \item
-  \texttt{bin} contains executable scripts and programs that are brought
-  in from other sources or compiled from code in the \texttt{src}
-  directory. Projects that use only interpreted languages, such as R,
-  Python, or the Unix shell, will not require this directory.
+  \recommend{Put source for this project's scripts and programs in the
+    \texttt{src} directory, and scripts and programs brought in from
+    elsewhere or compiled locally in the \texttt{bin} directory.}
+  \texttt{src} contains both programs written in interpreted languages
+  such as R or Python and those written compiled languages like
+  Fortran, C++, or Java. Shell scripts, snippets of SQL used to pull
+  information from databases, and everything else needed to regenerate
+  the results are all managed like source code.  \texttt{bin} contains
+  scripts that are brought in from elsewhere, and executable programs
+  compiled from code in the \texttt{src} directory\footnote{The name
+    \texttt{bin} is an old Unix convention, and comes from the term
+    ``binary''}. Projects that have neither will not require this
+  directory.
+
+  \begin{framed}
+    \noindent \textbf{Scripts vs.\ Programs}
+
+    We use the term ``script'' to mean ``something that is executed
+    directly as-is'', and ``program'' to mean ``something that is
+    explicitly compiled before being used''.  The distinction is more
+    one of degree than kind---libraries written in Python are actually
+    compiled to bytecode as they are loaded, for example---so one
+    other way to think of it is ``things that are edited directly''
+    and ``things that are not''.
+  \end{framed}
+
 \item
-  \texttt{results} for all files that are generated as part of the
-  project. This includes both intermediate results, such as cleaned data
-  sets or simulated data, as well as final results such as figures and
-  tables.
+  \recommend{Name all files to reflect their content or function.} For
+  example, use names such as \texttt{bird\_count\_table.csv},
+  \texttt{manuscript.md}), or \texttt{sightings\_analysis.py}).  Do
+  \emph{not} using sequential numbers (e.g., \texttt{result1.csv},
+  \texttt{result2.csv}) or a location in a final manuscript (e.g.,
+  \texttt{fig\_3\_a.png}), since those numbers will almost certainly
+  change as the project evolves.
+  
 \end{enumerate}
 
-All files should be named clearly to reflect their contents (e.g.,
-\texttt{bird\_count\_table.csv}, \texttt{manuscript.md}) or their
-functionality (e.g., \texttt{sightings\_analysis.py}), \emph{not} using
-sequential numbers (e.g., \texttt{result1.csv}, \texttt{result2.csv}) or
-a location in a final manuscript (e.g., \texttt{fig\_3\_a.png}), since
-those numbers will almost certainly change as the project evolves.
-
-\begin{framed}
-\noindent \textbf{What's a ``Project''?}
-
-Like deciding when a chunk of code should be made a function, the
-ultimate goal of dividing research into distinct projects is to help you
-and others best understand your work. Some researchers create a separate
-project for each manuscript they are working on, while others group all
-research on a common theme, data set, or algorithm into a single
-project.
-
-As a rule of thumb, divide work into projects based on the overlap in
-data and code files. If two research efforts share no data or code, they
-will probably be easiest to manage independently. If they share more
-than half of their data and code, they are probably best managed
-together. Anything in between can be decided based on the set of people
-you're collaborating with.
-\end{framed}
-
-The \texttt{src} directory often contains two conceptually distinct
-types of files that should be distinguished either by clear file names
-or by additional subdirectories. The first type are individual files
-or related groups of files that contain functions to perform the core
+The \texttt{src} directory may contain two conceptually distinct types
+of files that should be distinguished either by clear file names or by
+additional subdirectories. The first type are individual files or
+related groups of files that contain functions to perform the core
 analysis of the research. One file, for example, may contain functions
 used for data cleaning, while another contains functions to do certain
 statistical analyses. These files can be thought of as the
 ``scientific guts'' of the project, and as the project grows, they can
 be organized into additional subdirectories. If a project were to
-include re-runnable tests (such as unit tests or regression
-tests---see Section~\ref{sec:omitted}), these are the
-functions that would be tested.
-
-The second type of file in the \texttt{src} directory is controller or
-driver scripts that combine the core analytical functions with
-particular parameters and data input/output commands in order to execute
-the entire project analysis from start to finish. A controller script
-for a simple project, for example, may read a raw data table, import and
+include re-runnable tests (Section~\ref{sec:omitted}), these are the
+functions they would exercise.
+  
+The second type of file in \texttt{src} is controller or driver
+scripts that combine the core analytical functions with particular
+parameters and data input/output commands in order to execute the
+entire project analysis from start to finish. A controller script for
+a simple project, for example, may read a raw data table, import and
 apply several cleanup and analysis functions from the other files in
 this directory, and create and save a numeric result. For a small
 project with one main output, a single controller script should be
-placed in the main \texttt{src} directory and distinguished clearly by a
-name such as ``runall''.
+placed in the main \texttt{src} directory and distinguished clearly by
+a name such as ``runall''.
 
 The controller script is the glue that holds the analysis together and
 allows a single command, such as \texttt{python runall.py}, to re-run
-the entire analysis from start to finish. These scripts should be short
-(no more than 100-200 lines at most), and be very easy to understand: in
-particular, while they may contain loops (to process multiple data files
-or sweep across parameter ranges) they should contain few if any
-conditional statements or new function definitions. If a control script
-becomes longer or more complicated than this, or begins to include code
-that would require a new collaborator more than a minute or two to
-understand, those portions of the code should be moved out of the
-controller script and into other core analysis files in this directory.
+the entire analysis from start to finish. These scripts should be
+short (no more than one or two pages long) and very easy to
+understand.  In particular, while they may contain loops (to process
+multiple data files or sweep across parameter ranges) they should
+contain few if any conditional statements or new function
+definitions. If a control script becomes longer or more complicated
+than this, or begins to include code that would require a new
+collaborator more than a minute or two to understand, those portions
+of the code should be moved out of the controller script and into
+other core analysis files in this directory.
 
-The \texttt{results} directory will generally require additional
-subdirectories for all but the simplest projects. Intermediate files
-such as cleaned data, statistical tables, and final publication-ready
-figures or tables should be separated clearly by file naming conventions
-or placed into different subdirectories; those belonging to different
-papers or other publications should be grouped together.
+Figure~\ref{fig:layout} below provides a concrete example of how a
+simple project might be organized following these recommendations. The
+root directory contains a \texttt{README} file that provides an
+overview of the project as a whole and a \texttt{CITATION} file that
+explains how to reference it. The \texttt{data} directory contains a
+single CSV file with tabular data on bird counts (machine-readable
+metadata could also be included here). The \texttt{src} directory
+contains \texttt{sightings\_analysis.py}, a Python file containing
+functions to summarize the tabular data, and a controller script
+\texttt{runall.py} that loads the data table, applies functions
+imported from \texttt{sightings\_analysis.py}, and saves a table of
+summarized results in the \texttt{results} directory.
 
-The figure below provides a concrete example of how a simple project
-might be organized following these recommendations. The root directory
-contains a \texttt{README} file that provides an overview of the
-project as a whole and a \texttt{CITATION} file that explains how to
-reference it. The \texttt{data} directory contains a single CSV file
-with tabular data on bird counts (machine-readable metadata could also
-be included here). The \texttt{src} directory contains
-\texttt{sightings\_analysis.py}, a Python file containing functions to
-summarize the tabular data, and a controller script \texttt{runall.py}
-that loads the data table, applies functions imported from
-\texttt{sightings\_analysis.py}, and saves a table of summarized
-results in the \texttt{results} directory.
+This project doesn't have a \texttt{bin} directory, since it does not
+rely on any compiled software. The \texttt{doc} directory contains two
+text files written in Markdown, one containing a running lab notebook
+describing various ideas for the project and how these were implemented
+and the other containing a running draft of a manuscript describing the
+project findings.
 
+\begin{figure}
 \begin{verbatim}
 .
 |-- CITATION
@@ -670,13 +690,9 @@ results in the \texttt{results} directory.
 |   |-- sightings_analysis.py
 |   \-- runall.py
 \end{verbatim}
-
-This project doesn't have a \texttt{bin} directory, since it does not
-rely on any compiled software. The \texttt{doc} directory contains two
-text files written in Markdown, one containing a running lab notebook
-describing various ideas for the project and how these were implemented
-and the other containing a running draft of a manuscript describing the
-project findings.
+\caption{Example Project Layout}
+\label{fig:layout}
+\end{figure}
 
 \section{Version Control}\label{sec:versioning}
 
