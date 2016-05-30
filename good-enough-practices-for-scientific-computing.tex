@@ -63,131 +63,119 @@ Two years ago a group of researchers involved in \withurl{Software
   Carpentry}{http://datacarpentry.org/} wrote a paper called
 ``\withurl{Best Practices for Scientific
   Computing}{http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745}''
-\cite{wilson2014}. It was well received, but in retrospect it might
-have been misguided: many novices found its catalog of tools and
+\cite{wilson2014}. It was well received,
+but many novices found its catalog of tools and
 techniques intimidating, and by definition, the ``best'' are a
 minority, so ``best practices'' are what only a minority does.
 
-This paper therefore looks instead at ``good enough''
+This paper therefore presents a set of ``good enough''
 practices\footnote{Note that English lacks a good word for this:
   ``mediocre'', ``adequate'', and ``sufficient'' aren't exactly
-  right.}, i.e., at the minimum set of practices we believe every
-researcher can and should adopt. It draws inspiration from several
+  right.} for scientific computing, i.e., a minimum set of tools and techniques that we believe every
+researcher can and should adopt. It draws inspiration from many
 sources \cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
-and from both our personal experiences in research computing
-and the experiences of the thousands of people who have taken part
-in Software and Data Carpentry workshops over the past six years.
+from our personal experiences,
+and from the experiences of the thousands of people who have taken part
+in \withurl{Software Carpentry}{http://software-carpentry.org}
+and \withurl{Data Carpentry}{http://datacarpentry.org} workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
 handful of collaborators on projects lasting a few days to a few
-months, and who are just starting to move beyond saving spreadsheets
-called \texttt{results-updated-3-revised.xlsx} in Dropbox. A practice
-is included in our list if large numbers of \emph{computationally
-  competent}\footnote{We use the term ``computationally competent'' to
-  mean someone who can accomplish routine tasks without heroic effort,
-  i.e., someone who's as good at data analysis or programming as most
-  adults are at driving a car.  We use the term (a) to make it clear
-  that we're trying to inculcate the equivalent good lab skills,
-  rather than turn researchers into professional programmers, and (b)
-  because the terms ``computational literacy'' and ``computational
-  thinking'' have been used in so many ways that it's hard to know
-  what they mean any more.} researchers use it, and if large numbers
-of novices try it after a short introduction, and are still using it
-months after first trying it out. We use these criteria because
-there's no point recommending things that people don't actually use,
-won't try, or abandon after a few days or weeks because they don't
+months, and who are ready to move beyond saving spreadsheets
+with names like \texttt{results-updated-3-revised.xlsx} in Dropbox. A practice
+is included in our list if large numbers of researchers use it, and large numbers
+of novices are \emph{still} using it
+months after first trying it out. We include the second criterion because
+there is no point recommending something that people
+abandon after a few days or weeks because they don't
 perceive value.
 
-That last stipulation is important. Many of our recommendations are
+Many of our recommendations are
 for the benefit of the collaborator every researcher cares about most:
-their future self\footnote{As the joke goes, your past self doesn't
+their future self\footnote{As the joke goes, yourself from three months ago doesn't
   answer email{\ldots}}. If researchers don't see those benefits
 quickly enough to pay for the slowdown that inevitably occurs when
-adopting a new tool or practice, they will almost certainly switch
-back to their old way of doing things. As we discuss in
-Section~\ref{whats-not-on-this-list} this rules out many practices
+adopting something new, they will almost certainly switch
+back to their old way of doing things.
+This rules out many practices
 such as code review that we feel are essential for larger-scale
-development.
+development (Section~\ref{whats-not-on-this-list}).
 
 \fixme{add pointers to papers or projects that follow these rules.}
-
-Many of these guidelines are phrased in terms of helping other people,
-such as current and future collaborators. In all cases, though, the
-most important ``other person'' you're helping is your future self:
-for example, a good to-do list will save you time when you come back
-to your project next year. It's always tempting to cut corners, but
-your past self doesn't answer email.
 
 \section{Data Management}\label{data-management}
 
 Project data may need to exist in various forms, ranging from what
-first arrives to what's included in the final publication.  We
-recommend that researchers follow six rules.
-
-First, \recommend{save data in the rawest form available}.  Where
-possible, save the data file produced by an instrument or raw results
-from a survey, with all of its mystifying imperfections (e.g., raw
-JPEGs for photographs). It is tempting to overwrite raw data files
-with cleaned-up versions, but faithful retention is essential to being
-able to re-run analyses from start to finish. Being able to produce
-the raw data also enhances confidence in your final results. More
-immediately, having the raw data helps allows you to recover from
-analytical mishaps and allows you to experiment without fear.
-
-But use common sense: if a large volume of data is received in a
-format that is storage-inefficient or computationally inefficient to
-work with, transform it for storage with a lossless, well-documented
-procedure.  Equally, don't duplicate contents of stable, long-lived
-repositories (i.e., don't clone GenBank)
-
-You may also consider restricting file permissions to read-only, even
-(or especially) for yourself, so it is harder to damage raw data by
-accident or to hand edit it in a moment of weakness.
-
-Second \recommend{create the data you wish to see in the world}, i.e.,
-create the dataset you \emph{wish} you had received from the raw data
-and use that as the starting point for downstream analyses (including
-those you didn't initially think of doing). This is the time to
-maximize both machine and human readability, but \emph{not} to do
-vigorous data filtering nor to bring in external information.
-
-Approach this initial tidying up as internal to the existing dataset and
-non-destructive, both of the data and its general ``shape''. Enhance
-machine readability by converting from proprietary or high-friction
-formats (e.g., Microsoft Excel or XML) to open and simple formats (e.g.,
-comma-separated values). Enhance human readability by replacing
-inscrutable variable names and artificial data codes with
-self-explaining alternatives. For example, rename the variables
-\texttt{name1} and \texttt{name2} to \texttt{personal\_name} and
-\texttt{family\_name}, recode the treatment variable from \texttt{1} vs.
-\texttt{2} to \texttt{untreated} vs. \texttt{treated}, and replace
-artificial codes, such as ``-99'' for missing data, with proper
-\texttt{NA}s.
-
-Both human and machine readability can be enhanced by storing especially
-useful metadata as part of the filename itself, while keeping the
-filename regular enough for easy pattern matching. For example, a
-filename like \texttt{2016-05-alaska-b.csv} makes it easy for both
-people and programs to select by year (\texttt{2016-*.csv}), by location
-(\texttt{*-alaska-*.csv}), and so on.
-
-Where possible, use open non-proprietary formats to closed,
-proprietary format: they'll likely last longer.
-CSV is good for simple tabular data,
-JSON, YAML, or XML for non-tabular data such as graphs (the
-node-and-arc kind),
-and HDF5 for certain kinds of structured data.
-\withurl{This
-  guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
-has a few useful guidelines for choosing a file format.
-
-Third, \recommend{create analysis-friendly data}.  You can do this by
-reformatting data to eliminate processing steps between loading the
-data set and doing the analysis.
+first arrives to what's included in the final publication.  The aim
+of our recommendations is to create ``tidy data'', which can be
+a powerful accelerator for analysis \cite{wickham2014,hart2015}.
 
 \begin{enumerate}
 
 \item
+  \recommend{Save data in the rawest form available}.  Where possible,
+  save the data file produced by an instrument or raw results from a
+  survey, with all of its mystifying imperfections (e.g., raw JPEGs
+  for photographs). It is tempting to overwrite raw data files with
+  cleaned-up versions, but faithful retention is essential to being
+  able to re-run analyses from start to finish. It also
+  helps you recover from
+  analytical mishaps and allows you to experiment without fear.
+
+  But use common sense: if a large volume of data is received in a
+  format that is inefficient to store or process,
+  transform it for storage with a lossless, well-documented
+  procedure.  Equally, don't duplicate contents of stable, long-lived
+  repositories (i.e., don't clone GenBank)
+
+  You may also consider restricting file permissions to read-only,
+  even (or especially) for yourself, so it is harder to damage raw
+  data by accident or to hand edit it in a moment of weakness.
+
+\item
+  \recommend{Create the data you wish to see in the world}, i.e.,
+  create the dataset you \emph{wish} you had received from the raw
+  data and use that as the starting point for downstream analyses.
+  This is the
+  time to improve machine and human readability, but \emph{not}
+  the time to do vigorous data filtering or bring in external information.
+
+  Approach this initial tidying up as internal to the existing dataset
+  and non-destructive, both of the data and its general
+  ``shape''. 
+  Where possible, use open non-proprietary formats instead of closed,
+  proprietary formats: they will probably last longer, and will
+  probably be easier for machines to read.
+  CSV is good for simple tabular data,
+  JSON, YAML, or XML for non-tabular data such as graphs\footnote{The
+  node-and-arc kind.},
+  and HDF5 for certain kinds of structured data.
+  \withurl{This
+    guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
+  has a few useful guidelines for choosing a file format.
+
+  Enhance
+  human readability by replacing inscrutable variable names and
+  artificial data codes with self-explaining alternatives, e.g.,
+  rename variables called \texttt{name1} and \texttt{name2} to
+  \texttt{personal\_name} and \texttt{family\_name}, recode the
+  treatment variable from \texttt{1} vs.  \texttt{2} to
+  \texttt{untreated} vs. \texttt{treated}, and replace artificial
+  codes for missing data, such as ``-99'', with proper \texttt{NA}s
+  \cite{white2013}.
+
+  Both human and machine readability can be enhanced by storing
+  especially useful metadata as part of the filename itself, while
+  keeping the filename regular enough for easy pattern matching. For
+  example, a filename like \texttt{2016-05-alaska-b.csv} makes it easy
+  for both people and programs to select by year
+  (\texttt{2016-*.csv}), by location (\texttt{*-alaska-*.csv}), and so
+  on.
+
+\item
+  \recommend{Create analysis-friendly data}.  You can do this by
+  reformatting data to eliminate processing steps between loading the
+  data set and doing the analysis.
   Columns that contain more than one variable's worth of information
   should be split. For example, the presence of ``kg'' in ``3.4 kg''
   will cause most analytical environments to read this in as character
@@ -195,7 +183,6 @@ data set and doing the analysis.
   mass ``3.4'' and the units ``kg''), or the units should be recorded
   in the variable name and/or metadata.
 
-\item
   Multiple columns that only contain one variable's worth of information
   when taken together should be combined. This is characteristic of data
   that has been laid out for human eyeballs or for manual data entry.
@@ -206,89 +193,84 @@ data set and doing the analysis.
   these columns into a variable of measurements, accompanied by a
   companion variable indicating the time point.
 
-\item
   Reformat values as needed to match your environment's built-in parsing
   rules. For example, use date-time format that will be recognized
   automatically.
 
+  \begin{framed}
+    \noindent \textbf{OpenRefine}
+
+    \withurl{OpenRefine}{http://openrefine.org/} is an excellent tool for
+    this stage of data cleanup. It combines a spreadsheet-like interface
+    to tabular data with a large set of cleanup heuristics, and can
+    generate a trace of cleanup steps to ensure reproducibility.
+  \end{framed}
+
+\item
+  \recommend{Always record the steps used to clean up data}:
+  it's as much a part of your analysis as any statistics you might do.
+  The best way to do this is to write a re-runnable script for \emph{every}
+  stage of data cleanup, however trivial it seems.
+  This not only ensures that you have a record,
+  but also allows you to re-do the cleanup when new data arrives.
+
+\item
+  \recommend{Give every record a unique key}.  In a
+  well-organized data set, it's easy to select a specific record to
+  update or delete.  Using fields in the data (such as people's names or
+  addresses) does not guarantee this; using row numbers in tables does,
+  but those numbers will change as records are added, removed, or moved.
+
+  We therefore recommend giving each record a unique, persistent key
+  that has no other purpose than identifying the record\footnote{Student
+    numbers and similar identifiers serve this purpose in institutional
+    databases.} The provision of such a key also makes it much easier to
+  link data sets together.
+
+\item
+  \recommend{Marshal complementary data in files that meet the
+    same standards}.  Raw data frequently does not fully explain
+  itself. For example, if each well of a microtitre plate is used to
+  study a specific gene knockout, the prepared raw data will have a
+  \texttt{well} variable taking on values like ``A1'' and ``G12'', but
+  the plate reader cannot possibly know what's in each well. That
+  information will be absent from the primary data file, so you must
+  create a supplementary file in order to look this up. Make sure to use
+  the same names and codes when variables in two datasets refer to the
+  same thing to simplify merging and lookup (and make them less
+  error-prone).
+
+\item
+  \recommend{Create a dataset purpose-built for specific analyses
+    and figures.}  This probably involves filtering rows, selecting
+  relevant variables, and merging with external information. If the
+  preceding steps have been done, this can often be surprisingly
+  straightforward. The basic form of the data was hopefully set earlier,
+  so the main changes here are likely to be data reduction and the
+  amalgamation of multiple datasets.
+
+\item
+  \recommend{Submit data to a reputable DOI-issuing
+  repository so that others can access and cite it.}  Your data is as
+  much a product of your research as the papers you write, and just as
+  likely to be useful to others (if not more so).
+
 \end{enumerate}
 
-And fourth, \recommend{always record the steps used to clean up data}:
-that's as much a part of your analysis as any statistics you might do.
+Taken in order, the recommendations above will
+produce intermediate data files with increasing levels of cleanliness
+and task-specificity. This makes it easy to re-run \emph{parts}
+of a data analysis pipeline, which in turn makes it easier and faster
+to tinker with specific data cleaning operations.
 
-The goal of this refactoring is to create ``tidy data'', which can be
-a powerful accelerator for analysis \cite{wickham2014,hart2015}. This
-is the time to make sure your data will play nicely with your
-analytical environment and plans. This pass through the data likely
-does not change the amount of data, but may dramatically alter its
-form.
-
-\begin{framed}
-\noindent \textbf{OpenRefine}
-
-\withurl{OpenRefine}{http://openrefine.org/} is an excellent tool for
-this stage of data cleanup. It combines a spreadsheet-like interface
-to tabular data with a large set of cleanup heuristics, and can
-generate a trace of cleanup steps to ensure reproducibility.
-\end{framed}
-
-Fifth, \recommend{give every record a unique key}.  In a
-well-organized data set, it's easy to select a specific record to
-update or delete.  Using fields in the data (such as people's names or
-addresses) does not guarantee this; using row numbers in tables does,
-but those numbers will change as records are added, removed, or moved.
-
-We therefore recommend giving each record a unique, persistent key
-that has no other purpose than identifying the record\footnote{Student
-  numbers and similar identifiers serve this purpose in institutional
-  databases.} The provision of such a key also makes it much easier to
-link data sets together.
-
-Sixth, \recommend{marshal complementary data in files that meet the
-  same standards}.  Raw data frequently does not fully explain
-itself. For example, if each well of a microtitre plate is used to
-study a specific gene knockout, the prepared raw data will have a
-\texttt{well} variable taking on values like ``A1'' and ``G12'', but
-the plate reader cannot possibly know what's in each well. That
-information will be absent from the primary data file, so you must
-create a supplementary file in order to look this up. Make sure to use
-the same names and codes when variables in two datasets refer to the
-same thing to simplify merging and lookup (and make them less
-error-prone).
-
-Seventh, \recommend{create a dataset purpose-built for specific analyses
-  and figures.}  This probably involves filtering rows, selecting
-relevant variables, and merging with external information. If the
-preceding steps have been done, this can often be surprisingly
-straightforward. The basic form of the data was hopefully set earlier,
-so the main changes here are likely to be data reduction and the
-amalgamation of multiple datasets.
-
-Eighth and last, \recommend{submit data to a reputable DOI-issuing
-  repository so that others can access and cite it}.  Your data is as
-much a product of your research as the papers you write, and just as
-likely to be useful to others (if not more so).
-
-\subsection*{Discussion}
-
-The data processing strategy advocated above is divided into steps and
-produces intermediate data files, with increasing levels of cleanliness
-and task-specificity. While there is growing appreciation for
-reproducibility---i.e., being able to re-run an analysis start to
-finish---it is also extremely useful to be able to re-run \emph{parts}
-of a pipeline. The reasons are similar to those given for modularity in
-computer code: by breaking data preparation into steps, it becomes
-easier to revisit later and to only tinker with specific data cleaning
-operations.
-
-We propose delimited plain text as an appealing ``lowest common
-denominator'' data form that offers high usability across time, people,
-operating systems, and analytical environments. We recognize, though,
-that plain text is not a panacea. In particular, when collaborating with
+We propose delimited plain text (such as CSV) as a lowest common
+denominator for data that is usable across time, people,
+operating systems, and analytical environments. However,
+plain text is not a panacea: when collaborating with
 others, be aware of and, when possible, standardize on file encoding,
 line endings, and the elimination of prose-oriented features, such as
-``smart quotes''. Differences between collaborators in these pesky
-details can cause the changes between file versions to be large and
+``smart quotes''. Differences between collaborators in these
+details can cause the changes between file versions to be large, and
 therefore substantially less comprehensible.
 
 \begin{framed}
@@ -296,14 +278,13 @@ therefore substantially less comprehensible.
 
 \withurl{Elizabeth Wickes}{https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442}
 provides a useful classification for metadata, with implications for
-it how it should be represented. She notes it is easy to conflate
-metadata about the dataset as a whole with metadata about the content,
-e.g., individual columns. Most metadata schemas are aimed at the
-former, i.e., they detail the author, funder, related publications,
-etc. When considering how to store metadata, consider the intended
-audience. Is it humans? Write a README. Is it machines, such as
-metadata harvesters and formal repositories? Create an impeccably
-formatted metadata file.
+how to represent it. She notes it is important to distinguish
+metadata about the dataset as a whole (e.g., author and related publications)
+from metadata about the content (e.g., units for observations).
+When considering how to store metadata, consider the intended
+audience. If it is human beings, write a README file. If it is machines, such as
+metadata harvesters and formal repositories, create a metadata file
+that they will easily be able to parse.
 \end{framed}
 
 \section{Software}\label{software}
