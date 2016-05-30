@@ -697,162 +697,19 @@ project findings.
 \section{Version Control}\label{sec:versioning}
 
 Keeping track of changes that you or your collaborators make to data,
-software, and manuscripts is a critical part of research. Version
-control systems were developed to do exactly this for software: they
-keep track of what was changed in a file when and by whom, and usually
-synchronize changes to a central server so that many users can track the
-same set of files.
+software, and manuscripts is a critical part of research.  We believe
+that the best tools for doing this are the version control systems
+that are used in software development, such as Git, Mercurial, and
+Subversion.  They keep track of what was changed in a file when and by
+whom, and synchronize changes to a central server so that many users
+can track the same set of files.
 
-We believe that the best tools for providing these capabilities are
-version control systems that are widely used in software development,
-such as Git, Mercurial, and Subversion (which all provide the same basic
-functionality). However, many newcomers find these tools difficult to
-learn, and their benefits often only become apparent on projects that
-are larger and more complex than the ``solo researcher'' projects common
-in many academic fields.
-
-For those not yet ready to adopt version control, we recommend a
-systematic manual approach for managing changes that can be appropriate
-for small projects with one or a few investigators working closely
-together.
-
-Whatever approach is adopted should help with the following:
-
-\begin{enumerate}
-\item
-  It should aid \emph{reproducibility} by allowing you to reference or
-  retrieve a specific version of the entire project. This is valuable
-  for your future self (when you finally get the reviews back for your
-  paper), for your lab-mates and collaborators (in case you leave the
-  project), and for reviewers, editors, and others who want to convince
-  themselves of the conclusions in your published research. It also
-  helps your future self come back to a project after a long field
-  season and \emph{not} have to spend days remembering what you did last
-  or figuring out what your collaborators have changed while you have
-  been gone.
-\item
-  It should aid \emph{fixability}: having access to every version of
-  code, figures, and data helps you figure out why Figure 4 looks
-  different now than it did last week.  To aid this, it should also
-  provide an automatic and systematic way to identify particular
-  versions.
-\item
-  It should support \emph{sharing and collaboration}, particularly by
-  managing the process of merging independent changes made by different
-  people, and distributing those changes back to everyone in a
-  controlled, traceable way.
-\end{enumerate}
-
-Our first suggested approach, in which everything is done by hand, has
-three parts. First, \recommend{store each project in a folder that is
-  mirrored off the researcher's working machine} by a system such as
-Dropbox, and synchronize that folder at least daily. It may take a few
-minutes, but that time can be spent catching up on email, and is
-repaid the moment a laptop is stolen or its hard drive fails.
-
-Second, \recommend{add a file called \texttt{CHANGELOG.txt} to the
-  project's \texttt{docs} subfolder}, and make dated notes about
-changes to the project in this file in reverse chronological order
-(i.e., most recent first). An example of such a file is:
-
-\begin{verbatim}
-## 2016-04-08
-
-* Switched to cubic interpolation as default.
-* Moved question about family's TB history to end of questionnaire.
-
-## 2016-04-06
-
-* Added option for cubic interpolation.
-* Removed question about staph exposure (can be inferred from blood test results).
-\end{verbatim}
-
-Third, \recommend{copy the entire project whenever a significant
-  change has been made} (i.e., one that materially affects the results
-being produced), and store that copy in a sub-folder whose name
-reflects the date in the area that's being synchronized. This approach
-results in projects being organized like this:
-
-\begin{verbatim}
-.
-|-- project_name/
-|   \-- current
-|       \-- ...project content as described earlier...
-|   \-- 2016-03-01
-|       \-- ...content of 'current' on Mar 1, 2016
-|   \-- 2016-02-19
-|       \-- ...content of 'current' on Feb 19, 2016
-\end{verbatim}
-
-Here, the \texttt{project\_name} folder is mapped to external storage
-(such as Dropbox), \texttt{current} is where development is done, and
-other folders within \texttt{project\_name} are old versions.
-
-Coyping everything like this may seem wasteful, since many files won't
-have changed, but consider: a terabyte hard drive costs about \$50
-retail, which means that 50 GByte costs less than a latte. Provided
-large data files are kept out of the backed-up area (discussed below),
-this approach costs less than the time it would take to select files by
-hand for copying.
-
-This manual procedure meets the core requirements outlined above without
-needing any new tools. If multiple researchers are working on the same
-project, though, they will need to coordinate so that only a single
-person is working on specific files at any time. In particular, they may
-wish to create one change log file per contributor, and to merge those
-files whenever a backup copy is made.
-
-What the manual process described above requires most is
-self-discipline. The version control tools that underpin our second
-approach---the one we all now use for our projects---don't just
-accelerate the manual process: they also automate some steps while
-enforcing others, and thereby require less self-discipline for more
-reliable results.
-
-A version control system stores snapshots of a project's files in a
-repository. Users can modify their working copy of the project at will,
-and then commit changes to the repository when they wish to make a
-permanent record and/or share their work with colleagues. The version
-control system automatically records when the change was made and by
-whom along with the changes themselves.
-
-Crucially, if several people have edited files simultaneously, the
-version control system will detect the collision and require them to
-resolve any conflicts before recording the changes. Modern version
-control systems also allow repositories to be synchronized with each
-other, so that no one repository becomes a single point of failure.
-Together, these features have several benefits:
-
-\begin{enumerate}
-\item
-  Instead of requiring users to copy everything into subfolders, version
-  control safely stores just enough information to allow old versions of
-  files to be re-created on demand. This saves both space and time.
-\item
-  Instead of relying on users to choose sensible names for backup
-  copies, the version control system timestamps all saved changes
-  automatically.
-\item
-  Instead of requiring users to be disciplined about writing log
-  comments, version control systems prompt them every time a change is
-  saved. They also keep a 100\% accurate record of what was
-  \emph{actually} changed, as opposed to what the user \emph{thought}
-  they changed, which can be invaluable when problems crop up later.
-\item
-  Instead of simply copying files to remote storage, version control
-  checks to see whether doing that would overwrite anyone else's work.
-  This turns out to be the key to supporting large-scale ad hoc
-  collaboration.
-\end{enumerate}
-
-\subsection*{Discussion}
-
-This section was easily the most contentious in this paper.  On the
-one hand, all of the authors use version control daily for all of
-their projects.  On the other hand, many competent and productive
-researchers who have used version control in earnest believe that
-using it for managing papers and data is like using the back end of a
-screwdriver to hammer in a nail.  As Arjun Raj said in a blog post:
+All of the authors use version control daily for all of their
+projects.  However, many competent and productive researchers who have
+used version control in earnest believe that using it for managing
+papers and data is like using the back end of a screwdriver to hammer
+in a nail.  As Arjun Raj said in \withurl{a blog
+  post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
 
 \begin{quote}
 Google Docs excels at easy sharing, collaboration, simultaneous
@@ -875,95 +732,240 @@ non-ideological reasons why one should use version control, and some
 consideration of the serious hassles associated with its use.
 \end{quote}
 
-Regardless of which approach is taken, the first rule for using
-version control is that \recommend{almost everything created by a
-  human being should be backed up as soon as it is created}. This
-includes scripts and programs of all kinds, software packages that
-your project depends on, and documentation. A few exceptions to this
-rule are discussed below.
+We therefore recommend that projects adopt \emph{either} a systematic
+manual approach for managing changes \emph{or} version control in its
+full glory.  Whatever is adopted should aid reproducibility by
+allowing you to reference or retrieve a specific version of the entire
+project. This is valuable for your future self (when you finally get
+the reviews back for your paper), for your lab-mates and collaborators
+(in case you leave the project), and for reviewers, editors, and
+others who want to convince themselves of the conclusions in your
+published research.  It should also support sharing and collaboration
+by managing the process of merging independent changes made by
+different people, and distributing those changes back to everyone in a
+controlled, traceable way.
 
-Second, \recommend{make changes small}.  Each change committed to a
-version control system or added to a change log should not be so large
-as to make the change tracking irrelevant. For example, a single
-change such as ``Revise script file'' that adds or changes several
-hundred lines is likely too large, as it will not allow changes to
-different components of an analysis to be investigated
-separately. Similarly, changes should not be broken up into pieces
-that are too small, although we find that this is less of a danger
-with novices. As a rule of thumb, a good size for a single change is a
-group of edits that you could imagine wanting to undo in one step at
-some point in the future.
+Whatever is chosen, we recommend that it be used in the following way:
 
-Third, everyone working on the project should \recommend{share changes
-  frequently}, and incorporate changes from others just as
-frequently. Do not allow individual investigator's versions of the
-project repository to drift apart, as the effort required to merge
-differences goes up faster than the size of the difference. This is
-particularly important for the manual version control procedure
-describe above, which does not provide any assistance for merging
-simultaneous changes.
+\begin{enumerate}
 
-Finally, \recommend{create a checklist for committing and sharing
-  changes} to the project, document the checklist in the repository,
-and \emph{use it}.  The list might include:
-
-\begin{itemize}
 \item
+  \recommend{Back up (almost) everything created by a human being as
+    soon as it is created.} This includes scripts and programs of all
+  kinds, software packages that your project depends on, and
+  documentation. A few exceptions to this rule are discussed below.
+
+\item
+  \recommend{Keep changes small.}  Each change should not be so large
+  as to make the change tracking irrelevant. For example, a single
+  change such as ``Revise script file'' that adds or changes several
+  hundred lines is likely too large, as it will not allow changes to
+  different components of an analysis to be investigated
+  separately. Similarly, changes should not be broken up into pieces
+  that are too small, although we find that this is less of a danger
+  with novices. As a rule of thumb, a good size for a single change is
+  a group of edits that you could imagine wanting to undo in one step
+  at some point in the future.
+
+\item
+  Everyone working on the project should \recommend{share changes
+    frequently}, and incorporate changes from others just as
+  frequently. Do not allow individual investigator's versions of the
+  project repository to drift apart, as the effort required to merge
+  differences goes up faster than the size of the difference. This is
+  particularly important for the manual version control procedure
+  describe above, which does not provide any assistance for merging
+  simultaneous changes.
+
+\item
+  \recommend{Create, maintain, and use a checklist for committing and
+    sharing changes to the project.}  The list should include
   writing commit messages that clearly explain any changes,
-\item
-  size and content of single commits,
-\item
+  the size and content of single commits,
   style guidelines for code,
+  updating to-do lists,
+  and bans on committing half-done work or broken code.
+  See \cite{gawande2011} for more on the proven value of checklists.
+
+\end{enumerate}
+
+\subsection*{Manual Versioning}
+
+Our first suggested approach, in which everything is done by hand, has
+three parts:
+
+\begin{enumerate}
+
 \item
-  updating to-do lists, and
+  \recommend{Store each project in a folder that is mirrored off the
+    researcher's working machine} by a system such as Dropbox, and
+  synchronize that folder at least daily. It may take a few minutes,
+  but that time can be spent catching up on email, and is repaid the
+  moment a laptop is stolen or its hard drive fails.
+
 \item
-  bans on committing half-done work or broken code.
-\end{itemize}
+  \recommend{Add a file called \texttt{CHANGELOG.txt} to the project's
+    \texttt{docs} subfolder}, and make dated notes about changes to
+  the project in this file in reverse chronological order (i.e., most
+  recent first). This file is the equivalent of a lab notebook, and
+  should contain entries like those shown in Figure~\ref{fig:changelog}.
+
+\item
+  \recommend{Copy the entire project whenever a significant change has
+    been made} (i.e., one that materially affects the results being
+  produced), and store that copy in a sub-folder whose name reflects
+  the date in the area that's being synchronized. This approach
+  results in projects being organized as shown in Figure~\ref{fig:manual}.
+  Here, the \texttt{project\_name} folder is mapped to external storage
+  (such as Dropbox), \texttt{current} is where development is done, and
+  other folders within \texttt{project\_name} are old versions.
+
+  \begin{framed}
+    \noindent \textbf{Data is Cheap, Time is Expensive}
+
+    Copying everything like this may seem wasteful, since many files won't
+    have changed, but consider: a terabyte hard drive costs about \$50
+    retail, which means that 50 GByte costs less than a latte. Provided
+    large data files are kept out of the backed-up area (discussed below),
+    this approach costs less than the time it would take to select files by
+    hand for copying.
+  \end{framed}
+
+\end{enumerate}
+
+\begin{figure}
+\begin{verbatim}
+## 2016-04-08
+
+* Switched to cubic interpolation as default.
+* Moved question about family's TB history to end of questionnaire.
+
+## 2016-04-06
+
+* Added option for cubic interpolation.
+* Removed question about staph exposure (can be inferred from blood test results).
+\end{verbatim}
+\caption{Example Changelog}
+\label{fig:changelog}
+\end{figure}
+
+\begin{figure}
+\begin{verbatim}
+.
+|-- project_name/
+|   \-- current
+|       \-- ...project content as described earlier...
+|   \-- 2016-03-01
+|       \-- ...content of 'current' on Mar 1, 2016
+|   \-- 2016-02-19
+|       \-- ...content of 'current' on Feb 19, 2016
+\end{verbatim}
+\caption{Directory Hierarchy for Manual Versioning}
+\label{fig:manual}
+\end{figure}
+
+This manual procedure satisfies the requirements outlined above without
+needing any new tools. If multiple researchers are working on the same
+project, though, they will need to coordinate so that only a single
+person is working on specific files at any time. In particular, they may
+wish to create one change log file per contributor, and to merge those
+files whenever a backup copy is made.
+
+\subsection*{Tool-Based Versioning}
+
+What the manual process described above requires most is
+self-discipline. The version control tools that underpin our second
+approach---the one we all now use for our projects---don't just
+accelerate the manual process: they also automate some steps while
+enforcing others, and thereby require less self-discipline for more
+reliable results.
+
+\begin{framed}
+  \noindent \textbf{How Version Control Works}
+
+  A version control system stores snapshots of a project's files in a
+  repository. Users can modify their working copy of the project at will,
+  and then commit changes to the repository when they wish to make a
+  permanent record and/or share their work with colleagues. The version
+  control system automatically records when the change was made and by
+  whom along with the changes themselves.
+  
+  Crucially, if several people have edited files simultaneously, the
+  version control system will detect the collision and require them to
+  resolve any conflicts before recording the changes. Modern version
+  control systems also allow repositories to be synchronized with each
+  other, so that no one repository becomes a single point of failure.
+  Tool-based version control has several benefits over manual version
+  control:
+
+  \begin{itemize}
+  \item
+    Instead of requiring users to copy everything into subfolders, version
+    control safely stores just enough information to allow old versions of
+    files to be re-created on demand. This saves both space and time.
+  \item
+    Instead of relying on users to choose sensible names for backup
+    copies, the version control system timestamps all saved changes
+    automatically.
+  \item
+    Instead of requiring users to be disciplined about writing log
+    comments, version control systems prompt them every time a change is
+    saved. They also keep a 100\% accurate record of what was
+    \emph{actually} changed, as opposed to what the user \emph{thought}
+    they changed, which can be invaluable when problems crop up later.
+  \item
+    Instead of simply copying files to remote storage, version control
+    checks to see whether doing that would overwrite anyone else's work.
+    This turns out to be the key to supporting large-scale ad hoc
+    collaboration.
+  \end{itemize}
+\end{framed}
+
+\fixme{Recommendations for tool-based version control go here??}
 
 \subsection*{When is Version Control Not Necessary?}
 
-Despite the benefits of version control systems, there are some types
-of files that may \emph{not} be appropriate for version
-control. First, data should be backed up, but may or may not be a good
-candidate for version control\footnote{We also believe that data
-  should be made publicly available except when there are strong
-  reasons not to do so, such as patient confidentiality, but that is a
-  separate issue.}. The size of data sets can be a problem. If a file
-is small, placing it in a version control repository facilitates
-reproducibility. On the other hand, today's version control systems
-are not designed to handle megabyte-sized files, never mind gigabytes,
-though support for them is emerging.
+Despite the benefits of version control systems, some types of files
+may \emph{not} be appropriate for version control. First, if a file is
+small, placing it in a version control repository facilitates
+reproducibility. However, today's version control systems are not
+designed to handle megabyte-sized files, never mind gigabytes, though
+support for them is emerging.
 
-Raw data should not change (and therefore should not require version
-tracking). Putting synthesized or modified data sets into version
-control may not be necessary if you can re-generate these files from raw
-data and data-cleaning scripts (which definitely \emph{are} under
-version control!).
+Second, raw data should not change, and therefore should not require
+version tracking. Putting synthesized or modified data sets into
+version control may not be necessary if you can re-generate these
+files from raw data and data-cleaning scripts (which definitely
+\emph{are} under version control!).
 
-Unfortunately, some data formats are not amenable to version control,
-which is designed to work with text files where the lines are in a
-specific order (such as source code or plain-text documentation). Binary
-files (such as HDF5) can be put in a version control system, but you
-won't be able to see specific changes, although GitHub has some clever
-tools for monitoring changes in image files. Similarly, tabular data
-(such as CSV files) can be put in version control, but changing the
-order of the rows or columns will create a big change for the version
-control system, even if the data itself has not changed.
+Third, some data formats are unfortunately not amenable to version
+control, which is designed to work with plain text files such as
+source code.  In particular, Microsoft Office files (like the
+\texttt{.docx} files used by Word or the \texttt{.xlsx} files used by
+Excel) can be stored in a version control system, but you won't be
+able to see specific changes. Similarly, tabular data (such as CSV
+files) can be put in version control, but changing the order of the
+rows or columns will create a big change for the version control
+system, even if the data itself has not changed.
 
-Also, researchers dealing with data subject to legal restrictions that
-prohibit sharing (such as medical data) should be careful not to put
-data in public version control systems. Some institutions may provide
-access to private version control systems, so it is worth checking with
-your IT department.
+\begin{framed}
+  \noindent \textbf{Inadvertent Sharing}
 
-Second, opinion is divided on whether the \texttt{results} directory and
-other generated files such as figures should be placed under version
-control. If we borrow conventions from software development (just as we
-borrowed version control itself) the answer is no, but there are some
-benefits to putting results under version control in data analysis
-projects:
+  Researchers dealing with data subject to legal restrictions that
+  prohibit sharing (such as medical data) should be careful not to put
+  data in public version control systems. Some institutions may provide
+  access to private version control systems, so it is worth checking with
+  your IT department.
+\end{framed}
 
-\begin{enumerate}
+Opinion is divided on whether the \texttt{results} directory and other
+generated files such as figures should be placed under version
+control. If we borrow conventions from software development (just as
+we borrowed version control itself) the answer is no, but there are
+some benefits to putting results under version control in data
+analysis projects:
+
+\begin{itemize}
 \item
   It gives collaborators immediate access to current processed data,
   results, figures, etc., without needing to regenerate it all.
@@ -973,11 +975,11 @@ projects:
   see the downstream effects of actions like upgrading a piece of
   software, refactoring a script, or starting with a slightly different
   dataset.
-\end{enumerate}
+\end{itemize}
 
-If results files are kilobytes or a few megabytes in size, we therefore
-recommend keeping them under version control. Anything more than this,
-and something else should be used for management.
+If results files are kilobytes or a few megabytes in size, we
+therefore recommend keeping them under version control. Anything more
+than this, and something else should be used for management.
 
 \section{Manuscripts}\label{sec:manuscripts}
 
