@@ -37,7 +37,8 @@
 {Jenny~Bryan}$^{2}$,
 {Karen~Cranston}$^{3}$,
 {Justin~Kitzes}$^{4}$,
-{Lex~Nederbragt}$^{5}$
+{Lex~Nederbragt}$^{5}$,
+{Tracy~K.~Teal}$^{6}$
 \\
 1) Software Carpentry Foundation / gvwilson@software-carpentry.org
 \\
@@ -48,6 +49,8 @@
 4) University of California, Berkeley / jkitzes@berkeley.edu
 \\
 5) University of Oslo / lex.nederbragt@ibv.uio.no
+\\
+6) Data Carpentry / tkteal@datacarpentry.org
 \\
 $\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
 \end{flushleft}
@@ -189,17 +192,20 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   these columns into a variable of measurements, accompanied by a
   companion variable indicating the time point.
 
-  Reformat values as needed to match your environment's built-in parsing
-  rules. For example, use date-time format that will be recognized
-  automatically.
+  Reformat values as needed to match your environment's built-in
+  parsing rules. For example, use a date-time format that will be
+  recognized automatically, or better yet, split dates into three
+  columns (year, month, and day) for easier sorting and filtering.
 
   \begin{framed}
     \noindent \textbf{OpenRefine}
 
-    \withurl{OpenRefine}{http://openrefine.org/} is an excellent tool for
-    this stage of data cleanup. It combines a spreadsheet-like interface
-    to tabular data with a large set of cleanup heuristics, and can
-    generate a trace of cleanup steps to ensure reproducibility.
+    \withurl{OpenRefine}{http://openrefine.org/} is an excellent tool
+    for this stage of data cleanup. It combines a spreadsheet-like
+    interface to tabular data with a large set of cleanup heuristics,
+    and can generate a trace of cleanup steps to ensure
+    reproducibility.  The cleanup process does not affect the original
+    raw data, which further aids reproducibility.
   \end{framed}
 
 \item
@@ -235,6 +241,8 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   the same names and codes when variables in two datasets refer to the
   same thing to simplify merging and lookup (and make them less
   error-prone).
+  \fixme{Not sure what this point is asking for---the term ``marshal''
+    is new to me in this sense.}
 
 \item
   \recommend{Create a dataset purpose-built for specific analyses
@@ -254,10 +262,15 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   as a set of boundary coordinates.
 
 \item
-  \recommend{Submit data to a reputable DOI-issuing
-  repository so that others can access and cite it.}  Your data is as
-  much a product of your research as the papers you write, and just as
-  likely to be useful to others (if not more so).
+  \recommend{Submit data to a reputable DOI-issuing repository so that
+    others can access and cite it.}  Your data is as much a product of
+  your research as the papers you write, and just as likely to be
+  useful to others (if not more so).  Sites such as
+  \withurl{Figshare}{https://figshare.com/},
+  \withurl{Dryad}{http://datadryad.org/}, and
+  \withurl{Zenodo}{https://zenodo.org/} allow others to find your work
+  and make use of it; we discuss licensing in
+  Section~\ref{sec:collaboration} below.
 
 \end{enumerate}
 
@@ -268,14 +281,15 @@ of a data analysis pipeline, which in turn makes it easier and faster
 to tinker with specific data cleaning operations.
 
 We propose delimited plain text (such as CSV) as a lowest common
-denominator for data that is usable across time, people,
-operating systems, and analytical environments. However,
-plain text is not a panacea: when collaborating with
-others, be aware of and, when possible, standardize on file encoding,
-line endings, and the elimination of prose-oriented features, such as
-``smart quotes''. Differences between collaborators in these
-details can cause the changes between file versions to be large, and
-therefore substantially less comprehensible.
+denominator for tabular data since it is usable across time, people,
+operating systems, and analytical environments. However, some data is
+intrinsically not textual (e.g., images), and plain text is not a
+panacea: when collaborating with others, be aware of and, when
+possible, standardize on file encoding, line endings, and the
+elimination of prose-oriented features, such as ``smart
+quotes''. Differences between collaborators in these details can cause
+the changes between file versions to be large, and therefore
+substantially less comprehensible.
 
 \begin{framed}
 \noindent \textbf{Choosing Metadata}
@@ -292,14 +306,14 @@ that they will easily be able to parse.
 
 \section{Software}\label{sec:software}
 
-If you or your group are creating tens of thousands of lines of software
-for use by hundreds of people you have never met,
-you are doing software engineering. If you're writing a few dozen lines now
-and again, and are probably going to be its only user, you may not be doing engineering,
-but you can still
-make things easier on yourself by adopting a few key engineering practices. What's
-more, adopting these practices will make it easier for people to
-understand and (re)use your code.
+If you or your group are creating tens of thousands of lines of
+software for use by hundreds of people you have never met, you are
+doing software engineering. If you're writing a few dozen lines now
+and again, and are probably going to be its only user, you may not be
+doing engineering, but you can still make things easier on yourself by
+adopting a few key engineering practices. What's more, adopting these
+practices will make it easier for people to understand and (re)use
+your code.
 
 The core realization in these practices is that \emph{readable},
 \emph{reusable}, and \emph{testable} are
@@ -338,7 +352,7 @@ outputs.
   This applies with even greater force to using libraries. The easiest code
   to debug and maintain is code you didn't actually write, so
   always search for libraries that do what you need before writing
-  new code yourself.
+  new code yourself, and test them before relying on them.
 
 \item
   \recommend{Give functions and variables meaningful names}, both to
@@ -498,9 +512,11 @@ to contribute.
   describes how to cite this project as a whole, and where to find,
   and how to cite, any data sets, code, figures, and other artifacts
   that have their own DOIs.  Figure~\ref{fig:citation} shows the
-  \texttt{CITATION} file for the Software Carpentry project.
-  For an example of a more detailed \texttt{CITATION} file, see the one
-  for the \withurl{khmer project}{https://github.com/dib-lab/khmer/blob/master/CITATION}.
+  \texttt{CITATION} file for the \withurl{Ecodata
+    Retriever}{https://github.com/weecology/retriever}; for an example
+  of a more detailed \texttt{CITATION} file, see the one for the
+  \withurl{khmer}{https://github.com/dib-lab/khmer/blob/master/CITATION}
+  project.
 
 \end{enumerate}
 
@@ -511,18 +527,20 @@ easy for other people to help you and give you credit for your work.
 
 \begin{figure}
 \begin{verbatim}
-To reference Software Carpentry in publications, please cite:
+Morris, B.D. and E.P. White. 2013. The EcoData Retriever: improving
+access to existing ecological data. PLOS ONE 8:e65848.
+http://doi.org/doi:10.1371/journal.pone.0065848
 
-Greg Wilson: "Software Carpentry: Lessons Learned". F1000Research,
-2016, 3:62 (doi: 10.12688/f1000research.3-62.v2).
-
-@online{wilson-software-carpentry-2016,
-  author      = {Greg Wilson},
-  title       = {Software Carpentry: Lessons Learned},
-  version     = {2},
-  date        = {2016-01-28},
-  url         = {http://f1000research.com/articles/3-62/v2},
-  doi         = {10.12688/f1000research.3-62.v2}
+@article{morris2013ecodata,
+  title={The EcoData Retriever: Improving Access to Existing Ecological Data},
+  author={Morris, Benjamin D and White, Ethan P},
+  journal={PLOS One},
+  volume={8},
+  number={6},
+  pages={e65848},
+  year={2013},
+  publisher={Public Library of Science}
+  doi={10.1371/journal.pone.0065848}
 }
 \end{verbatim}
 \caption{Example CITATION File}
@@ -693,13 +711,13 @@ project findings.
 
 \section{Version Control}\label{sec:versioning}
 
-Keeping track of changes that you or your collaborators make to data,
-software, and manuscripts is a critical part of research.  We believe
-that the best tools for doing this are the version control systems
-that are used in software development, such as Git, Mercurial, and
-Subversion.  They keep track of what was changed in a file when and by
-whom, and synchronize changes to a central server so that many users
-can track the same set of files.
+Keeping track of changes that you or your collaborators make to data
+and software is a critical part of research.  We believe that the best
+tools for doing this are the version control systems that are used in
+software development, such as Git, Mercurial, and Subversion.  They
+keep track of what was changed in a file when and by whom, and
+synchronize changes to a central server so that many users can track
+the same set of files.
 
 All of the authors use version control daily for all of their
 projects.  However, many competent and productive researchers who have
