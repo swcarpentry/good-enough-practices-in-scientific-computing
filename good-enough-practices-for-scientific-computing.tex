@@ -80,14 +80,13 @@ and \withurl{Data Carpentry}{http://datacarpentry.org} workshops over the past s
 
 Our intended audience is researchers who are working alone or with a
 handful of collaborators on projects lasting a few days to a few
-months, and who are ready to move beyond saving spreadsheets
-with names like \texttt{results-updated-3-revised.xlsx} in Dropbox. A practice
-is included in our list if large numbers of researchers use it, and large numbers
-of novices are \emph{still} using it
-months after first trying it out. We include the second criterion because
-there is no point recommending something that people
-abandon after a few days or weeks because they don't
-perceive value.
+months, and who are ready to move beyond saving spreadsheets with
+names like \texttt{results-updated-3-revised.xlsx} in Dropbox. A
+practice is included in our list if large numbers of researchers use
+it, and large numbers of novices are \emph{still} using it months
+after first trying it out. We include the second criterion because
+there is no point recommending something that people won't actually
+adopt.
 
 Many of our recommendations are
 for the benefit of the collaborator every researcher cares about most:
@@ -101,6 +100,13 @@ such as code review that we feel are essential for larger-scale
 development (Section~\ref{sec:omitted}).
 
 \fixme{add pointers to papers or projects that follow these rules.}
+
+\subsection*{Acknowledgments}
+
+Our thanks to Arjun Raj (University of Pennsylvania) and Steven
+Haddock (Monterey Bay Aquarium Research Institute) for their feedback
+on early versions of this paper, and to everyone involved in Data
+Carpentry and Software Carpentry for everything they have taught us.
 
 \section{Data Management}\label{sec:data}
 
@@ -122,10 +128,15 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   analytical mishaps and allows you to experiment without fear.
 
   But use common sense: if a large volume of data is received in a
-  format that is inefficient to store or process,
-  transform it for storage with a lossless, well-documented
-  procedure.  Equally, don't duplicate contents of stable, long-lived
-  repositories (i.e., don't clone GenBank)
+  format that is inefficient to store or process, transform it for
+  storage with a lossless, well-documented procedure.  Equally, don't
+  duplicate contents of stable, long-lived repositories (i.e., don't
+  clone GenBank).  \fixme{Arjun Raj says, ``We often store our
+    particular downloaded list of feature annotations, etc., in our
+    analysis repo.  Is that not recommended?  I like it for two
+    reasons: 1. you actually have it when you need it, and it won't
+    change. 2. it is often hard to document exactly what buttons you
+    had to click to get a particular bit of data.''}
 
   You may also consider restricting file permissions to read-only,
   even (or especially) for yourself, so it is harder to damage raw
@@ -135,21 +146,20 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \recommend{Create the data you wish to see in the world}, i.e.,
   create the dataset you \emph{wish} you had received from the raw
   data and use that as the starting point for downstream analyses.
-  This is the
-  time to improve machine and human readability, but \emph{not}
-  the time to do vigorous data filtering or bring in external information.
+  This is the time to improve machine and human readability, but
+  \emph{not} the time to do vigorous data filtering or bring in
+  external information.
+  \fixme{Include an example.}
 
   Approach this initial tidying up as internal to the existing dataset
-  and non-destructive, both of the data and its general
-  ``shape''. 
-  Where possible, use open non-proprietary formats instead of closed,
-  proprietary formats: they will probably last longer, and will
-  probably be easier for machines to read.
-  CSV is good for simple tabular data,
-  JSON, YAML, or XML for non-tabular data such as graphs\footnote{The
-  node-and-arc kind.},
-  and HDF5 for certain kinds of structured data.
-  \withurl{This
+  and non-destructive, both of the data and its general ``shape''.
+  \fixme{Include example of what goes wrong if you don't do this
+    right.}  Where possible, use open non-proprietary formats instead
+  of closed, proprietary formats: they will probably last longer, and
+  will probably be easier for machines to read.  CSV is good for
+  simple tabular data, JSON, YAML, or XML for non-tabular data such as
+  graphs\footnote{The node-and-arc kind.}, and HDF5 for certain kinds
+  of structured data.  \withurl{This
     guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
   has a few useful guidelines for choosing a file format.
 
@@ -174,13 +184,21 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
 \item
   \recommend{Create analysis-friendly data}.  You can do this by
   reformatting data to eliminate processing steps between loading the
-  data set and doing the analysis.
-  Columns that contain more than one variable's worth of information
-  should be split. For example, the presence of ``kg'' in ``3.4 kg''
-  will cause most analytical environments to read this in as character
-  data rather than numeric. It should be split into two columns (the
-  mass ``3.4'' and the units ``kg''), or the units should be recorded
-  in the variable name and/or metadata.
+  data set and doing the analysis.  Columns that contain more than one
+  variable's worth of information should be split. For example, the
+  presence of ``kg'' in ``3.4 kg'' will cause most analytical
+  environments to read this in as character data rather than
+  numeric. It should be split into two columns (the mass ``3.4'' and
+  the units ``kg''), or the units should be recorded in the variable
+  name and/or metadata.  \fixme{Arjun Raj says, ``One question I have
+    about this from a practical point of view is whether one should
+    save intermediates as data files or save them programmatically,
+    i.e., call a function to load data that automatically does the
+    tidying and analysis-friendlying in code. This leads to less
+    intermediates to keep track of (thus less changes for error) and
+    can be easier to maintain for small-ish datasets and pipelines.''}
+  \fixme{Arjun Raj says, ``This example seems to be more of a data
+    tidying situation to me, but perhaps I'm misunderstanding.''}
 
   Multiple columns that only contain one variable's worth of information
   when taken together should be combined. This is characteristic of data
@@ -230,28 +248,35 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   link data sets together.
 
 \item
-  \recommend{Marshal complementary data in files that meet the
-    same standards}.  Raw data frequently does not fully explain
+  \recommend{Marshal complementary data in files that meet the same
+    standards}.  Raw data frequently does not fully explain
   itself. For example, if each well of a microtitre plate is used to
   study a specific gene knockout, the prepared raw data will have a
   \texttt{well} variable taking on values like ``A1'' and ``G12'', but
   the plate reader cannot possibly know what's in each well. That
   information will be absent from the primary data file, so you must
-  create a supplementary file in order to look this up. Make sure to use
-  the same names and codes when variables in two datasets refer to the
-  same thing to simplify merging and lookup (and make them less
-  error-prone).
-  \fixme{Not sure what this point is asking for---the term ``marshal''
-    is new to me in this sense.}
+  create a supplementary file in order to look this up. Make sure to
+  use the same names and codes when variables in two datasets refer to
+  the same thing to simplify merging and lookup (and make them less
+  error-prone).  \fixme{Not sure what this point is asking for---the
+    term ``marshal'' is new to me in this sense.  Arjun Raj says,
+    ``The use of the word ``standards'' is a bit confusing to me.  I
+    think the point of this paragraph is to make sure that data is
+    internally consistent, right?  And to add metadata?  The word
+    ``standard'' here seems to imply something about quality, not
+    about consistency/labeling.''}
 
 \item
-  \recommend{Create a dataset purpose-built for specific analyses
-    and figures.}  This probably involves filtering rows, selecting
+  \recommend{Create a dataset purpose-built for specific analyses and
+    figures.}  This probably involves filtering rows, selecting
   relevant variables, and merging with external information. If the
   preceding steps have been done, this can often be surprisingly
-  straightforward. The basic form of the data was hopefully set earlier,
-  so the main changes here are likely to be data reduction and the
-  amalgamation of multiple datasets.
+  straightforward. The basic form of the data was hopefully set
+  earlier, so the main changes here are likely to be data reduction
+  and the amalgamation of multiple datasets.  \fixme{Arjun Raj says,
+    ``Again the question comes up about whether this is best managed
+    programmatically or as explicit data.  I think it depends on the
+    particulars of the project.  We have done both.''}
 
 \item
   \recommend{Represent every analysis step textually, complete with
@@ -274,11 +299,15 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
 
 \end{enumerate}
 
-Taken in order, the recommendations above will
-produce intermediate data files with increasing levels of cleanliness
-and task-specificity. This makes it easy to re-run \emph{parts}
-of a data analysis pipeline, which in turn makes it easier and faster
-to tinker with specific data cleaning operations.
+Taken in order, the recommendations above will produce intermediate
+data files with increasing levels of cleanliness and
+task-specificity. This makes it easy to re-run \emph{parts} of a data
+analysis pipeline, which in turn makes it easier and faster to tinker
+with specific data cleaning operations.  \fixme{Arjun Raj says, ``I
+  think there can be a clear distinction between \emph{running} parts
+  of a pipeline and \emph{storing intermediates} in the pipeline. Sort
+  of feeds into my previous comments on programmatic vs. data
+  storage.''}
 
 We propose delimited plain text (such as CSV) as a lowest common
 denominator for tabular data since it is usable across time, people,
@@ -349,10 +378,11 @@ outputs.
   data structures like lists rather than creating lots of variables called
   \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
-  This applies with even greater force to using libraries. The easiest code
-  to debug and maintain is code you didn't actually write, so
-  always search for libraries that do what you need before writing
-  new code yourself, and test them before relying on them.
+  This applies with even greater force to using libraries. The easiest
+  code to debug and maintain is code you didn't actually write, so
+  \recommend{always search for well-maintained libraries that do what
+    you need} before writing new code yourself, and \recommend{test
+    libraries before relying on them}.
 
 \item
   \recommend{Give functions and variables meaningful names}, both to
@@ -451,10 +481,11 @@ to contribute.
   project's home directory.  This file (which may be called
   \texttt{README}, \texttt{README.txt}, or something similar) should
   contain the project's title, a brief description (similar to the
-  abstract of a paper), and contact information that actually works.
-  It is often the first thing users of your project will look at, so
-  make it explicit that you welcome contributors and point them to
-  ways they can help.
+  abstract of a paper), contact information that actually works, and
+  an example or two of how to actually run the software.  It is often
+  the first thing users of your project will look at, so make it
+  explicit that you welcome contributors and point them to ways they
+  can help.
   
   You should also create a \texttt{CONTRIBUTING} file that describes
   what people need to do in order to get the project going and
@@ -524,6 +555,11 @@ The overview and to-do list are to help you as well as other
 people---remember, your most important collaborator is yourself three
 months from now. The license and citation file are there to make it
 easy for other people to help you and give you credit for your work.
+\fixme{Arjun Raj says, ``I honestly just don't see this. Nobody who is
+  a novice is likely to make code that others are going to even use,
+  let alone get credit for for the repository alone. This strikes me
+  as a statement with little basis in fact for the target audience, at
+  least based on my experience.''}
 
 \begin{figure}
 \begin{verbatim}
@@ -569,8 +605,10 @@ them.  Our recommendations for doing this are drawn primarily from
   in data and code files. If two research efforts share no data or
   code, they will probably be easiest to manage independently. If they
   share more than half of their data and code, they are probably best
-  managed together. Anything in between can be decided based on the
-  set of people you're collaborating with.
+  managed together, while if you are building tools that are used in
+  several projects, the common code should probably be in a project of
+  its own. Anything in between can be decided based on the set of
+  people you're collaborating with.
 
 \item
   \recommend{Put text documents associated with the projectin the
