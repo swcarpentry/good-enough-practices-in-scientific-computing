@@ -131,12 +131,14 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   format that is inefficient to store or process, transform it for
   storage with a lossless, well-documented procedure.  Equally, don't
   duplicate contents of stable, long-lived repositories (i.e., don't
-  clone GenBank).  \fixme{Arjun Raj says, ``We often store our
+  clone GenBank).
+
+  \fixme{Arjun Raj says, ``We often store our
     particular downloaded list of feature annotations, etc., in our
     analysis repo.  Is that not recommended?  I like it for two
     reasons: 1. you actually have it when you need it, and it won't
     change. 2. it is often hard to document exactly what buttons you
-    had to click to get a particular bit of data.''}
+    had to click to get a particular bit of data.'' Justin replies: I believe that he's referring to storing data in a VC repo alongside analysis, in 1, which is addressed in the VC section. On 2, too bad, you have to :-D - if you can't do it, how is someone else supposed to re-do it? Added a sentence to 4 about manual step recording.}
 
   You may also consider restricting file permissions to read-only,
   even (or especially) for yourself, so it is harder to damage raw
@@ -190,15 +192,18 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   environments to read this in as character data rather than
   numeric. It should be split into two columns (the mass ``3.4'' and
   the units ``kg''), or the units should be recorded in the variable
-  name and/or metadata.  \fixme{Arjun Raj says, ``One question I have
+  name and/or metadata.
+
+  \fixme{Arjun Raj says, ``One question I have
     about this from a practical point of view is whether one should
     save intermediates as data files or save them programmatically,
     i.e., call a function to load data that automatically does the
     tidying and analysis-friendlying in code. This leads to less
     intermediates to keep track of (thus less changes for error) and
-    can be easier to maintain for small-ish datasets and pipelines.''}
+    can be easier to maintain for small-ish datasets and pipelines.'' Justin replies: See revised paragraph closing this section, where I discuss. Personally I stand by recommending intermediate products as a means of chunking the workflow, which I think overrides concerns about tracking the intermediate files. The concern about scripting data processing is good and but is already addressed in 4.}
+
   \fixme{Arjun Raj says, ``This example seems to be more of a data
-    tidying situation to me, but perhaps I'm misunderstanding.''}
+    tidying situation to me, but perhaps I'm misunderstanding.'' Justin replies: Yes, the intro states that the goal here is to create tidy data, so this seems to be in the right place.}
 
   Multiple columns that only contain one variable's worth of information
   when taken together should be combined. This is characteristic of data
@@ -233,6 +238,14 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   stage of data cleanup, however trivial it seems.
   This not only ensures that you have a record,
   but also allows you to re-do the cleanup when new data arrives.
+  In cases where automated data cleanup is not possible or not practical,
+  it's important to clearly document every manual action taken
+  (what menu was used, what column was copied and pasted, 
+  what link was clicked, etc.) at this stage.
+  If you are not able to document this step clearly,
+  how will anyone else be able to repeat your analysis?
+  As important, how will you know in a month
+  whether you did it right the first time?
 
 \item
   \recommend{Give every record a unique key}.  In a
@@ -248,7 +261,7 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   link data sets together.
 
 \item
-  \recommend{Marshal complementary data in files that meet the same
+  \recommend{Include complementary data in files that meet the same
     standards}.  Raw data frequently does not fully explain
   itself. For example, if each well of a microtitre plate is used to
   study a specific gene knockout, the prepared raw data will have a
@@ -258,13 +271,15 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   create a supplementary file in order to look this up. Make sure to
   use the same names and codes when variables in two datasets refer to
   the same thing to simplify merging and lookup (and make them less
-  error-prone).  \fixme{Not sure what this point is asking for---the
-    term ``marshal'' is new to me in this sense.  Arjun Raj says,
+  error-prone).
+
+  \fixme{Not sure what this point is asking for---the
+    term ``marshal'' is new to me in this sense. Justin replies: Changed to include. Arjun Raj says,
     ``The use of the word ``standards'' is a bit confusing to me.  I
     think the point of this paragraph is to make sure that data is
     internally consistent, right?  And to add metadata?  The word
     ``standard'' here seems to imply something about quality, not
-    about consistency/labeling.''}
+    about consistency/labeling.'' Justin replies: Word standard no longer here.}
 
 \item
   \recommend{Create a dataset purpose-built for specific analyses and
@@ -273,18 +288,27 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
   preceding steps have been done, this can often be surprisingly
   straightforward. The basic form of the data was hopefully set
   earlier, so the main changes here are likely to be data reduction
-  and the amalgamation of multiple datasets.  \fixme{Arjun Raj says,
+  and the amalgamation of multiple datasets.
+  If only minimal selecting and merging is needed,
+  this step may be performed by software written to perform data analysis
+  without being saved separately.
+
+  \fixme{Arjun Raj says,
     ``Again the question comes up about whether this is best managed
     programmatically or as explicit data.  I think it depends on the
-    particulars of the project.  We have done both.''}
+    particulars of the project.  We have done both.'' Justin replies: Final sentence added here to mention question of saving, which is further discussed at the close of the section.}
 
 \item
-  \recommend{Represent every analysis step textually, complete with
-    parameter values.}  It isn't always possible to store the steps
-  themselves textually, but it is always possible to store the result
-  for later checking.  For example, choosing a region of intest in an
-  image is inherently interactive, but the region chosen can be stored
-  as a set of boundary coordinates.
+  \recommend{Document every step in writing, complete with
+    parameter values.} All information needed to redo
+    the steps taken to process the raw data should be recorded,
+    to the extent possible. Where the exact details of the procedure
+    cannot easily be written down, intermediate results should be saved
+    for later checking.  For example, choosing a region of intest in an
+    image is inherently interactive, but the region chosen can be stored
+    as a set of boundary coordinates.
+
+  \fixme{Justin asks: I'm not sure what's meant by textually - do you mean as code, or just written down? I believe that the above clarifies the intent, although conversely I may have changed the meaning.}
 
 \item
   \recommend{Submit data to a reputable DOI-issuing repository so that
@@ -301,20 +325,42 @@ a powerful accelerator for analysis \cite{wickham2014,hart2015}.
 
 Taken in order, the recommendations above will produce intermediate
 data files with increasing levels of cleanliness and
-task-specificity. This makes it easy to re-run \emph{parts} of a data
-analysis pipeline, which in turn makes it easier and faster to tinker
-with specific data cleaning operations.  \fixme{Arjun Raj says, ``I
+task-specificity. An alternative approach to data management would be
+to fold all data management tasks into the procedure,
+in particular the software,
+that is used for data analysis,
+so that intermediate data products are created ``on the fly''
+and stored only in memory, not saved as distinct files.
+
+\fixme{Arjun Raj says, ``I
   think there can be a clear distinction between \emph{running} parts
   of a pipeline and \emph{storing intermediates} in the pipeline. Sort
   of feeds into my previous comments on programmatic vs. data
-  storage.''}
+  storage.'' Justin replies: See modified paragraph below.}
 
-We propose delimited plain text (such as CSV) as a lowest common
-denominator for tabular data since it is usable across time, people,
-operating systems, and analytical environments. However, some data is
-intrinsically not textual (e.g., images), and plain text is not a
-panacea: when collaborating with others, be aware of and, when
-possible, standardize on file encoding, line endings, and the
+While the latter approach may be appropriate
+for projects in which very little data cleaning or processing is needed,
+we recommend that beginning computational researchers
+explicitly create and save these intermediate products for two reasons.
+First, saving intermediate files makes it easy
+to re-run \emph{parts} of a data analysis pipeline,
+which in turn makes it easier and faster to tinker
+with specific data cleaning operations.
+Second, dividing data cleaning into several consecutive steps
+and separating it from data analysis helps to conceptually divide
+a lengthy workflow into smaller conceptual chunks,
+akin to decomposing programs into functions (see \textit{Software}).
+Similar to dividing software into modules and functions,
+chunking a scientific computing pipeline in this way
+often makes it easier to understand, share, describe, and modify.
+
+In terms of data storage, we propose delimited plain text (such as CSV)
+as a lowest common denominator for tabular data, since it is usable
+across time, people, operating systems, and analytical environments.
+However, some data is intrinsically not textual (e.g., images),
+and plain text is not a panacea: when collaborating with others,
+be aware of and, when possible,
+standardize on file encoding, line endings, and the
 elimination of prose-oriented features, such as ``smart
 quotes''. Differences between collaborators in these details can cause
 the changes between file versions to be large, and therefore
@@ -555,11 +601,12 @@ The overview and to-do list are to help you as well as other
 people---remember, your most important collaborator is yourself three
 months from now. The license and citation file are there to make it
 easy for other people to help you and give you credit for your work.
+
 \fixme{Arjun Raj says, ``I honestly just don't see this. Nobody who is
   a novice is likely to make code that others are going to even use,
   let alone get credit for for the repository alone. This strikes me
   as a statement with little basis in fact for the target audience, at
-  least based on my experience.''}
+  least based on my experience.'' Justin replies: I might agree that 4 is a stretch, but 1 and 2 are critical - nearly every project has at least one collaborator (your PI, your student, your small-team collaborator). And 3 is good hygiene if you're putting your code anywhere public. (We also shouldn't underestimate making novice learners feel good by giving them an easy ``grown up'' task to help them feel like they're joining the club of ``real'' developers.) So I would say leave as is.}
 
 \begin{figure}
 \begin{verbatim}
@@ -681,7 +728,7 @@ statistical analyses. These files can be thought of as the
 ``scientific guts'' of the project, and as the project grows, they can
 be organized into additional subdirectories. If a project were to
 include re-runnable tests (Section~\ref{sec:omitted}), these are the
-functions they would exercise.
+functions they would test.
   
 The second type of file in \texttt{src} is controller or driver
 scripts that combine the core analytical functions with particular
@@ -757,34 +804,13 @@ keep track of what was changed in a file when and by whom, and
 synchronize changes to a central server so that many users can track
 the same set of files.
 
-All of the authors use version control daily for all of their
-projects.  However, many competent and productive researchers who have
-used version control in earnest believe that using it for managing
-papers and data is like using the back end of a screwdriver to hammer
-in a nail.  As Arjun Raj said in \withurl{a blog
-  post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
+\fixme{Justin says: I moved Arjun's quote to the manuscript section, as it
+was actually about VC-ing manuscripts, not code, which he says right in 
+the quote makes sense.}
 
-\begin{quote}
-Google Docs excels at easy sharing, collaboration, simultaneous
-editing, commenting and reply-to-commenting. Sure, one can approximate
-these using text-based systems and version control. The question is
-why anyone would like to{\ldots}
-
-The goal of reproducible research is to make sure one
-can{\dots}reproduce{\ldots}computational analyses. The goal of version
-control is to track changes to source code. These are fundamentally
-distinct goals, and while there is some overlap, version control is
-merely a tool to help achieve that, and comes with so much overhead
-and baggage that it is often not worth the effort.
-
-I've heard some say some version of ``If you're not using version
-control, it's not science.'' This assertion is of course patently
-false, as plenty of people have been doing fine science without
-version control. Widespread adoption will require practical,
-non-ideological reasons why one should use version control, and some
-consideration of the serious hassles associated with its use.
-\end{quote}
-
+Although all of the authors use version control daily for all of their
+projects, we recognize that many beginning computational scientists
+find version control to be one of the more difficult practices to adopt.
 We therefore recommend that projects adopt \emph{either} a systematic
 manual approach for managing changes \emph{or} version control in its
 full glory.  Whatever is adopted should aid reproducibility by
@@ -821,9 +847,9 @@ Whatever is chosen, we recommend that it be used in the following way:
   at some point in the future.
 
 \item
-  Everyone working on the project should \recommend{share changes
-    frequently}, and incorporate changes from others just as
-  frequently. Do not allow individual investigator's versions of the
+  \recommend{Share changes frequently.} Everyone working on the project 
+  should share and incorporate changes from others on a regular basis.
+  Do not allow individual investigator's versions of the
   project repository to drift apart, as the effort required to merge
   differences goes up faster than the size of the difference. This is
   particularly important for the manual version control procedure
@@ -974,15 +1000,15 @@ reliable results.
   \end{itemize}
 \end{framed}
 
-\fixme{Recommendations for tool-based version control go here??}
+\fixme{Recommendations for tool-based version control go here?? Justin says: I agree, we should at least mention a few candidate platforms. I'd go so far as to recommend git and GitHub since it's winning the mindshare war at this point (which is probably the most critical feature for a VC system, that other people you might work with are using it).}
 
 \subsection*{When is Version Control Not Necessary?}
 
 Despite the benefits of version control systems, some types of files
-may \emph{not} be appropriate for version control. First, if a file is
-small, placing it in a version control repository facilitates
-reproducibility. However, today's version control systems are not
-designed to handle megabyte-sized files, never mind gigabytes, though
+may \emph{not} be appropriate for version control. While placing 
+small files in a version control repository facilitates
+reproducibility, today's version control systems are not
+designed to handle megabyte-sized files, never mind gigabytes, although
 support for them is emerging.
 
 Second, raw data should not change, and therefore should not require
@@ -1165,6 +1191,25 @@ the barrier to collaborating on papers in this framework is simply too
 high to overcome. Good intentions aside, it always comes down to ``just
 give me a Word document with tracked changes,'' or similar.
 \end{quote}
+
+Similarly, Arjun Raj said in \withurl{a blog
+  post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
+
+\begin{quote}
+Google Docs excels at easy sharing, collaboration, simultaneous
+editing, commenting and reply-to-commenting. Sure, one can approximate
+these using text-based systems and version control. The question is
+why anyone would like to{\ldots}
+
+The goal of reproducible research is to make sure one
+can{\dots}reproduce{\ldots}computational analyses. The goal of version
+control is to track changes to source code. These are fundamentally
+distinct goals, and while there is some overlap, version control is
+merely a tool to help achieve that, and comes with so much overhead
+and baggage that it is often not worth the effort.
+\end{quote}
+
+\fixme{Justin says: I removed the third paragraph of the Arjun quote, as I found it not as relevant to our discussions in this paper (although it was a nice quote in general).}
 
 In keeping with our goal of recommending ``good enough'' practices, we
 have therefore included online storage in something like Google Docs. We
