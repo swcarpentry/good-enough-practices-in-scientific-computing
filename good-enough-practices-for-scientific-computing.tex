@@ -217,18 +217,27 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \end{framed}
 
 \item
-  \recommend{Always record the steps used to clean up data}: it's as
-  much a part of your analysis as any statistics you might do.  The
+  \recommend{Always record the steps used to process data, 
+  complete with parameter values}: it's as
+  much a part of your analysis as any statistics you might do.
+  All information needed to redo the steps taken to process
+  the raw data should be recorded, to the extent possible. The
   best way to do this is to write a re-runnable script for
-  \emph{every} stage of data cleanup, however trivial it seems.  This
-  not only ensures that you have a record, but also allows you to
-  re-do the cleanup when new data arrives.  In cases where automated
-  data cleanup is not possible or not practical, it's important to
+  \emph{every} stage of data processing, however trivial it seems.  
+  This not only ensures that you have a record, but also allows you to
+  re-do the cleanup and other steps when new data arrives. Where the
+  exact details of the procedure cannot easily be written down,
+  intermediate results should be saved for later checking. 
+  In cases where automated data processing is not possible 
+  or not practical, it's important to
   clearly document every manual action taken (what menu was used, what
   column was copied and pasted, what link was clicked, etc.) at this
-  stage.  If you are not able to document this step clearly, how will
-  anyone else be able to repeat your analysis?  As important, how will
-  you know in a month whether you did it right the first time?
+  stage. For example, choosing a region of intest in an image 
+  is inherently interactive, but the region chosen can be stored 
+  as a set of boundary coordinates. If you are not able to document 
+  this step clearly, how will anyone else be able to repeat your analysis? 
+  As important, how will you know in a month whether you did it 
+  right the first time?
 
 \item
   \recommend{Give every record a unique key}.  In a well-organized
@@ -267,16 +276,6 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   selecting and merging is needed, this step may be performed by
   software written to perform data analysis without being saved
   separately.
-
-\item
-  \recommend{Document every step in writing, complete with parameter
-    values.} All information needed to redo the steps taken to process
-  the raw data should be recorded, to the extent possible. Where the
-  exact details of the procedure cannot easily be written down,
-  intermediate results should be saved for later checking.  For
-  example, choosing a region of intest in an image is inherently
-  interactive, but the region chosen can be stored as a set of
-  boundary coordinates.
 
 \item
   \recommend{Submit data to a reputable DOI-issuing repository so that
