@@ -451,7 +451,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 \begin{verbatim}
 Synthesize image files for testing circularity estimation algorithm.
 
-Usage: generate_images.py -d p_diameter -f p_flaws -r rand_seed -s image_size
+Usage: generate_images.py -f fuzzing -n p_flaws -o output_file -r p_radius -s rand_seed -v -w size
 
 where:
 -f fuzzing     = fuzzing range of blobs (typically 0.0-0.2)
