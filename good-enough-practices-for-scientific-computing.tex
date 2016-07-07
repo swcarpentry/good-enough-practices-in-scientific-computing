@@ -75,10 +75,8 @@ techniques that we believe every researcher can and should adopt. It
 draws inspiration from many sources
 \cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
 from our personal experiences, and from the experiences of the
-thousands of people who have taken part in \withurl{Software
-  Carpentry}{http://software-carpentry.org} and \withurl{Data
-  Carpentry}{http://datacarpentry.org} workshops over the past six
-years.
+thousands of people who have taken part in Software Carpentry and 
+Data Carpentry workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
 handful of collaborators on projects lasting a few days to a few
@@ -132,7 +130,7 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   format that is inefficient to store or process, transform it for
   storage with a lossless, well-documented procedure.  Equally, don't
   duplicate contents of stable, long-lived repositories (i.e., don't
-  clone GenBank).
+  download the entire DNA sequence database GenBank).
 
   You may also consider restricting file permissions to read-only,
   even (or especially) for yourself, so it is harder to damage raw
@@ -151,7 +149,7 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   Approach this initial tidying up as internal to the existing dataset
   and non-destructive, both of the data and its general ``shape''.
   Where possible, use open non-proprietary formats instead of closed,
-  proprietary formats: they will probably last longer, and will
+  proprietary formats: they will likely last longer, and will
   probably be easier for machines to read.  CSV is good for simple
   tabular data, JSON, YAML, or XML for non-tabular data such as
   graphs\footnote{The node-and-arc kind.}, and HDF5 for certain kinds
@@ -208,7 +206,8 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \begin{framed}
     \noindent \textbf{OpenRefine}
 
-    \withurl{OpenRefine}{http://openrefine.org/} is an excellent tool
+    \withurl{OpenRefine}{http://openrefine.org/} \fixme{LN}{url from frame does not appear in footnote}
+    is an excellent tool
     for this stage of data cleanup. It combines a spreadsheet-like
     interface to tabular data with a large set of cleanup heuristics,
     and can generate a trace of cleanup steps to ensure
@@ -246,10 +245,12 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
 \item
   \recommend{Include complementary data in files that meet the same
     standards}.  Raw data frequently does not fully explain
-  itself. For example, if each well of a microtitre plate is used to
+  itself. For example, if each of wells in the 8 rows by 12 columns 
+  of a microtitre plate is used to
   study a specific gene knockout, the prepared raw data will have a
-  \texttt{well} variable taking on values like ``A1'' and ``G12'', but
-  the plate reader cannot possibly know what's in each well. That
+  \texttt{well} variable taking on values like ``A1'' and ``G12'' 
+  (the column and row labels), 
+  but the plate reader cannot possibly know what's in each well. That
   information will be absent from the primary data file, so you must
   create a supplementary file in order to look this up. Make sure to
   use the same names and codes when variables in two datasets refer to
@@ -359,7 +360,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 \item  
   \recommend{Place a brief explanatory comment at the start of every
     program}, no matter how short it is. That comment should include
-  at least one example of how the program is used: remember, an
+  at least one example of how the program is used: remember, a good
   example is worth a thousand words. Where possible, the comment
   should also indicate reasonable values for parameters.
   Figure~\ref{fig:comment} presents an example of of such a comment.
@@ -371,7 +372,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   a dozen parameters.  The key motivation here is to fit the program
   into the most limited memory of all: ours. Human short-term memory
   is famously incapable of holding more than about seven (plus or
-  minus two) items at once. If we are to understand what our software
+  minus two)\fixme{LN}{add reference?} items at once. If we are to understand what our software
   is doing, we must break it into chunks that obey this limit, then
   create programs by composing chunks into larger chunks and so on.
 
@@ -381,7 +382,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   data structures like lists rather than creating lots of variables
   called \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
-  This applies with even greater force to using libraries. The easiest
+  This applies with even greater force to using software libraries. The easiest
   code to debug and maintain is code you didn't actually write, so
   \recommend{always search for well-maintained libraries that do what
     you need} before writing new code yourself, and \recommend{test
@@ -392,7 +393,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   document their purpose and to make the program easier to read. As a
   rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
-  counter variable in a loop \texttt{i} or \texttt{j}, the main grid
+  counter variable in a loop \texttt{i} or \texttt{j}, the main grid\fixme{LN}{feels like jargon, is there an easier term?}
   for your simulation should \emph{not} have a one-letter name.
 
   \begin{framed}
@@ -401,7 +402,7 @@ single-purpose functions with clearly-defined inputs and outputs.
     Almost all modern text editors provide \emph{tab completion}, so
     that typing the first part of a variable name and then pressing
     the tab key inserts the completed name of the variable.  Employing
-    this means that meaningful variable names are no harder to type
+    this means that meaningful longer variable names are no harder to type
     than short ones.
 
   \end{framed}
@@ -427,7 +428,7 @@ single-purpose functions with clearly-defined inputs and outputs.
     One special case of this recommendation is to use a logging
     library such as Java's \texttt{log4j} for debugging messages. When
     this is done, messages are left in the code, but their activity is
-    controlled by an external configuration file.
+    controlled by an external configuration file.\fixme{LN}{Can this be explained better? I didn't really understand how this works}
   \end{framed}
 
 \item
@@ -443,7 +444,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   \recommend{Submit code to a reputable DOI-issuing repository} upon
   submission of paper, just as you do with data. Your software is as
   much a product of your research as your papers, and should be as
-  easy for people to credit.
+  easy for people to credit.\fixme{LN}{add examples, e.g. zenodo and figshare?}
 
 \end{enumerate}
 
@@ -505,7 +506,7 @@ contribute.
   to create a new \emph{issue} for each to-do item. (You can even add
   labels such as ``low hanging fruit'' to point newcomers at issues
   that are good starting points.)  Whatever you choose, describe the
-  items clearl so that they make sense to newcomers.
+  items clearly so that they make sense to newcomers.
 
 \item
   \recommend{Make the license explicit.}  Have a \texttt{LICENSE} file
@@ -580,7 +581,7 @@ Morris, B.D. and E.P. White. 2013. The EcoData Retriever: improving
   doi={10.1371/journal.pone.0065848}
 }
 \end{verbatim}
-\caption{Example CITATION File}
+\caption{Example CITATION File with the information in two forms, as a regula citation and in BiBTeX format\fixme{LN}{explain BiBTex?}}
 \label{fig:citation}
 \end{figure}
 
@@ -625,8 +626,7 @@ them.  Our recommendations for doing this are drawn primarily from
   intermediate results, such as cleaned data sets or simulated data,
   as well as final results such as figures and tables.
 
-  The \texttt{src} directory may contain subdirectories if there are
-  many data sets.  The \texttt{results} directory will \emph{usually}
+  The \texttt{results} directory will \emph{usually}
   require additional subdirectories for all but the simplest
   projects. Intermediate files such as cleaned data, statistical
   tables, and final publication-ready figures or tables should be
@@ -642,7 +642,9 @@ them.  Our recommendations for doing this are drawn primarily from
   such as R or Python and those written compiled languages like
   Fortran, C++, or Java. Shell scripts, snippets of SQL used to pull
   information from databases, and everything else needed to regenerate
-  the results are all managed like source code.  \texttt{bin} contains
+  the results are all managed like source code. The \texttt{src} 
+  directory may contain subdirectories if there are many data sets.  
+  \texttt{bin} contains
   scripts that are brought in from elsewhere, and executable programs
   compiled from code in the \texttt{src} directory\footnote{The name
     \texttt{bin} is an old Unix convention, and comes from the term
@@ -664,7 +666,7 @@ them.  Our recommendations for doing this are drawn primarily from
 \item
   \recommend{Name all files to reflect their content or function.} For
   example, use names such as \texttt{bird\_count\_table.csv},
-  \texttt{manuscript.md}, or \texttt{sightings\_analysis.py}).  Do
+  \texttt{manuscript.md}, or \texttt{sightings\_analysis.py}.  Do
   \emph{not} using sequential numbers (e.g., \texttt{result1.csv},
   \texttt{result2.csv}) or a location in a final manuscript (e.g.,
   \texttt{fig\_3\_a.png}), since those numbers will almost certainly
@@ -827,7 +829,7 @@ three parts:
   \recommend{Store each project in a folder that is mirrored off the
     researcher's working machine} by a system such as Dropbox, and
   synchronize that folder at least daily. It may take a few minutes,
-  but that time can be spent catching up on email, and is repaid the
+  but that time is repaid the
   moment a laptop is stolen or its hard drive fails.
 
 \item
@@ -1017,7 +1019,7 @@ analysis projects:
   results, figures, etc., without needing to regenerate it all.
 
 \item
-  Version control facilitates \emph{diffing}, i.e., seeing the
+  Tool-based version control facilitates \emph{diffing}, i.e., seeing the
   differences between old and new states of files. Diffs can be used
   to see the downstream effects of actions like upgrading a piece of
   software, refactoring a script, or starting with a slightly
@@ -1161,7 +1163,7 @@ overworked physician you collaborate with. Oh, but before that, you
 have to explain the difference between plain text and word
 processing. And text editors. And markdown/LaTeX compilers. And
 BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
-from the OR{\ldots}
+from the Operating Room{\ldots}
 
 {\ldots}as much as we want to convince ourselves otherwise, when you
 have to collaborate with those outside the scientific computing
