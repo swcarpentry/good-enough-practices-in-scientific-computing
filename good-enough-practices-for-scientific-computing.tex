@@ -167,8 +167,9 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \texttt{personal\_name} and \texttt{family\_name}, recode the
   treatment variable from \texttt{1} vs.  \texttt{2} to
   \texttt{untreated} vs. \texttt{treated}, and replace artificial
-  codes for missing data, such as ``-99'', with proper \texttt{NA}s
-  \cite{white2013}.
+  codes for missing data, such as ``-99'', with \texttt{NA}s,
+  a shorthand code for ``Not Available'' that is used as a special variable 
+  in many programming languages \cite{white2013}.
 
   Both human and machine readability can be enhanced by storing
   especially useful metadata as part of the filename itself, while
@@ -315,13 +316,7 @@ makes it easier to understand, share, describe, and modify.
 In terms of data storage, we propose delimited plain text (such as
 CSV) as a lowest common denominator for tabular data, since it is
 usable across time, people, operating systems, and analytical
-environments.  However, some data is intrinsically not textual (e.g.,
-images), and plain text is not a panacea: when collaborating with
-others, be aware of and, when possible, standardize on file encoding,
-line endings, and the elimination of prose-oriented features, such as
-``smart quotes''. Differences between collaborators in these details
-can cause the changes between file versions to be large, and therefore
-substantially less comprehensible.
+environments. More complex data are often stored in JSON format.
 
 \begin{framed}
   \noindent \textbf{Choosing Metadata}
@@ -380,7 +375,8 @@ single-purpose functions with clearly-defined inputs and outputs.
   data structures like lists rather than creating lots of variables
   called \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
-  This applies with even greater force to using libraries. The easiest
+  This applies with even greater force to using libraries, code written
+  by others that you use as a basis for your own code. The easiest
   code to debug and maintain is code you didn't actually write, so
   \recommend{always search for well-maintained libraries that do what
     you need} before writing new code yourself, and \recommend{test
