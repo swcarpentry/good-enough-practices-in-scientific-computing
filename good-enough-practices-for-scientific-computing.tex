@@ -129,7 +129,7 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   format that is inefficient to store or process, transform it for
   storage with a lossless, well-documented procedure.  Equally, don't
   duplicate contents of stable, long-lived repositories (i.e., don't
-  download the entire DNA sequence database GenBank).
+  download all of GenBank).
 
   You may also consider restricting file permissions to read-only,
   even (or especially) for yourself, so it is harder to damage raw
@@ -244,17 +244,15 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
 \item
   \recommend{Include complementary data in files that meet the same
     standards}.  Raw data frequently does not fully explain
-  itself. For example, if each of wells in the 8 rows by 12 columns 
-  of a microtitre plate is used to
-  study a specific gene knockout, the prepared raw data will have a
-  \texttt{well} variable taking on values like ``A1'' and ``G12'' 
-  (the column and row labels), 
-  but the plate reader cannot possibly know what's in each well. That
-  information will be absent from the primary data file, so you must
-  create a supplementary file in order to look this up. Make sure to
-  use the same names and codes when variables in two datasets refer to
-  the same thing to simplify merging and lookup (and make them less
-  error-prone).
+  itself. For example, if each well in an $8{\times}12$ microtitre
+  plate is used to study a specific gene knockout, the prepared raw
+  data will have a \texttt{well} variable taking on values like ``A1''
+  and ``G12'', but the plate reader cannot possibly know what each
+  represents. That information will be absent from the primary data
+  file, so you must create a supplementary file in order to look this
+  up. Make sure to use the same names and codes when variables in two
+  datasets refer to the same thing to simplify merging and lookup (and
+  make them less error-prone).
 
 \item
   \recommend{Create a dataset purpose-built for specific analyses and
@@ -566,23 +564,13 @@ easy for other people to help you and give you credit for your work.
 
 \begin{figure}
 \begin{verbatim}
-Morris, B.D. and E.P. White. 2013. The EcoData Retriever: improving
- access to existing ecological data. PLOS ONE 8:e65848.
-  http://doi.org/doi:10.1371/journal.pone.0065848
+Please cite this work as:
 
-@article{morris2013ecodata,
-  title={The EcoData Retriever: Improving Access to Existing Ecological Data},
-  author={Morris, Benjamin D and White, Ethan P},
-  journal={PLOS One},
-  volume={8},
-  number={6},
-  pages={e65848},
-  year={2013},
-  publisher={Public Library of Science}
-  doi={10.1371/journal.pone.0065848}
-}
+Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
+improving access to existing ecological data." PLOS ONE 8:e65848.
+http://doi.org/doi:10.1371/journal.pone.0065848
 \end{verbatim}
-\caption{Example CITATION File with the information in two forms, as a regular citation and in BiBTeX format\fixme{LN}{explain BiBTex?}}
+\caption{Example CITATION File}
 \label{fig:citation}
 \end{figure}
 
