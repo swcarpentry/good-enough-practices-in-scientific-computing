@@ -164,8 +164,9 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \texttt{personal\_name} and \texttt{family\_name}, recode the
   treatment variable from \texttt{1} vs.  \texttt{2} to
   \texttt{untreated} vs. \texttt{treated}, and replace artificial
-  codes for missing data, such as ``-99'', with proper \texttt{NA}s
-  \cite{white2013}.
+  codes for missing data, such as ``-99'', with \texttt{NA}s,
+  a shorthand code for ``Not Available'' that is used as a special variable 
+  in many programming languages \cite{white2013}.
 
   Both human and machine readability can be enhanced by storing
   especially useful metadata as part of the filename itself, while
@@ -215,18 +216,27 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \end{framed}
 
 \item
-  \recommend{Always record the steps used to clean up data}: it's as
-  much a part of your analysis as any statistics you might do.  The
+  \recommend{Always record the steps used to process data, 
+  complete with parameter values}: it's as
+  much a part of your analysis as any statistics you might do.
+  All information needed to redo the steps taken to process
+  the raw data should be recorded, to the extent possible. The
   best way to do this is to write a re-runnable script for
-  \emph{every} stage of data cleanup, however trivial it seems.  This
-  not only ensures that you have a record, but also allows you to
-  re-do the cleanup when new data arrives.  In cases where automated
-  data cleanup is not possible or not practical, it's important to
+  \emph{every} stage of data processing, however trivial it seems.  
+  This not only ensures that you have a record, but also allows you to
+  re-do the cleanup and other steps when new data arrives. Where the
+  exact details of the procedure cannot easily be written down,
+  intermediate results should be saved for later checking. 
+  In cases where automated data processing is not possible 
+  or not practical, it's important to
   clearly document every manual action taken (what menu was used, what
   column was copied and pasted, what link was clicked, etc.) at this
-  stage.  If you are not able to document this step clearly, how will
-  anyone else be able to repeat your analysis?  As important, how will
-  you know in a month whether you did it right the first time?
+  stage. For example, choosing a region of intest in an image 
+  is inherently interactive, but the region chosen can be stored 
+  as a set of boundary coordinates. If you are not able to document 
+  this step clearly, how will anyone else be able to repeat your analysis? 
+  As important, how will you know in a month whether you did it 
+  right the first time?
 
 \item
   \recommend{Give every record a unique key}.  In a well-organized
@@ -267,16 +277,6 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   separately.
 
 \item
-  \recommend{Document every step in writing, complete with parameter
-    values.} All information needed to redo the steps taken to process
-  the raw data should be recorded, to the extent possible. Where the
-  exact details of the procedure cannot easily be written down,
-  intermediate results should be saved for later checking.  For
-  example, choosing a region of intest in an image is inherently
-  interactive, but the region chosen can be stored as a set of
-  boundary coordinates.
-
-\item
   \recommend{Submit data to a reputable DOI-issuing repository so that
     others can access and cite it.}  Your data is as much a product of
   your research as the papers you write, and just as likely to be
@@ -314,13 +314,7 @@ makes it easier to understand, share, describe, and modify.
 In terms of data storage, we propose delimited plain text (such as
 CSV) as a lowest common denominator for tabular data, since it is
 usable across time, people, operating systems, and analytical
-environments.  However, some data is intrinsically not textual (e.g.,
-images), and plain text is not a panacea: when collaborating with
-others, be aware of and, when possible, standardize on file encoding,
-line endings, and the elimination of prose-oriented features, such as
-``smart quotes''. Differences between collaborators in these details
-can cause the changes between file versions to be large, and therefore
-substantially less comprehensible.
+environments. More complex data are often stored in JSON format.
 
 \begin{framed}
   \noindent \textbf{Choosing Metadata}
@@ -369,9 +363,10 @@ single-purpose functions with clearly-defined inputs and outputs.
   a dozen parameters.  The key motivation here is to fit the program
   into the most limited memory of all: ours. Human short-term memory
   is famously incapable of holding more than about seven (plus or
-  minus two)\fixme{GW}{add reference: http://dx.doi.org/10.1037/h0043158} items at once. If we are to understand what our software
-  is doing, we must break it into chunks that obey this limit, then
-  create programs by composing chunks into larger chunks and so on.
+  minus two) items at once \cite{miller1956}. If we are to understand
+  what our software is doing, we must break it into chunks that obey
+  this limit, then create programs by composing chunks into larger
+  chunks and so on.
 
 \item
   \recommend{Be ruthless about eliminating duplication}. Write and
@@ -379,19 +374,19 @@ single-purpose functions with clearly-defined inputs and outputs.
   data structures like lists rather than creating lots of variables
   called \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
-  This applies with even greater force to using software libraries. The easiest
-  code to debug and maintain is code you didn't actually write, so
-  \recommend{always search for well-maintained libraries that do what
-    you need} before writing new code yourself, and \recommend{test
-    libraries before relying on them}.
+  This applies with even greater force to using software
+  libraries. The easiest code to debug and maintain is code you didn't
+  actually write, so \recommend{always search for well-maintained
+    libraries that do what you need} before writing new code yourself,
+  and \recommend{test libraries before relying on them}.
 
 \item
   \recommend{Give functions and variables meaningful names}, both to
   document their purpose and to make the program easier to read. As a
   rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
-  counter variable in a loop \texttt{i} or \texttt{j}, the main grid\fixme{LN}{feels like jargon, is there an easier term?}
-  for your simulation should \emph{not} have a one-letter name.
+  counter variable in a loop \texttt{i} or \texttt{j}, the major data
+  structures in a program should \emph{not} have one-letter names.
 
   \begin{framed}
     \noindent \textbf{Tab Completion}
@@ -419,15 +414,6 @@ single-purpose functions with clearly-defined inputs and outputs.
   difficult or impossible to automate analyses. Instead, put if/else
   statements in the program to control what it does.
 
-  \begin{framed}
-    \noindent \textbf{Logging}
-
-    One special case of this recommendation is to use a logging
-    library such as Java's \texttt{log4j} for debugging messages. When
-    this is done, messages are left in the code, but their activity is
-    controlled by an external configuration file.\fixme{GW}{Can this be explained better? I didn't really understand how this works}
-  \end{framed}
-
 \item
   \recommend{Provide a simple example or test data set} that users
   (including yourself) can run to determine whether the program is
@@ -451,7 +437,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 \begin{verbatim}
 Synthesize image files for testing circularity estimation algorithm.
 
-Usage: generate_images.py -d p_diameter -f p_flaws -r rand_seed -s image_size
+Usage: generate_images.py -f fuzzing -n p_flaws -o output_file -r p_radius -s rand_seed -v -w size
 
 where:
 -f fuzzing     = fuzzing range of blobs (typically 0.0-0.2)
@@ -462,7 +448,7 @@ where:
 -v             = verbose
 -w size        = image width/height in pixels (typically 480-800)
 \end{verbatim}
-\caption{A Good Explanatory Comment}
+\caption{A Good Comment To Explain The Use Of A Program}
 \label{fig:comment}
 \end{figure}
 
@@ -724,16 +710,16 @@ describing the project findings.
 .
 |-- CITATION
 |-- README
-|-- data/
-|   \-- birds_count_table.csv
-|-- doc/
-|   |-- notebook.md
-|   \-- manuscript.md
-|-- results/
-|   \-- summarized_results.csv
-|-- src/
-|   |-- sightings_analysis.py
-|   \-- runall.py
+|-- data
+|   -- birds_count_table.csv
+|-- doc
+|   -- notebook.md
+|   -- manuscript.md
+|-- results
+|   -- summarized_results.csv
+|-- src
+|   -- sightings_analysis.py
+|   -- runall.py
 \end{verbatim}
 \caption{Example Project Layout}
 \label{fig:layout}
@@ -872,13 +858,13 @@ three parts:
 \begin{figure}
 \begin{verbatim}
 .
-|-- project_name/
-|   \-- current
-|       \-- ...project content as described earlier...
-|   \-- 2016-03-01
-|       \-- ...content of 'current' on Mar 1, 2016
-|   \-- 2016-02-19
-|       \-- ...content of 'current' on Feb 19, 2016
+|-- project_name
+|   -- current
+|       -- ...project content as described earlier...
+|   -- 2016-03-01
+|       -- ...content of 'current' on Mar 1, 2016
+|   -- 2016-02-19
+|       -- ...content of 'current' on Feb 19, 2016
 \end{verbatim}
 \caption{Directory Hierarchy for Manual Versioning}
 \label{fig:manual}
