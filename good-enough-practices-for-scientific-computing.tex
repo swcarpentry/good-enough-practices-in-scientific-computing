@@ -208,34 +208,34 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \end{framed}
 
 \item
-  \recommend{Always record the steps used to process data,
-  complete with parameter values}: Data manipulation is as
-  much a part of your analysis as any statistics.
-  All information needed to redo the steps taken to process
-  the raw data should be recorded, to the extent possible. The
-  best way to do this is to write a re-runnable script for
-  \emph{every} stage of data processing, however trivial it seems.
+  \recommend{Record all the steps used to process data}: Data manipulation is as
+  much a part of your analysis as any statistics. If you are not able to 
+  document this step clearly, it will not be possible for you, or anyone 
+  else, to repeat your analysis. As important, how will you know in 
+  a month whether you did it
+  right the first time?
+  
+  Record all of the information needed to redo the processing of raw data. 
+  The best way to do this is to write scripts for
+  \emph{every} stage of data processing.
   This not only ensures that you have a record, but also allows you to
-  re-do the cleanup and other steps when new data arrives. Where the
-  exact details of the procedure cannot easily be written down,
-  intermediate results should be saved for later checking.
+  re-do the cleanup and other steps when new data arrives. 
   In cases where automated data processing is not possible
   or not practical, it's important to
   clearly document every manual action taken (what menu was used, what
-  column was copied and pasted, what link was clicked, etc.) at this
-  stage. For example, choosing a region of interest in an image
-  is inherently interactive, but the region chosen can be stored
-  as a set of boundary coordinates. If you are not able to document
-  this step clearly, how will anyone else be able to repeat your analysis?
-  As important, how will you know in a month whether you did it
-  right the first time?
+  column was copied and pasted, what link was clicked, etc.). For example, 
+  choosing a region of interest in an image
+  is inherently interactive, but you can save the region chosen 
+  as a set of boundary coordinates. If the
+  exact details of the procedure cannot easily be recorded,
+  save intermediate results for later checking. 
 
 \item
   \recommend{Give every record a unique key}.  In a well-organized
-  data set, it's easy to select a specific record to update or delete.
+  data set, it's easy to precisely refer to a specific record.
   Using fields in the data (such as people's names or addresses) does
   not guarantee this; using row numbers in tables does, but those
-  numbers will change as records are added, removed, or moved.
+  numbers will change as records are added, removed, or sorted.
 
   We therefore recommend giving each record a unique, persistent key
   that has no other purpose than identifying the
