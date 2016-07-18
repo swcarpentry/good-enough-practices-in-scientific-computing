@@ -570,22 +570,41 @@ them.  Our recommendations for doing this are drawn primarily from
   other publications should be grouped together.
 
 \item
-  \recommend{Put source for this project's scripts and programs in the
-    \texttt{src} directory, and scripts and programs brought in from
-    elsewhere or compiled locally in the \texttt{bin} directory.}
-  \texttt{src} contains both programs written in interpreted languages
-  such as R or Python and those written compiled languages like
-  Fortran, C++, or Java. Shell scripts, snippets of SQL used to pull
-  information from databases, and everything else needed to regenerate
-  the results are all managed like source code. The \texttt{src}
-  directory may contain subdirectories if there are many data sets.
-  \texttt{bin} contains
+  \recommend{Put project source code in the \texttt{src} directory.}
+  \texttt{src} contains all of the code written for the project. This includes 
+  programs written in interpreted languages
+  such as R or Python; those written compiled languages like
+  Fortran, C++, or Java; as well as shell scripts, snippets of SQL used to pull
+  information from databases; and other code needed to regenerate
+  the results. 
+
+    This directory may contain two conceptually distinct types
+    of files that should be distinguished either by clear file names or by
+    additional subdirectories. The first type are files or
+    groups of files that perform the core
+    analysis of the research, such as data cleaning or statistical analyses. 
+    These files can be thought of as the
+    ``scientific guts'' of the project.
+    
+    The second type of file in \texttt{src} is controller or driver
+    scripts that combine the core analytical functions with particular
+    parameters and data input/output commands in order to execute the
+    entire project analysis from start to finish. A controller script for
+    a simple project, for example, may read a raw data table, import and
+    apply several cleanup and analysis functions from the other files in
+    this directory, and create and save a numeric result. For a small
+    project with one main output, a single controller script should be
+    placed in the main \texttt{src} directory and distinguished clearly by
+    a name such as ``runall''.
+    
+\item
+  \recommend{Put external scripts, or compiled programs
+   in the \texttt{bin} directory}.  \texttt{bin} contains
   scripts that are brought in from elsewhere, and executable programs
   compiled from code in the \texttt{src} directory\footnote{The name
     \texttt{bin} is an old Unix convention, and comes from the term
-    ``binary''}. Projects that have neither will not require this
-  directory.
-
+    ``binary''}. Projects that have neither will not require \texttt{bin}.
+  
   \begin{framed}
     \noindent \textbf{Scripts vs.\ Programs}
 
@@ -609,47 +628,12 @@ them.  Our recommendations for doing this are drawn primarily from
 
 \end{enumerate}
 
-The \texttt{src} directory may contain two conceptually distinct types
-of files that should be distinguished either by clear file names or by
-additional subdirectories. The first type are individual files or
-related groups of files that contain functions to perform the core
-analysis of the research. One file, for example, may contain functions
-used for data cleaning, while another contains functions to do certain
-statistical analyses. These files can be thought of as the
-``scientific guts'' of the project, and as the project grows, they can
-be organized into additional subdirectories. If a project were to
-include re-runnable tests (Section~\ref{sec:omitted}), these are the
-functions they would test.
-
-The second type of file in \texttt{src} is controller or driver
-scripts that combine the core analytical functions with particular
-parameters and data input/output commands in order to execute the
-entire project analysis from start to finish. A controller script for
-a simple project, for example, may read a raw data table, import and
-apply several cleanup and analysis functions from the other files in
-this directory, and create and save a numeric result. For a small
-project with one main output, a single controller script should be
-placed in the main \texttt{src} directory and distinguished clearly by
-a name such as ``runall''.
-
-The controller script is the glue that holds the analysis together and
-allows a single command, such as \texttt{python runall.py}, to re-run
-the entire analysis from start to finish. These scripts should be
-short (no more than one or two pages long) and very easy to
-understand.  In particular, while they may contain loops (to process
-multiple data files or sweep across parameter ranges) they should
-contain few if any conditional statements or new function
-definitions. If a control script becomes longer or more complicated
-than this, or begins to include code that would require a new
-collaborator more than a minute or two to understand, those portions
-of the code should be moved out of the controller script and into
-other core analysis files in this directory.
-
 Figure~\ref{fig:layout} below provides a concrete example of how a
 simple project might be organized following these recommendations. The
 root directory contains a \texttt{README} file that provides an
-overview of the project as a whole and a \texttt{CITATION} file that
-explains how to reference it. The \texttt{data} directory contains a
+overview of the project as a whole, a \texttt{CITATION} file that
+explains how to reference it, and a \texttt{LICENSE} file that states the 
+licensing. The \texttt{data} directory contains a
 single CSV file with tabular data on bird counts (machine-readable
 metadata could also be included here). The \texttt{src} directory
 contains \texttt{sightings\_analysis.py}, a Python file containing
@@ -670,6 +654,7 @@ describing the project findings.
 .
 |-- CITATION
 |-- README
+|-- LICENSE
 |-- data
 |   -- birds_count_table.csv
 |-- doc
