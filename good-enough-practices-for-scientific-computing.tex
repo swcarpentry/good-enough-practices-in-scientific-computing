@@ -8,7 +8,7 @@
 \topmargin 0.0cm
 \oddsidemargin 0.5cm
 \evensidemargin 0.5cm
-\textwidth 16cm 
+\textwidth 16cm
 \textheight 21cm
 
 \usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
@@ -57,10 +57,10 @@ $\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
 
 \section{Introduction}\label{sec:introduction}
 
-Two years ago a group of researchers involved in \withurl{Software 
-Carpentry}{http://software-carpentry.org/} and \withurl{Data 
+Two years ago a group of researchers involved in \withurl{Software
+Carpentry}{http://software-carpentry.org/} and \withurl{Data
 Carpentry}{http://datacarpentry.org/} wrote a paper called
-``Best Practices for Scientific Computing'' \cite{wilson2014}. 
+``Best Practices for Scientific Computing'' \cite{wilson2014}.
 It was well received, but many novices found its
 catalog of tools and techniques intimidating, and, by definition, the
 ``best'' are a minority, so ``best practices'' are what only a
@@ -74,7 +74,7 @@ techniques that we believe every researcher can and should adopt. It
 draws inspiration from many sources
 \cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
 from our personal experiences, and from the experiences of the
-thousands of people who have taken part in Software Carpentry and 
+thousands of people who have taken part in Software Carpentry and
 Data Carpentry workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
@@ -108,97 +108,89 @@ Carpentry and Software Carpentry for everything they have taught us.
 
 \section{Data Management}\label{sec:data}
 
-Project data may need to exist in various forms, ranging from what
-first arrives to what's included in the final publication.  The aim of
-our recommendations is to create ``tidy data'', which can be a
+Data within a project may need to exist in various forms, ranging from what
+first arrives to what is included in the final publication.  The aim of
+our recommendations is to reproducibly create ``tidy data'', which can be a
 powerful accelerator for analysis \cite{wickham2014,hart2015}.
 
 \begin{enumerate}
 
 \item
-  \recommend{Save data in the rawest form available}.  Where possible,
-  save the data file produced by an instrument or raw results from a
-  survey, with all of its mystifying imperfections (e.g., raw JPEGs
-  for photographs). It is tempting to overwrite raw data files with
-  cleaned-up versions, but faithful retention is essential to being
-  able to re-run analyses from start to finish. It also helps you
-  recover from analytical mishaps and allows you to experiment without
-  fear.
-
-  But use common sense: if a large volume of data is received in a
-  format that is inefficient to store or process, transform it for
-  storage with a lossless, well-documented procedure.  Equally, don't
-  duplicate contents of stable, long-lived repositories (i.e., don't
-  download all of GenBank).
-
-  You may also consider restricting file permissions to read-only,
+  \recommend{Save data in the raw form}.  Where possible,
+  save data as originally generated (i.e. by an instrument or from a survey). 
+  It is
+  tempting to overwrite raw data files with cleaned-up versions, but
+  faithful retention is essential to being able to re-run analyses
+  from start to finish; to recover from analytical
+  mishaps; and for experimenting without fear. Consider restricting file permissions to read-only,
   even (or especially) for yourself, so it is harder to damage raw
   data by accident or to hand edit it in a moment of weakness.
 
+  If the data is large and in a format that is inefficient to store or process, 
+  transform it for storage with a lossless, well-documented procedure.  
+  Avoid devoting resources to storage of stable, long-lived repositories 
+  (i.e., don't save local copies of GenBank).
+  
 \item
-  \recommend{Create the data you wish to see in the world}, i.e.,
-  create the dataset you \emph{wish} you had received from the raw
-  data and use that as the starting point for downstream analyses.
+  \recommend{Create the data you wish to see in the world}. Create a new version of the raw data 
+  that is the dataset you \emph{wish} 
+  you had received. Use 
+  this dataset as the starting point for downstream analyses.
   This is the time to improve machine and human readability, but
-  \emph{not} the time to do vigorous data filtering or bring in
-  external information.
+  \emph{not} to do vigorous data filtering or adding 
+  external information. Approach this step as non-destructive, both of the data and its general ``shape''.
 
   \fixme{JB}{Include an example.}
 
-  Approach this initial tidying up as internal to the existing dataset
-  and non-destructive, both of the data and its general ``shape''.
-  Where possible, use open non-proprietary formats instead of closed,
-  proprietary formats: they will likely last longer, and will
-  probably be easier for machines to read.  CSV is good for simple
+  \emph{File formats}: Save the data in open, non-proprietary 
+  formats that ensure long-term machine readability.  CSV is good for 
   tabular data, JSON, YAML, or XML for non-tabular data such as
   graphs\footnote{The node-and-arc kind.}, and HDF5 for certain kinds
   of structured data.  \withurl{This
     guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
-  has a few useful guidelines for choosing a file format.
+  has a useful guidelines for choosing file formats.
 
   \fixme{TT}{Include example of what goes wrong if you don't do tidying right.}
 
-  Enhance human readability by replacing inscrutable variable names
+  \emph{Variable names}: Replace inscrutable variable names
   and artificial data codes with self-explaining alternatives, e.g.,
   rename variables called \texttt{name1} and \texttt{name2} to
   \texttt{personal\_name} and \texttt{family\_name}, recode the
   treatment variable from \texttt{1} vs.  \texttt{2} to
   \texttt{untreated} vs. \texttt{treated}, and replace artificial
   codes for missing data, such as ``-99'', with \texttt{NA}s,
-  a shorthand code for ``Not Available'' that is used as a special variable 
+  a shorthand code for ``Not Available'' that is used as a special variable
   in many programming languages \cite{white2013}.
 
-  Both human and machine readability can be enhanced by storing
+  \emph{Filenames}: Store
   especially useful metadata as part of the filename itself, while
   keeping the filename regular enough for easy pattern matching. For
   example, a filename like \texttt{2016-05-alaska-b.csv} makes it easy
-  for both people and programs to select by year
-  (\texttt{2016-*.csv}), by location (\texttt{*-alaska-*.csv}), and so
-  on.
-
+  for both people and programs to select by year or by location. 
+  
 \item
-  \recommend{Create analysis-friendly data}.  You can do this by
-  reformatting data to eliminate processing steps between loading the
-  data set and doing the analysis.  Columns that contain more than one
-  variable's worth of information should be split. For example, the
-  presence of ``kg'' in ``3.4 kg'' will cause most analytical
-  environments to read this in as character data rather than
-  numeric. It should be split into two columns (the mass ``3.4'' and
-  the units ``kg''), or the units should be recorded in the variable
+  \recommend{Create analysis-friendly data}. Re-formatting data will   
+  eliminate processing steps between loading the
+  data set and doing analyses.
+  
+  \emph{Split columns} that contain more 
+  than one variable's worth of information. For example, most analytical environments will read the value ``3.4 kg'' 
+  as character data, rather than numeric. It should be split into two columns (the mass ``3.4'' and
+  the units ``kg''), or record the units in the variable
   name and/or metadata.
 
-  Multiple columns that only contain one variable's worth of
-  information when taken together should be combined. This is
+  \emph{Combine columns} that only contain one variable's worth of
+  information when taken together. This is
   characteristic of data that has been laid out for human eyeballs or
   for manual data entry.  For example, there might be one row per
   field site and then columns for measurements made at each of several
   time points. It is convenient to store this in a ``short and wide''
   form for data entry and inspection, but for most analyses it will be
   advantageous to gather these columns into a variable of
-  measurements, accompanied by a companion variable indicating the
+  measurements, plus an additional column that indicates the
   time point.
 
-  Reformat values as needed to match your environment's built-in
+  \emph{Reformat values} to match your environment's built-in
   parsing rules. For example, use a date-time format that will be
   recognized automatically, or better yet, split dates into three
   columns (year, month, and day) for easier sorting and filtering.
@@ -216,26 +208,26 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \end{framed}
 
 \item
-  \recommend{Always record the steps used to process data, 
-  complete with parameter values}: it's as
-  much a part of your analysis as any statistics you might do.
+  \recommend{Always record the steps used to process data,
+  complete with parameter values}: Data manipulation is as
+  much a part of your analysis as any statistics.
   All information needed to redo the steps taken to process
   the raw data should be recorded, to the extent possible. The
   best way to do this is to write a re-runnable script for
-  \emph{every} stage of data processing, however trivial it seems.  
+  \emph{every} stage of data processing, however trivial it seems.
   This not only ensures that you have a record, but also allows you to
   re-do the cleanup and other steps when new data arrives. Where the
   exact details of the procedure cannot easily be written down,
-  intermediate results should be saved for later checking. 
-  In cases where automated data processing is not possible 
+  intermediate results should be saved for later checking.
+  In cases where automated data processing is not possible
   or not practical, it's important to
   clearly document every manual action taken (what menu was used, what
   column was copied and pasted, what link was clicked, etc.) at this
-  stage. For example, choosing a region of intest in an image 
-  is inherently interactive, but the region chosen can be stored 
-  as a set of boundary coordinates. If you are not able to document 
-  this step clearly, how will anyone else be able to repeat your analysis? 
-  As important, how will you know in a month whether you did it 
+  stage. For example, choosing a region of interest in an image
+  is inherently interactive, but the region chosen can be stored
+  as a set of boundary coordinates. If you are not able to document
+  this step clearly, how will anyone else be able to repeat your analysis?
+  As important, how will you know in a month whether you did it
   right the first time?
 
 \item
@@ -252,29 +244,16 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   also makes it much easier to link data sets together.
 
 \item
-  \recommend{Include complementary data in files that meet the same
-    standards}.  Raw data frequently does not fully explain
+  \recommend{Include complementry data in additional files}.  Raw data 
+  frequently does not fully explain
   itself. For example, if each well in an $8{\times}12$ microtitre
-  plate is used to study a specific gene knockout, the prepared raw
+  plate is used to study a specific gene knockout, the raw
   data will have a \texttt{well} variable taking on values like ``A1''
-  and ``G12'', but the plate reader cannot possibly know what each
-  represents. That information will be absent from the primary data
-  file, so you must create a supplementary file in order to look this
-  up. Make sure to use the same names and codes when variables in two
-  datasets refer to the same thing to simplify merging and lookup (and
-  make them less error-prone).
-
-\item
-  \recommend{Create a dataset purpose-built for specific analyses and
-    figures.}  This probably involves filtering rows, selecting
-  relevant variables, and merging with external information. If the
-  preceding steps have been done, this can often be surprisingly
-  straightforward. The basic form of the data was hopefully set
-  earlier, so the main changes here are likely to be data reduction
-  and the amalgamation of multiple datasets.  If only minimal
-  selecting and merging is needed, this step may be performed by
-  software written to perform data analysis without being saved
-  separately.
+  and ``G12''. Create a supplementary file that relates the experimental
+  conditions to each variable in the raw data. Use the 
+  same names and codes when variables in two
+  datasets refer to the same thing to simplify merging and lookup, and 
+  to reduce errors.
 
 \item
   \recommend{Submit data to a reputable DOI-issuing repository so that
@@ -283,8 +262,8 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   useful to others (if not more so).  Sites such as
   \withurl{Figshare}{https://figshare.com/},
   \withurl{Dryad}{http://datadryad.org/}, and
-  \withurl{Zenodo}{https://zenodo.org/} allow others to find your work
-  and make use of it; we discuss licensing in
+  \withurl{Zenodo}{https://zenodo.org/} allow others to find your work, 
+  use it, and cite it; we discuss licensing in
   Section~\ref{sec:collaboration} below.
 
 \end{enumerate}
@@ -306,15 +285,7 @@ pipeline, which in turn makes it easier and faster to tinker with
 specific data cleaning operations.  Second, dividing data cleaning
 into several consecutive steps and separating it from data analysis
 helps to conceptually divide a lengthy workflow into smaller
-conceptual chunks, akin to decomposing programs into functions (see
-\textit{Software}).  Similar to dividing software into modules and
-functions, chunking a scientific computing pipeline in this way often
-makes it easier to understand, share, describe, and modify.
-
-In terms of data storage, we propose delimited plain text (such as
-CSV) as a lowest common denominator for tabular data, since it is
-usable across time, people, operating systems, and analytical
-environments. More complex data are often stored in JSON format.
+conceptual chunks, making it easier to understand, share, describe, and modify.
 
 \begin{framed}
   \noindent \textbf{Choosing Metadata}
@@ -348,7 +319,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 
 \begin{enumerate}
 
-\item  
+\item
   \recommend{Place a brief explanatory comment at the start of every
     program}, no matter how short it is. That comment should include
   at least one example of how the program is used: remember, a good
@@ -476,7 +447,7 @@ contribute.
   the first thing users of your project will look at, so make it
   explicit that you welcome contributors and point them to ways they
   can help.
-  
+
   You should also create a \texttt{CONTRIBUTING} file that describes
   what people need to do in order to get the project going and
   contribute to it, i.e., dependencies that need to be installed,
@@ -529,7 +500,7 @@ contribute.
     direction.)
   \end{framed}
 
-\item    
+\item
   \recommend{Make the project citable} by including a
   \texttt{CITATION} file in the project's home directory that
   describes how to cite this project as a whole, and where to find,
@@ -577,7 +548,7 @@ them.  Our recommendations for doing this are drawn primarily from
   work. Some researchers create a separate project for each manuscript
   they are working on, while others group all research on a common
   theme, data set, or algorithm into a single project.
-    
+
   As a rule of thumb, divide work into projects based on the overlap
   in data and code files. If two research efforts share no data or
   code, they will probably be easiest to manage independently. If they
@@ -588,7 +559,7 @@ them.  Our recommendations for doing this are drawn primarily from
   people you're collaborating with.
 
 \item
-  \recommend{Put text documents associated with the projectin the
+  \recommend{Put text documents associated with the project in the
     \texttt{doc} directory.} This includes files for manuscripts,
   documentation for source code, and/or an electronic lab notebook
   recording your experiments.  Subdirectories may be created for these
@@ -617,8 +588,8 @@ them.  Our recommendations for doing this are drawn primarily from
   such as R or Python and those written compiled languages like
   Fortran, C++, or Java. Shell scripts, snippets of SQL used to pull
   information from databases, and everything else needed to regenerate
-  the results are all managed like source code. The \texttt{src} 
-  directory may contain subdirectories if there are many data sets.  
+  the results are all managed like source code. The \texttt{src}
+  directory may contain subdirectories if there are many data sets.
   \texttt{bin} contains
   scripts that are brought in from elsewhere, and executable programs
   compiled from code in the \texttt{src} directory\footnote{The name
@@ -646,7 +617,7 @@ them.  Our recommendations for doing this are drawn primarily from
   \texttt{result2.csv}) or a location in a final manuscript (e.g.,
   \texttt{fig\_3\_a.png}), since those numbers will almost certainly
   change as the project evolves.
-  
+
 \end{enumerate}
 
 The \texttt{src} directory may contain two conceptually distinct types
@@ -660,7 +631,7 @@ statistical analyses. These files can be thought of as the
 be organized into additional subdirectories. If a project were to
 include re-runnable tests (Section~\ref{sec:omitted}), these are the
 functions they would test.
-  
+
 The second type of file in \texttt{src} is controller or driver
 scripts that combine the core analytical functions with particular
 parameters and data input/output commands in order to execute the
@@ -895,7 +866,7 @@ reliable results.
   a permanent record and/or share their work with colleagues. The
   version control system automatically records when the change was
   made and by whom along with the changes themselves.
-  
+
   Crucially, if several people have edited files simultaneously, the
   version control system will detect the collision and require them to
   resolve any conflicts before recording the changes. Modern version
