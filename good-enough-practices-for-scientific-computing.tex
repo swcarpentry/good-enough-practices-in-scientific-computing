@@ -923,7 +923,7 @@ system, even if the data itself has not changed.
 Gathering data, analyzing it, and figuring out what it means is the
 first 90\% of any project; writing up is the other 90\%. While writing
 is rarely addressed in discussions of scientific computing, computing
-has changed it just as much as it has changed research.
+has changed scientific writing just as much as it has changed research.
 
 A common practice in academic writing is for the lead author to send
 successive versions of a manuscript to coauthors to collect feedback,
@@ -971,8 +971,8 @@ to:
 \begin{framed}
   \noindent \textbf{The First Rule Is{\ldots}}
 
-  Which workflow is chosen is less important than having all authors
-  agree on one or the other \emph{before} writing starts. Make sure to
+  The workflow you choose is less important than having all authors
+  agree on the workflow \emph{before} writing starts. Make sure to
   also agree on a single method to provide feedback, be it an email
   thread or mailing list, an issue tracker (like the ones provided by
   GitHub and Bitbucket), or some sort of shared online to-do list.
@@ -987,7 +987,9 @@ Our first alternative has two parts:
 \item
   \recommend{Write manuscripts using online tools with rich
     formatting, change tracking, and reference management}, such as
-  Google Docs.
+  Google Docs. With the document online, everyone's
+  changes are in one place, and hence don't need to be merged
+  manually.
 
 \item
   \recommend{Include a \texttt{PUBLICATIONS} file in the project's
@@ -999,7 +1001,7 @@ Our first alternative has two parts:
 \end{enumerate}
 
 We realize that in many cases, even this solution is asking too much
-from those who see no reason to move forward from desktop GUI
+from collaborators who see no reason to move forward from desktop GUI
 tools. To satisfy them, the manuscript can be converted to a desktop
 editor file format (e.g., Microsoft Word's \texttt{.docx} or
 LibreOffice's \texttt{.odt}) after major changes, then downloaded and
@@ -1009,7 +1011,7 @@ do this automatically when switching from a desktop file format to
 text and back (although \withurl{Pandoc}{http://pandoc.org/} can go a
 long way).
 
-\subsection*{Version Control}
+\subsection*{Text-based Documents Under Version Control}
 
 The second approach treats papers exactly like software, and has been
 used by researchers in mathematics, astronomy, physics, and related
@@ -1032,13 +1034,18 @@ disciplines for decades:
 
 \end{enumerate}
 
+Using a version control system provides good support for finding 
+and merging differences resulting from concurrent changes. It 
+also provides a convenient platform for making comments and 
+performing review.
+
 This approach re-uses the version control tools and skills used to
 manage data and software, and is a good starting point for
 fully-reproducible research. However, it requires all contributors to
 understand a much larger set of tools, including markdown or LaTeX,
 make, BiBTeX, and Git/GitHub.
 
-\subsection*{Why Two?}
+\subsection*{Why Two Recommendations for Manuscripts?}
 
 The first draft of this paper recommended always using plain text in
 version control to manage manuscripts, but several reviewers pushed
@@ -1078,49 +1085,10 @@ and baggage that it is often not worth the effort.
 \end{quote}
 
 In keeping with our goal of recommending ``good enough'' practices, we
-have therefore included online storage in something like Google
+have therefore included online, collaborative editing in something like Google
 Docs. We still recommend \emph{against} traditional desktop tools like
 LibreOffice and Microsoft Word because they make collaboration more
-difficult than necessary:
-
-\begin{itemize}
-
-\item
-  If the document lives online (e.g., in Google Docs) then everyone's
-  changes are in one place, and hence don't need to be merged
-  manually.
-
-\item
-  If the document lives in a version control system, it provides good
-  support for finding and merging differences resulting from
-  concurrent changes. It also provides a convenient platform for
-  making comments and performing review.
-
-\item
-  Both of our recommendations clearly define the master document and
-  allow everyone to contribute to it on an equal footing.
-
-\end{itemize}
-
-\begin{framed}
-  \noindent \textbf{Linking Instead of Embedding}
-
-  One way to make desktop writing tools less error-prone is to insert
-  a link to an image file rather than embedding the file directly.
-  This makes the document slightly more difficult to share, since the
-  image must be sent along with the document, but the payoff is that
-  when the image is updated, the document automatically reflects those
-  changes.  In particular, when a script is run to generate a new
-  version of a figure, that figure automatically shows up in the right
-  place in the paper.
-
-  This trick does not work for tables: there is, for example, no way
-  to link to a CSV file.  However, most scientific programming tools
-  are able to generate tables as HTML; if this is viewed in the
-  browser, it can then be copied and pasted into a document.  Doing
-  this is not ideal, but is still better than copying and pasting
-  individual values.
-\end{framed}
+difficult than necessary.
 
 \subsection*{Supplementary Materials}
 
