@@ -329,15 +329,14 @@ single-purpose functions with clearly-defined inputs and outputs.
 
 \item
   \recommend{Decompose programs into functions} that are no more than
-  one page long (i.e., 60 lines including spaces and comments), do not
+  one page (about 60 lines) long, do not
   use global variables (constants are OK), and take no more than half
   a dozen parameters.  The key motivation here is to fit the program
   into the most limited memory of all: ours. Human short-term memory
-  is famously incapable of holding more than about seven (plus or
-  minus two) items at once \cite{miller1956}. If we are to understand
+  is famously incapable of holding more than about seven items at 
+  once \cite{miller1956}. If we are to understand
   what our software is doing, we must break it into chunks that obey
-  this limit, then create programs by composing chunks into larger
-  chunks and so on.
+  this limit, then create programs by combining these chunks.
 
 \item
   \recommend{Be ruthless about eliminating duplication}. Write and
@@ -345,8 +344,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   data structures like lists rather than creating lots of variables
   called \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
-  This applies with even greater force to using software
-  libraries. The easiest code to debug and maintain is code you didn't
+  The easiest code to debug and maintain is code you didn't
   actually write, so \recommend{always search for well-maintained
     libraries that do what you need} before writing new code yourself,
   and \recommend{test libraries before relying on them}.
@@ -375,9 +373,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   usually done on a per-project rather than per-program basis, i.e.,
   by adding a file called something like \texttt{requirements.txt} to
   the root directory of the project, or by adding a ``Getting
-  Started'' section to the \texttt{README} file. (More sophisticated
-  users may structure the requirements in a way that installation
-  management tools can use.)
+  Started'' section to the \texttt{README} file. 
 
 \item
   \recommend{Do not comment and uncomment sections of code to control
@@ -388,8 +384,8 @@ single-purpose functions with clearly-defined inputs and outputs.
 \item
   \recommend{Provide a simple example or test data set} that users
   (including yourself) can run to determine whether the program is
-  working at all and whether it gives a known correct output for a
-  simple known input. Such as ``build and smoke test'' is particularly
+  working and whether it gives a known correct output for a
+  simple known input. Such a ``build and smoke test'' is particularly
   helpful when supposedly-innocent changes are being made to the
   program, or when it has to run on several different machines, e.g.,
   the developer's laptop and the department's cluster.
