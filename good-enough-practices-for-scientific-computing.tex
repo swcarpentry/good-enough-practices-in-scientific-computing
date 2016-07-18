@@ -422,24 +422,26 @@ where:
 \section{Collaboration}\label{sec:collaboration}
 
 You may start working on projects by yourself or with a small group of
-collaborators you already know, but you should still design it to
-attract new collaborators.  As summarized in \cite{steinmacher2015},
-the keys to doing this are to make it easy for people set up a local
-workspace so that they \emph{can} contribute, to help them find a
-simple first task so that they know \emph{what} to contribute, and to
-make the contribution process clear so that they know \emph{how} to
-contribute.
+collaborators you already know, but you should design it to make it easy
+for new collaborators to join. These collaborators might be new 
+grad students or postdocs in the lab, or they might be \emph{you} 
+returning to a project that has been idle for some time. As summarized 
+in \cite{steinmacher2015}, you want to make it easy for people set up a 
+local workspace so that they \emph{can} contribute, help them find tasks 
+so that they know \emph{what} to contribute, and make the contribution 
+process clear so that they know \emph{how} to contribute.  You also want 
+want to make it easy for people to give you credit for your work. 
 
 \begin{enumerate}
 
 \item
   \recommend{Create an overview of your project.}  Have a short
-  \texttt{README} file explaining the project's purpose in the
-  project's home directory.  This file (which may be called
+  file in the project's home directory that explains the 
+  purpose of the project.  This file (generally called
   \texttt{README}, \texttt{README.txt}, or something similar) should
-  contain the project's title, a brief description (similar to the
-  abstract of a paper), contact information that actually works, and
-  an example or two of how to actually run the software.  It is often
+  contain the project's title, a brief description, up-to-date contact 
+  information, and
+  an example or two of how to run various cleaning or analysis tasks.  It is often
   the first thing users of your project will look at, so make it
   explicit that you welcome contributors and point them to ways they
   can help.
@@ -447,7 +449,7 @@ contribute.
   You should also create a \texttt{CONTRIBUTING} file that describes
   what people need to do in order to get the project going and
   contribute to it, i.e., dependencies that need to be installed,
-  tests that can be run to ensure the software has been installed
+  tests that can be run to ensure that software has been installed
   correctly, and guidelines or checklists that your project adheres
   to.
 
@@ -484,23 +486,19 @@ contribute.
     of the Creative Commons licenses because they may impede some
     forms of re-use.  For example, if a researcher in a developing
     country is being paid by her government to compile a public health
-    report, and wishes to include some of your data, she will be
-    unable to do so if the license says ``non-commercial''. We
-    recommend permissive software licenses rather than the
-    \withurl{GNU General Public
+    report, she will be unable to include your data if the license says 
+    ``non-commercial''. We recommend permissive software licenses rather 
+    than the \withurl{GNU General Public
       License}{https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch03.html}
     (GPL) because it is easier to integrate permissively-licensed
-    software into other projects. (Note that it is straightforward to
-    switch from a permissive license to the GPL if you should change
-    your mind later but rather more complicated to go in the other
-    direction.)
+    software into other projects. 
   \end{framed}
 
 \item
   \recommend{Make the project citable} by including a
   \texttt{CITATION} file in the project's home directory that
-  describes how to cite this project as a whole, and where to find,
-  and how to cite, any data sets, code, figures, and other artifacts
+  describes how to cite this project as a whole, and where to find / how to cite 
+  any data sets, code, figures, and other artifacts
   that have their own DOIs.  Figure~\ref{fig:citation} shows the
   \texttt{CITATION} file for the \withurl{Ecodata
     Retriever}{https://github.com/weecology/retriever}; for an example
@@ -509,11 +507,6 @@ contribute.
   project.
 
 \end{enumerate}
-
-The overview and to-do list are to help you as well as other
-people---remember, your most important collaborator is yourself three
-months from now. The license and citation file are there to make it
-easy for other people to help you and give you credit for your work.
 
 \begin{figure}
 \begin{verbatim}
