@@ -1,7 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{framed}
 \usepackage{graphicx}
 \usepackage{cite}
 
@@ -214,7 +213,7 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   recognized automatically, or better yet, split dates into three
   columns (year, month, and day) for easier sorting and filtering.
 
-  \begin{framed}
+  \begin{quote}
     \noindent \textbf{OpenRefine}
 
     \withurl{OpenRefine}{http://openrefine.org/}
@@ -224,7 +223,7 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
     and can generate a trace of cleanup steps to ensure
     reproducibility.  The cleanup process does not affect the original
     raw data, which further aids reproducibility.
-  \end{framed}
+  \end{quote}
 
 \item
   \recommend{Record all the steps used to process data}: Data manipulation is as
@@ -306,7 +305,7 @@ into several consecutive steps and separating it from data analysis
 helps to conceptually divide a lengthy workflow into smaller
 conceptual chunks, making it easier to understand, share, describe, and modify.
 
-\begin{framed}
+\begin{quote}
   \noindent \textbf{Choosing Metadata}
 
   \cite{wickes2015} provides a useful classification for metadata,
@@ -318,7 +317,7 @@ conceptual chunks, making it easier to understand, share, describe, and modify.
   README file. If it is machines, such as metadata harvesters and
   formal repositories, create a metadata file that they will easily be
   able to parse.
-\end{framed}
+\end{quote}
 
 \section{Software}\label{sec:software}
 
@@ -376,7 +375,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   counter variable in a loop \texttt{i} or \texttt{j}, the major data
   structures in a program should \emph{not} have one-letter names.
 
-  \begin{framed}
+  \begin{quote}
     \noindent \textbf{Tab Completion}
 
     Almost all modern text editors provide \emph{tab completion}, so
@@ -385,7 +384,7 @@ single-purpose functions with clearly-defined inputs and outputs.
     this means that meaningful longer variable names are no harder to type
     than terse abbreviations.
 
-  \end{framed}
+  \end{quote}
 
 \item
   \recommend{Make dependencies and requirements explicit.} This is
@@ -423,16 +422,16 @@ single-purpose functions with clearly-defined inputs and outputs.
 \begin{verbatim}
 Synthesize image files for testing circularity estimation algorithm.
 
-Usage: generate_images.py -f fuzzing -n p_flaws -o output_file -r p_radius -s rand_seed -v -w size
+Usage: make_images.py -f fuzzing -n p_flaws -o output -r p_radius -s seed -v -w size
 
 where:
--f fuzzing     = fuzzing range of blobs (typically 0.0-0.2)
--n p_flaws     = p(success) for geometric distribution of # flaws/sample (typically 0.5-0.8)
--o output_file = name of output file
--r p_radius    = p(success) for geometric distribution of flaw radius (typically 0.1-0.4)
--s rand_seed   = RNG seed (large integer)
--v             = verbose
--w size        = image width/height in pixels (typically 480-800)
+-f fuzzing   = fuzzing range of blobs (typically 0.0-0.2)
+-n p_flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
+-o output    = name of output file
+-r p_radius  = p(success) for geometric distribution of flaw radius (e.g. 0.1-0.4)
+-s seed      = random number generator seed (large integer)
+-v           = verbose
+-w size      = image width/height in pixels (typically 480-800)
 \end{verbatim}
 \caption{A Good Comment To Explain The Use Of A Program}
 \label{fig:comment}
@@ -498,7 +497,7 @@ want to make it easy for people to give you credit for your work.
   recommend a permissive license such as the MIT, BSD, or Apache
   license \cite{laurent2004}.
 
-  \begin{framed}
+  \begin{quote}
     \noindent \textbf{What Not To Do}
 
     We recommend \emph{against} the ``no commercial use'' variations
@@ -511,7 +510,7 @@ want to make it easy for people to give you credit for your work.
       License}{https://www.safaribooksonline.com/library/view/understanding-open-source/0596005814/ch03.html}
     (GPL) because it is easier to integrate permissively-licensed
     software into other projects.
-  \end{framed}
+  \end{quote}
 
 \item
   \recommend{Make the project citable} by including a
@@ -624,7 +623,7 @@ them.  Our recommendations for doing this are drawn primarily from
     \texttt{bin} is an old Unix convention, and comes from the term
     ``binary''}. Projects that have neither will not require \texttt{bin}.
 
-  \begin{framed}
+  \begin{quote}
     \noindent \textbf{Scripts vs.\ Programs}
 
     We use the term ``script'' to mean ``something that is executed
@@ -634,7 +633,7 @@ them.  Our recommendations for doing this are drawn primarily from
     compiled to bytecode as they are loaded, for example---so one
     other way to think of it is ``things that are edited directly''
     and ``things that are not''.
-  \end{framed}
+  \end{quote}
 
 \item
   \recommend{Name all files to reflect their content or function.} For
@@ -785,7 +784,7 @@ three parts:
   where development is done, and other folders within
   \texttt{project\_name} are old versions.
 
-  \begin{framed}
+  \begin{quote}
     \noindent \textbf{Data is Cheap, Time is Expensive}
 
     Copying everything like this may seem wasteful, since many files
@@ -794,7 +793,7 @@ three parts:
     latte. Provided large data files are kept out of the backed-up
     area (discussed below), this approach costs less than the time it
     would take to select files by hand for copying.
-  \end{framed}
+  \end{quote}
 
 \end{enumerate}
 
@@ -845,7 +844,7 @@ accelerate the manual process: they also automate some steps while
 enforcing others, and thereby require less self-discipline for more
 reliable results.
 
-\begin{framed}
+\begin{quote}
   \noindent \textbf{How Version Control Systems Work}
 
   A version control system stores snapshots of a project's files in a
@@ -889,7 +888,7 @@ reliable results.
     work. If so, they facilitate identifying conflict and merging changes.
 
   \end{itemize}
-\end{framed}
+\end{quote}
 
 It's hard to know what version control tool is most widely used in
 research today, but the one that's most talked about is undoubtedly
@@ -927,7 +926,7 @@ files) can be put in version control, but changing the order of the
 rows or columns will create a big change for the version control
 system, even if the data itself has not changed.
 
-\begin{framed}
+\begin{quote}
   \noindent \textbf{Inadvertent Sharing}
 
   Researchers dealing with data subject to legal restrictions that
@@ -935,7 +934,7 @@ system, even if the data itself has not changed.
   data in public version control systems. Some institutions may
   provide access to private version control systems, so it is worth
   checking with your IT department.
-\end{framed}
+\end{quote}
 
 \section{Manuscripts}\label{sec:manuscripts}
 
@@ -987,7 +986,7 @@ to:
 
 \end{itemize}
 
-\begin{framed}
+\begin{quote}
   \noindent \textbf{The First Rule Is{\ldots}}
 
   The workflow you choose is less important than having all authors
@@ -995,7 +994,7 @@ to:
   also agree on a single method to provide feedback, be it an email
   thread or mailing list, an issue tracker (like the ones provided by
   GitHub and Bitbucket), or some sort of shared online to-do list.
-\end{framed}
+\end{quote}
 
 \subsection*{Single Master Online}
 
