@@ -127,47 +127,43 @@ Carpentry and Software Carpentry for everything they have taught us.
 \section{Data Management}\label{sec:data}
 
 Data within a project may need to exist in various forms, ranging from what
-first arrives to what is included in the final publication.  The aim of
-our recommendations is to reproducibly create ``tidy data'', which can be a
-powerful accelerator for analysis \cite{wickham2014,hart2015}.
+first arrives to what is actually used for the primary analyses.  Our recommendations have
+two main themes. One is to work towards ready-to-analyze data incrementally,
+documenting both the intermediate data and the process. We also describe the
+key features of ``tidy data'', which can be a powerful accelerator for analysis
+\cite{wickham2014,hart2015}.
 
 \begin{enumerate}
 
 \item
-  \recommend{Save data in the raw form}.  Where possible,
+  \recommend{Save the raw data}.  Where possible,
   save data as originally generated (i.e. by an instrument or from a survey).
   It is
   tempting to overwrite raw data files with cleaned-up versions, but
-  faithful retention is essential to being able to re-run analyses
-  from start to finish; to recover from analytical
-  mishaps; and for experimenting without fear. Consider restricting file permissions to read-only,
-  even (or especially) for yourself, so it is harder to damage raw
+  faithful retention is essential for re-running analyses
+  from start to finish; for recovery from analytical
+  mishaps; and for experimenting without fear. Consider changing file permissions to
+  read-only or using spreadsheet protection features,
+  so it is harder to damage raw
   data by accident or to hand edit it in a moment of weakness.
 
-  If the data is large and in a format that is inefficient to store or process,
-  transform it for storage with a lossless, well-documented procedure---avoid
+  Some data will be impractical to manage in this way. For example, you should avoid
   making local copies of large, stable repositories.
+  In that case, record the exact procedure used to obtain the raw data, as well
+  as any other pertinent info, such as an official version number or the date of download.
 
 \item
-  \recommend{Create the data you wish to see in the world}. Create a new version of the raw data
-  that is the dataset you \emph{wish}
-  you had received. Use
-  this dataset as the starting point for downstream analyses.
-  This is the time to improve machine and human readability, but
-  \emph{not} to do vigorous data filtering or adding
-  external information. Approach this step as non-destructive, both of the data and its general ``shape''.
+  \recommend{Create the data you wish to see in the world}. Create the raw dataset you
+  \emph{wish} you had received.  The goal here is to improve machine and human
+  readability, but \emph{not} to do vigorous data filtering or add external information.
+  Specific examples of non-destructive transformations that we recommend at the beginning
+  of analysis:
 
-  \fixme{JB}{Include an example.}
-
-  \emph{File formats}: Save the data in open, non-proprietary
-  formats that ensure long-term machine readability.  CSV is good for
-  tabular data, JSON, YAML, or XML for non-tabular data such as
-  graphs\footnote{The node-and-arc kind.}, and HDF5 for certain kinds
-  of structured data.  \withurl{This
-    guide}{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}
-  has a useful guidelines for choosing file formats.
-
-  \fixme{TT}{Include example of what goes wrong if you don't do tidying right.}
+  \emph{File formats}: Convert data from closed, proprietary formats to open,
+  non-proprietary formats that ensure machine readability across time and computing
+  setups \cite{ffIllinois}. CSV is good for tabular data, JSON, YAML, or XML for
+  non-tabular data such as graphs\footnote{The node-and-arc kind.}, and HDF5 for certain
+  kinds of structured data.
 
   \emph{Variable names}: Replace inscrutable variable names
   and artificial data codes with self-explaining alternatives, e.g.,
@@ -176,102 +172,55 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   treatment variable from \texttt{1} vs.  \texttt{2} to
   \texttt{untreated} vs. \texttt{treated}, and replace artificial
   codes for missing data, such as ``-99'', with \texttt{NA}s,
-  a shorthand code for ``Not Available'' that is used as a special variable
-  in many programming languages \cite{white2013}.
+  a code used in most programming languages to indicate that data is ``Not Available''
+  \cite{white2013}.
 
-  \emph{Filenames}: Store
-  especially useful metadata as part of the filename itself, while
-  keeping the filename regular enough for easy pattern matching. For
-  example, a filename like \texttt{2016-05-alaska-b.csv} makes it easy
-  for both people and programs to select by year or by location.
-
-\item
-  \recommend{Create analysis-friendly data}. Re-formatting data will
-  eliminate processing steps between loading the
-  data set and doing analyses.
-
-  \emph{Split columns} that contain more
-  than one variable's worth of information. For example, most analytical environments will read the value ``3.4 kg''
-  as character data, rather than numeric. It should be split into two columns (the mass ``3.4'' and
-  the units ``kg''), or record the units in the variable
-  name and/or metadata.
-
-  \emph{Combine columns} that only contain one variable's worth of
-  information when taken together. This is
-  characteristic of data that has been laid out for human eyeballs or
-  for manual data entry.  For example, there might be one row per
-  field site and then columns for measurements made at each of several
-  time points. It is convenient to store this in a ``short and wide''
-  form for data entry and inspection, but for most analyses it will be
-  advantageous to gather these columns into a variable of
-  measurements, plus an additional column that indicates the
-  time point.
-
-  \emph{Reformat values} to match your environment's built-in
-  parsing rules. For example, use a date-time format that will be
-  recognized automatically, or better yet, split dates into three
-  columns (year, month, and day) for easier sorting and filtering.
-
-  \begin{quote}
-    \noindent \textbf{OpenRefine}
-
-    \withurl{OpenRefine}{http://openrefine.org/}
-    is an excellent tool
-    for this stage of data cleanup. It combines a spreadsheet-like
-    interface to tabular data with a large set of cleanup heuristics,
-    and can generate a trace of cleanup steps to ensure
-    reproducibility.  The cleanup process does not affect the original
-    raw data, which further aids reproducibility.
-  \end{quote}
+  \emph{Filenames}: Store especially useful metadata as part of the filename itself, while
+  keeping the filename regular enough for easy pattern matching. For example, a filename
+  like \texttt{2016-05-alaska-b.csv} makes it easy for both people and programs to select
+  by year or by location.
 
 \item
-  \recommend{Record all the steps used to process data}: Data manipulation is as
-  much a part of your analysis as any statistics. If you are not able to
-  document this step clearly, it will not be possible for you, or anyone
-  else, to repeat your analysis. As important, how will you know in
-  a month whether you did it
-  right the first time?
+  \recommend{Create analysis-friendly data}: Analysis can be much easier if you are
+  working with so-called ``tidy'' data \cite{wickham2014}. Two key principles:
 
-  Record all of the information needed to redo the processing of raw data.
-  The best way to do this is to write scripts for
-  \emph{every} stage of data processing.
-  This not only ensures that you have a record, but also allows you to
-  re-do the cleanup and other steps when new data arrives.
-  In cases where automated data processing is not possible
-  or not practical, it's important to
-  clearly document every manual action taken (what menu was used, what
-  column was copied and pasted, what link was clicked, etc.). For example,
-  choosing a region of interest in an image
-  is inherently interactive, but you can save the region chosen
-  as a set of boundary coordinates. If the
-  exact details of the procedure cannot easily be recorded,
-  save intermediate results for later checking.
+  \emph{Make each column a variable}: Don't cram two variables into one, e.g.,
+  ``male\_treated'' should be split into separate variables for sex and treatment status.
+  Store units in their own variable or in metadata, e.g., ``3.4'' instead of``3.4kg''.
+
+  \emph{Make each row an observation}: Data often comes in a wide format, because that
+  facilitated data entry or human inspection. Imagine one row per field site and then
+  columns for measurements made at each of several time points. Be prepared to gather such
+  columns into a variable of measurements, plus a new variable for time point.
 
 \item
-  \recommend{Give every record a unique key}.  In a well-organized
-  data set, it's easy to precisely refer to a specific record.
-  Using fields in the data (such as people's names or addresses) does
-  not guarantee this; using row numbers in tables does, but those
-  numbers will change as records are added, removed, or sorted.
+  \recommend{Record all the steps used to process data}: Data manipulation is as integral
+  to your analysis as statistical modelling and inference. If you do not document this
+  step thoroughly, it impossible for you, or anyone else, to repeat the analysis.
+  
+  The best way to do this is to write scripts for \emph{every} stage of data processing.
+  This might feel frustratingly slow, but you will get faster with practice. The
+  immediate payoff will be the ease with which you can re-do data preparation when new
+  data arrives. You can also re-use data preparation logic in the future for related
+  projects.
 
-  We therefore recommend giving each record a unique, persistent key
-  that has no other purpose than identifying the
-  record\footnote{Student numbers and similar identifiers serve this
-    purpose in institutional databases.} The provision of such a key
-  also makes it much easier to link data sets together.
+  When scripting is not feasible, it's important to clearly document every manual action
+  (what menu was used, what column was copied and pasted, what link was clicked, etc.).
+  Often you can at least capture \emph{what} action was taken, if not the complete
+  \emph{why}. For example, choosing a region of interest in an image is inherently
+  interactive, but you can save the region chosen as a set of boundary coordinates.
 
 \item
-  \recommend{Include complementary data in additional files}.  Raw data
-  frequently does not fully explain
-  itself. For example, if each well in an $8{\times}12$ microtitre
-  plate is used to study a specific gene knockout, the raw
-  data will have a \texttt{well} variable taking on values like ``A1''
-  and ``G12''. Create a supplementary file that relates the experimental
-  conditions to each variable in the raw data. Use the
-  same names and codes when variables in two
-  datasets refer to the same thing to simplify merging and lookup, and
-  to reduce errors.
-
+  \recommend{Anticipate the need to use multiple tables}: Raw data, even if tidy, is not
+  necessarily complete. For example, the primary data table might hold the heart rate for
+  individual subjects at rest and after a physical challenge, identified via a subject ID.
+  Demographic variables, such as subject age and sex, are stored in a second table and
+  will need to be brought in via merging or lookup. This will go more smoothly if subject
+  ID is represented in a common format in both tables, e.g., always as ``14025'' versus
+  ``14,025'' in one table and ``014025'' in another. It is generally wise to give each
+  record or unit a unique, persistent key and to to use the same names and codes when 
+  variables in two datasets refer to the same thing.
+  
 \item
   \recommend{Submit data to a reputable DOI-issuing repository so that
     others can access and cite it.}  Your data is as much a product of
@@ -281,42 +230,29 @@ powerful accelerator for analysis \cite{wickham2014,hart2015}.
   \withurl{Dryad}{http://datadryad.org/}, and
   \withurl{Zenodo}{https://zenodo.org/} allow others to find your work,
   use it, and cite it; we discuss licensing in
-  Section~\ref{sec:collaboration} below.
+  Section~\ref{sec:collaboration} below. Metadata should also be stored 
+  
+  \fixme{anyone}{Let's modify the preceding item about deposition to include something about
+  appropriate treatment of metadata and cite \cite{wickes2015}. I removed a lengthy
+  quoted paragraph from this section but we shouldn't lose the citation and content
+  completely.}
 
 \end{enumerate}
 
 Taken in order, the recommendations above will produce intermediate
 data files with increasing levels of cleanliness and
 task-specificity. An alternative approach to data management would be
-to fold all data management tasks into the procedure, in particular
-the software, that is used for data analysis, so that intermediate
-data products are created ``on the fly'' and stored only in memory,
-not saved as distinct files.
+to fold all data management tasks into a monolithic procedure for data analysis,
+so that intermediate data products are created ``on the fly'' and stored only in
+memory, not saved as distinct files.
 
-While the latter approach may be appropriate for projects in which
-very little data cleaning or processing is needed, we recommend that
-beginning computational researchers explicitly create and save these
-intermediate products for two reasons.  First, saving intermediate
-files makes it easy to re-run \emph{parts} of a data analysis
-pipeline, which in turn makes it easier and faster to tinker with
-specific data cleaning operations.  Second, dividing data cleaning
-into several consecutive steps and separating it from data analysis
-helps to conceptually divide a lengthy workflow into smaller
-conceptual chunks, making it easier to understand, share, describe, and modify.
-
-\begin{quote}
-  \noindent \textbf{Choosing Metadata}
-
-  \cite{wickes2015} provides a useful classification for metadata,
-  with implications for how to represent it. She notes it is important
-  to distinguish metadata about the dataset as a whole (e.g., author
-  and related publications) from metadata about the content (e.g.,
-  units for observations).  When considering how to store metadata,
-  consider the intended audience. If it is human beings, write a
-  README file. If it is machines, such as metadata harvesters and
-  formal repositories, create a metadata file that they will easily be
-  able to parse.
-\end{quote}
+While the latter approach may be appropriate for projects in which very
+little data cleaning or processing is needed, we recommend the explicit
+creation and retention of intermediate products. Saving intermediate
+files makes it easy to re-run \emph{parts} of a data analysis pipeline,
+which in turn makes it less onerous to revisit and improve specific data
+processing tasks. Breaking a lengthy workflow into pieces makes it
+easier to understand, share, describe, and modify.
 
 \section{Software}\label{sec:software}
 
