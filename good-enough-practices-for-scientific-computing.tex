@@ -121,8 +121,9 @@ We organize our recommendations into the following topics:
 
 Our thanks to Arjun Raj (University of Pennsylvania) and Steven
 Haddock (Monterey Bay Aquarium Research Institute) for their feedback
-on early versions of this paper, and to everyone involved in Data
-Carpentry and Software Carpentry for everything they have taught us.
+on early versions of this paper, to those who contributed during the 
+outlining of the manuscript and to everyone involved in Data Carpentry and 
+Software Carpentry for everything they have taught us.
 
 \section{Data Management}\label{sec:data}
 
@@ -182,7 +183,7 @@ key features of ``tidy data'', which can be a powerful accelerator for analysis
 
 \item
   \recommend{Create analysis-friendly data}: Analysis can be much easier if you are
-  working with so-called ``tidy'' data \cite{wickham2014}. Two key principles:
+  working with so-called ``tidy'' data \cite{wickham2014}. Two key principles are:
 
   \emph{Make each column a variable}: Don't cram two variables into one, e.g.,
   ``male\_treated'' should be split into separate variables for sex and treatment status.
@@ -218,7 +219,7 @@ key features of ``tidy data'', which can be a powerful accelerator for analysis
   will need to be brought in via merging or lookup. This will go more smoothly if subject
   ID is represented in a common format in both tables, e.g., always as ``14025'' versus
   ``14,025'' in one table and ``014025'' in another. It is generally wise to give each
-  record or unit a unique, persistent key and to to use the same names and codes when 
+  record or unit a unique, persistent key and to use the same names and codes when 
   variables in two datasets refer to the same thing.
   
 \item
@@ -299,7 +300,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 
   The easiest code to debug and maintain is code you didn't
   actually write, so \recommend{always search for well-maintained
-    libraries that do what you need} before writing new code yourself,
+  software libraries that do what you need} before writing new code yourself,
   and \recommend{test libraries before relying on them}.
 
 \item
@@ -379,11 +380,11 @@ collaborators you already know, but you should design it to make it easy
 for new collaborators to join. These collaborators might be new
 grad students or postdocs in the lab, or they might be \emph{you}
 returning to a project that has been idle for some time. As summarized
-in \cite{steinmacher2015}, you want to make it easy for people set up a
+in \cite{steinmacher2015}, you want to make it easy for people to set up a
 local workspace so that they \emph{can} contribute, help them find tasks
 so that they know \emph{what} to contribute, and make the contribution
 process clear so that they know \emph{how} to contribute.  You also want
-want to make it easy for people to give you credit for your work.
+to make it easy for people to give you credit for your work.
 
 \begin{enumerate}
 
@@ -497,8 +498,7 @@ them.  Our recommendations for doing this are drawn primarily from
   share more than half of their data and code, they are probably best
   managed together, while if you are building tools that are used in
   several projects, the common code should probably be in a project of
-  its own. Anything in between can be decided based on the set of
-  people you're collaborating with.
+  its own.
 
 \item
   \recommend{Put text documents associated with the project in the
@@ -674,7 +674,7 @@ Whatever system you chose, we recommend that you use it in the following way:
   merge differences goes up faster than the size of the
   difference. This is particularly important for the manual versioning
   procedure describe below, which does not provide any
-  assistance for merging simultaneous changes.
+  assistance for merging simultaneous, possibly conflicting, changes.
 
 \item
   \recommend{Create, maintain, and use a checklist for saving and
@@ -774,7 +774,7 @@ merge those files whenever a backup copy is made.
 
 What the manual process described above requires most is
 self-discipline. The version control tools that underpin our second
-approach---the one all authors use for our projects---don't just
+approach---the one all authors use for their projects---don't just
 accelerate the manual process: they also automate some steps while
 enforcing others, and thereby require less self-discipline for more
 reliable results.
