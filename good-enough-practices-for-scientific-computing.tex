@@ -846,28 +846,30 @@ have nearly as many scientific users.
 
 \subsection*{What Not to Put Under Version Control}
 
-Despite the benefits of version control systems, some types of files
-may \emph{not} be appropriate for version control.
+The benefits of version control systems don't apply equally to all file types.
+In particular, version control can be more or less rewarding depending on file
+size and format.
 
 First, today's version control systems are not designed to handle
 megabyte-sized files, never mind gigabytes, so large data or
-results files should not be included. Raw data should not change, and
-therefore should not require version tracking. Keeping intermediate
-data files and other results under version control is not necessary if you
-can re-generate them from raw data and
-software. However, if data and results are small, we do recommend
+results files should not be included. What's "large"? As a benchmark, note that
+the limit for an individual file on GitHub is 100MB. Raw data should not change,
+and therefore should not absolutely require version tracking. Keeping
+intermediate data files and other results under version control is also not
+strictly necessary if you can re-generate them from raw data and
+software. However, if data and results are small, we still recommend
 placing them under version control for ease of access by collaborators
 and for comparison across versions.
 
-Second, some data formats are unfortunately not amenable to version
-control, which is designed to work with plain text files such as
-source code.  In particular, Microsoft Office files (like the
-\texttt{.docx} files used by Word or the \texttt{.xlsx} files used by
-Excel) can be stored in a version control system, but specific changes
-can't be tracked. Tabular data (such as CSV
-files) can be put in version control, but changing the order of the
-rows or columns will create a big change for the version control
-system, even if the data itself has not changed.
+Second, file comparison in version control systems is optimized
+for plain text files, such as source code. The ability to see so-called
+"diffs" is one of the great joys of version control. Unfortunately,
+Microsoft Office files (like the \texttt{.docx} files used by Word or the
+\texttt{.xlsx} files used by Excel) can be stored in a version control system,
+but it is not possible to pinpoint specific changes from one version to the next.
+Tabular data (such as CSV files) can be put in version control, but changing
+the order of the rows or columns will create a big change for the version
+control system, even if the data itself has not changed.
 
 \begin{quote}
   \noindent \textbf{Inadvertent Sharing}
@@ -1129,8 +1131,7 @@ investment before they start to pay off.
 \item[\textbf{Coverage}] Every modern programming language comes with
   tools to report the \emph{coverage} of a set of test cases, i.e.,
   the set of lines that are and aren't actually executed when those
-  tests are run. Mature projects run these tools periodically to find
-  code that isn't being used any more, but as with unit testing, this
+  tests are run. But as with unit testing, this
   only starts to pay off once the project grows larger, and is
   therefore not recommended here.
 
@@ -1154,9 +1155,8 @@ investment before they start to pay off.
   this paper.
 
 \item[\textbf{Code Reviews and Pair Programming}] These practices are
-  valuable in projects with multiple contributors, but are hard to
-  adopt in single-author/single-user situations, which includes most
-  of the intended audience for this paper \cite{petre2014}.
+  valuable in projects with multiple people making large software
+  contributions, which is not typical for the intended audience for this paper \cite{petre2014}.
 
 \end{description}
 
