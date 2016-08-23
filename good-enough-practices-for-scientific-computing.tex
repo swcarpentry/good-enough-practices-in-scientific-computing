@@ -140,6 +140,12 @@ data and the process. We also describe the key features of ``tidy
 data'', which can be a powerful accelerator for analysis
 \cite{wickham2014,hart2015}.
 
+\begin{figure}
+\includegraphics[width = 5in]{tidy-data.png}
+\caption{Example of gathering columns to create tidy data}
+\label{fig:tidy}
+\end{figure}
+
 \begin{enumerate}
 
 \item
@@ -200,7 +206,7 @@ data'', which can be a powerful accelerator for analysis
   \emph{Make each row an observation}: Data often comes in a wide format, because that
   facilitated data entry or human inspection. Imagine one row per field site and then
   columns for measurements made at each of several time points. Be prepared to gather such
-  columns into a variable of measurements, plus a new variable for time point.
+  columns into a variable of measurements, plus a new variable for time point. Figure~\ref{fig:tidy} presents an example of such a transformation.
 
 \item
   \recommend{Record all the steps used to process data}: Data manipulation is as integral
