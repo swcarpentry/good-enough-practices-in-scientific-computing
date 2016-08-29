@@ -93,7 +93,7 @@
 %% Include all macros below
 
 \newcommand{\withurl}[2]{{#1}\footnote{{\texttt{#2}}}}
-\newcommand{\practicesection}[2]{\section*{#1}\label{#2}}
+\newcommand{\practicesection}[2]{\section{#1}\label{#2}}
 \newcommand{\practice}[2]{\textbf{\emph{{#2}~({#1})}}}
 
 \begin{document}
@@ -302,7 +302,8 @@ External file is \texttt{tidy-data.tiff}.
   \emph{Make each row an observation}: Data often comes in a wide format, because that
   facilitated data entry or human inspection. Imagine one row per field site and then
   columns for measurements made at each of several time points. Be prepared to gather such
-  columns into a variable of measurements, plus a new variable for time point. Fig~\ref{fig:tidy} presents an example of such a transformation.
+  columns into a variable of measurements, plus a new variable for time point.
+  Fig~\ref{fig:tidy} presents an example of such a transformation.
 
 \item
   \practice{1d}{Record all the steps used to process data}: Data manipulation is as integral
