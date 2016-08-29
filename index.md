@@ -54,8 +54,7 @@ every researcher cares about most: their future self[^4]. Change is hard
 and if researchers don’t see those benefits quickly enough to justify
 the pain, they will almost certainly switch back to their old way of
 doing things. This rules out many practices, such as code review, that
-we feel are essential for larger-scale development
-(Section [sec:omitted]).
+we feel are essential for larger-scale development.
 
 We organize our recommendations into the following topics:
 
@@ -201,8 +200,8 @@ which can be a powerful accelerator for analysis [wickham2014][]
     Figshare[^6],
     Dryad[^7], and
     Zenodo[^8] allow others to find your work,
-    use it, and cite it; we discuss licensing in
-    Section [sec:collaboration] below. Follow your research community’s
+    use it, and cite it; we discuss licensing
+    below. Follow your research community’s
     standards for how to provide metadata. Note that there are two types
     of metadata: metadata about the dataset as a whole and metadata
     about the content within the dataset. If the audience is humans,
