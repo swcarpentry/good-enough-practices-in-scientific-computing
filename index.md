@@ -4,7 +4,7 @@ Good Enough Practices for Scientific Computing
 ====================
 
 Greg Wilson<sup>1</sup>,
-Jenny Bryan<sup>2</sup>,
+Jennifer Bryan<sup>2</sup>,
 Karen Cranston<sup>3</sup>,
 Justin Kitzes<sup>4</sup>,
 Lex Nederbragt<sup>5</sup>,
