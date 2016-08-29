@@ -1,7 +1,6 @@
 ---
 ---
-Good Enough Practices for Scientific Computing
-====================
+# Good Enough Practices for Scientific Computing
 
 Greg Wilson<sup>1</sup>,
 Jennifer Bryan<sup>2</sup>,
@@ -22,8 +21,7 @@ Tracy K. Teal<sup>6</sup>
 
 6) Data Carpentry / tkteal@datacarpentry.org
 
-Introduction {#sec:introduction}
-============
+## Introduction
 
 Two years ago a group of researchers involved in Software
 Carpentry[^1] and Data
@@ -79,8 +77,7 @@ We organize our recommendations into the following topics:
 -   Manuscripts: writing manuscripts in a way that easily tracks changes
     and minimizes manual merging of conflict.
 
-Acknowledgments {#acknowledgments .unnumbered}
----------------
+### Acknowledgments
 
 We are grateful to Arjun Raj (University of Pennsylvania), Steven
 Haddock (Monterey Bay Aquarium Research Institute), Stephen Turner
@@ -90,8 +87,7 @@ paper, to those who contributed during the outlining of the manuscript,
 and to everyone involved in Data Carpentry and Software Carpentry for
 everything they have taught us.
 
-Data Management {#sec:data}
-===============
+## Data Management
 
 Data within a project may need to exist in various forms, ranging from
 what first arrives to what is actually used for the primary analyses.
@@ -100,6 +96,10 @@ ready-to-analyze data incrementally, documenting both the intermediate
 data and the process. We also describe the key features of “tidy data”,
 which can be a powerful accelerator for analysis [wickham2014][]
 [hart2015][].
+
+![Example of gathering columns to create tidy data](tidy-data.png)
+
+**Figure 1**
 
 1.  *Save the raw data*. Where possible, save data as
     originally generated (i.e. by an instrument or from a survey). It is
@@ -160,11 +160,12 @@ which can be a powerful accelerator for analysis [wickham2014][]
     row per field site and then columns for measurements made at each of
     several time points. Be prepared to gather such columns into a
     variable of measurements, plus a new variable for time point.
+    Figure 1 presents an example of such a transformation.
 
 4.  *Record all the steps used to process data*: Data
     manipulation is as integral to your analysis as statistical
     modelling and inference. If you do not document this step
-    thoroughly, it impossible for you, or anyone else, to repeat the
+    thoroughly, it is impossible for you, or anyone else, to repeat the
     analysis.
 
     The best way to do this is to write scripts for *every* stage of
@@ -224,8 +225,7 @@ in turn makes it less onerous to revisit and improve specific data
 processing tasks. Breaking a lengthy workflow into pieces makes it
 easier to understand, share, describe, and modify.
 
-Software {#sec:software}
-========
+## Software
 
 If you or your group are creating tens of thousands of lines of software
 for use by hundreds of people you have never met, you are doing software
@@ -245,7 +245,7 @@ clearly-defined inputs and outputs.
     include at least one example of how the program is used: remember, a
     good example is worth a thousand words. Where possible, the comment
     should also indicate reasonable values for parameters.
-    Figure [fig:comment] presents an example of of such a comment.
+    Figure 2 presents an example of such a comment.
 
 2.  *Decompose programs into functions* that are no more
     than one page (about 60 lines) long, do not use global variables
@@ -308,25 +308,24 @@ clearly-defined inputs and outputs.
     Figshare[^9] and
     Zenodo[^10].
 
-<!-- -->
+```
+Synthesize image files for testing circularity estimation algorithm.
 
-    Synthesize image files for testing circularity estimation algorithm.
+Usage: make_images.py -f fuzzing -n p_flaws -o output -r p_radius -s seed -v -w size
 
-    Usage: make_images.py -f fuzzing -n p_flaws -o output -r p_radius -s seed -v -w size
+where:
+-f fuzzing   = fuzzing range of blobs (typically 0.0-0.2)
+-n p_flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
+-o output    = name of output file
+-r p_radius  = p(success) for geometric distribution of flaw radius (e.g. 0.1-0.4)
+-s seed      = random number generator seed (large integer)
+-v           = verbose
+-w size      = image width/height in pixels (typically 480-800)
+```
 
-    where:
-    -f fuzzing   = fuzzing range of blobs (typically 0.0-0.2)
-    -n p_flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
-    -o output    = name of output file
-    -r p_radius  = p(success) for geometric distribution of flaw radius (e.g. 0.1-0.4)
-    -s seed      = random number generator seed (large integer)
-    -v           = verbose
-    -w size      = image width/height in pixels (typically 480-800)
+**Figure 2**
 
-[fig:comment]
-
-Collaboration {#sec:collaboration}
-=============
+## Collaboration
 
 You may start working on projects by yourself or with a small group of
 collaborators you already know, but you should design it to make it easy
@@ -393,23 +392,22 @@ people to give you credit for your work.
     file in the project’s home directory that describes how to cite this
     project as a whole, and where to find (and how to cite) any data
     sets, code, figures, and other artifacts that have their own DOIs.
-    Figure [fig:citation] shows the `CITATION` file for the
+    Figure 3 shows the `CITATION` file for the
     Ecodata Retriever[^13]; for an example of
     a more detailed `CITATION` file, see the one for the
     khmer[^14] project.
 
-<!-- -->
+```
+Please cite this work as:
 
-    Please cite this work as:
+Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
+improving access to existing ecological data." PLOS ONE 8:e65848.
+http://doi.org/doi:10.1371/journal.pone.0065848
+```
 
-    Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
-    improving access to existing ecological data." PLOS ONE 8:e65848.
-    http://doi.org/doi:10.1371/journal.pone.0065848
+**Figure 3**
 
-[fig:citation]
-
-Project Organization {#sec:project}
-====================
+## Project Organization
 
 Organizing the files that make up a project in a logical and consistent
 directory structure will help you and others keep track of them. Our
@@ -499,18 +497,17 @@ recommendations for doing this are drawn primarily from [noble2009][]
     location in a final manuscript (e.g., `fig_3_a.png`), since those
     numbers will almost certainly change as the project evolves.
 
-Figure [fig:layout] below provides a concrete example of how a simple
-project might be organized following these recommendations. The root
-directory contains a `README` file that provides an overview of the
-project as a whole, a `CITATION` file that explains how to reference it,
-and a `LICENSE` file that states the licensing. The `data` directory
-contains a single CSV file with tabular data on bird counts
-(machine-readable metadata could also be included here). The `src`
-directory contains `sightings_analysis.py`, a Python file containing
-functions to summarize the tabular data, and a controller script
-`runall.py` that loads the data table, applies functions imported from
-`sightings_analysis.py`, and saves a table of summarized results in the
-`results` directory.
+Figure 4 provides a concrete example of how a simple project
+might be organized following these recommendations. The root directory
+contains a `README` file that provides an overview of the project as a
+whole, a `CITATION` file that explains how to reference it, and a
+`LICENSE` file that states the licensing. The `data` directory contains
+a single CSV file with tabular data on bird counts (machine-readable
+metadata could also be included here). The `src` directory contains
+`sightings_analysis.py`, a Python file containing functions to summarize
+the tabular data, and a controller script `runall.py` that loads the
+data table, applies functions imported from `sightings_analysis.py`, and
+saves a table of summarized results in the `results` directory.
 
 This project doesn’t have a `bin` directory, since it does not rely on
 any compiled software. The `doc` directory contains two text files
@@ -519,25 +516,26 @@ various ideas for the project and how these were implemented and the
 other containing a running draft of a manuscript describing the project
 findings.
 
-    .
-    |-- CITATION
-    |-- README
-    |-- LICENSE
-    |-- data
-    |   -- birds_count_table.csv
-    |-- doc
-    |   -- notebook.md
-    |   -- manuscript.md
-    |-- results
-    |   -- summarized_results.csv
-    |-- src
-    |   -- sightings_analysis.py
-    |   -- runall.py
+```
+.
+|-- CITATION
+|-- README
+|-- LICENSE
+|-- data
+|   -- birds_count_table.csv
+|-- doc
+|   -- notebook.md
+|   -- manuscript.md
+|-- results
+|   -- summarized_results.csv
+|-- src
+|   -- sightings_analysis.py
+|   -- runall.py
+```
 
-[fig:layout]
+**Figure 4**
 
-Keeping Track of Changes {#sec:versioning}
-========================
+## Keeping Track of Changes
 
 Keeping track of changes that you or your collaborators make to data and
 software is a critical part of research. Being able to reference or
@@ -592,8 +590,7 @@ way:
     and bans on committing half-done work or broken code. See
     [gawande2011][] for more on the proven value of checklists.
 
-Manual Versioning {#manual-versioning .unnumbered}
------------------
+### Manual Versioning
 
 Our first suggested approach, in which everything is done by hand, has
 three parts:
@@ -608,13 +605,13 @@ three parts:
     subfolder*, and make dated notes about changes to the project
     in this file in reverse chronological order (i.e., most recent
     first). This file is the equivalent of a lab notebook, and should
-    contain entries like those shown in Figure [fig:changelog].
+    contain entries like those shown in Figure 5.
 
 3.  *Copy the entire project whenever a significant change has
     been made* (i.e., one that materially affects the results),
     and store that copy in a sub-folder whose name reflects the date in
     the area that’s being synchronized. This approach results in
-    projects being organized as shown in Figure [fig:manual]. Here, the
+    projects being organized as shown in Figure 6. Here, the
     `project_name` folder is mapped to external storage (such as
     Dropbox), `current` is where development is done, and other folders
     within `project_name` are old versions.
@@ -628,30 +625,32 @@ three parts:
     > area (discussed below), this approach costs less than the time it
     > would take to select files by hand for copying.
 
-<!-- -->
+```
+## 2016-04-08
 
-    ## 2016-04-08
+* Switched to cubic interpolation as default.
+* Moved question about family's TB history to end of questionnaire.
 
-    * Switched to cubic interpolation as default.
-    * Moved question about family's TB history to end of questionnaire.
+## 2016-04-06
 
-    ## 2016-04-06
+* Added option for cubic interpolation.
+* Removed question about staph exposure (can be inferred from blood test results).
+```
 
-    * Added option for cubic interpolation.
-    * Removed question about staph exposure (can be inferred from blood test results).
+**Figure 5**
 
-[fig:changelog]
+```
+.
+|-- project_name
+|   -- current
+|       -- ...project content as described earlier...
+|   -- 2016-03-01
+|       -- ...content of 'current' on Mar 1, 2016
+|   -- 2016-02-19
+|       -- ...content of 'current' on Feb 19, 2016
+```
 
-    .
-    |-- project_name
-    |   -- current
-    |       -- ...project content as described earlier...
-    |   -- 2016-03-01
-    |       -- ...content of 'current' on Mar 1, 2016
-    |   -- 2016-02-19
-    |       -- ...content of 'current' on Feb 19, 2016
-
-[fig:manual]
+**Figure 6**
 
 This manual procedure satisfies the requirements outlined above without
 needing any new tools. If multiple researchers are working on the same
@@ -660,8 +659,7 @@ person is working on specific files at any time. In particular, they may
 wish to create one change log file per contributor, and to merge those
 files whenever a backup copy is made.
 
-Version Control Systems {#version-control-systems .unnumbered}
------------------------
+### Version Control Systems
 
 What the manual process described above requires most is
 self-discipline. The version control tools that underpin our second
@@ -705,41 +703,48 @@ reliable results.
 >     checks to see whether doing that would overwrite anyone else’s
 >     work. If so, they facilitate identifying conflict and merging
 >     changes.
->
+
 It’s hard to know what version control tool is most widely used in
 research today, but the one that’s most talked about is undoubtedly
-Git[^16]. This is largely because of the
-popularity of GitHub[^17], a hosting site that
-provides free repositories to those willing to make their work openly
-accessible. For those who find Git’s command-line syntax inconsistent
-and confusing, Mercurial[^18] is a good
-choice; Bitbucket[^19] provides free hosting
-for both Git and Mercurial repositories, but does not have nearly as
-many scientific users.
+Git[^16]. This is largely because of
+GitHub[^17], a popular hosting site that
+combines the technical infrastructure for collaboration via Git with a
+modern web interface. GitHub is free for public and open source projects
+and for users in academia and nonprofits.
+GitLab[^18] is a well-regarded alternative
+that some prefer, because the GitLab platform itself is free and open
+source. For those who find Git’s command-line syntax inconsistent and
+confusing, Mercurial[^19] is a good choice;
+Bitbucket[^20] provides free hosting for both
+Git and Mercurial repositories, but does not have nearly as many
+scientific users.
 
-What Not to Put Under Version Control {#what-not-to-put-under-version-control .unnumbered}
--------------------------------------
+### What Not to Put Under Version Control
 
-Despite the benefits of version control systems, some types of files may
-*not* be appropriate for version control.
+The benefits of version control systems don’t apply equally to all file
+types. In particular, version control can be more or less rewarding
+depending on file size and format.
 
 First, today’s version control systems are not designed to handle
 megabyte-sized files, never mind gigabytes, so large data or results
-files should not be included. Raw data should not change, and therefore
-should not require version tracking. Keeping intermediate data files and
-other results under version control is not necessary if you can
-re-generate them from raw data and software. However, if data and
-results are small, we do recommend placing them under version control
-for ease of access by collaborators and for comparison across versions.
+files should not be included. What’s “large”? As a benchmark, note that
+the limit for an individual file on GitHub is 100MB. Raw data should not
+change, and therefore should not absolutely require version tracking.
+Keeping intermediate data files and other results under version control
+is also not strictly necessary if you can re-generate them from raw data
+and software. However, if data and results are small, we still recommend
+placing them under version control for ease of access by collaborators
+and for comparison across versions.
 
-Second, some data formats are unfortunately not amenable to version
-control, which is designed to work with plain text files such as source
-code. In particular, Microsoft Office files (like the `.docx` files used
-by Word or the `.xlsx` files used by Excel) can be stored in a version
-control system, but specific changes can’t be tracked. Tabular data
-(such as CSV files) can be put in version control, but changing the
-order of the rows or columns will create a big change for the version
-control system, even if the data itself has not changed.
+Second, file comparison in version control systems is optimized for
+plain text files, such as source code. The ability to see so-called
+“diffs” is one of the great joys of version control. Unfortunately,
+Microsoft Office files (like the `.docx` files used by Word) or other
+binary files, e.g., PDFs, can be stored in a version control system, but
+it is not possible to pinpoint specific changes from one version to the
+next. Tabular data (such as CSV files) can be put in version control,
+but changing the order of the rows or columns will create a big change
+for the version control system, even if the data itself has not changed.
 
 > **Inadvertent Sharing**
 >
@@ -749,8 +754,7 @@ control system, even if the data itself has not changed.
 > access to private version control systems, so it is worth checking
 > with your IT department.
 
-Manuscripts {#sec:manuscripts}
-===========
+## Manuscripts
 
 An old joke says that doing the research is the first 90% of any
 project; writing up is the other 90%. While writing is rarely addressed
@@ -797,8 +801,7 @@ approaches for managing manuscripts. The goals of both are to:
 > mailing list, an issue tracker (like the ones provided by GitHub and
 > Bitbucket), or some sort of shared online to-do list.
 
-Single Master Online {#single-master-online .unnumbered}
---------------------
+### Single Master Online
 
 Our first alternative has two parts:
 
@@ -821,20 +824,19 @@ editor file format (e.g., Microsoft Word’s `.docx` or LibreOffice’s
 folder. Unfortunately, this means merging some changes and suggestions
 manually, as existing tools cannot always do this automatically when
 switching from a desktop file format to text and back (although
-Pandoc[^20] can go a long way).
+Pandoc[^21] can go a long way).
 
-Text-based Documents Under Version Control {#text-based-documents-under-version-control .unnumbered}
-------------------------------------------
+### Text-based Documents Under Version Control
 
 The second approach treats papers exactly like software, and has been
 used by researchers in mathematics, astronomy, physics, and related
 disciplines for decades:
 
 1.  *Write the manuscript in a plain text format that permits
-    version control* such as LaTeX[^21]
-    or Markdown[^22], and then convert them to
+    version control* such as LaTeX[^22]
+    or Markdown[^23], and then convert them to
     other formats such as PDF as needed using scriptable tools like
-    Pandoc[^23].
+    Pandoc[^24].
 
 2.  *Include tools needed to compile manuscripts in the project
     folder* and keep them under version control just like tools
@@ -850,8 +852,7 @@ fully-reproducible research. However, it requires all contributors to
 understand a much larger set of tools, including markdown or LaTeX,
 make, BiBTeX, and Git/GitHub.
 
-Why Two Recommendations for Manuscripts? {#why-two-recommendations-for-manuscripts .unnumbered}
-----------------------------------------
+### Why Two Recommendations for Manuscripts?
 
 The first draft of this paper recommended always using plain text in
 version control to manage manuscripts, but several reviewers pushed back
@@ -871,7 +872,7 @@ forcefully. For example, Stephen Turner wrote:
 > down to “just give me a Word document with tracked changes,” or
 > similar.
 
-Similarly, Arjun Raj said in a blog post[^24]:
+Similarly, Arjun Raj said in a blog post[^25]:
 
 > Google Docs excels at easy sharing, collaboration, simultaneous
 > editing, commenting and reply-to-commenting. Sure, one can approximate
@@ -891,8 +892,7 @@ Google Docs. We still recommend *against* traditional desktop tools like
 LibreOffice and Microsoft Word because they make collaboration more
 difficult than necessary.
 
-Supplementary Materials {#supplementary-materials .unnumbered}
------------------------
+### Supplementary Materials
 
 Supplementary materials often contain much of the work that went into
 the project, such as tables and figures or more elaborate descriptions
@@ -905,8 +905,7 @@ text-format files. The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
 
-What We Left Out {#sec:omitted}
-================
+## What We Left Out
 
 We have deliberately left many good tools and practices off our list,
 including some that we use daily, because they only make sense on top of
@@ -927,7 +926,7 @@ investment before they start to pay off.
 
 **Build Tools**
 
-:   Tools like Make[^25] were originally
+:   Tools like Make[^26] were originally
     developed to recompile pieces of software that had fallen out of
     date. They are now used to regenerate data and entire papers: when
     one or more raw input files change, Make can automatically re-run
@@ -952,7 +951,7 @@ investment before they start to pay off.
 
 **Continuous Integration**
 
-:   Tools like Travis-CI[^26] automatically
+:   Tools like Travis-CI[^27] automatically
     run a set of user-defined commands whenever changes are made to a
     version control repository. These commands typically execute tests
     to make sure that software hasn’t regressed, i.e., that things which
@@ -975,17 +974,15 @@ investment before they start to pay off.
 
 :   Every modern programming language comes with tools to report the
     *coverage* of a set of test cases, i.e., the set of lines that are
-    and aren’t actually executed when those tests are run. Mature
-    projects run these tools periodically to find code that isn’t being
-    used any more, but as with unit testing, this only starts to pay off
-    once the project grows larger, and is therefore not recommended
-    here.
+    and aren’t actually executed when those tests are run. But as with
+    unit testing, this only starts to pay off once the project grows
+    larger, and is therefore not recommended here.
 
 **The Semantic Web**
 
 :   Ontologies and other formal definitions of data are useful, but in
     our experience, even simplified things like Dublin
-    Core[^27] are rarely encountered in the wild.
+    Core[^28] are rarely encountered in the wild.
 
 **Documentation**
 
@@ -998,16 +995,16 @@ investment before they start to pay off.
 **A Bibliography Manager**
 
 :   Researchers should use a reference manager of some sort, such as
-    Zotero[^28], and should also obtain and
-    use an ORCID[^29] to identify themselves
+    Zotero[^29], and should also obtain and
+    use an ORCID[^30] to identify themselves
     in their publications, but discussion of those is outside the scope
     of this paper.
 
 **Code Reviews and Pair Programming**
 
-:   These practices are valuable in projects with multiple contributors,
-    but are hard to adopt in single-author/single-user situations, which
-    includes most of the intended audience for this paper [petre2014][].
+:   These practices are valuable in projects with multiple people making
+    large software contributions, which is not typical for the intended
+    audience for this paper [petre2014][].
 
 One important observation about this list is that many experienced
 programmers actually do some or all of these things even for small
@@ -1023,14 +1020,13 @@ people who *haven’t* already mastered the tools, and *don’t* realize
 situation, advocating unit testing with coverage checking and continuous
 integration is more likely to scare newcomers off than to aid them.
 
-Conclusion {#sec:conclusion}
-==========
+## Conclusion
 
-We have outlined a series of practices for scientific computing based
+We have outlined a series of practices for scientific computing based on
 our collective experience, and the experience of the thousands of
 researchers we have met through Software Carpentry, Data Carpentry, and
 similar organizations. These practices are pragmatic, accessible to
-people who consider themselves computing novices and can be applied by
+people who consider themselves computing novices, and can be applied by
 both individuals and groups.
 
 Most importantly, these practices make researchers more productive
@@ -1049,9 +1045,11 @@ research questions.
 
 [^2]: <http://datacarpentry.org/>
 
-[^3]: Note that English lacks a good word for this: “mediocre”, “adequate”, and “sufficient” aren’t exactly right.
+[^3]: Note that English lacks a good word for this: “mediocre”,
+    “adequate”, and “sufficient” aren’t exactly right.
 
-[^4]: As the joke goes, yourself from three months ago doesn’t answer email…
+[^4]: As the joke goes, yourself from three months ago doesn’t answer
+    email…
 
 [^5]: The node-and-arc kind.
 
@@ -1073,35 +1071,38 @@ research questions.
 
 [^14]: <https://github.com/dib-lab/khmer/blob/master/CITATION>
 
-[^15]: The name `bin` is an old Unix convention, and comes from the term “binary”.
+[^15]: The name <bin> is an old Unix convention, and comes from the term
+    “binary”
 
 [^16]: <https://git-scm.com/>
 
 [^17]: <http://github.com>
 
-[^18]: <https://www.mercurial-scm.org/>
+[^18]: <https://about.gitlab.com>
 
-[^19]: <https://bitbucket.org/>
+[^19]: <https://www.mercurial-scm.org/>
 
-[^20]: <http://pandoc.org/>
+[^20]: <https://bitbucket.org/>
 
-[^21]: <http://www.latex-project.org/>
+[^21]: <http://pandoc.org/>
 
-[^22]: <http://daringfireball.net/projects/markdown/>
+[^22]: <http://www.latex-project.org/>
 
-[^23]: <http://pandoc.org/>
+[^23]: <http://daringfireball.net/projects/markdown/>
 
-[^24]: <http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html>
+[^24]: <http://pandoc.org/>
 
-[^25]: <https://www.gnu.org/software/make/>
+[^25]: <http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html>
 
-[^26]: <https://travis-ci.org/>
+[^26]: <https://www.gnu.org/software/make/>
 
-[^27]: <http://dublincore.org/>
+[^27]: <https://travis-ci.org/>
 
-[^28]: <http://zotero.org/>
+[^28]: <http://dublincore.org/>
 
-[^29]: <http://orcid.org/>
+[^29]: <http://zotero.org/>
+
+[^30]: <http://orcid.org/>
 
 [wilson2014]: doi:10.1371/journal.pbio.1001745
 
