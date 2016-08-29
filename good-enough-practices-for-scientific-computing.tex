@@ -1,60 +1,153 @@
-\documentclass[10pt]{article}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
+\documentclass[10pt,letterpaper]{article}
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+
+% amsmath and amssymb packages, useful for mathematical formulas and symbols
+\usepackage{amsmath,amssymb}
+
+% Use adjustwidth environment to exceed column width (see example table in text)
+\usepackage{changepage}
+
+% Use Unicode characters when possible
+\usepackage[utf8x]{inputenc}
+
+% textcomp package and marvosym package for additional characters
+\usepackage{textcomp,marvosym}
+
+% cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
-\topmargin 0.0cm
-\oddsidemargin 0.5cm
-\evensidemargin 0.5cm
-\textwidth 16cm
-\textheight 21cm
+% Use nameref to cite supporting information files (see Supporting Information section for more info)
+\usepackage{nameref,hyperref}
 
-\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+% line numbers
+\usepackage[right]{lineno}
 
-\bibliographystyle{plos2009}
+% ligatures disabled
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% color can be used to apply background shading to table cells only
+\usepackage[table]{xcolor}
+
+% array package and thick rules for tables
+\usepackage{array}
+
+% create "+" rule type for thick vertical lines
+\newcolumntype{+}{!{\vrule width 2pt}}
+
+% create \thickcline for thick horizontal lines of variable length
+\newlength\savedwidth
+\newcommand\thickcline[1]{%
+  \noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+  \cline{#1}%
+  \noalign{\vskip\arrayrulewidth}%
+  \noalign{\global\arrayrulewidth\savedwidth}%
+}
+
+% \thickhline command for thick horizontal lines that span the table
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\hline
+\noalign{\global\arrayrulewidth\savedwidth}}
+
+
+% Remove comment for double spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% Text layout
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Bold the 'Figure #' in the caption and separate it from the title/caption with a period
+% Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
 \makeatletter
 \renewcommand{\@biblabel}[1]{\quad#1.}
 \makeatother
 
+% Leave date blank
 \date{}
 
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
 \pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{27.023pt}
+\lhead{\includegraphics[width=2.0in]{PLOS-submission.eps}}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\sf PLOS}
+
+%% Include all macros below
 
 \newcommand{\withurl}[2]{{#1}\footnote{{\texttt{#2}}}}
 \newcommand{\practicesection}[2]{\section*{#1}\label{#2}}
 \newcommand{\practice}[2]{\textbf{\emph{{#2}~({#1})}}}
 
 \begin{document}
+\vspace*{0.2in}
 
 \begin{flushleft}
 {\Large
-\textbf{Good Enough Practices for Scientific Computing}
+\textbf\newline{Good Enough Practices in Scientific Computing}
 }
-~\\
-{Greg~Wilson}$^{1,\ast}$,
-{Jennifer~Bryan}$^{2}$,
-{Karen~Cranston}$^{3}$,
-{Justin~Kitzes}$^{4}$,
-{Lex~Nederbragt}$^{5}$,
-{Tracy~K.~Teal}$^{6}$
+\newline
 \\
-\bf{1) Software Carpentry Foundation / gvwilson@software-carpentry.org}
+{Greg~Wilson}\textsuperscript{1,\ddag *},
+{Jennifer~Bryan}\textsuperscript{2,\ddag},
+{Karen~Cranston}\textsuperscript{3,\ddag},
+{Justin~Kitzes}\textsuperscript{4,\ddag},
+{Lex~Nederbragt}\textsuperscript{5,\ddag},
+{Tracy~K.~Teal}\textsuperscript{6,\ddag}
 \\
-\bf{2) University of British Columbia / jenny@stat.ubc.ca}
+\textbf{1} Software Carpentry Foundation / gvwilson@software-carpentry.org
 \\
-\bf{3) Duke University / karen.cranston@duke.edu}
+\textbf{2} University of British Columbia / jenny@stat.ubc.ca
 \\
-\bf{4) University of California, Berkeley / jkitzes@berkeley.edu}
+\textbf{3} Duke University / karen.cranston@duke.edu
 \\
-\bf{5) University of Oslo / lex.nederbragt@ibv.uio.no}
+\textbf{4} University of California, Berkeley / jkitzes@berkeley.edu
 \\
-\bf{6) Data Carpentry / tkteal@datacarpentry.org}
+\textbf{5} University of Oslo / lex.nederbragt@ibv.uio.no
 \\
-$\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
+\textbf{6} Data Carpentry / tkteal@datacarpentry.org
+\\
+\bigskip
+{\ddag} These authors contributed equally to this work.
+\\
+* E-mail: Corresponding gvwilson@software-carpentry.org
+
 \end{flushleft}
 
 \title{Good Enough Practices for Scientific Computing}
+
+\section*{Abstract}
+
+We present a set of computing tools and techniques that every
+researcher can and should adopt.  These recommendations synthesize
+inspiration from our own work, from the experiences of the thousands
+of people who have taken part in Software Carpentry and Data Carpentry
+workshops over the past six years, and from a variety of other guides.
+Unlike some other guides, our recommendations are aimed specifically
+at people who are new to research computing.
+
+\section*{Author Summary}
+
+The authors are all active contributors to Data Carpentry and/or Software Carpentry.
+
+\linenumbers
 
 \section*{Introduction}\label{sec:introduction}
 
@@ -143,8 +236,9 @@ data'', which can be a powerful accelerator for analysis
 \cite{wickham2014,hart2015}.
 
 \begin{figure}
-\includegraphics[width = 5in]{tidy-data.png}
-\caption{Example of gathering columns to create tidy data}
+\caption{\textbf{Example of gathering columns to create tidy data.}}
+External file is \texttt{tidy-data.tiff}.
+% \includegraphics[width = 5in]{tidy-data.png}
 \label{fig:tidy}
 \end{figure}
 
@@ -208,7 +302,7 @@ data'', which can be a powerful accelerator for analysis
   \emph{Make each row an observation}: Data often comes in a wide format, because that
   facilitated data entry or human inspection. Imagine one row per field site and then
   columns for measurements made at each of several time points. Be prepared to gather such
-  columns into a variable of measurements, plus a new variable for time point. Figure~\ref{fig:tidy} presents an example of such a transformation.
+  columns into a variable of measurements, plus a new variable for time point. Fig~\ref{fig:tidy} presents an example of such a transformation.
 
 \item
   \practice{1d}{Record all the steps used to process data}: Data manipulation is as integral
@@ -296,7 +390,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   at least one example of how the program is used: remember, a good
   example is worth a thousand words. Where possible, the comment
   should also indicate reasonable values for parameters.
-  Figure~\ref{fig:comment} presents an example of such a comment.
+  Fig~\ref{fig:comment} presents an example of such a comment.
 
 \item
   \practice{2b}{Decompose programs into functions} that are no more than
@@ -372,21 +466,22 @@ single-purpose functions with clearly-defined inputs and outputs.
 \end{enumerate}
 
 \begin{figure}
+\caption{\textbf{A Good Comment To Explain The Use Of A Program.}}
+{\small
 \begin{verbatim}
 Synthesize image files for testing circularity estimation algorithm.
 
-Usage: make_images.py -f fuzzing -n p_flaws -o output -r p_radius -s seed -v -w size
+Usage: make_images.py -f fuzzing -n flaws -o output -s seed -v -w size
 
 where:
--f fuzzing   = fuzzing range of blobs (typically 0.0-0.2)
--n p_flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
--o output    = name of output file
--r p_radius  = p(success) for geometric distribution of flaw radius (e.g. 0.1-0.4)
--s seed      = random number generator seed (large integer)
--v           = verbose
--w size      = image width/height in pixels (typically 480-800)
+-f fuzzing = fuzzing range of blobs (typically 0.0-0.2)
+-n flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
+-o output  = name of output file
+-s seed    = random number generator seed (large integer)
+-v         = verbose
+-w size    = image width/height in pixels (typically 480-800)
 \end{verbatim}
-\caption{A Good Comment To Explain The Use Of A Program}
+}
 \label{fig:comment}
 \end{figure}
 
@@ -469,7 +564,7 @@ to make it easy for people to give you credit for your work.
   \texttt{CITATION} file in the project's home directory that
   describes how to cite this project as a whole, and where to find (and how to cite)
   any data sets, code, figures, and other artifacts
-  that have their own DOIs.  Figure~\ref{fig:citation} shows the
+  that have their own DOIs.  Fig~\ref{fig:citation} shows the
   \texttt{CITATION} file for the \withurl{Ecodata
     Retriever}{https://github.com/weecology/retriever}; for an example
   of a more detailed \texttt{CITATION} file, see the one for the
@@ -479,6 +574,8 @@ to make it easy for people to give you credit for your work.
 \end{enumerate}
 
 \begin{figure}
+\caption{\textbf{Example CITATION File.}}
+{\small
 \begin{verbatim}
 Please cite this work as:
 
@@ -486,7 +583,7 @@ Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
 improving access to existing ecological data." PLOS ONE 8:e65848.
 http://doi.org/doi:10.1371/journal.pone.0065848
 \end{verbatim}
-\caption{Example CITATION File}
+}
 \label{fig:citation}
 \end{figure}
 
@@ -597,7 +694,7 @@ them.  Our recommendations for doing this are drawn primarily from
 
 \end{enumerate}
 
-Figure~\ref{fig:layout} provides a concrete example of how a
+Fig~\ref{fig:layout} provides a concrete example of how a
 simple project might be organized following these recommendations. The
 root directory contains a \texttt{README} file that provides an
 overview of the project as a whole, a \texttt{CITATION} file that
@@ -619,6 +716,8 @@ implemented and the other containing a running draft of a manuscript
 describing the project findings.
 
 \begin{figure}
+\caption{\textbf{Example Project Layout.}}
+{\small
 \begin{verbatim}
 .
 |-- CITATION
@@ -635,7 +734,7 @@ describing the project findings.
 |   -- sightings_analysis.py
 |   -- runall.py
 \end{verbatim}
-\caption{Example Project Layout}
+}
 \label{fig:layout}
 \end{figure}
 
@@ -722,7 +821,7 @@ three parts:
   the project in this file in reverse chronological order (i.e., most
   recent first). This file is the equivalent of a lab notebook, and
   should contain entries like those shown in
-  Figure~\ref{fig:changelog}.
+  Fig~\ref{fig:changelog}.
 
 \item
   \practice{5g}{Copy the entire project whenever a significant change has
@@ -730,7 +829,7 @@ three parts:
     copy in a sub-folder whose name reflects
   the date in the area that's being synchronized. This approach
   results in projects being organized as shown in
-  Figure~\ref{fig:manual}.  Here, the \texttt{project\_name} folder is
+  Fig~\ref{fig:manual}.  Here, the \texttt{project\_name} folder is
   mapped to external storage (such as Dropbox), \texttt{current} is
   where development is done, and other folders within
   \texttt{project\_name} are old versions.
@@ -749,6 +848,8 @@ three parts:
 \end{enumerate}
 
 \begin{figure}
+\caption{\textbf{Example Changelog.}}
+{\small
 \begin{verbatim}
 ## 2016-04-08
 
@@ -760,11 +861,13 @@ three parts:
 * Added option for cubic interpolation.
 * Removed question about staph exposure (can be inferred from blood test results).
 \end{verbatim}
-\caption{Example Changelog}
+}
 \label{fig:changelog}
 \end{figure}
 
 \begin{figure}
+\caption{\textbf{Directory Hierarchy for Manual Versioning.}}
+{\small
 \begin{verbatim}
 .
 |-- project_name
@@ -775,7 +878,7 @@ three parts:
 |   -- 2016-02-19
 |       -- ...content of 'current' on Feb 19, 2016
 \end{verbatim}
-\caption{Directory Hierarchy for Manual Versioning}
+}
 \label{fig:manual}
 \end{figure}
 
@@ -1208,7 +1311,101 @@ tools.  Such investment will improve confidence in the results of
 computational work and allow us to make more rapid progress on
 important research questions.
 
-\bibliography{good-enough-practices-for-scientific-computing}
+% \bibliography{good-enough-practices-for-scientific-computing}
+\begin{thebibliography}{10}
+
+\bibitem{wilson2014}
+Wilson G, Aruliah DA, Brown CT, Hong NPC, Davis M, Guy RT, et~al.
+\newblock Best Practices for Scientific Computing.
+\newblock PLoS Biology. 2014;12(1):e1001745.
+\newblock doi:{10.1371/journal.pbio.1001745}.
+
+\bibitem{gentzkow2014}
+Gentzkow M, Shapiro JM. Code and Data for the Social Sciences: A Practitioner's
+  Guide; 2014.
+\newblock Available from:
+  \url{http://faculty.chicagobooth.edu/matthew.gentzkow/research/CodeAndData.pdf}.
+
+\bibitem{noble2009}
+Noble WS.
+\newblock {A Quick Guide to Organizing Computational Biology Projects}.
+\newblock PLoS Computational Biology. 2009;5(7).
+\newblock doi:{10.1371/journal.pcbi.1000424}.
+
+\bibitem{brown2015}
+Brown CT. How to grow a sustainable software development process; 2015.
+\newblock Available from:
+  \url{http://ivory.idyll.org/blog/2015-growing\--sustainable\--software\--development-process.html}.
+
+\bibitem{wickham2014}
+Wickham H.
+\newblock Tidy Data.
+\newblock Journal of Statistical Software. 2014;59(1):1--23.
+\newblock doi:{10.18637/jss.v059.i10}.
+
+\bibitem{kitzes2016}
+Kitzes J. Reproducible Workflows; 2016.
+\newblock Available from:
+  \url{http://datasci.kitzes.com/lessons/python/\-reproducible\_workflow.html}.
+
+\bibitem{sandve2013}
+Sandve GK, Nekrutenko A, Taylor J, Hovig E.
+\newblock Ten Simple Rules for Reproducible Computational Research.
+\newblock PLoS Computational Biology. 2013;9(10).
+\newblock doi:{doi:10.1371/journal.pcbi.1003285}.
+
+\bibitem{hart2015}
+Hart E, Barmby P, LeBauer D, Michonneau F, Mount S, Poisot T, et~al.. Ten
+  simple rules for digital data storage; 2015.
+
+\bibitem{ffIllinois}
+of~Illinois~Library U. File Formats and Organization;.
+\newblock Available from:
+  \url{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}.
+
+\bibitem{white2013}
+White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR.
+\newblock Nine Simple Ways to Make It Easier to (Re)use Your Data.
+\newblock Ideas in Ecology and Evolution. 2013;6(2).
+\newblock doi:{doi:10.4033/iee.2013.6b.6.f}.
+
+\bibitem{wickes2015}
+Wickes E. Comment on "Metadata"; 2015.
+\newblock Available from:
+  \url{https://github.com/swcarpentry/good\--enough\--practices\--in\--scientific\--computing/issues/3\#issuecomment-157410442}.
+
+\bibitem{miller1956}
+Miller GA.
+\newblock The Magical Number Seven, Plus or Minus Two: Some Limits on Our
+  Capacity for Processing Information.
+\newblock Psychological Review. 1956;63(2):81–97.
+\newblock doi:{doi:10.1037/h0043158m}.
+
+\bibitem{steinmacher2015}
+Steinmacher I, {Graciotto Silva} M, Gerosa M, Redmiles DF.
+\newblock A Systematic Literature Review on the Barriers Faced by Newcomers to
+  Open Source Software Projects.
+\newblock Information and Software Technology. 2015;59(C).
+\newblock doi:{10.1016/j.infsof.2014.11.001}.
+
+\bibitem{laurent2004}
+{St  Laurent} AM.
+\newblock Understanding Open Source and Free Software Licensing.
+\newblock O'Reilly Media; 2004.
+\newblock Available from:
+  \url{http://www.oreilly.com/openbook/osfreesoft/book/}.
+
+\bibitem{gawande2011}
+Gawande A.
+\newblock The Checklist Manifesto: How to Get Things Right.
+\newblock Picador; 2011.
+
+\bibitem{petre2014}
+Petre M, Wilson G.
+\newblock Code Review For and By Scientists.
+\newblock In: Katz D, editor. Proc.\ WSSSPE 2014; 2014.
+
+\end{thebibliography}
 
 \pagebreak
 
@@ -1273,5 +1470,13 @@ important research questions.
   \end{enumerate}
 \end{enumerate}
 }
+
+\pagebreak
+
+\section*{Supporting Information}
+
+\paragraph*{Section 1 Figure}
+\label{S1_Fig}
+\textbf{Example of gathering columns to create tidy data.}
 
 \end{document}

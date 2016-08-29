@@ -3,6 +3,7 @@
 *.bbl
 *.blg
 *.log
+*.out
 *~
 .DS_Store
 .Rproj.user

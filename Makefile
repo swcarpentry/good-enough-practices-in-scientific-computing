@@ -28,4 +28,5 @@ clean :
 	@find . -name '*.bbl' -exec rm {} \;
 	@find . -name '*.blg' -exec rm {} \;
 	@find . -name '*.log' -exec rm {} \;
+	@find . -name '*.out' -exec rm {} \;
 	@find . -name .DS_Store -exec rm {} \;
