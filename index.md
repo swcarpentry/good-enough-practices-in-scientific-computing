@@ -1040,15 +1040,63 @@ tools. Such investment will improve confidence in the results of
 computational work and allow us to make more rapid progress on important
 research questions.
 
+----
+
+## Box 1: Summary of Practices
+
+1.  Data Management
+    1.  Save the raw data.
+    1.  Create the data you wish to see in the world.
+    1.  Create analysis-friendly data.
+    1.  Record all the steps used to process data.
+    1.  Anticipate the need to use multiple tables.
+    1.  Submit data to a reputable DOI-issuing repository so that others can access and cite it.
+1.  Software
+    1.  Place a brief explanatory comment at the start of every program.
+    1.  Decompose programs into functions.
+    1.  Be ruthless about eliminating duplication.
+    1.  Always search for well-maintained software libraries that do what you need.
+    1.  Test libraries before relying on them.
+    1.  Give functions and variables meaningful names.
+    1.  Make dependencies and requirements explicit.
+    1.  Do not comment and uncomment sections of code to control a program's behavior.
+    1.  Provide a simple example or test data set.
+    1.  Submit code to a reputable DOI-issuing repository.
+1.  Collaboration
+    1.  Create an overview of your project.
+    1.  Create a shared public "to-do" list.
+    1.  Make the license explicit.
+    1.  Make the project citable.
+1.  Project Organization
+    1.  Put each project in its own directory, which is named after the project.
+    1.  Put text documents associated with the project in the `doc` directory.
+    1.  Put raw data and metadata in a `data` directory, and files generated during cleanup and analysis in a `results` directory.
+    1.  Put project source code in the `src` directory.
+    1.  Put external scripts, or compiled programs in the `bin` directory.
+    1.  Name all files to reflect their content or function.
+1.  Keeping Track of Changes
+    1.  Back up (almost) everything created by a human being as soon as it is created.
+    1.  Keep changes small.
+    1.  Share changes frequently.
+    1.  Create, maintain, and use a checklist for saving and sharing changes to the project.
+    1.  Store each project in a folder that is mirrored off the researcher's working machine.
+    1.  Add a file called `CHANGELOG.txt` to the project's `docs` subfolder.
+    1.  Copy the entire project whenever a significant change has been made.
+1.  Manuscripts
+    1.  Write manuscripts using online tools with rich formatting, change tracking, and reference management.
+    1.  Include a `PUBLICATIONS` file in the project's `doc` directory.
+    1.  Write the manuscript in a plain text format that permits version control.
+    1.  Include tools needed to compile manuscripts in the project folder.
+
+----
+
 [^1]: <http://software-carpentry.org/>
 
 [^2]: <http://datacarpentry.org/>
 
-[^3]: Note that English lacks a good word for this: “mediocre”,
-    “adequate”, and “sufficient” aren’t exactly right.
+[^3]: Note that English lacks a good word for this: “mediocre”, “adequate”, and “sufficient” aren’t exactly right.
 
-[^4]: As the joke goes, yourself from three months ago doesn’t answer
-    email…
+[^4]: As the joke goes, yourself from three months ago doesn’t answer email…
 
 [^5]: The node-and-arc kind.
 
@@ -1070,8 +1118,7 @@ research questions.
 
 [^14]: <https://github.com/dib-lab/khmer/blob/master/CITATION>
 
-[^15]: The name <bin> is an old Unix convention, and comes from the term
-    “binary”
+[^15]: The name <bin> is an old Unix convention, and comes from the term “binary”
 
 [^16]: <https://git-scm.com/>
 

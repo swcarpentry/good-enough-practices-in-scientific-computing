@@ -21,9 +21,9 @@
 
 \pagestyle{myheadings}
 
-\newcommand{\fixme}[2]{\textsc{\textbf{{#1}: {#2}}}}
-\newcommand{\recommend}[1]{\textit{#1}}
-\newcommand{\withurl}[2]{{#1}\footnote{\texttt{#2}}}
+\newcommand{\withurl}[2]{{#1}\footnote{{\texttt{#2}}}}
+\newcommand{\practicesection}[2]{\section*{#1}\label{#2}}
+\newcommand{\practice}[2]{\textbf{\emph{{#2}~({#1})}}}
 
 \begin{document}
 
@@ -31,7 +31,7 @@
 {\Large
 \textbf{Good Enough Practices for Scientific Computing}
 }
-
+~\\
 {Greg~Wilson}$^{1,\ast}$,
 {Jennifer~Bryan}$^{2}$,
 {Karen~Cranston}$^{3}$,
@@ -39,22 +39,24 @@
 {Lex~Nederbragt}$^{5}$,
 {Tracy~K.~Teal}$^{6}$
 \\
-1) Software Carpentry Foundation / gvwilson@software-carpentry.org
+\bf{1) Software Carpentry Foundation / gvwilson@software-carpentry.org}
 \\
-2) University of British Columbia / jenny@stat.ubc.ca
+\bf{2) University of British Columbia / jenny@stat.ubc.ca}
 \\
-3) Duke University / karen.cranston@duke.edu
+\bf{3) Duke University / karen.cranston@duke.edu}
 \\
-4) University of California, Berkeley / jkitzes@berkeley.edu
+\bf{4) University of California, Berkeley / jkitzes@berkeley.edu}
 \\
-5) University of Oslo / lex.nederbragt@ibv.uio.no
+\bf{5) University of Oslo / lex.nederbragt@ibv.uio.no}
 \\
-6) Data Carpentry / tkteal@datacarpentry.org
+\bf{6) Data Carpentry / tkteal@datacarpentry.org}
 \\
 $\ast$ E-mail: Corresponding gvwilson@software-carpentry.org
 \end{flushleft}
 
-\section{Introduction}\label{sec:introduction}
+\title{Good Enough Practices for Scientific Computing}
+
+\section*{Introduction}\label{sec:introduction}
 
 Two years ago a group of researchers involved in \withurl{Software
 Carpentry}{http://software-carpentry.org/} and \withurl{Data
@@ -130,7 +132,7 @@ of this paper, to those who contributed during the outlining of the
 manuscript, and to everyone involved in Data Carpentry and Software
 Carpentry for everything they have taught us.
 
-\section{Data Management}\label{sec:data}
+\practicesection{Data Management}{sec:data}
 
 Data within a project may need to exist in various forms, ranging from
 what first arrives to what is actually used for the primary analyses.
@@ -149,7 +151,7 @@ data'', which can be a powerful accelerator for analysis
 \begin{enumerate}
 
 \item
-  \recommend{Save the raw data}.  Where possible,
+  \practice{1a}{Save the raw data}.  Where possible,
   save data as originally generated (i.e. by an instrument or from a survey).
   It is
   tempting to overwrite raw data files with cleaned-up versions, but
@@ -166,7 +168,7 @@ data'', which can be a powerful accelerator for analysis
   as any other pertinent info, such as an official version number or the date of download.
 
 \item
-  \recommend{Create the data you wish to see in the world}. Create the raw dataset you
+  \practice{1b}{Create the data you wish to see in the world}. Create the raw dataset you
   \emph{wish} you had received.  The goal here is to improve machine and human
   readability, but \emph{not} to do vigorous data filtering or add external information.
   Machine readability allows automatic processing using computer programs,
@@ -196,7 +198,7 @@ data'', which can be a powerful accelerator for analysis
   by year or by location.
 
 \item
-  \recommend{Create analysis-friendly data}: Analysis can be much easier if you are
+  \practice{1c}{Create analysis-friendly data}: Analysis can be much easier if you are
   working with so-called ``tidy'' data \cite{wickham2014}. Two key principles are:
 
   \emph{Make each column a variable}: Don't cram two variables into one, e.g.,
@@ -209,7 +211,7 @@ data'', which can be a powerful accelerator for analysis
   columns into a variable of measurements, plus a new variable for time point. Figure~\ref{fig:tidy} presents an example of such a transformation.
 
 \item
-  \recommend{Record all the steps used to process data}: Data manipulation is as integral
+  \practice{1d}{Record all the steps used to process data}: Data manipulation is as integral
   to your analysis as statistical modelling and inference. If you do not document this
   step thoroughly, it is impossible for you, or anyone else, to repeat the analysis.
 
@@ -226,7 +228,7 @@ data'', which can be a powerful accelerator for analysis
   interactive, but you can save the region chosen as a set of boundary coordinates.
 
 \item
-  \recommend{Anticipate the need to use multiple tables}: Raw data, even if tidy, is not
+  \practice{1e}{Anticipate the need to use multiple tables}: Raw data, even if tidy, is not
   necessarily complete. For example, the primary data table might hold the heart rate for
   individual subjects at rest and after a physical challenge, identified via a subject ID.
   Demographic variables, such as subject age and sex, are stored in a second table and
@@ -237,7 +239,7 @@ data'', which can be a powerful accelerator for analysis
   variables in two datasets refer to the same thing.
 
 \item
-  \recommend{Submit data to a reputable DOI-issuing repository so that
+  \practice{1f}{Submit data to a reputable DOI-issuing repository so that
     others can access and cite it.}  Your data is as much a product of
   your research as the papers you write, and just as likely to be
   useful to others (if not more so).  Sites such as
@@ -270,7 +272,7 @@ which in turn makes it less onerous to revisit and improve specific data
 processing tasks. Breaking a lengthy workflow into pieces makes it
 easier to understand, share, describe, and modify.
 
-\section{Software}\label{sec:software}
+\practicesection{Software}{sec:software}
 
 If you or your group are creating tens of thousands of lines of
 software for use by hundreds of people you have never met, you are
@@ -289,7 +291,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 \begin{enumerate}
 
 \item
-  \recommend{Place a brief explanatory comment at the start of every
+  \practice{2a}{Place a brief explanatory comment at the start of every
     program}, no matter how short it is. That comment should include
   at least one example of how the program is used: remember, a good
   example is worth a thousand words. Where possible, the comment
@@ -297,7 +299,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   Figure~\ref{fig:comment} presents an example of such a comment.
 
 \item
-  \recommend{Decompose programs into functions} that are no more than
+  \practice{2b}{Decompose programs into functions} that are no more than
   one page (about 60 lines) long, do not
   use global variables (constants are OK), and take no more than half
   a dozen parameters.  The key motivation here is to fit the program
@@ -308,18 +310,18 @@ single-purpose functions with clearly-defined inputs and outputs.
   this limit, then create programs by combining these chunks.
 
 \item
-  \recommend{Be ruthless about eliminating duplication}. Write and
+  \practice{2c}{Be ruthless about eliminating duplication}. Write and
   re-use functions instead of copying and pasting source code, and use
   data structures like lists rather than creating lots of variables
   called \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
 
   The easiest code to debug and maintain is code you didn't
-  actually write, so \recommend{always search for well-maintained
+  actually write, so \practice{2d}{always search for well-maintained
   software libraries that do what you need} before writing new code yourself,
-  and \recommend{test libraries before relying on them}.
+  and \practice{2e}{test libraries before relying on them}.
 
 \item
-  \recommend{Give functions and variables meaningful names}, both to
+  \practice{2f}{Give functions and variables meaningful names}, both to
   document their purpose and to make the program easier to read. As a
   rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
@@ -338,20 +340,20 @@ single-purpose functions with clearly-defined inputs and outputs.
   \end{quote}
 
 \item
-  \recommend{Make dependencies and requirements explicit.} This is
+  \practice{2g}{Make dependencies and requirements explicit.} This is
   usually done on a per-project rather than per-program basis, i.e.,
   by adding a file called something like \texttt{requirements.txt} to
   the root directory of the project, or by adding a ``Getting
   Started'' section to the \texttt{README} file.
 
 \item
-  \recommend{Do not comment and uncomment sections of code to control
+  \practice{2h}{Do not comment and uncomment sections of code to control
     a program's behavior}, since this is error prone and makes it
   difficult or impossible to automate analyses. Instead, put if/else
   statements in the program to control what it does.
 
 \item
-  \recommend{Provide a simple example or test data set} that users
+  \practice{2i}{Provide a simple example or test data set} that users
   (including yourself) can run to determine whether the program is
   working and whether it gives a known correct output for a
   simple known input. Such a ``build and smoke test'' is particularly
@@ -360,7 +362,7 @@ single-purpose functions with clearly-defined inputs and outputs.
   the developer's laptop and the department's cluster.
 
 \item
-  \recommend{Submit code to a reputable DOI-issuing repository} upon
+  \practice{2j}{Submit code to a reputable DOI-issuing repository} upon
   submission of paper, just as you do with data. Your software is as
   much a product of your research as your papers, and should be as
   easy for people to credit. DOIs for software are provided by
@@ -388,7 +390,7 @@ where:
 \label{fig:comment}
 \end{figure}
 
-\section{Collaboration}\label{sec:collaboration}
+\practicesection{Collaboration}{sec:collaboration}
 
 You may start working on projects by yourself or with a small group of
 collaborators you already know, but you should design it to make it easy
@@ -404,7 +406,7 @@ to make it easy for people to give you credit for your work.
 \begin{enumerate}
 
 \item
-  \recommend{Create an overview of your project.}  Have a short
+  \practice{3a}{Create an overview of your project.}  Have a short
   file in the project's home directory that explains the
   purpose of the project.  This file (generally called
   \texttt{README}, \texttt{README.txt}, or something similar) should
@@ -423,7 +425,7 @@ to make it easy for people to give you credit for your work.
   to.
 
 \item
-  \recommend{Create a shared public ``to-do'' list}.  This can be a
+  \practice{3b}{Create a shared public ``to-do'' list}.  This can be a
   plain text file called something like \texttt{notes.txt} or
   \texttt{todo.txt}, or you can use sites such as GitHub or Bitbucket
   to create a new \emph{issue} for each to-do item. (You can even add
@@ -432,7 +434,7 @@ to make it easy for people to give you credit for your work.
   items clearly so that they make sense to newcomers.
 
 \item
-  \recommend{Make the license explicit.}  Have a \texttt{LICENSE} file
+  \practice{3c}{Make the license explicit.}  Have a \texttt{LICENSE} file
   in the project's home directory that clearly states what license(s)
   apply to the project's software, data, and manuscripts. Lack of an
   explicit license does not mean there isn't one; rather, it implies
@@ -463,7 +465,7 @@ to make it easy for people to give you credit for your work.
   \end{quote}
 
 \item
-  \recommend{Make the project citable} by including a
+  \practice{3d}{Make the project citable} by including a
   \texttt{CITATION} file in the project's home directory that
   describes how to cite this project as a whole, and where to find (and how to cite)
   any data sets, code, figures, and other artifacts
@@ -488,7 +490,7 @@ http://doi.org/doi:10.1371/journal.pone.0065848
 \label{fig:citation}
 \end{figure}
 
-\section{Project Organization}\label{sec:project}
+\practicesection{Project Organization}{sec:project}
 
 Organizing the files that make up a project in a logical and
 consistent directory structure will help you and others keep track of
@@ -498,7 +500,7 @@ them.  Our recommendations for doing this are drawn primarily from
 \begin{enumerate}
 
 \item
-  \recommend{Put each project in its own directory, which is named
+  \practice{4a}{Put each project in its own directory, which is named
     after the project.}  Like deciding when a chunk of code should be
   made a function, the ultimate goal of dividing research into
   distinct projects is to help you and others best understand your
@@ -515,14 +517,14 @@ them.  Our recommendations for doing this are drawn primarily from
   its own.
 
 \item
-  \recommend{Put text documents associated with the project in the
+  \practice{4b}{Put text documents associated with the project in the
     \texttt{doc} directory.} This includes files for manuscripts,
   documentation for source code, and/or an electronic lab notebook
   recording your experiments.  Subdirectories may be created for these
   different classes of files in large projects.
 
 \item
-  \recommend{Put raw data and metadata in a \texttt{data} directory,
+  \practice{4c}{Put raw data and metadata in a \texttt{data} directory,
     and files generated during cleanup and analysis in a
     \texttt{results} directory}, where ``generated files'' includes
   intermediate results, such as cleaned data sets or simulated data,
@@ -537,7 +539,7 @@ them.  Our recommendations for doing this are drawn primarily from
   other publications should be grouped together.
 
 \item
-  \recommend{Put project source code in the \texttt{src} directory.}
+  \practice{4d}{Put project source code in the \texttt{src} directory.}
   \texttt{src} contains all of the code written for the project. This includes
   programs written in interpreted languages
   such as R or Python; those written compiled languages like
@@ -565,7 +567,7 @@ them.  Our recommendations for doing this are drawn primarily from
     a name such as ``runall''.
 
 \item
-  \recommend{Put external scripts, or compiled programs
+  \practice{4e}{Put external scripts, or compiled programs
    in the \texttt{bin} directory}.  \texttt{bin} contains
   scripts that are brought in from elsewhere, and executable programs
   compiled from code in the \texttt{src} directory\footnote{The name
@@ -585,7 +587,7 @@ them.  Our recommendations for doing this are drawn primarily from
   \end{quote}
 
 \item
-  \recommend{Name all files to reflect their content or function.} For
+  \practice{4f}{Name all files to reflect their content or function.} For
   example, use names such as \texttt{bird\_count\_table.csv},
   \texttt{manuscript.md}, or \texttt{sightings\_analysis.py}.  Do
   \emph{not} using sequential numbers (e.g., \texttt{result1.csv},
@@ -637,7 +639,7 @@ describing the project findings.
 \label{fig:layout}
 \end{figure}
 
-\section{Keeping Track of Changes}\label{sec:versioning}
+\practicesection{Keeping Track of Changes}{sec:versioning}
 
 Keeping track of changes that you or your collaborators make to data
 and software is a critical part of research. Being able to reference or
@@ -664,13 +666,13 @@ Whatever system you chose, we recommend that you use it in the following way:
 \begin{enumerate}
 
 \item
-  \recommend{Back up (almost) everything created by a human being as
+  \practice{5a}{Back up (almost) everything created by a human being as
     soon as it is created.} This includes scripts and programs of all
   kinds, software packages that your project depends on, and
   documentation. A few exceptions to this rule are discussed below.
 
 \item
-  \recommend{Keep changes small.}  Each change should not be so large
+  \practice{5b}{Keep changes small.}  Each change should not be so large
   as to make the change tracking irrelevant. For example, a single
   change such as ``Revise script file'' that adds or changes several
   hundred lines is likely too large, as it will not allow changes to
@@ -681,7 +683,7 @@ Whatever system you chose, we recommend that you use it in the following way:
   at some point in the future.
 
 \item
-  \recommend{Share changes frequently.} Everyone working on the
+  \practice{5c}{Share changes frequently.} Everyone working on the
   project should share and incorporate changes from others on a
   regular basis. Do not allow individual investigator's versions of
   the project repository to drift apart, as the effort required to
@@ -691,7 +693,7 @@ Whatever system you chose, we recommend that you use it in the following way:
   assistance for merging simultaneous, possibly conflicting, changes.
 
 \item
-  \recommend{Create, maintain, and use a checklist for saving and
+  \practice{5d}{Create, maintain, and use a checklist for saving and
     sharing changes to the project.}  The list should include writing
   log messages that clearly explain any changes, the size and content
   of individual changes, style guidelines for code, updating to-do
@@ -708,14 +710,14 @@ three parts:
 \begin{enumerate}
 
 \item
-  \recommend{Store each project in a folder that is mirrored off the
+  \practice{5e}{Store each project in a folder that is mirrored off the
     researcher's working machine} by a system such as Dropbox, and
   synchronize that folder at least daily. It may take a few minutes,
   but that time is repaid the
   moment a laptop is stolen or its hard drive fails.
 
 \item
-  \recommend{Add a file called \texttt{CHANGELOG.txt} to the project's
+  \practice{5f}{Add a file called \texttt{CHANGELOG.txt} to the project's
     \texttt{docs} subfolder}, and make dated notes about changes to
   the project in this file in reverse chronological order (i.e., most
   recent first). This file is the equivalent of a lab notebook, and
@@ -723,7 +725,7 @@ three parts:
   Figure~\ref{fig:changelog}.
 
 \item
-  \recommend{Copy the entire project whenever a significant change has
+  \practice{5g}{Copy the entire project whenever a significant change has
     been made} (i.e., one that materially affects the results), and store that
     copy in a sub-folder whose name reflects
   the date in the area that's being synchronized. This approach
@@ -892,7 +894,7 @@ control system, even if the data itself has not changed.
   checking with your IT department.
 \end{quote}
 
-\section{Manuscripts}\label{sec:manuscripts}
+\practicesection{Manuscripts}{sec:manuscripts}
 
 An old joke says that doing the research is the first 90\% of any
 project; writing up is the other 90\%. While writing is rarely
@@ -959,14 +961,14 @@ Our first alternative has two parts:
 \begin{enumerate}
 
 \item
-  \recommend{Write manuscripts using online tools with rich
+  \practice{6a}{Write manuscripts using online tools with rich
     formatting, change tracking, and reference management}, such as
   Google Docs. With the document online, everyone's
   changes are in one place, and hence don't need to be merged
   manually.
 
 \item
-  \recommend{Include a \texttt{PUBLICATIONS} file in the project's
+  \practice{6b}{Include a \texttt{PUBLICATIONS} file in the project's
     \texttt{doc} directory} with metadata about each online manuscript
   (e.g., their URLs). This is analogous to the \texttt{data}
   directory, which might contain links to the location of the data
@@ -994,7 +996,7 @@ disciplines for decades:
 \begin{enumerate}
 
 \item
-  \recommend{Write the manuscript in a plain text format that permits
+  \practice{6c}{Write the manuscript in a plain text format that permits
     version control} such as
   \withurl{LaTeX}{http://www.latex-project.org/} or
   \withurl{Markdown}{http://daringfireball.net/projects/markdown/},
@@ -1002,7 +1004,7 @@ disciplines for decades:
   scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.
 
 \item
-  \recommend{Include tools needed to compile manuscripts in the
+  \practice{6d}{Include tools needed to compile manuscripts in the
     project folder} and keep them under version control just like
   tools used to do simulation or analysis.
 
@@ -1078,7 +1080,7 @@ commands or code you want to include as supplementary material: use
 the format that most easily enables reuse (source code files, Unix
 shell scripts etc).
 
-\section{What We Left Out}\label{sec:omitted}
+\practicesection{What We Left Out}{sec:omitted}
 
 We have deliberately left many good tools and practices off our list,
 including some that we use daily, because they only make sense on top
@@ -1186,7 +1188,7 @@ project grows.  In that situation, advocating unit testing with
 coverage checking and continuous integration is more likely to scare
 newcomers off than to aid them.
 
-\section{Conclusion}\label{sec:conclusion}
+\section*{Conclusion}
 
 We have outlined a series of practices for scientific computing based
 on our collective experience, and the experience of the thousands of
@@ -1194,7 +1196,6 @@ researchers we have met through Software Carpentry, Data Carpentry,
 and similar organizations.  These practices are pragmatic, accessible
 to people who consider themselves computing novices, and can be applied
 by both individuals and groups.
-
 Most importantly, these practices make researchers more productive
 individually by enabling them to get more done in less time and with
 less pain.  They also accelerate research as a whole by making
@@ -1208,5 +1209,69 @@ computational work and allow us to make more rapid progress on
 important research questions.
 
 \bibliography{good-enough-practices-for-scientific-computing}
+
+\pagebreak
+
+\section*{Box 1: Summary of Practices}
+
+{\footnotesize
+\begin{enumerate}
+\item Data Management
+  \begin{enumerate}
+  \item Save the raw data.
+  \item Create the data you wish to see in the world.
+  \item Create analysis-friendly data.
+  \item Record all the steps used to process data.
+  \item Anticipate the need to use multiple tables.
+  \item Submit data to a reputable DOI-issuing repository so that others can access and cite it.
+  \end{enumerate}
+\item Software
+  \begin{enumerate}
+  \item Place a brief explanatory comment at the start of every program.
+  \item Decompose programs into functions.
+  \item Be ruthless about eliminating duplication.
+  \item Always search for well-maintained software libraries that do what you need.
+  \item Test libraries before relying on them.
+  \item Give functions and variables meaningful names.
+  \item Make dependencies and requirements explicit.
+  \item Do not comment and uncomment sections of code to control a program's behavior.
+  \item Provide a simple example or test data set.
+  \item Submit code to a reputable DOI-issuing repository.
+  \end{enumerate}
+\item Collaboration
+  \begin{enumerate}
+  \item Create an overview of your project.
+  \item Create a shared public ``to-do'' list.
+  \item Make the license explicit.
+  \item Make the project citable.
+  \end{enumerate}
+\item Project Organization
+  \begin{enumerate}
+  \item Put each project in its own directory, which is named after the project.
+  \item Put text documents associated with the project in the \texttt{doc} directory.
+  \item Put raw data and metadata in a \texttt{data} directory, and files generated during cleanup and analysis in a \texttt{results} directory.
+  \item Put project source code in the \texttt{src} directory.
+  \item Put external scripts, or compiled programs in the \texttt{bin} directory.
+  \item Name all files to reflect their content or function.
+  \end{enumerate}
+\item Keeping Track of Changes
+  \begin{enumerate}
+  \item Back up (almost) everything created by a human being as soon as it is created.
+  \item Keep changes small.
+  \item Share changes frequently.
+  \item Create, maintain, and use a checklist for saving and sharing changes to the project.
+  \item Store each project in a folder that is mirrored off the researcher's working machine.
+  \item Add a file called \texttt{CHANGELOG.txt} to the project's \texttt{docs} subfolder.
+  \item Copy the entire project whenever a significant change has been made.
+  \end{enumerate}
+\item Manuscripts
+  \begin{enumerate}
+  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management.
+  \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
+  \item Write the manuscript in a plain text format that permits version control.
+  \item Include tools needed to compile manuscripts in the project folder.
+  \end{enumerate}
+\end{enumerate}
+}
 
 \end{document}
