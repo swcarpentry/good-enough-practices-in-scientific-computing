@@ -10,12 +10,17 @@ Justin Kitzes<sup>4</sup>,
 Lex Nederbragt<sup>5</sup>,
 Tracy K. Teal<sup>6</sup>
 
-1. Software Carpentry Foundation / gvwilson@software-carpentry.org
-1. University of British Columbia / jenny@stat.ubc.ca
-1. Duke University / karen.cranston@duke.edu
-1. University of California, Berkeley / jkitzes@berkeley.edu
-1. University of Oslo / lex.nederbragt@ibv.uio.no
-1. Data Carpentry / tkteal@datacarpentry.org
+1) Software Carpentry Foundation / gvwilson@software-carpentry.org
+
+2) University of British Columbia / jenny@stat.ubc.ca
+
+3) Duke University / karen.cranston@duke.edu
+
+4) University of California, Berkeley / jkitzes@berkeley.edu
+
+5) University of Oslo / lex.nederbragt@ibv.uio.no
+
+6) Data Carpentry / tkteal@datacarpentry.org
 
 Introduction {#sec:introduction}
 ============
@@ -32,8 +37,7 @@ This paper therefore presents a set of “good enough” practices[^3] for
 scientific computing, i.e., a minimum set of tools and techniques that
 we believe every researcher can and should adopt. It draws inspiration
 from many sources [gentzkow2014][]
-[noble2009][] [brown2015][] [wickham2014][] [kitzes2016][] [sandve2013][]
-[hart2015][],
+[noble2009][] [brown2015][] [wickham2014][] [kitzes2016][] [sandve2013][] [hart2015][],
 from our personal experience, and from the experiences of the thousands
 of people who have taken part in Software Carpentry and Data Carpentry
 workshops over the past six years.
@@ -1041,72 +1045,69 @@ tools. Such investment will improve confidence in the results of
 computational work and allow us to make more rapid progress on important
 research questions.
 
-[^1]: `http://software-carpentry.org/`
+[^1]: <http://software-carpentry.org/>
 
-[^2]: `http://datacarpentry.org/`
+[^2]: <http://datacarpentry.org/>
 
-[^3]: Note that English lacks a good word for this: “mediocre”,
-    “adequate”, and “sufficient” aren’t exactly right.
+[^3]: Note that English lacks a good word for this: “mediocre”, “adequate”, and “sufficient” aren’t exactly right.
 
-[^4]: As the joke goes, yourself from three months ago doesn’t answer
-    email…
+[^4]: As the joke goes, yourself from three months ago doesn’t answer email…
 
 [^5]: The node-and-arc kind.
 
-[^6]: `https://figshare.com/`
+[^6]: <https://figshare.com/>
 
-[^7]: `http://datadryad.org/`
+[^7]: <http://datadryad.org/>
 
-[^8]: `https://zenodo.org/`
+[^8]: <https://zenodo.org/>
 
-[^9]: `https://figshare.com/`
+[^9]: <https://figshare.com/>
 
-[^10]: `https://zenodo.org/`
+[^10]: <https://zenodo.org/>
 
-[^11]: `https://creativecommons.org/about/cc0/`
+[^11]: <https://creativecommons.org/about/cc0/>
 
-[^12]: `https://creativecommons.org/licenses/by/4.0/`
+[^12]: <https://creativecommons.org/licenses/by/4.0/>
 
-[^13]: `https://github.com/weecology/retriever`
+[^13]: <https://github.com/weecology/retriever>
 
-[^14]: `https://github.com/dib-lab/khmer/blob/master/CITATION`
+[^14]: <https://github.com/dib-lab/khmer/blob/master/CITATION>
 
-[^15]: The name `bin` is an old Unix convention, and comes from the term
-    “binary”
+[^15]: The name `bin` is an old Unix convention, and comes from the term “binary”.
 
-[^16]: `https://git-scm.com/`
+[^16]: <https://git-scm.com/>
 
-[^17]: `http://github.com`
+[^17]: <http://github.com>
 
-[^18]: `https://www.mercurial-scm.org/`
+[^18]: <https://www.mercurial-scm.org/>
 
-[^19]: `https://bitbucket.org/`
+[^19]: <https://bitbucket.org/>
 
-[^20]: `http://pandoc.org/`
+[^20]: <http://pandoc.org/>
 
-[^21]: `http://www.latex-project.org/`
+[^21]: <http://www.latex-project.org/>
 
-[^22]: `http://daringfireball.net/projects/markdown/`
+[^22]: <http://daringfireball.net/projects/markdown/>
 
-[^23]: `http://pandoc.org/`
+[^23]: <http://pandoc.org/>
 
-[^24]: `http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html`
+[^24]: <http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html>
 
-[^25]: `https://www.gnu.org/software/make/`
+[^25]: <https://www.gnu.org/software/make/>
 
-[^26]: `https://travis-ci.org/`
+[^26]: <https://travis-ci.org/>
 
-[^27]: `http://dublincore.org/`
+[^27]: <http://dublincore.org/>
 
-[^28]: `http://zotero.org/`
+[^28]: <http://zotero.org/>
 
-[^29]: `http://orcid.org/`
+[^29]: <http://orcid.org/>
 
-[wilson2014]: doi://10.1371/journal.pbio.1001745
+[wilson2014]: doi:10.1371/journal.pbio.1001745
 
 [gentzkow2014]: http://faculty.chicagobooth.edu/matthew.gentzkow/research/CodeAndData.pdf
 
-[noble2009]: doi://10.1371/journal.pcbi.1000424
+[noble2009]: doi:10.1371/journal.pcbi.1000424
 
 [brown2015]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
 
@@ -1114,19 +1115,19 @@ research questions.
 
 [kitzes2016]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 
-[sandve2013]: doi://10.1371/journal.pcbi.1003285
+[sandve2013]: doi:10.1371/journal.pcbi.1003285
 
-[hart2015]: doi://doi.org/10.7287/peerj.preprints.1448v1
+[hart2015]: doi:doi.org/10.7287/peerj.preprints.1448v1
 
 [ffIllinois]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 
-[white2013]: doi://doi:10.4033/iee.2013.6b.6.f
+[white2013]: doi:doi:10.4033/iee.2013.6b.6.f
 
 [wickes2015]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442
 
-[miller1956]: doi://10.1037/h0043158
+[miller1956]: doi:10.1037/h0043158
 
-[steinmacher2015]: doi://10.1016/j.infsof.2014.11.001
+[steinmacher2015]: doi:10.1016/j.infsof.2014.11.001
 
 [laurent2004]: http://www.oreilly.com/openbook/osfreesoft/book/
 
