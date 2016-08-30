@@ -1,4 +1,5 @@
 ---
+layout: page
 ---
 # Good Enough Practices for Scientific Computing
 
