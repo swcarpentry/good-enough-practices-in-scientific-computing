@@ -32,6 +32,9 @@
 % array package and thick rules for tables
 \usepackage{array}
 
+% enumerate package lets us use letters instead of numbers
+\usepackage{enumerate}
+
 % create "+" rule type for thick vertical lines
 \newcolumntype{+}{!{\vrule width 2pt}}
 
@@ -145,7 +148,21 @@ at people who are new to research computing.
 
 \section*{Author Summary}
 
-The authors are all active contributors to Data Carpentry and/or Software Carpentry.
+Computers are now as important to science as telescopes and test
+tubes, but most researchers are never taught the equivalent of basic
+lab skills for research computing.  As a result, they take days or
+weeks to do things that could be done in minutes or hours, are often
+unable to reproduce their own work (much less the work of others), and
+have no idea how reliable their computational results are.
+
+This paper presents a set of good computing practices that every
+researcher can adopt regardless of their current level of technical
+skill.  These practices, which encompass data management, programming,
+collaborating with colleagues, organizing projects, tracking work, and
+writing manuscripts, are drawn from a wide variety of published
+sources, from our daily lives, and from our work with volunteer
+organizations that have delivered workshops to over 11,000 people
+since 2010.
 
 \linenumbers
 
@@ -425,7 +442,7 @@ single-purpose functions with clearly-defined inputs and outputs.
 
   \begin{quote}
     \noindent \textbf{Tab Completion}
-
+    \\
     Almost all modern text editors provide \emph{tab completion}, so
     that typing the first part of a variable name and then pressing
     the tab key inserts the completed name of the variable.  Employing
@@ -548,7 +565,7 @@ to make it easy for people to give you credit for your work.
 
   \begin{quote}
     \noindent \textbf{What Not To Do}
-
+    \\
     We recommend \emph{against} the ``no commercial use'' variations
     of the Creative Commons licenses because they may impede some
     forms of re-use.  For example, if a researcher in a developing
@@ -674,7 +691,7 @@ them.  Our recommendations for doing this are drawn primarily from
 
   \begin{quote}
     \noindent \textbf{Scripts vs.\ Programs}
-
+    \\
     We use the term ``script'' to mean ``something that is executed
     directly as-is'', and ``program'' to mean ``something that is
     explicitly compiled before being used''.  The distinction is more
@@ -837,7 +854,7 @@ three parts:
 
   \begin{quote}
     \noindent \textbf{Data is Cheap, Time is Expensive}
-
+    \\
     Copying everything like this may seem wasteful, since many files
     won't have changed, but consider: a terabyte hard drive costs
     about \$50 retail, which means that 50 GByte costs less than a
@@ -899,52 +916,7 @@ accelerate the manual process: they also automate some steps while
 enforcing others, and thereby require less self-discipline for more
 reliable results.
 
-\begin{quote}
-  \noindent \textbf{How Version Control Systems Work}
-
-  A version control system stores snapshots of a project's files in a
-  repository. Users modify their working copy of the project, and then
-  save changes to the repository when they wish to make
-  a permanent record and/or share their work with colleagues. The
-  version control system automatically records when the change was
-  made and by whom along with the changes themselves.
-
-  Crucially, if several people have edited files simultaneously, the
-  version control system will detect the collision and require them to
-  resolve any conflicts before recording the changes. Modern version
-  control systems also allow repositories to be synchronized with each
-  other, so that no one repository becomes a single point of failure.
-  Tool-based version control has several benefits over manual version
-  control:
-
-  \begin{itemize}
-
-  \item
-    Instead of requiring users to make backup copies of the whole project,
-    version control safely stores just enough information to allow old
-    versions of files to be re-created on demand.
-
-  \item
-    Instead of relying on users to choose sensible names for backup
-    copies, the version control system timestamps all saved changes
-    automatically.
-
-  \item
-    Instead of requiring users to be disciplined about completing the
-    changelog, version control systems prompt them every time a change
-    is saved. They also keep a 100\% accurate record of what was
-    \emph{actually} changed, as opposed to what the user
-    \emph{thought} they changed, which can be invaluable when problems
-    crop up later.
-
-  \item
-    Instead of simply copying files to remote storage, version control
-    checks to see whether doing that would overwrite anyone else's
-    work. If so, they facilitate identifying conflict and merging changes.
-
-  \end{itemize}
-\end{quote}
-
+Box~2 briefly explains how version control systems work.
 It's hard to know what version control tool is most widely used in
 research today, but the one that's most talked about is undoubtedly
 \withurl{Git}{https://git-scm.com/}. This is largely because of
@@ -955,6 +927,7 @@ projects and for users in academia and nonprofits.
 \withurl{GitLab}{https://about.gitlab.com} is a well-regarded
 alternative that some prefer, because the GitLab platform itself is
 free and open source.
+
 For those who find Git's command-line syntax inconsistent
 and confusing, \withurl{Mercurial}{https://www.mercurial-scm.org/} is
 a good choice; \withurl{Bitbucket}{https://bitbucket.org/} provides
@@ -990,7 +963,7 @@ control system, even if the data itself has not changed.
 
 \begin{quote}
   \noindent \textbf{Inadvertent Sharing}
-
+  \\
   Researchers dealing with data subject to legal restrictions that
   prohibit sharing (such as medical data) should be careful not to put
   data in public version control systems. Some institutions may
@@ -1050,7 +1023,7 @@ to:
 
 \begin{quote}
   \noindent \textbf{The First Rule Is{\ldots}}
-
+  \\
   The workflow you choose is less important than having all authors
   agree on the workflow \emph{before} writing starts. Make sure to
   also agree on a single method to provide feedback, be it an email
@@ -1336,7 +1309,7 @@ Noble WS.
 \bibitem{brown2015}
 Brown CT. How to grow a sustainable software development process; 2015.
 \newblock Available from:
-  \url{http://ivory.idyll.org/blog/2015-growing\--sustainable\--software\--development-process.html}.
+  \url{http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html}.
 
 \bibitem{wickham2014}
 Wickham H.
@@ -1347,7 +1320,7 @@ Wickham H.
 \bibitem{kitzes2016}
 Kitzes J. Reproducible Workflows; 2016.
 \newblock Available from:
-  \url{http://datasci.kitzes.com/lessons/python/\-reproducible\_workflow.html}.
+  \url{http://datasci.kitzes.com/lessons/python/reproducible\_workflow.html}.
 
 \bibitem{sandve2013}
 Sandve GK, Nekrutenko A, Taylor J, Hovig E.
@@ -1373,7 +1346,7 @@ White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR.
 \bibitem{wickes2015}
 Wickes E. Comment on "Metadata"; 2015.
 \newblock Available from:
-  \url{https://github.com/swcarpentry/good\--enough\--practices\--in\--scientific\--computing/issues/3\#issuecomment-157410442}.
+  \url{https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442}.
 
 \bibitem{miller1956}
 Miller GA.
@@ -1415,7 +1388,7 @@ Petre M, Wilson G.
 {\footnotesize
 \begin{enumerate}
 \item Data Management
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item Save the raw data.
   \item Create the data you wish to see in the world.
   \item Create analysis-friendly data.
@@ -1424,7 +1397,7 @@ Petre M, Wilson G.
   \item Submit data to a reputable DOI-issuing repository so that others can access and cite it.
   \end{enumerate}
 \item Software
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item Place a brief explanatory comment at the start of every program.
   \item Decompose programs into functions.
   \item Be ruthless about eliminating duplication.
@@ -1437,14 +1410,14 @@ Petre M, Wilson G.
   \item Submit code to a reputable DOI-issuing repository.
   \end{enumerate}
 \item Collaboration
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item Create an overview of your project.
   \item Create a shared public ``to-do'' list.
   \item Make the license explicit.
   \item Make the project citable.
   \end{enumerate}
 \item Project Organization
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item Put each project in its own directory, which is named after the project.
   \item Put text documents associated with the project in the \texttt{doc} directory.
   \item Put raw data and metadata in a \texttt{data} directory, and files generated during cleanup and analysis in a \texttt{results} directory.
@@ -1453,7 +1426,7 @@ Petre M, Wilson G.
   \item Name all files to reflect their content or function.
   \end{enumerate}
 \item Keeping Track of Changes
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item Back up (almost) everything created by a human being as soon as it is created.
   \item Keep changes small.
   \item Share changes frequently.
@@ -1463,7 +1436,7 @@ Petre M, Wilson G.
   \item Copy the entire project whenever a significant change has been made.
   \end{enumerate}
 \item Manuscripts
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item Write manuscripts using online tools with rich formatting, change tracking, and reference management.
   \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
   \item Write the manuscript in a plain text format that permits version control.
@@ -1471,6 +1444,52 @@ Petre M, Wilson G.
   \end{enumerate}
 \end{enumerate}
 }
+
+\pagebreak
+
+\section*{Box 2: How Version Control Systems Work}
+
+A version control system stores snapshots of a project's files in a
+repository. Users modify their working copy of the project, and then
+save changes to the repository when they wish to make
+a permanent record and/or share their work with colleagues. The
+version control system automatically records when the change was
+made and by whom along with the changes themselves.
+
+Crucially, if several people have edited files simultaneously, the
+version control system will detect the collision and require them to
+resolve any conflicts before recording the changes. Modern version
+control systems also allow repositories to be synchronized with each
+other, so that no one repository becomes a single point of failure.
+Tool-based version control has several benefits over manual version
+control:
+
+\begin{itemize}
+
+\item
+  Instead of requiring users to make backup copies of the whole project,
+  version control safely stores just enough information to allow old
+  versions of files to be re-created on demand.
+
+\item
+  Instead of relying on users to choose sensible names for backup
+  copies, the version control system timestamps all saved changes
+  automatically.
+
+\item
+  Instead of requiring users to be disciplined about completing the
+  changelog, version control systems prompt them every time a change
+  is saved. They also keep a 100\% accurate record of what was
+  \emph{actually} changed, as opposed to what the user
+  \emph{thought} they changed, which can be invaluable when problems
+  crop up later.
+
+\item
+  Instead of simply copying files to remote storage, version control
+  checks to see whether doing that would overwrite anyone else's
+  work. If so, they facilitate identifying conflict and merging changes.
+
+\end{itemize}
 
 \pagebreak
 
