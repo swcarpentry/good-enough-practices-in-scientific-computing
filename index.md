@@ -34,12 +34,12 @@ at people who are new to research computing.
 
 **Author Summary**
 
-Computers are now as important to science as telescopes and test
-tubes, but most researchers are never taught the equivalent of basic
-lab skills for research computing.  As a result, they take days or
-weeks to do things that could be done in minutes or hours, are often
-unable to reproduce their own work (much less the work of others), and
-have no idea how reliable their computational results are.
+Computers are now essential in all branches of science, but most
+researchers are never taught the equivalent of basic lab skills for
+research computing.  As a result, they take days or weeks to do things
+that could be done in minutes or hours, are often unable to reproduce
+their own work (much less the work of others), and have no idea how
+reliable their computational results are.
 
 This paper presents a set of good computing practices that every
 researcher can adopt regardless of their current level of technical
