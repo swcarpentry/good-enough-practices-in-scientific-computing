@@ -273,7 +273,22 @@ clearly-defined inputs and outputs.
     include at least one example of how the program is used: remember, a
     good example is worth a thousand words. Where possible, the comment
     should also indicate reasonable values for parameters.
-    Figure 2 presents an example of such a comment.
+    An example of such a comment is shown below.
+
+    ```
+    Synthesize image files for testing circularity estimation algorithm.
+
+    Usage: make_images.py -f fuzzing -n p_flaws -o output -r p_radius -s seed -v -w size
+
+    where:
+    -f fuzzing   = fuzzing range of blobs (typically 0.0-0.2)
+    -n p_flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
+    -o output    = name of output file
+    -r p_radius  = p(success) for geometric distribution of flaw radius (e.g. 0.1-0.4)
+    -s seed      = random number generator seed (large integer)
+    -v           = verbose
+    -w size      = image width/height in pixels (typically 480-800)
+    ```
 
 2.  *Decompose programs into functions (2b)* that are no more
     than one page (about 60 lines) long, do not use global variables
@@ -335,23 +350,6 @@ clearly-defined inputs and outputs.
     easy for people to credit. DOIs for software are provided by
     Figshare[^9] and
     Zenodo[^10].
-
-```
-Synthesize image files for testing circularity estimation algorithm.
-
-Usage: make_images.py -f fuzzing -n p_flaws -o output -r p_radius -s seed -v -w size
-
-where:
--f fuzzing   = fuzzing range of blobs (typically 0.0-0.2)
--n p_flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
--o output    = name of output file
--r p_radius  = p(success) for geometric distribution of flaw radius (e.g. 0.1-0.4)
--s seed      = random number generator seed (large integer)
--v           = verbose
--w size      = image width/height in pixels (typically 480-800)
-```
-
-**Figure 2**
 
 ## Collaboration
 
@@ -420,21 +418,18 @@ people to give you credit for your work.
     file in the project's home directory that describes how to cite this
     project as a whole, and where to find (and how to cite) any data
     sets, code, figures, and other artifacts that have their own DOIs.
-    Figure 3 shows the `CITATION` file for the
+    The example below shows the `CITATION` file for the
     Ecodata Retriever[^13]; for an example of
     a more detailed `CITATION` file, see the one for the
     khmer[^14] project.
 
-```
-Please cite this work as:
+    ```
+    Please cite this work as:
 
-Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
-improving access to existing ecological data." PLOS ONE 8:e65848.
-http://doi.org/doi:10.1371/journal.pone.0065848
-```
-
-**Figure 3**
-
+    Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
+    improving access to existing ecological data." PLOS ONE 8:e65848.
+    http://doi.org/doi:10.1371/journal.pone.0065848
+    ```
 ## Project Organization
 
 Organizing the files that make up a project in a logical and consistent
@@ -525,24 +520,8 @@ recommendations for doing this are drawn primarily from [noble2009][]
     location in a final manuscript (e.g., `fig_3_a.png`), since those
     numbers will almost certainly change as the project evolves.
 
-Figure 4 provides a concrete example of how a simple project
-might be organized following these recommendations. The root directory
-contains a `README` file that provides an overview of the project as a
-whole, a `CITATION` file that explains how to reference it, and a
-`LICENSE` file that states the licensing. The `data` directory contains
-a single CSV file with tabular data on bird counts (machine-readable
-metadata could also be included here). The `src` directory contains
-`sightings_analysis.py`, a Python file containing functions to summarize
-the tabular data, and a controller script `runall.py` that loads the
-data table, applies functions imported from `sightings_analysis.py`, and
-saves a table of summarized results in the `results` directory.
-
-This project doesn't have a `bin` directory, since it does not rely on
-any compiled software. The `doc` directory contains two text files
-written in Markdown, one containing a running lab notebook describing
-various ideas for the project and how these were implemented and the
-other containing a running draft of a manuscript describing the project
-findings.
+The diagram below provides a concrete example of how a simple project
+might be organized following these recommendations:
 
 ```
 .
@@ -561,7 +540,23 @@ findings.
 |   -- runall.py
 ```
 
-**Figure 4**
+The root directory contains a `README` file that provides an overview
+of the project as a whole, a `CITATION` file that explains how to
+reference it, and a `LICENSE` file that states the licensing. The
+`data` directory contains a single CSV file with tabular data on bird
+counts (machine-readable metadata could also be included here). The
+`src` directory contains `sightings_analysis.py`, a Python file
+containing functions to summarize the tabular data, and a controller
+script `runall.py` that loads the data table, applies functions
+imported from `sightings_analysis.py`, and saves a table of summarized
+results in the `results` directory.
+
+This project doesn't have a `bin` directory, since it does not rely on
+any compiled software. The `doc` directory contains two text files
+written in Markdown, one containing a running lab notebook describing
+various ideas for the project and how these were implemented and the
+other containing a running draft of a manuscript describing the project
+findings.
 
 ## Keeping Track of Changes
 
@@ -633,16 +628,40 @@ three parts:
     subfolder (5f)*, and make dated notes about changes to the project
     in this file in reverse chronological order (i.e., most recent
     first). This file is the equivalent of a lab notebook, and should
-    contain entries like those shown in Figure 5.
+    contain entries like those shown below:
+
+    ```
+    ## 2016-04-08
+
+    * Switched to cubic interpolation as default.
+    * Moved question about family's TB history to end of questionnaire.
+
+    ## 2016-04-06
+
+    * Added option for cubic interpolation.
+    * Removed question about staph exposure (can be inferred from blood test results).
+    ```
 
 3.  *Copy the entire project whenever a significant change has
     been made (5g)* (i.e., one that materially affects the results),
     and store that copy in a sub-folder whose name reflects the date in
     the area that's being synchronized. This approach results in
-    projects being organized as shown in Figure 6. Here, the
-    `project_name` folder is mapped to external storage (such as
-    Dropbox), `current` is where development is done, and other folders
-    within `project_name` are old versions.
+    projects being organized as shown below:
+
+    ```
+    .
+    |-- project_name
+    |   -- current
+    |       -- ...project content as described earlier...
+    |   -- 2016-03-01
+    |       -- ...content of 'current' on Mar 1, 2016
+    |   -- 2016-02-19
+    |       -- ...content of 'current' on Feb 19, 2016
+    ```
+
+    Here, the `project_name` folder is mapped to external storage
+    (such as Dropbox), `current` is where development is done, and
+    other folders within `project_name` are old versions.
 
     > **Data is Cheap, Time is Expensive**
     >
@@ -652,33 +671,6 @@ three parts:
     > latte. Provided large data files are kept out of the backed-up
     > area (discussed below), this approach costs less than the time it
     > would take to select files by hand for copying.
-
-```
-## 2016-04-08
-
-* Switched to cubic interpolation as default.
-* Moved question about family's TB history to end of questionnaire.
-
-## 2016-04-06
-
-* Added option for cubic interpolation.
-* Removed question about staph exposure (can be inferred from blood test results).
-```
-
-**Figure 5**
-
-```
-.
-|-- project_name
-|   -- current
-|       -- ...project content as described earlier...
-|   -- 2016-03-01
-|       -- ...content of 'current' on Mar 1, 2016
-|   -- 2016-02-19
-|       -- ...content of 'current' on Feb 19, 2016
-```
-
-**Figure 6**
 
 This manual procedure satisfies the requirements outlined above without
 needing any new tools. If multiple researchers are working on the same

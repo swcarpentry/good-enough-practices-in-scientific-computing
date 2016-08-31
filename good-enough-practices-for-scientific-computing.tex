@@ -252,13 +252,6 @@ data and the process. We also describe the key features of ``tidy
 data'', which can be a powerful accelerator for analysis
 \cite{wickham2014,hart2015}.
 
-\begin{figure}
-\caption{\textbf{Example of gathering columns to create tidy data.}}
-External file is \texttt{tidy-data.tiff}.
-% \includegraphics[width = 5in]{tidy-data.png}
-\label{fig:tidy}
-\end{figure}
-
 \begin{enumerate}
 
 \item
@@ -321,6 +314,11 @@ External file is \texttt{tidy-data.tiff}.
   columns for measurements made at each of several time points. Be prepared to gather such
   columns into a variable of measurements, plus a new variable for time point.
   Fig~\ref{fig:tidy} presents an example of such a transformation.
+
+  \begin{figure} % \includegraphics[width = 5in]{tidy-data.png}
+    \caption{\textbf{Example of gathering columns to create tidy data.}}
+    \label{fig:tidy}
+  \end{figure}
 
 \item
   \practice{1d}{Record all the steps used to process data}: Data manipulation is as integral
@@ -408,7 +406,23 @@ single-purpose functions with clearly-defined inputs and outputs.
   at least one example of how the program is used: remember, a good
   example is worth a thousand words. Where possible, the comment
   should also indicate reasonable values for parameters.
-  Fig~\ref{fig:comment} presents an example of such a comment.
+  An example of such a comment is show below.
+
+{\small
+\begin{verbatim}
+Synthesize image files for testing circularity estimation algorithm.
+
+Usage: make_images.py -f fuzzing -n flaws -o output -s seed -v -w size
+
+where:
+-f fuzzing = fuzzing range of blobs (typically 0.0-0.2)
+-n flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
+-o output  = name of output file
+-s seed    = random number generator seed (large integer)
+-v         = verbose
+-w size    = image width/height in pixels (typically 480-800)
+\end{verbatim}
+}
 
 \item
   \practice{2b}{Decompose programs into functions} that are no more than
@@ -482,26 +496,6 @@ single-purpose functions with clearly-defined inputs and outputs.
   \withurl{Zenodo}{https://zenodo.org/}.
 
 \end{enumerate}
-
-\begin{figure}
-\caption{\textbf{A Good Comment To Explain The Use Of A Program.}}
-{\small
-\begin{verbatim}
-Synthesize image files for testing circularity estimation algorithm.
-
-Usage: make_images.py -f fuzzing -n flaws -o output -s seed -v -w size
-
-where:
--f fuzzing = fuzzing range of blobs (typically 0.0-0.2)
--n flaws   = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-0.8)
--o output  = name of output file
--s seed    = random number generator seed (large integer)
--v         = verbose
--w size    = image width/height in pixels (typically 480-800)
-\end{verbatim}
-}
-\label{fig:comment}
-\end{figure}
 
 \practicesection{Collaboration}{sec:collaboration}
 
@@ -582,17 +576,13 @@ to make it easy for people to give you credit for your work.
   \texttt{CITATION} file in the project's home directory that
   describes how to cite this project as a whole, and where to find (and how to cite)
   any data sets, code, figures, and other artifacts
-  that have their own DOIs.  Fig~\ref{fig:citation} shows the
+  that have their own DOIs.  The example below shows the
   \texttt{CITATION} file for the \withurl{Ecodata
     Retriever}{https://github.com/weecology/retriever}; for an example
   of a more detailed \texttt{CITATION} file, see the one for the
   \withurl{khmer}{https://github.com/dib-lab/khmer/blob/master/CITATION}
   project.
 
-\end{enumerate}
-
-\begin{figure}
-\caption{\textbf{Example CITATION File.}}
 {\small
 \begin{verbatim}
 Please cite this work as:
@@ -602,8 +592,8 @@ improving access to existing ecological data." PLOS ONE 8:e65848.
 http://doi.org/doi:10.1371/journal.pone.0065848
 \end{verbatim}
 }
-\label{fig:citation}
-\end{figure}
+
+\end{enumerate}
 
 \practicesection{Project Organization}{sec:project}
 
@@ -712,29 +702,9 @@ them.  Our recommendations for doing this are drawn primarily from
 
 \end{enumerate}
 
-Fig~\ref{fig:layout} provides a concrete example of how a
-simple project might be organized following these recommendations. The
-root directory contains a \texttt{README} file that provides an
-overview of the project as a whole, a \texttt{CITATION} file that
-explains how to reference it, and a \texttt{LICENSE} file that states the
-licensing. The \texttt{data} directory contains a
-single CSV file with tabular data on bird counts (machine-readable
-metadata could also be included here). The \texttt{src} directory
-contains \texttt{sightings\_analysis.py}, a Python file containing
-functions to summarize the tabular data, and a controller script
-\texttt{runall.py} that loads the data table, applies functions
-imported from \texttt{sightings\_analysis.py}, and saves a table of
-summarized results in the \texttt{results} directory.
+The diagram below provides a concrete example of how a
+simple project might be organized following these recommendations:
 
-This project doesn't have a \texttt{bin} directory, since it does not
-rely on any compiled software. The \texttt{doc} directory contains two
-text files written in Markdown, one containing a running lab notebook
-describing various ideas for the project and how these were
-implemented and the other containing a running draft of a manuscript
-describing the project findings.
-
-\begin{figure}
-\caption{\textbf{Example Project Layout.}}
 {\small
 \begin{verbatim}
 .
@@ -753,8 +723,25 @@ describing the project findings.
 |   -- runall.py
 \end{verbatim}
 }
-\label{fig:layout}
-\end{figure}
+
+The root directory contains a \texttt{README} file that provides an
+overview of the project as a whole, a \texttt{CITATION} file that
+explains how to reference it, and a \texttt{LICENSE} file that states the
+licensing. The \texttt{data} directory contains a
+single CSV file with tabular data on bird counts (machine-readable
+metadata could also be included here). The \texttt{src} directory
+contains \texttt{sightings\_analysis.py}, a Python file containing
+functions to summarize the tabular data, and a controller script
+\texttt{runall.py} that loads the data table, applies functions
+imported from \texttt{sightings\_analysis.py}, and saves a table of
+summarized results in the \texttt{results} directory.
+
+This project doesn't have a \texttt{bin} directory, since it does not
+rely on any compiled software. The \texttt{doc} directory contains two
+text files written in Markdown, one containing a running lab notebook
+describing various ideas for the project and how these were
+implemented and the other containing a running draft of a manuscript
+describing the project findings.
 
 \practicesection{Keeping Track of Changes}{sec:versioning}
 
@@ -838,16 +825,43 @@ three parts:
     \texttt{docs} subfolder}, and make dated notes about changes to
   the project in this file in reverse chronological order (i.e., most
   recent first). This file is the equivalent of a lab notebook, and
-  should contain entries like those shown in
-  Fig~\ref{fig:changelog}.
+  should contain entries like those shown below.
+
+{\small
+\begin{verbatim}
+## 2016-04-08
+
+* Switched to cubic interpolation as default.
+* Moved question about family's TB history to end of questionnaire.
+
+## 2016-04-06
+
+* Added option for cubic interpolation.
+* Removed question about staph exposure (can be inferred from blood test results).
+\end{verbatim}
+}
 
 \item
   \practice{5g}{Copy the entire project whenever a significant change has
     been made} (i.e., one that materially affects the results), and store that
     copy in a sub-folder whose name reflects
   the date in the area that's being synchronized. This approach
-  results in projects being organized as shown in
-  Fig~\ref{fig:manual}.  Here, the \texttt{project\_name} folder is
+  results in projects being organized as shown below:
+
+{\small
+\begin{verbatim}
+.
+|-- project_name
+|   -- current
+|       -- ...project content as described earlier...
+|   -- 2016-03-01
+|       -- ...content of 'current' on Mar 1, 2016
+|   -- 2016-02-19
+|       -- ...content of 'current' on Feb 19, 2016
+\end{verbatim}
+}
+
+  Here, the \texttt{project\_name} folder is
   mapped to external storage (such as Dropbox), \texttt{current} is
   where development is done, and other folders within
   \texttt{project\_name} are old versions.
@@ -864,41 +878,6 @@ three parts:
   \end{quote}
 
 \end{enumerate}
-
-\begin{figure}
-\caption{\textbf{Example Changelog.}}
-{\small
-\begin{verbatim}
-## 2016-04-08
-
-* Switched to cubic interpolation as default.
-* Moved question about family's TB history to end of questionnaire.
-
-## 2016-04-06
-
-* Added option for cubic interpolation.
-* Removed question about staph exposure (can be inferred from blood test results).
-\end{verbatim}
-}
-\label{fig:changelog}
-\end{figure}
-
-\begin{figure}
-\caption{\textbf{Directory Hierarchy for Manual Versioning.}}
-{\small
-\begin{verbatim}
-.
-|-- project_name
-|   -- current
-|       -- ...project content as described earlier...
-|   -- 2016-03-01
-|       -- ...content of 'current' on Mar 1, 2016
-|   -- 2016-02-19
-|       -- ...content of 'current' on Feb 19, 2016
-\end{verbatim}
-}
-\label{fig:manual}
-\end{figure}
 
 This manual procedure satisfies the requirements outlined above
 without needing any new tools. If multiple researchers are working on
@@ -1492,11 +1471,5 @@ control:
 \end{itemize}
 
 \pagebreak
-
-\section*{Supporting Information}
-
-\paragraph*{Section 1 Figure}
-\label{S1_Fig}
-\textbf{Example of gathering columns to create tidy data.}
 
 \end{document}
