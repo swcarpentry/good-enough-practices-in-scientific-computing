@@ -125,7 +125,7 @@ data and the process. We also describe the key features of "tidy data",
 which can be a powerful accelerator for analysis [wickham2014][]
 [hart2015][].
 
-![Example of gathering columns to create tidy data](tidy-data.png)
+![Example of gathering columns to create tidy data](tidy-data-smaller.png)
 
 **Figure 1**
 
