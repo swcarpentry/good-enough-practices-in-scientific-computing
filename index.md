@@ -1199,7 +1199,7 @@ control:
 
 [wilson2014]: doi:10.1371/journal.pbio.1001745
 
-[gentzkow2014]: http://faculty.chicagobooth.edu/matthew.gentzkow/research/CodeAndData.pdf
+[gentzkow2014]: http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf
 
 [noble2009]: doi:10.1371/journal.pcbi.1000424
 
