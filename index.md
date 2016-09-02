@@ -1197,11 +1197,11 @@ control:
 
 [^30]: <http://orcid.org/>
 
-[wilson2014]: doi:10.1371/journal.pbio.1001745
+[wilson2014]: http://doi.org/10.1371/journal.pbio.1001745
 
 [gentzkow2014]: http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf
 
-[noble2009]: doi:10.1371/journal.pcbi.1000424
+[noble2009]: http://doi.org/10.1371/journal.pcbi.1000424
 
 [brown2015]: http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html
 
@@ -1209,19 +1209,19 @@ control:
 
 [kitzes2016]: http://datasci.kitzes.com/lessons/python/reproducible_workflow.html
 
-[sandve2013]: doi:10.1371/journal.pcbi.1003285
+[sandve2013]: http://doi.org/10.1371/journal.pcbi.1003285
 
-[hart2015]: doi:doi.org/10.7287/peerj.preprints.1448v1
+[hart2015]: http://doi.org/10.7287/peerj.preprints.1448v1
 
 [ffIllinois]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 
-[white2013]: doi:doi:10.4033/iee.2013.6b.6.f
+[white2013]: http://doi.org/10.4033/iee.2013.6b.6.f
 
 [wickes2015]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442
 
-[miller1956]: doi:10.1037/h0043158
+[miller1956]: http://doi.org/10.1037/h0043158
 
-[steinmacher2015]: doi:10.1016/j.infsof.2014.11.001
+[steinmacher2015]: http://doi.org/10.1016/j.infsof.2014.11.001
 
 [laurent2004]: http://www.oreilly.com/openbook/osfreesoft/book/
 
