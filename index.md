@@ -22,6 +22,9 @@ Tracy K. Teal<sup>6</sup>
 
 6) Data Carpentry / tkteal@datacarpentry.org
 
+> **We would be very grateful for feedback of all kinds:
+> please [email comments to the authors](mailto:gvwilson@software-carpentry.org?subject=comments on good enough practices).**
+
 **Abstract**
 
 We present a set of computing tools and techniques that every
