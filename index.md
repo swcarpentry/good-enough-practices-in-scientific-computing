@@ -22,7 +22,8 @@ Tracy K. Teal<sup>6</sup>
 
 6) Data Carpentry / tkteal@datacarpentry.org
 
-> **We would be very grateful for feedback of all kinds:
+> **A PDF of this paper can be found at <http://arxiv.org/abs/1609.00037>.
+> We would appreciate feedback of all kinds:
 > please [email comments to the authors](mailto:gvwilson@software-carpentry.org?subject=comments on good enough practices).**
 
 **Abstract**
