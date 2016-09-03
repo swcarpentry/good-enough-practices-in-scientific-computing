@@ -434,6 +434,7 @@ people to give you credit for your work.
     improving access to existing ecological data." PLOS ONE 8:e65848.
     http://doi.org/10.1371/journal.pone.0065848
     ```
+
 ## Project Organization
 
 Organizing the files that make up a project in a logical and consistent
