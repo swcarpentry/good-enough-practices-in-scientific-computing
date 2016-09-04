@@ -434,6 +434,7 @@ people to give you credit for your work.
     improving access to existing ecological data." PLOS ONE 8:e65848.
     http://doi.org/10.1371/journal.pone.0065848
     ```
+
 ## Project Organization
 
 Organizing the files that make up a project in a logical and consistent
@@ -1211,11 +1212,11 @@ control:
 
 [sandve2013]: doi:10.1371/journal.pcbi.1003285
 
-[hart2015]: doi:doi.org/10.7287/peerj.preprints.1448v1
+[hart2015]: doi:10.7287/peerj.preprints.1448v1
 
 [ffIllinois]: http://www.library.illinois.edu/sc/services/data_management/file_formats.html
 
-[white2013]: doi:doi:10.4033/iee.2013.6b.6.f
+[white2013]: doi:10.4033/iee.2013.6b.6.f
 
 [wickes2015]: https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442
 
