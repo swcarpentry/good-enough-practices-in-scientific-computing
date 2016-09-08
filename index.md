@@ -464,7 +464,7 @@ recommendations for doing this are drawn primarily from [noble2009][]
     directory (4b).* This includes files for manuscripts,
     documentation for source code, and/or an electronic lab notebook
     recording your experiments.
-    A recommended plain-text format for document is Markdown[^23],
+    A recommended plain-text format for documents is Markdown[^23],
     which can be used with tools like RStudio and the Jupyter Notebook.
     Subdirectories may be created for these
     different classes of files in large projects.
@@ -753,8 +753,8 @@ for the version control system, even if the data itself has not changed.
 >
 > Another type of data that may be shared unintentionally is security
 > credentials such as passwords and private keys. Remove files with
-> sensitive data from version control and when possible store this
-> information in environment variables.
+> sensitive data from version control and store this information in
+> other ways.
 
 ## Manuscripts
 
