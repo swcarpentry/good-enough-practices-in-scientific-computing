@@ -320,6 +320,8 @@ clearly-defined inputs and outputs.
     informative its name should be: while it's acceptable to call the
     counter variable in a loop `i` or `j`, the major data structures in
     a program should *not* have one-letter names.
+    Remember to follow each language's conventions for names, such as
+    `net_charge` for Python and `NetCharge` for Java.
 
     > **Tab Completion**
     >
@@ -354,6 +356,7 @@ clearly-defined inputs and outputs.
     easy for people to credit. DOIs for software are provided by
     Figshare[^9] and
     Zenodo[^10].
+    The second of these can integrate with GitHub.
 
 ## Collaboration
 
@@ -401,7 +404,7 @@ people to give you credit for your work.
     We recommend Creative Commons licenses for data and text, either
     CC-0[^11] (the "No Rights Reserved"
     license) or CC-BY[^12] (the "Attribution"
-    license, which sharing and reuse but requires people to give
+    license, which permits sharing and reuse but requires people to give
     appropriate credit to the creators). For software, we recommend a
     permissive license such as the MIT, BSD, or Apache license
     [laurent2004][].
@@ -461,7 +464,10 @@ recommendations for doing this are drawn primarily from [noble2009][]
 2.  *Put text documents associated with the project in the `doc`
     directory (4b).* This includes files for manuscripts,
     documentation for source code, and/or an electronic lab notebook
-    recording your experiments. Subdirectories may be created for these
+    recording your experiments.
+    A recommended plain-text format for documents is Markdown[^23],
+    which can be used with tools like RStudio and the Jupyter Notebook.
+    Subdirectories may be created for these
     different classes of files in large projects.
 
 3.  *Put raw data and metadata in a `data` directory, and files
@@ -533,11 +539,13 @@ might be organized following these recommendations:
 |-- CITATION
 |-- README
 |-- LICENSE
+|-- requirements.txt
 |-- data
 |   -- birds_count_table.csv
 |-- doc
 |   -- notebook.md
 |   -- manuscript.md
+|   -- changelog.txt
 |-- results
 |   -- summarized_results.csv
 |-- src
@@ -743,6 +751,11 @@ for the version control system, even if the data itself has not changed.
 > data in public version control systems. Some institutions may provide
 > access to private version control systems, so it is worth checking
 > with your IT department.
+>
+> Another type of data that may be shared unintentionally is security
+> credentials such as passwords and private keys. Remove files with
+> sensitive data from version control and store this information in
+> other ways.
 
 ## Manuscripts
 
@@ -827,6 +840,8 @@ disciplines for decades:
     or Markdown[^23], and then convert them to
     other formats such as PDF as needed using scriptable tools like
     Pandoc[^24].
+    LaTeX can also be handled by online tools such as Overleaf[^31]
+    and Authorea[^32].
 
 2.  *Include tools needed to compile manuscripts in the project
     folder (6d)* and keep them under version control just like tools
@@ -891,7 +906,7 @@ these materials as accessible to others as possible, do not rely solely
 on the PDF format, since extracting data from PDFs is notoriously hard.
 Instead, we recommend separating the results that you may expect others
 to reuse (e.g., data in tables, data behind figures) into separate,
-text-format files. The same holds for any commands or code you want to
+text-format files using CSV, JSON, YAML, or XML. The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
 
@@ -1197,6 +1212,10 @@ control:
 [^29]: <http://zotero.org/>
 
 [^30]: <http://orcid.org/>
+
+[^31]: https://www.overleaf.com/
+
+[^32]: https://www.authorea.com/
 
 [wilson2014]: doi:10.1371/journal.pbio.1001745
 
