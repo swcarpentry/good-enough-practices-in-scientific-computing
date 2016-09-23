@@ -802,27 +802,28 @@ Whatever system you chose, we recommend that you use it in the following way:
 
 \item
   \practice{5d}{Create, maintain, and use a checklist for saving and
-    sharing changes to the project.}  The list should include writing
+    sharing changes to the project.} The list should include writing
   log messages that clearly explain any changes, the size and content
   of individual changes, style guidelines for code, updating to-do
   lists, and bans on committing half-done work or broken code.  See
   \cite{gawande2011} for more on the proven value of checklists.
+
+\item
+  \practice{5e}{Store each project in a folder that is mirrored off the
+    researcher's working machine} using a system such as Dropbox
+    or a remote version control repository such as GitHub.
+    Synchronize that folder at least daily. It may take a few minutes,
+  but that time is repaid the
+  moment a laptop is stolen or its hard drive fails.
 
 \end{enumerate}
 
 \subsection*{Manual Versioning}
 
 Our first suggested approach, in which everything is done by hand, has
-three parts:
+two additional parts:
 
 \begin{enumerate}
-
-\item
-  \practice{5e}{Store each project in a folder that is mirrored off the
-    researcher's working machine} by a system such as Dropbox, and
-  synchronize that folder at least daily. It may take a few minutes,
-  but that time is repaid the
-  moment a laptop is stolen or its hard drive fails.
 
 \item
   \practice{5f}{Add a file called \texttt{CHANGELOG.txt} to the project's
@@ -898,6 +899,14 @@ approach---the one all authors use for their projects---don't just
 accelerate the manual process: they also automate some steps while
 enforcing others, and thereby require less self-discipline for more
 reliable results.
+
+\begin{enumerate}
+
+\item
+  \practice{5h}{Use a version control system}, to manage changes
+  to a project.
+
+\end{enumerate}
 
 Box~2 briefly explains how version control systems work.
 It's hard to know what version control tool is most widely used in
@@ -1020,7 +1029,7 @@ to:
 
 \subsection*{Single Master Online}
 
-Our first alternative has two parts:
+Our first alternative will already be familiar to many researchers:
 
 \begin{enumerate}
 
@@ -1031,12 +1040,12 @@ Our first alternative has two parts:
   changes are in one place, and hence don't need to be merged
   manually.
 
-\item
-  \practice{6b}{Include a \texttt{PUBLICATIONS} file in the project's
-    \texttt{doc} directory} with metadata about each online manuscript
-  (e.g., their URLs). This is analogous to the \texttt{data}
-  directory, which might contain links to the location of the data
-  file(s) rather than the actual files.
+% \item
+%   \practice{6b}{Include a \texttt{PUBLICATIONS} file in the project's
+%     \texttt{doc} directory} with metadata about each online manuscript
+%   (e.g., their URLs). This is analogous to the \texttt{data}
+%   directory, which might contain links to the location of the data
+%   file(s) rather than the actual files.
 
 \end{enumerate}
 
@@ -1060,17 +1069,17 @@ disciplines for decades:
 \begin{enumerate}
 
 \item
-  \practice{6c}{Write the manuscript in a plain text format that permits
+  \practice{6b}{Write the manuscript in a plain text format that permits
     version control} such as
   \withurl{LaTeX}{http://www.latex-project.org/} or
   \withurl{Markdown}{http://daringfireball.net/projects/markdown/},
   and then convert them to other formats such as PDF as needed using
   scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.
 
-\item
-  \practice{6d}{Include tools needed to compile manuscripts in the
-    project folder} and keep them under version control just like
-  tools used to do simulation or analysis.
+% \item
+%   \practice{6d}{Include tools needed to compile manuscripts in the
+%     project folder} and keep them under version control just like
+%   tools used to do simulation or analysis.
 
 \end{enumerate}
 
@@ -1401,7 +1410,7 @@ Petre M, Wilson G.
   \item Make dependencies and requirements explicit.
   \item Do not comment and uncomment sections of code to control a program's behavior.
   \item Provide a simple example or test data set.
-  \item Submit code to a reputable DOI-issuing repository.
+  \item Submit code to a reputable DOI-issuing repository.	
   \end{enumerate}
 \item Collaboration
   \begin{enumerate}[a)]
@@ -1421,18 +1430,21 @@ Petre M, Wilson G.
   \end{enumerate}
 \item Keeping Track of Changes
   \begin{enumerate}[a)]
-  \item Copy the entire project whenever a significant change has been made, using a file called \texttt{CHANGELOG.txt} to record changes between copies, OR Use version control software (VCS) to manage changes 
   \item Back up (almost) everything created by a human being as soon as it is created.
   \item Keep changes small.
   \item Share changes frequently.
   \item Create, maintain, and use a checklist for saving and sharing changes to the project.
   \item Store each project in a folder that is mirrored off the researcher's working machine.
+   \item Use a file called \texttt{CHANGELOG.txt} to record changes, and
+   \item Copy the entire project whenever a significant change has been made, OR
+   \item Use a version control system to manage changes 
   \end{enumerate}
 \item Manuscripts
   \begin{enumerate}[a)]
-  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management OR Write the manuscript in a plain text format that permits version control
-  \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
-  \item Include any tools needed to compile manuscripts in the project folder.
+  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management, OR
+  \item Write the manuscript in a plain text format that permits version control
+  % \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
+  % \item Include any tools needed to compile manuscripts in the project folder.
   \end{enumerate}
 \end{enumerate}
 }
