@@ -452,7 +452,8 @@ where:
   rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
   counter variable in a loop \texttt{i} or \texttt{j}, the major data
-  structures in a program should \emph{not} have one-letter names.
+  structures in a program should \emph{not} have one-letter names. Remember to follow each language's conventions for names, such as
+  \texttt{net_charge} for Python and \texttt{NetCharge} for Java.
 
   \begin{quote}
     \noindent \textbf{Tab Completion}
@@ -493,7 +494,8 @@ where:
   much a product of your research as your papers, and should be as
   easy for people to credit. DOIs for software are provided by
   \withurl{Figshare}{https://figshare.com/} and
-  \withurl{Zenodo}{https://zenodo.org/}.
+  \withurl{Zenodo}{https://zenodo.org/}. Zenodo integrates directly
+  with GitHub.
 
 \end{enumerate}
 
@@ -552,7 +554,7 @@ to make it easy for people to give you credit for your work.
   \withurl{CC-0}{https://creativecommons.org/about/cc0/} (the ``No
   Rights Reserved'' license) or
   \withurl{CC-BY}{https://creativecommons.org/licenses/by/4.0/} (the
-  ``Attribution'' license, which sharing and reuse but requires people
+  ``Attribution'' license, which permits sharing and reuse but requires people
   to give appropriate credit to the creators).  For software, we
   recommend a permissive open source license such as the MIT, BSD, or Apache
   license \cite{laurent2004}.
@@ -711,11 +713,13 @@ simple project might be organized following these recommendations:
 |-- CITATION
 |-- README
 |-- LICENSE
+|-- requirements.txt
 |-- data
 |   -- birds_count_table.csv
 |-- doc
 |   -- notebook.md
 |   -- manuscript.md
+|   -- changelog.txt
 |-- results
 |   -- summarized_results.csv
 |-- src
@@ -947,7 +951,11 @@ control system, even if the data itself has not changed.
   prohibit sharing (such as medical data) should be careful not to put
   data in public version control systems. Some institutions may
   provide access to private version control systems, so it is worth
-  checking with your IT department.
+  checking with your IT department.\\
+  \\
+  Additionally, be sure not to unintentionally place security credentials,
+  such as passwords and private keys, in a version control system where it
+  may be accessed by others.
 \end{quote}
 
 \practicesection{Manuscripts}{sec:manuscripts}
@@ -1131,7 +1139,8 @@ these materials as accessible to others as possible, do not rely
 solely on the PDF format, since extracting data from PDFs is
 notoriously hard.  Instead, we recommend separating the results that
 you may expect others to reuse (e.g., data in tables, data behind
-figures) into separate, text-format files. The same holds for any
+figures) into separate, text-format files in formats such as
+CSV, JSON, YAML, or XML. The same holds for any
 commands or code you want to include as supplementary material: use
 the format that most easily enables reuse (source code files, Unix
 shell scripts etc).
@@ -1406,20 +1415,18 @@ Petre M, Wilson G.
   \end{enumerate}
 \item Keeping Track of Changes
   \begin{enumerate}[a)]
+  \item Copy the entire project whenever a significant change has been made, using a file called \texttt{CHANGELOG.txt} to record changes between copies, OR Use version control software (VCS) to manage changes 
   \item Back up (almost) everything created by a human being as soon as it is created.
   \item Keep changes small.
   \item Share changes frequently.
   \item Create, maintain, and use a checklist for saving and sharing changes to the project.
   \item Store each project in a folder that is mirrored off the researcher's working machine.
-  \item Add a file called \texttt{CHANGELOG.txt} to the project's \texttt{docs} subfolder.
-  \item Copy the entire project whenever a significant change has been made.
   \end{enumerate}
 \item Manuscripts
   \begin{enumerate}[a)]
-  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management.
+  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management OR Write the manuscript in a plain text format that permits version control
   \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
-  \item Write the manuscript in a plain text format that permits version control.
-  \item Include tools needed to compile manuscripts in the project folder.
+  \item Include any tools needed to compile manuscripts in the project folder.
   \end{enumerate}
 \end{enumerate}
 }
