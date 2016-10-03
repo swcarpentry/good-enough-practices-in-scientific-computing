@@ -143,7 +143,7 @@ researcher can and should adopt.  These recommendations synthesize
 inspiration from our own work, from the experiences of the thousands
 of people who have taken part in Software Carpentry and Data Carpentry
 workshops over the past six years, and from a variety of other guides.
-Unlike some other guides, our recommendations are aimed specifically
+Our recommendations are aimed specifically
 at people who are new to research computing.
 
 \section*{Author Summary}
@@ -272,7 +272,7 @@ data'', which can be a powerful accelerator for analysis
   as any other pertinent info, such as an official version number or the date of download.
 
 \item
-  \practice{1b}{Create the data you wish to see in the world}. Create the raw dataset you
+  \practice{1b}{Create the data you wish to see in the world}. Create the dataset you
   \emph{wish} you had received.  The goal here is to improve machine and human
   readability, but \emph{not} to do vigorous data filtering or add external information.
   Machine readability allows automatic processing using computer programs,
@@ -282,7 +282,7 @@ data'', which can be a powerful accelerator for analysis
 
   \emph{File formats}: Convert data from closed, proprietary formats to open,
   non-proprietary formats that ensure machine readability across time and computing
-  setups \cite{ffIllinois}. CSV is good for tabular data, JSON, YAML, or XML for
+  setups \cite{ffIllinois}. Good options include CSV for tabular data, JSON, YAML, or XML for
   non-tabular data such as graphs\footnote{The node-and-arc kind.}, and HDF5 for certain
   kinds of structured data.
 
@@ -452,7 +452,8 @@ where:
   rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
   counter variable in a loop \texttt{i} or \texttt{j}, the major data
-  structures in a program should \emph{not} have one-letter names.
+  structures in a program should \emph{not} have one-letter names. Remember to follow each language's conventions for names, such as
+  \texttt{net_charge} for Python and \texttt{NetCharge} for Java.
 
   \begin{quote}
     \noindent \textbf{Tab Completion}
@@ -493,7 +494,8 @@ where:
   much a product of your research as your papers, and should be as
   easy for people to credit. DOIs for software are provided by
   \withurl{Figshare}{https://figshare.com/} and
-  \withurl{Zenodo}{https://zenodo.org/}.
+  \withurl{Zenodo}{https://zenodo.org/}. Zenodo integrates directly
+  with GitHub.
 
 \end{enumerate}
 
@@ -552,9 +554,9 @@ to make it easy for people to give you credit for your work.
   \withurl{CC-0}{https://creativecommons.org/about/cc0/} (the ``No
   Rights Reserved'' license) or
   \withurl{CC-BY}{https://creativecommons.org/licenses/by/4.0/} (the
-  ``Attribution'' license, which sharing and reuse but requires people
+  ``Attribution'' license, which permits sharing and reuse but requires people
   to give appropriate credit to the creators).  For software, we
-  recommend a permissive license such as the MIT, BSD, or Apache
+  recommend a permissive open source license such as the MIT, BSD, or Apache
   license \cite{laurent2004}.
 
   \begin{quote}
@@ -711,11 +713,13 @@ simple project might be organized following these recommendations:
 |-- CITATION
 |-- README
 |-- LICENSE
+|-- requirements.txt
 |-- data
 |   -- birds_count_table.csv
 |-- doc
 |   -- notebook.md
 |   -- manuscript.md
+|   -- changelog.txt
 |-- results
 |   -- summarized_results.csv
 |-- src
@@ -798,27 +802,28 @@ Whatever system you chose, we recommend that you use it in the following way:
 
 \item
   \practice{5d}{Create, maintain, and use a checklist for saving and
-    sharing changes to the project.}  The list should include writing
+    sharing changes to the project.} The list should include writing
   log messages that clearly explain any changes, the size and content
   of individual changes, style guidelines for code, updating to-do
   lists, and bans on committing half-done work or broken code.  See
   \cite{gawande2011} for more on the proven value of checklists.
+
+\item
+  \practice{5e}{Store each project in a folder that is mirrored off the
+    researcher's working machine} using a system such as Dropbox
+    or a remote version control repository such as GitHub.
+    Synchronize that folder at least daily. It may take a few minutes,
+  but that time is repaid the
+  moment a laptop is stolen or its hard drive fails.
 
 \end{enumerate}
 
 \subsection*{Manual Versioning}
 
 Our first suggested approach, in which everything is done by hand, has
-three parts:
+two additional parts:
 
 \begin{enumerate}
-
-\item
-  \practice{5e}{Store each project in a folder that is mirrored off the
-    researcher's working machine} by a system such as Dropbox, and
-  synchronize that folder at least daily. It may take a few minutes,
-  but that time is repaid the
-  moment a laptop is stolen or its hard drive fails.
 
 \item
   \practice{5f}{Add a file called \texttt{CHANGELOG.txt} to the project's
@@ -895,6 +900,14 @@ accelerate the manual process: they also automate some steps while
 enforcing others, and thereby require less self-discipline for more
 reliable results.
 
+\begin{enumerate}
+
+\item
+  \practice{5h}{Use a version control system}, to manage changes
+  to a project.
+
+\end{enumerate}
+
 Box~2 briefly explains how version control systems work.
 It's hard to know what version control tool is most widely used in
 research today, but the one that's most talked about is undoubtedly
@@ -947,7 +960,11 @@ control system, even if the data itself has not changed.
   prohibit sharing (such as medical data) should be careful not to put
   data in public version control systems. Some institutions may
   provide access to private version control systems, so it is worth
-  checking with your IT department.
+  checking with your IT department.\\
+  \\
+  Additionally, be sure not to unintentionally place security credentials,
+  such as passwords and private keys, in a version control system where it
+  may be accessed by others.
 \end{quote}
 
 \practicesection{Manuscripts}{sec:manuscripts}
@@ -1012,7 +1029,7 @@ to:
 
 \subsection*{Single Master Online}
 
-Our first alternative has two parts:
+Our first alternative will already be familiar to many researchers:
 
 \begin{enumerate}
 
@@ -1023,12 +1040,12 @@ Our first alternative has two parts:
   changes are in one place, and hence don't need to be merged
   manually.
 
-\item
-  \practice{6b}{Include a \texttt{PUBLICATIONS} file in the project's
-    \texttt{doc} directory} with metadata about each online manuscript
-  (e.g., their URLs). This is analogous to the \texttt{data}
-  directory, which might contain links to the location of the data
-  file(s) rather than the actual files.
+% \item
+%   \practice{6b}{Include a \texttt{PUBLICATIONS} file in the project's
+%     \texttt{doc} directory} with metadata about each online manuscript
+%   (e.g., their URLs). This is analogous to the \texttt{data}
+%   directory, which might contain links to the location of the data
+%   file(s) rather than the actual files.
 
 \end{enumerate}
 
@@ -1052,17 +1069,17 @@ disciplines for decades:
 \begin{enumerate}
 
 \item
-  \practice{6c}{Write the manuscript in a plain text format that permits
+  \practice{6b}{Write the manuscript in a plain text format that permits
     version control} such as
   \withurl{LaTeX}{http://www.latex-project.org/} or
   \withurl{Markdown}{http://daringfireball.net/projects/markdown/},
   and then convert them to other formats such as PDF as needed using
   scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.
 
-\item
-  \practice{6d}{Include tools needed to compile manuscripts in the
-    project folder} and keep them under version control just like
-  tools used to do simulation or analysis.
+% \item
+%   \practice{6d}{Include tools needed to compile manuscripts in the
+%     project folder} and keep them under version control just like
+%   tools used to do simulation or analysis.
 
 \end{enumerate}
 
@@ -1131,7 +1148,8 @@ these materials as accessible to others as possible, do not rely
 solely on the PDF format, since extracting data from PDFs is
 notoriously hard.  Instead, we recommend separating the results that
 you may expect others to reuse (e.g., data in tables, data behind
-figures) into separate, text-format files. The same holds for any
+figures) into separate, text-format files in formats such as
+CSV, JSON, YAML, or XML. The same holds for any
 commands or code you want to include as supplementary material: use
 the format that most easily enables reuse (source code files, Unix
 shell scripts etc).
@@ -1271,7 +1289,7 @@ important research questions.
 Wilson G, Aruliah DA, Brown CT, Hong NPC, Davis M, Guy RT, et~al.
 \newblock Best Practices for Scientific Computing.
 \newblock PLoS Biology. 2014;12(1):e1001745.
-\newblock doi:{10.1371/journal.pbio.1001745}.
+\newblock http://doi.org/10.1371/journal.pbio.1001745}.
 
 \bibitem{gentzkow2014}
 Gentzkow M, Shapiro JM. Code and Data for the Social Sciences: A Practitioner's
@@ -1283,7 +1301,8 @@ Gentzkow M, Shapiro JM. Code and Data for the Social Sciences: A Practitioner's
 Noble WS.
 \newblock {A Quick Guide to Organizing Computational Biology Projects}.
 \newblock PLoS Computational Biology. 2009;5(7).
-\newblock doi:{10.1371/journal.pcbi.1000424}.
+\newblock Available from:
+  \url{http://doi.org/10.1371/journal.pcbi.1000424}.
 
 \bibitem{brown2015}
 Brown CT. How to grow a sustainable software development process; 2015.
@@ -1294,7 +1313,8 @@ Brown CT. How to grow a sustainable software development process; 2015.
 Wickham H.
 \newblock Tidy Data.
 \newblock Journal of Statistical Software. 2014;59(1):1--23.
-\newblock doi:{10.18637/jss.v059.i10}.
+\newblock Available from:
+  \url{http://doi.org/10.18637/jss.v059.i10}.
 
 \bibitem{kitzes2016}
 Kitzes J. Reproducible Workflows; 2016.
@@ -1305,7 +1325,8 @@ Kitzes J. Reproducible Workflows; 2016.
 Sandve GK, Nekrutenko A, Taylor J, Hovig E.
 \newblock Ten Simple Rules for Reproducible Computational Research.
 \newblock PLoS Computational Biology. 2013;9(10).
-\newblock doi:{doi:10.1371/journal.pcbi.1003285}.
+\newblock Available from:
+  \url{http://doi.org/doi:10.1371/journal.pcbi.1003285}.
 
 \bibitem{hart2015}
 Hart E, Barmby P, LeBauer D, Michonneau F, Mount S, Poisot T, et~al.. Ten
@@ -1320,7 +1341,8 @@ of~Illinois~Library U. File Formats and Organization;.
 White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR.
 \newblock Nine Simple Ways to Make It Easier to (Re)use Your Data.
 \newblock Ideas in Ecology and Evolution. 2013;6(2).
-\newblock doi:{doi:10.4033/iee.2013.6b.6.f}.
+\newblock Available from:
+  \url{http://doi.org/10.4033/iee.2013.6b.6.f}.
 
 \bibitem{wickes2015}
 Wickes E. Comment on "Metadata"; 2015.
@@ -1332,14 +1354,16 @@ Miller GA.
 \newblock The Magical Number Seven, Plus or Minus Two: Some Limits on Our
   Capacity for Processing Information.
 \newblock Psychological Review. 1956;63(2):81–97.
-\newblock doi:{doi:10.1037/h0043158m}.
+\newblock Available from:
+  \url{http://doi.org/doi:10.1037/h0043158m}.
 
 \bibitem{steinmacher2015}
 Steinmacher I, {Graciotto Silva} M, Gerosa M, Redmiles DF.
 \newblock A Systematic Literature Review on the Barriers Faced by Newcomers to
   Open Source Software Projects.
 \newblock Information and Software Technology. 2015;59(C).
-\newblock doi:{10.1016/j.infsof.2014.11.001}.
+\newblock Available from:
+  \url{http://doi.org/10.1016/j.infsof.2014.11.001}.
 
 \bibitem{laurent2004}
 {St  Laurent} AM.
@@ -1386,7 +1410,7 @@ Petre M, Wilson G.
   \item Make dependencies and requirements explicit.
   \item Do not comment and uncomment sections of code to control a program's behavior.
   \item Provide a simple example or test data set.
-  \item Submit code to a reputable DOI-issuing repository.
+  \item Submit code to a reputable DOI-issuing repository.	
   \end{enumerate}
 \item Collaboration
   \begin{enumerate}[a)]
@@ -1411,15 +1435,16 @@ Petre M, Wilson G.
   \item Share changes frequently.
   \item Create, maintain, and use a checklist for saving and sharing changes to the project.
   \item Store each project in a folder that is mirrored off the researcher's working machine.
-  \item Add a file called \texttt{CHANGELOG.txt} to the project's \texttt{docs} subfolder.
-  \item Copy the entire project whenever a significant change has been made.
+   \item Use a file called \texttt{CHANGELOG.txt} to record changes, and
+   \item Copy the entire project whenever a significant change has been made, OR
+   \item Use a version control system to manage changes 
   \end{enumerate}
 \item Manuscripts
   \begin{enumerate}[a)]
-  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management.
-  \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
-  \item Write the manuscript in a plain text format that permits version control.
-  \item Include tools needed to compile manuscripts in the project folder.
+  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management, OR
+  \item Write the manuscript in a plain text format that permits version control
+  % \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
+  % \item Include any tools needed to compile manuscripts in the project folder.
   \end{enumerate}
 \end{enumerate}
 }
