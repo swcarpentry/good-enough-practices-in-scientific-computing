@@ -713,7 +713,7 @@ scientific users.
 
 The benefits of version control systems don't apply equally to all file
 types. In particular, version control can be more or less rewarding
-depending on file size and format.
+depending on file size, format, and type.
 
 First, today's version control systems are not designed to handle
 megabyte-sized files, never mind gigabytes, so large data or results
@@ -735,6 +735,20 @@ it is not possible to pinpoint specific changes from one version to the
 next. Tabular data (such as CSV files) can be put in version control,
 but changing the order of the rows or columns will create a big change
 for the version control system, even if the data itself has not changed.
+
+Third, any file that is specific from your execution environment should not be
+kept in the version control system. This encompasses both compiled binaries and
+configuration files. The former are redundant with the source code itself and
+possibly not appropriate depending on the architecture and libraries installed
+on the execution machine. Depending on your user base, it might be appropriate
+to distribute binary packages separately. Configuration files are very likely
+to require modifications prior to running on another computer than your
+development machine. Moreover, they may contain credentials (database hosts,
+logins and passwords, or API keys, or license string or files), which should
+never be stored in versioning systems for obvious confidentiality reasons. A
+convenient option is to store configuration file templates instead. Such
+templates should be self-documented with appropriate comments so that users can
+copy and edit them easily according to their needs.
 
 > **Inadvertent Sharing**
 >
