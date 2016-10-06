@@ -928,30 +928,34 @@ have nearly as many scientific users.
 
 \subsection*{What Not to Put Under Version Control}
 
-The benefits of version control systems don't apply equally to all file types.
-In particular, version control can be more or less rewarding depending on file
-size and format.
+The benefits of version control systems don't apply equally to all
+file types.  In particular, version control can be more or less
+rewarding depending on file size and format.  First, file comparison
+in version control systems is optimized for plain text files, such as
+source code. The ability to see so-called ``diffs'' is one of the
+great joys of version control. Unfortunately, Microsoft Office files
+(like the \texttt{.docx} files used by Word) or other binary files,
+e.g., PDFs, can be stored in a version control system, but it is not
+possible to pinpoint specific changes from one version to the next.
+Tabular data (such as CSV files) can be put in version control, but
+changing the order of the rows or columns will create a big change for
+the version control system, even if the data itself has not changed.
 
-First, today's version control systems are not designed to handle
-megabyte-sized files, never mind gigabytes, so large data or
-results files should not be included. What's ``large''? As a benchmark, note that
-the limit for an individual file on GitHub is 100MB. Raw data should not change,
-and therefore should not absolutely require version tracking. Keeping
-intermediate data files and other results under version control is also not
-strictly necessary if you can re-generate them from raw data and
-software. However, if data and results are small, we still recommend
-placing them under version control for ease of access by collaborators
-and for comparison across versions.
+Second, raw data should not change, and therefore should not require
+version tracking.  Keeping intermediate data files and other results
+under version control is also not necessary if you can re-generate
+them from raw data and software. However, if data and results are
+small, we still recommend versioning them for ease of access by
+collaborators and for comparison across versions.
 
-Second, file comparison in version control systems is optimized
-for plain text files, such as source code. The ability to see so-called
-``diffs'' is one of the great joys of version control. Unfortunately,
-Microsoft Office files (like the \texttt{.docx} files used by Word) or other
-binary files, e.g.,  PDFs, can be stored in a version control system,
-but it is not possible to pinpoint specific changes from one version to the next.
-Tabular data (such as CSV files) can be put in version control, but changing
-the order of the rows or columns will create a big change for the version
-control system, even if the data itself has not changed.
+Third, today's version control systems are not designed to handle
+megabyte-sized files, never mind gigabytes, so large data or results
+files should not be included.  (As a benchmark for ``large'', the
+limit for an individual file on GitHub is 100MB.)  Some emerging
+hybrid systems such as \withurl{Git LFS}{https://git-lfs.github.com/}
+put textual notes under version control, while storing the large data
+itself in a remote server, but these are not yet mature enough for us
+to recommend.
 
 \begin{quote}
   \noindent \textbf{Inadvertent Sharing}
