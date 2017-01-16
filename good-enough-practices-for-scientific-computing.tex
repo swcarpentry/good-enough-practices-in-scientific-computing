@@ -269,7 +269,11 @@ data'', which can be a powerful accelerator for analysis
   Some data will be impractical to manage in this way. For example, you should avoid
   making local copies of large, stable repositories.
   In that case, record the exact procedure used to obtain the raw data, as well
-  as any other pertinent info, such as an official version number or the date of download.
+  as any other pertinent info, such as an official version number or the date of download. 
+  
+  Ensure that raw data is backed up in more than one location. For large data sets, 
+  where storage and transfer can be expensive and time-consuming, you may need to 
+  use incremental backup or specialized storage systems. 
 
 \item
   \practice{1b}{Create the data you wish to see in the world}. Create the dataset you
@@ -329,7 +333,8 @@ data'', which can be a powerful accelerator for analysis
   This might feel frustratingly slow, but you will get faster with practice. The
   immediate payoff will be the ease with which you can re-do data preparation when new
   data arrives. You can also re-use data preparation logic in the future for related
-  projects.
+  projects. For very large data sets, data preparation may also include scripts to obtain 
+  the data or subsets of the data from remote storage. 
 
   When scripting is not feasible, it's important to clearly document every manual action
   (what menu was used, what column was copied and pasted, what link was clicked, etc.).
@@ -380,7 +385,9 @@ creation and retention of intermediate products. Saving intermediate
 files makes it easy to re-run \emph{parts} of a data analysis pipeline,
 which in turn makes it less onerous to revisit and improve specific data
 processing tasks. Breaking a lengthy workflow into pieces makes it
-easier to understand, share, describe, and modify.
+easier to understand, share, describe, and modify. This is particularly 
+true when working with large data sets, where storage and transfer 
+of the entire data set is not trivial or inexpensive. 
 
 \practicesection{Software}{sec:software}
 
@@ -545,7 +552,16 @@ to make it easy for people to give you credit for your work.
   items clearly so that they make sense to newcomers.
 
 \item
-  \practice{3c}{Make the license explicit.}  Have a \texttt{LICENSE} file
+  \practice{3c}{Decide on communication strategies.} Make explicit
+  decisions about (and publicize where appropriate) how members 
+  of the project will communicate with
+  each other and with externals users / collaborators. This includes
+  the location and technology for email lists, chat channels, voice / 
+  video conferencing, documentation, and meeting notes, as well as 
+  which of these channels will be public or private. 
+  
+\item
+  \practice{3d}{Make the license explicit.}  Have a \texttt{LICENSE} file
   in the project's home directory that clearly states what license(s)
   apply to the project's software, data, and manuscripts. Lack of an
   explicit license does not mean there isn't one; rather, it implies
@@ -576,7 +592,7 @@ to make it easy for people to give you credit for your work.
   \end{quote}
 
 \item
-  \practice{3d}{Make the project citable} by including a
+  \practice{3e}{Make the project citable} by including a
   \texttt{CITATION} file in the project's home directory that
   describes how to cite this project as a whole, and where to find (and how to cite)
   any data sets, code, figures, and other artifacts
@@ -645,7 +661,10 @@ them.  Our recommendations for doing this are drawn primarily from
   tables, and final publication-ready figures or tables should be
   separated clearly by file naming conventions or placed into
   different subdirectories; those belonging to different papers or
-  other publications should be grouped together.
+  other publications should be grouped together. Similarly, the
+  \texttt{data} directory might require subdirectories to organize 
+  raw data based on time, method of collection, or other 
+  metadata. 
 
 \item
   \practice{4d}{Put project source code in the \texttt{src} directory.}
@@ -920,13 +939,7 @@ a modern web interface. GitHub is free for public and open source
 projects and for users in academia and nonprofits.
 \withurl{GitLab}{https://about.gitlab.com} is a well-regarded
 alternative that some prefer, because the GitLab platform itself is
-free and open source.
-
-For those who find Git's command-line syntax inconsistent
-and confusing, \withurl{Mercurial}{https://www.mercurial-scm.org/} is
-a good choice; \withurl{Bitbucket}{https://bitbucket.org/} provides
-free hosting for both Git and Mercurial repositories, but does not
-have nearly as many scientific users.
+free and open source. 
 
 \subsection*{What Not to Put Under Version Control}
 
