@@ -139,7 +139,7 @@
 \section*{Abstract}
 
 We present a set of computing tools and techniques that every
-researcher can and should adopt.  These recommendations synthesize
+researcher can adopt and should consider adopting.  These recommendations synthesize
 inspiration from our own work, from the experiences of the thousands
 of people who have taken part in Software Carpentry and Data Carpentry
 workshops over the past six years, and from a variety of other guides.
@@ -150,13 +150,12 @@ at people who are new to research computing.
 
 Computers are now essential in all branches of science, but most
 researchers are never taught the equivalent of basic lab skills for
-research computing.  As a result, they take days or weeks to do things
-that could be done in minutes or hours, are often unable to reproduce
-their own work (much less the work of others), and have no idea how
-reliable their computational results are.
+research computing. As a result, their analyses can take much longer
+than necessary, and they may not be able to reproduce their work or
+make it reproducible by others. 
 
 This paper presents a set of good computing practices that every
-researcher can adopt regardless of their current level of technical
+researcher can adopt regardless of their current level of computational
 skill.  These practices, which encompass data management, programming,
 collaborating with colleagues, organizing projects, tracking work, and
 writing manuscripts, are drawn from a wide variety of published
@@ -181,7 +180,7 @@ This paper therefore presents a set of ``good enough''
 practices\footnote{Note that English lacks a good word for this:
   ``mediocre'', ``adequate'', and ``sufficient'' aren't exactly
   right.} for scientific computing, i.e., a minimum set of tools and
-techniques that we believe every researcher can and should adopt. It
+techniques that we believe every researcher can adopt and should consider adopting. It
 draws inspiration from many sources
 \cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
 from our personal experience, and from the experiences of the
@@ -190,10 +189,8 @@ Data Carpentry workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
 handful of collaborators on projects lasting a few days to a few
-months, and who are ready to move beyond emailing themselves a spreadsheet
-named \texttt{results-updated-3-revised.xlsx} at the end of the workday. A
-practice is included in our list if large numbers of researchers use
-it, and large numbers of people are \emph{still} using it months
+months. A practice is included in our list if large numbers of researchers 
+use it, and large numbers of people are \emph{still} using it months
 after first trying it out. We include the second criterion because
 there is no point recommending something that people won't actually
 adopt.
@@ -269,7 +266,7 @@ data'', which can be a powerful accelerator for analysis
   Some data will be impractical to manage in this way. For example, you should avoid
   making local copies of large, stable repositories.
   In that case, record the exact procedure used to obtain the raw data, as well
-  as any other pertinent info, such as an official version number or the date of download. 
+  as any other pertinent information, such as an official version number or the date of download. 
   
   Ensure that raw data is backed up in more than one location. For large data sets, 
   where storage and transfer can be expensive and time-consuming, you may need to 
@@ -296,7 +293,7 @@ data'', which can be a powerful accelerator for analysis
   \texttt{personal\_name} and \texttt{family\_name}, recode the
   treatment variable from \texttt{1} vs.  \texttt{2} to
   \texttt{untreated} vs. \texttt{treated}, and replace artificial
-  codes for missing data, such as ``-99'', with \texttt{NA}s,
+  codes for missing data, such as ``-99'', with \texttt{NA},
   a code used in most programming languages to indicate that data is ``Not Available''
   \cite{white2013}.
 
@@ -332,7 +329,7 @@ data'', which can be a powerful accelerator for analysis
   The best way to do this is to write scripts for \emph{every} stage of data processing.
   This might feel frustratingly slow, but you will get faster with practice. The
   immediate payoff will be the ease with which you can re-do data preparation when new
-  data arrives. You can also re-use data preparation logic in the future for related
+  data arrives. You can also re-use data preparation steps in the future for related
   projects. For very large data sets, data preparation may also include scripts to obtain 
   the data or subsets of the data from remote storage. 
 
@@ -403,7 +400,10 @@ your code.
 The core realization in these practices is that \emph{readable},
 \emph{reusable}, and \emph{testable} are all side effects of writing
 \emph{modular} code, i.e., of building programs out of short,
-single-purpose functions with clearly-defined inputs and outputs.
+single-purpose functions with clearly-defined inputs and outputs. Much 
+has been written on this topic (refs!), and this section focuses on practices 
+that best balance ease of employment with benefit for you and 
+collaborations. 
 
 \begin{enumerate}
 
@@ -428,6 +428,7 @@ where:
 -s seed    = random number generator seed (large integer)
 -v         = verbose
 -w size    = image width/height in pixels (typically 480-800)
+-h = show help message
 \end{verbatim}
 }
 
@@ -543,7 +544,7 @@ to make it easy for people to give you credit for your work.
   to.
 
 \item
-  \practice{3b}{Create a shared public ``to-do'' list}.  This can be a
+  \practice{3b}{Create a shared ``to-do'' list}.  This can be a
   plain text file called something like \texttt{notes.txt} or
   \texttt{todo.txt}, or you can use sites such as GitHub or Bitbucket
   to create a new \emph{issue} for each to-do item. (You can even add
@@ -831,8 +832,8 @@ Whatever system you chose, we recommend that you use it in the following way:
 
 \item
   \practice{5e}{Store each project in a folder that is mirrored off the
-    researcher's working machine} using a system such as Dropbox
-    or a remote version control repository such as GitHub.
+    researcher's working machine} using a system such as \withurl{Dropbox}{http://dropbox.com}
+    or a remote version control repository such as \withurl{GitHub}{http://github.com}.
     Synchronize that folder at least daily. It may take a few minutes,
   but that time is repaid the
   moment a laptop is stolen or its hard drive fails.
@@ -897,8 +898,8 @@ two additional parts:
     \\
     Copying everything like this may seem wasteful, since many files
     won't have changed, but consider: a terabyte hard drive costs
-    about \$50 retail, which means that 50 GByte costs less than a
-    latte. Provided large data files are kept out of the backed-up
+    about \$50 retail, which means that 50 GByte costs less than 
+    \$5. Provided large data files are kept out of the backed-up
     area (discussed below), this approach costs less than the time it
     would take to select files by hand for copying.
   \end{quote}
@@ -948,7 +949,7 @@ file types.  In particular, version control can be more or less
 rewarding depending on file size and format.  First, file comparison
 in version control systems is optimized for plain text files, such as
 source code. The ability to see so-called ``diffs'' is one of the
-great joys of version control. Unfortunately, Microsoft Office files
+great joys of version control. Unfortunately, Microsoft\textregistered Office files
 (like the \texttt{.docx} files used by Word) or other binary files,
 e.g., PDFs, can be stored in a version control system, but it is not
 possible to pinpoint specific changes from one version to the next.
@@ -996,7 +997,8 @@ changed scientific writing just as much as it has changed research.
 A common practice in academic writing is for the lead author to send
 successive versions of a manuscript to coauthors to collect feedback,
 which is returned as changes to the document, comments on the
-document, plain text in email, or a mix of all three. This results in
+document, plain text in email, or a mix of all three. This allows co-authors
+to use familiar tools, but results in
 a lot of files to keep track of, and a lot of tedious manual labor to
 merge comments to create the next master version.
 
@@ -1071,8 +1073,8 @@ Our first alternative will already be familiar to many researchers:
 We realize that in many cases, even this solution is asking too much
 from collaborators who see no reason to move forward from desktop GUI
 tools. To satisfy them, the manuscript can be converted to a desktop
-editor file format (e.g., Microsoft Word's \texttt{.docx} or
-LibreOffice's \texttt{.odt}) after major changes, then downloaded and
+editor file format (e.g., Microsoft\textregistered Word \texttt{.docx} or
+LibreOffice \texttt{.odt}) after major changes, then downloaded and
 saved in the \texttt{doc} folder. Unfortunately, this means merging
 some changes and suggestions manually, as existing tools cannot always
 do this automatically when switching from a desktop file format to
@@ -1154,8 +1156,11 @@ and baggage that it is often not worth the effort.
 
 In keeping with our goal of recommending ``good enough'' practices, we
 have therefore included online, collaborative editing in something like Google
-Docs. We still recommend \emph{against} traditional desktop tools like
-LibreOffice and Microsoft Word because they make collaboration more
+Docs. This solution meets the requirements that we've outlined above, although 
+you do lose some benefits of text-based formats (notably, being able to use 
+non-proprietary tools for editing, sharing, and viewing and being amenable to  
+version control). We still recommend \emph{against} traditional desktop tools like
+LibreOffice and Microsoft\textregistered Word because they make collaboration more
 difficult than necessary.
 
 \subsection*{Supplementary Materials}
