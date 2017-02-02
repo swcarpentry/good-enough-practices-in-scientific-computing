@@ -184,7 +184,7 @@ This paper focuses on these first, accessible skills and perspectives
 - the ``good enough'' practices - for scientific computing, a minimum
 set of tools and techniques that we believe every researcher can and
 should consider adopting. It draws inspiration from many sources
-\cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
+\cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2016},
 from our personal experience, and from the experiences of the
 thousands of people who have taken part in Software Carpentry and Data
 Carpentry workshops over the past six years.
@@ -253,7 +253,7 @@ Our recommendations have two main themes. One is to work towards
 ready-to-analyze data incrementally, documenting both the intermediate
 data and the process. We also describe the key features of ``tidy
 data'', which can be a powerful accelerator for analysis
-\cite{wickham2014,hart2015}.
+\cite{wickham2014,hart2016}.
 
 \begin{enumerate}
 
@@ -441,10 +441,10 @@ your code.
 The core realization in these practices is that \emph{readable},
 \emph{reusable}, and \emph{testable} are all side effects of writing
 \emph{modular} code, i.e., of building programs out of short,
-single-purpose functions with clearly-defined inputs and outputs. Much
-has been written on this topic (refs!), and this section focuses on
-practices that best balance ease of use with benefit for you and
-collaborators.
+single-purpose functions with clearly-defined inputs and
+outputs~\cite{hunt1999}. Much has been written on this topic (refs!),
+and this section focuses on practices that best balance ease of use
+with benefit for you and collaborators.
 
 \begin{enumerate}
 
@@ -1479,13 +1479,14 @@ Sandve GK, Nekrutenko A, Taylor J, Hovig E.
 \newblock PLoS Computational Biology. 2013;9(10).
 \newblock doi:{doi:10.1371/journal.pcbi.1003285}.
 
-\bibitem{hart2015}
-Hart E, Barmby P, LeBauer D, Michonneau F, Mount S, Poisot T, et~al.
-\newblock Ten simple rules for digital data storage; 2015.
+\bibitem{hart2016}
+Hart EM, Barmby P, LeBauer D, Michonneau F, Mount S, Mulrooney P, et~al.
+\newblock Ten simple rules for digital data storage.
+\newblock PLoS Computational Biology.
+  2016;doi:{doi:10.1371/journal.pcbi.1005097}.
 
 \bibitem{ffIllinois}
-U.~of~Illinois~Library
-\newblock File Formats and Organization;.
+U.~of~Illinois~Library. File Formats and Organization.
 \newblock Available from:
   \url{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}.
 
@@ -1496,9 +1497,14 @@ White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR.
 \newblock doi:{doi:10.4033/iee.2013.6b.6.f}.
 
 \bibitem{wickes2015}
-Wickes E. Comment on Metadata; 2015.
+Wickes E. Comment on "Metadata"; 2015.
 \newblock Available from:
   \url{https://github.com/swcarpentry/good\--enough\--practices\--in\--scientific\--computing/issues/3\#issuecomment-157410442}.
+
+\bibitem{hunt1999}
+Hunt A, Thomas D.
+\newblock The Pragmatic Programmer.
+\newblock Addison-Wesley; 1999.
 
 \bibitem{miller1956}
 Miller GA.
@@ -1515,7 +1521,7 @@ Steinmacher I, {Graciotto Silva} M, Gerosa M, Redmiles DF.
 \newblock doi:{10.1016/j.infsof.2014.11.001}.
 
 \bibitem{laurent2004}
-{St.\ Laurent} AM.
+{St ~Laurent} AM.
 \newblock Understanding Open Source and Free Software Licensing.
 \newblock O'Reilly Media; 2004.
 \newblock Available from:
@@ -1530,12 +1536,6 @@ Gawande A.
 Petre M, Wilson G.
 \newblock Code Review For and By Scientists.
 \newblock In: Katz D, editor. Proc.\ WSSSPE 2014; 2014.
-
-\bibitem{shade2015}
-Shade A, Teal T TK.
-\newblock Computing Workflows for Biologists: A Roadmap.
-\newblock PLoS Biology, November 2015.
-\newblock doi:10.1371/journal.pbio.1002303.
 
 \end{thebibliography}
 
