@@ -150,9 +150,12 @@ at people who are new to research computing.
 
 Computers are now essential in all branches of science, but most
 researchers are never taught the equivalent of basic lab skills for
-research computing. As a result, their analyses can take much longer
-than necessary, and they may not be able to reproduce their work or
-make it reproducible by others. 
+research computing. As a result, data can get lost, analyses can take 
+much longer than necessary and researchers are limited in how effectively
+and they can work with software and data. Computing workflows need to
+follow the same practices as with lab projects and notebooks, with organized data,
+documented steps and the project structured for reproducibility, but 
+researchers new to computing often don't know where to start. 
 
 This paper presents a set of good computing practices that every
 researcher can adopt regardless of their current level of computational
@@ -171,15 +174,15 @@ Two years ago a group of researchers involved in \withurl{Software
 Carpentry}{http://software-carpentry.org/} and \withurl{Data
 Carpentry}{http://datacarpentry.org/} wrote a paper called
 ``Best Practices for Scientific Computing'' \cite{wilson2014}.
-It was well received, but many novices found its
-litany of tools and techniques intimidating.  Also, by definition, the
-``best'' are a small minority.
-What practices are comfortably within reach for the ``rest''?
+That paper provided 'next steps' for people already working in
+scientific computing. However, as computing has become an
+essential part of science for all researchers, there is a larger
+group of people newer to scientific computing, and the question
+then becomes 'where to start?'.
 
-This paper therefore presents a set of ``good enough''
-practices\footnote{Note that English lacks a good word for this:
-  ``mediocre'', ``adequate'', and ``sufficient'' aren't exactly
-  right.} for scientific computing, i.e., a minimum set of tools and
+This paper focuses on these first, accessible skills and perspectives - 
+the 'good enough' practices - for scientific computing, 
+a minimum set of tools and
 techniques that we believe every researcher can and should consider adopting. It
 draws inspiration from many sources
 \cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
@@ -188,7 +191,7 @@ thousands of people who have taken part in Software Carpentry and
 Data Carpentry workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
-handful of collaborators on projects lasting a few days to a few
+handful of collaborators on projects lasting a few days to a several 
 months. A practice is included in our list if large numbers of researchers 
 use it, and large numbers of people are \emph{still} using it months
 after first trying it out. We include the second criterion because
@@ -264,13 +267,19 @@ data'', which can be a powerful accelerator for analysis
   data by accident or to hand edit it in a moment of weakness.
 
   Some data will be impractical to manage in this way. For example, you should avoid
-  making local copies of large, stable repositories.
+  making local copies of large, stable databases.
   In that case, record the exact procedure used to obtain the raw data, as well
   as any other pertinent information, such as an official version number or the date of download. 
   
-  Ensure that raw data is backed up in more than one location. For large data sets, 
+  \practice{1b}{Ensure that raw data is backed up in more than one location.} If external hard drives are used, 
+  ideally they are stored off-site of the original location. Universities often have their own data
+  storage solutions, so it is worthwhile to consult with your local Information Technology (IT) or library groups.
+  Alternatively cloud computing resources, like Amazon
+  elastic storage are reasonably priced and reliable.  For large data sets, 
   where storage and transfer can be expensive and time-consuming, you may need to 
-  use incremental backup or specialized storage systems. 
+  use incremental backup or specialized storage systems, and people in your local 
+  IT group or library can often provide advice and assistance on options
+  at your university or organization as well.
 
 \item
   \practice{1b}{Create the data you wish to see in the world}. Create the dataset you
@@ -323,24 +332,30 @@ data'', which can be a powerful accelerator for analysis
 
 \item
   \practice{1d}{Record all the steps used to process data}: Data manipulation is as integral
-  to your analysis as statistical modelling and inference. If you do not document this
+  to your analysis as statistical modeling and inference. If you do not document this
   step thoroughly, it is impossible for you, or anyone else, to repeat the analysis.
 
   The best way to do this is to write scripts for \emph{every} stage of data processing.
   This might feel frustratingly slow, but you will get faster with practice. The
   immediate payoff will be the ease with which you can re-do data preparation when new
   data arrives. You can also re-use data preparation steps in the future for related
-  projects. For very large data sets, data preparation may also include scripts to obtain 
+  projects. For very large data sets, data preparation may also include writing and saving scripts to obtain 
   the data or subsets of the data from remote storage. 
 
-  When scripting is not feasible, it's important to clearly document every manual action
+  Some data cleaning tools, such as \withurl{OpenRefine}{http://www.openrefine.org}, 
+  % check OpenRefine URL
+  provide a graphical user interface, but
+  also automatically keep track of each step in the process. When tools like these or
+  scripting is not feasible, it's important to clearly document every manual action
   (what menu was used, what column was copied and pasted, what link was clicked, etc.).
   Often you can at least capture \emph{what} action was taken, if not the complete
   \emph{why}. For example, choosing a region of interest in an image is inherently
   interactive, but you can save the region chosen as a set of boundary coordinates.
+  
+ 
 
 \item
-  \practice{1e}{Anticipate the need to use multiple tables}: Raw data, even if tidy, is not
+  \practice{1e}{Anticipate the need to use multiple tables, and use unique identifiers}: Raw data, even if tidy, is not
   necessarily complete. For example, the primary data table might hold the heart rate for
   individual subjects at rest and after a physical challenge, identified via a subject ID.
   Demographic variables, such as subject age and sex, are stored in a second table and
@@ -402,8 +417,8 @@ The core realization in these practices is that \emph{readable},
 \emph{modular} code, i.e., of building programs out of short,
 single-purpose functions with clearly-defined inputs and outputs. Much 
 has been written on this topic (refs!), and this section focuses on practices 
-that best balance ease of employment with benefit for you and 
-collaborations. 
+that best balance ease of use with benefit for you and 
+collaborators.
 
 \begin{enumerate}
 
@@ -434,32 +449,52 @@ where:
 
 \item
   \practice{2b}{Decompose programs into functions} that are no more than
-  one page (about 60 lines) long, do not
-  use global variables (constants are OK), and take no more than half
-  a dozen parameters.  The key motivation here is to fit the program
+  one page (about 60 lines) long. Functions are sections within a program
+  that do one particular thing. The syntax varies depending on programming
+  language, but generally you name the function, list the parameters, or 
+  information needed for that section of code, and list what information will 
+  come out of the function. 
+  % check definition of functions
+  % WOULD BE GOOD TO HAVE EXAMPLE OF A FUNCTION
+  Functions should take no more than about 5 or 6 input parameters
+  and shouldn't include variables used in other parts of the program 
+  (global variables).
+  % I'm not sure if we should discuss global variables. I'm not sure it's
+  % an easy concept to explain. Or better description of global variables here?
+  The key motivation here is to fit the program
   into the most limited memory of all: ours. Human short-term memory
   is famously incapable of holding more than about seven items at
   once \cite{miller1956}. If we are to understand
   what our software is doing, we must break it into chunks that obey
-  this limit, then create programs by combining these chunks.
+  this limit, then create programs by combining these chunks. Putting 
+  code into functions also makes it easier to test and troubleshoot if
+  something is going wrong. 
 
 \item
   \practice{2c}{Be ruthless about eliminating duplication}. Write and
-  re-use functions instead of copying and pasting source code, and use
-  data structures like lists rather than creating lots of variables
-  called \texttt{score1}, \texttt{score2}, \texttt{score3}, etc.
+  re-use functions instead of copying and pasting code. You can 
+  also use 
+  data structures like lists, e.g. create \texttt{score = (1, 2, 3)} rather than lots of variables
+  like \texttt{score1 = 1}, \texttt{score2 = 2}, \texttt{score3 = 3}, etc.
 
-  The easiest code to debug and maintain is code you didn't
-  actually write, so \practice{2d}{always search for well-maintained
+  Also look for well-maintained libraries that already do what you're trying to do. All
+  programming languages have libraries that you can import and 
+  use in your code. This is code that people have already written and made available
+  for distribution that have a particular function. For instances there are libraries for statistics,
+  modeling, mapping and many more. Many languages catalog the libraries in a centralized
+  source, for instance R has CRAN, Python has ... and Java has ...
+  % is this all correct?
+  So \practice{2d}{always search for well-maintained
   software libraries that do what you need} before writing new code yourself,
-  and \practice{2e}{test libraries before relying on them}.
+  but \practice{2e}{test libraries before relying on them}.
 
 \item
   \practice{2f}{Give functions and variables meaningful names}, both
   to document their purpose and to make the program easier to read. As
   a rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
-  counter variable in a loop \texttt{i} or \texttt{j}, the major data
+  counter variable in a loop \texttt{i} or \texttt{j}, things that are re-used often, 
+  such as the major data
   structures in a program should \emph{not} have one-letter
   names.  Remember to follow each language's conventions for names,
   such as \texttt{net\_charge} for Python and \texttt{NetCharge} for
@@ -532,12 +567,14 @@ to make it easy for people to give you credit for your work.
   contain the project's title, a brief description, up-to-date contact
   information, and
   an example or two of how to run various cleaning or analysis tasks.  It is often
-  the first thing users of your project will look at, so make it
-  explicit that you welcome contributors and point them to ways they
-  can help.
+  the first thing users and collaborators on your project will look at, so 
+ make it explicit how you want people to engage with the project. If you
+ are looking for more contributors, make it
+  explicit that you welcome contributors and point them to the license (more below)
+  and ways they can help.
 
   You should also create a \texttt{CONTRIBUTING} file that describes
-  what people need to do in order to get the project going and
+  what people need to do in order to get the project going and use or 
   contribute to it, i.e., dependencies that need to be installed,
   tests that can be run to ensure that software has been installed
   correctly, and guidelines or checklists that your project adheres
@@ -640,8 +677,12 @@ them.  Our recommendations for doing this are drawn primarily from
   share more than half of their data and code, they are probably best
   managed together, while if you are building tools that are used in
   several projects, the common code should probably be in a project of
-  its own.
-
+  its own. Projects do often require their own organizational model, but the
+  below are recommendations on how you can structure data, code, analysis
+  outputs and other files. The important concept is that is useful to 
+  organize the project by the types of files and that consistency helps you
+  effectively find and use things later. 
+  
 \item
   \practice{4b}{Put text documents associated with the project in the
     \texttt{doc} directory.} This includes files for manuscripts,
@@ -665,7 +706,7 @@ them.  Our recommendations for doing this are drawn primarily from
   other publications should be grouped together. Similarly, the
   \texttt{data} directory might require subdirectories to organize 
   raw data based on time, method of collection, or other 
-  metadata. 
+  metadata most relevant to your analysis. 
 
 \item
   \practice{4d}{Put project source code in the \texttt{src} directory.}
@@ -685,15 +726,19 @@ them.  Our recommendations for doing this are drawn primarily from
     ``scientific guts'' of the project.
 
     The second type of file in \texttt{src} is controller or driver
-    scripts that combine the core analytical functions with particular
-    parameters and data input/output commands in order to execute the
-    entire project analysis from start to finish. A controller script for
+    scripts that is a script that combines all the analysis steps that
+    executes the entire project from start to finish, with 
+    particular
+    parameters and data input/output commands. A controller script for
     a simple project, for example, may read a raw data table, import and
     apply several cleanup and analysis functions from the other files in
     this directory, and create and save a numeric result. For a small
     project with one main output, a single controller script should be
     placed in the main \texttt{src} directory and distinguished clearly by
     a name such as ``runall''.
+    
+    % Should we add an example of a 'run all' type file? This is a big win that people don't often
+    % do, so I think an example would be helpful. 
 
 \item
   \practice{4e}{Put external scripts, or compiled programs
@@ -784,14 +829,14 @@ Mercurial, and Subversion. They keep track of what was changed in a
 file when and by whom, and synchronize changes to a central server so
 that many users can manage changes to the same set of files.
 
-Although all of the authors use version control daily for all of their
-projects, we recognize that many newcomers to computational science
-find version control to be one of the more difficult practices to
-adopt.  We therefore recommend that projects adopt \emph{either} a
-systematic manual approach for managing changes \emph{or} version
-control in its full glory.
+While these version control tools make keeping track of changes easier and
+automatically integrates it into the workflow, they can have a steep learning
+curve. So, we provide two sets of recommendations, \emph{1} a
+systematic manual approach for managing changes and \emph{2} version
+control in its full glory, and you can use the first while working towards the 
+second, or just jump in to version control. 
 
-Whatever system you chose, we recommend that you use it in the following way:
+Whatever system you chose, we recommend that you:
 
 \begin{enumerate}
 
@@ -917,7 +962,7 @@ merge those files whenever a backup copy is made.
 
 What the manual process described above requires most is
 self-discipline. The version control tools that underpin our second
-approach---the one all authors use for their projects---don't just
+approach, and the one we use in our projects, don't just
 accelerate the manual process: they also automate some steps while
 enforcing others, and thereby require less self-discipline for more
 reliable results.
@@ -940,7 +985,9 @@ a modern web interface. GitHub is free for public and open source
 projects and for users in academia and nonprofits.
 \withurl{GitLab}{https://about.gitlab.com} is a well-regarded
 alternative that some prefer, because the GitLab platform itself is
-free and open source. 
+free and open source. \withurl{Bitbucket}{https://bitbucket.org/} provides
+free hosting for both Git and Mercurial repositories, but does not
+have nearly as many scientific users
 
 \subsection*{What Not to Put Under Version Control}
 
@@ -1070,6 +1117,8 @@ Our first alternative will already be familiar to many researchers:
 
 \end{enumerate}
 
+
+
 We realize that in many cases, even this solution is asking too much
 from collaborators who see no reason to move forward from desktop GUI
 tools. To satisfy them, the manuscript can be converted to a desktop
@@ -1115,48 +1164,56 @@ fully-reproducible research. However, it requires all contributors to
 understand a much larger set of tools, including markdown or LaTeX,
 make, BiBTeX, and Git/GitHub.
 
-\subsection*{Why Two Recommendations for Manuscripts?}
+% WE'VE ALREADY MADE THE DECISION IN ANOTHER SECTION
+% TO HAVE TWO SETS OF RECOMMENDATIONS. I DON'T
+% THINK WE NEED THIS DESCRIPTION HERE. 
+% It's a different style than the rest of the paper, and even though
+% we're describing Google docs as 'good enough' it comes 
+% across as being 'less than because you're not good enough to
+% use these tools', which is not what we're trying to say.
+% 
 
-The first draft of this paper recommended always using plain text in
-version control to manage manuscripts, but several reviewers pushed
-back forcefully. For example, Stephen Turner wrote:
+%\subsection*{Why Two Recommendations for Manuscripts?}
 
-\begin{quote}
-{\ldots}try to explain the notion of compiling a document to an
-overworked physician you collaborate with. Oh, but before that, you
-have to explain the difference between plain text and word
-processing. And text editors. And markdown/LaTeX compilers. And
-BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
-from the OR{\ldots}
+%The first draft of this paper recommended always using plain text in
+%version control to manage manuscripts, but several reviewers pushed
+%back forcefully. For example, Stephen Turner wrote:
 
-{\ldots}as much as we want to convince ourselves otherwise, when you
-have to collaborate with those outside the scientific computing
-bubble, the barrier to collaborating on papers in this framework is
-simply too high to overcome. Good intentions aside, it always comes
-down to ``just give me a Word document with tracked changes,'' or
-similar.
-\end{quote}
+%\begin{quote}
+%{\ldots}try to explain the notion of compiling a document to an
+%overworked physician you collaborate with. Oh, but before that, you
+%have to explain the difference between plain text and word
+%processing. And text editors. And markdown/LaTeX compilers. And
+%BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
+%from the OR{\ldots}
 
-Similarly, Arjun Raj said in \withurl{a blog
-  post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
+%{\ldots}as much as we want to convince ourselves otherwise, when you
+%have to collaborate with those outside the scientific computing
+%bubble, the barrier to collaborating on papers in this framework is
+%simply too high to overcome. Good intentions aside, it always comes
+%down to ``just give me a Word document with tracked changes,'' or
+%similar.
+%\end{quote}
 
-\begin{quote}
-Google Docs excels at easy sharing, collaboration, simultaneous
-editing, commenting and reply-to-commenting. Sure, one can approximate
-these using text-based systems and version control. The question is
-why anyone would like to{\ldots}
+%Similarly, Arjun Raj said in \withurl{a blog
+%  post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
 
-The goal of reproducible research is to make sure one
-can{\dots}reproduce{\ldots}computational analyses. The goal of version
-control is to track changes to source code. These are fundamentally
-distinct goals, and while there is some overlap, version control is
-merely a tool to help achieve that, and comes with so much overhead
-and baggage that it is often not worth the effort.
-\end{quote}
+%\begin{quote}
+%Google Docs excels at easy sharing, collaboration, simultaneous
+%editing, commenting and reply-to-commenting. Sure, one can approximate
+%these using text-based systems and version control. The question is
+%why anyone would like to{\ldots}
 
-In keeping with our goal of recommending ``good enough'' practices, we
-have therefore included online, collaborative editing in something like Google
-Docs. This solution meets the requirements that we've outlined above, although 
+%The goal of reproducible research is to make sure one
+%can{\dots}reproduce{\ldots}computational analyses. The goal of version
+%control is to track changes to source code. These are fundamentally
+%distinct goals, and while there is some overlap, version control is
+%merely a tool to help achieve that, and comes with so much overhead
+%and baggage that it is often not worth the effort.
+%\end{quote}
+
+Collaborative editing in something like Google Docs if often therefore an 
+effective approach. This solution meets the requirements that we've outlined above, although 
 you do lose some benefits of text-based formats (notably, being able to use 
 non-proprietary tools for editing, sharing, and viewing and being amenable to  
 version control). We still recommend \emph{against} traditional desktop tools like
@@ -1284,8 +1341,8 @@ The problem comes when those experienced developers give advice to
 people who \emph{haven't} already mastered the tools, and
 \emph{don't} realize (yet) that they will save time if and when their
 project grows.  In that situation, advocating unit testing with
-coverage checking and continuous integration is more likely to scare
-newcomers off than to aid them.
+coverage checking and continuous integration is more likely to be overwhelming
+to newcomers rather than aid them.
 
 \section*{Conclusion}
 
@@ -1293,7 +1350,7 @@ We have outlined a series of practices for scientific computing based
 on our collective experience, and the experience of the thousands of
 researchers we have met through Software Carpentry, Data Carpentry,
 and similar organizations.  These practices are pragmatic, accessible
-to people who consider themselves computing novices, and can be applied
+to people who consider themselves new to computing, and can be applied
 by both individuals and groups.
 Most importantly, these practices make researchers more productive
 individually by enabling them to get more done in less time and with
@@ -1301,9 +1358,60 @@ less pain.  They also accelerate research as a whole by making
 computational work (which increasingly means \emph{all} work) more
 reproducible.
 
-But progress will not happen by itself.  Universities and funding
-agencies need to support training for researchers in the use of these
-tools.  Such investment will improve confidence in the results of
+But progress will not happen by itself. The practices are being 
+increasingly incentivized through requirements from funding
+agencies and journals, but the time and skills required to put these
+approaches into practice are still not being valued. 
+
+At a local level,
+PIs can have the most impact, requiring that the research their lab
+produces follow these recommendations. Even if a PI doesn't have
+a background in computation, they can require that students show
+and share their code in lab meetings and with lab mates, that data
+is available and accessible to all in the lab and that computational
+methods sections are comprehensive. Best practices can include
+things like paired-programming and having other lab members replicate
+workflows.\ref{computing_workflows_for_biologists}. PIs can also value the time
+it takes to do these things effectively and provide opportunities for
+training. While it seems challenging to take time away from other
+research activities, like coding itself, the time spent on the initial efforts
+will pay off with more efficient and likely more innovative research.
+
+Universities can provide support for advice and infrastructure. This is
+most commonly provided by IT or High Performance Computing groups, 
+and an often under appreciated resource, the libraries. Librarians have
+thought about and worked with data and provenance even before 
+these computational challenges and increasingly
+have dedicated data librarians on staff who have an explicit service role.
+Many campuses also have self-organizing student groups, as students
+seek opportunities to engage with and learn from each other around 
+these skills. Universities would do well to support these groups, as 
+student peers are often some of the most knowledgable and they 
+help grow communities of practice. Universities can also provide 
+opportunities for training on these practical skills. Many resources are
+available already. They would do well to make use of existing training
+programs and resources, and even contribute to them, as the training 
+challenges are shared by all universities, and there is not a need to replicate 
+efforts. Additionally, where courses are not yet available, they can provide
+access to short courses and workshops, where again materials and often 
+instructors are already provided, so they can more quickly provide training. 
+In our experience with Software and Data Carpentry, our two-day workshops
+at universities are almost always full within a day or two of being announced,
+with wait lists as long or longer than the number of attendees. It is clear that there
+is extensive demand for training and unmet needs. 
+
+Funding agencies are challenged to meet many competing needs in research. 
+Many agencies are now requiring sections on data management plans and 
+education and outreach activities. We need to align these requirements with
+requests for funding for these activities. The true cost of implementing these
+plans includes not only infrastructure, but initially increased personnel time
+and resources for training. These costs will come down as researchers learn
+and more effectively implement these practices, but now is the time to invest
+in these activities for longer-term gains, as science will only become more
+data-intensive. 
+
+Such investment from PIs, universities, funding agencies and others
+will improve confidence in the results of
 computational work and allow us to make more rapid progress on
 important research questions.
 
