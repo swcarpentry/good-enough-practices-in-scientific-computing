@@ -52,7 +52,6 @@
 \hline
 \noalign{\global\arrayrulewidth\savedwidth}}
 
-
 % Remove comment for double spacing
 %\usepackage{setspace}
 %\doublespacing
@@ -139,32 +138,33 @@
 \section*{Abstract}
 
 We present a set of computing tools and techniques that every
-researcher can and should consider adopting.  These recommendations synthesize
-inspiration from our own work, from the experiences of the thousands
-of people who have taken part in Software Carpentry and Data Carpentry
-workshops over the past six years, and from a variety of other guides.
-Our recommendations are aimed specifically
-at people who are new to research computing.
+researcher can and should consider adopting.  These recommendations
+synthesize inspiration from our own work, from the experiences of the
+thousands of people who have taken part in Software Carpentry and Data
+Carpentry workshops over the past six years, and from a variety of
+other guides.  Our recommendations are aimed specifically at people
+who are new to research computing.
 
 \section*{Author Summary}
 
 Computers are now essential in all branches of science, but most
 researchers are never taught the equivalent of basic lab skills for
-research computing. As a result, data can get lost, analyses can take 
-much longer than necessary and researchers are limited in how effectively
-and they can work with software and data. Computing workflows need to
-follow the same practices as with lab projects and notebooks, with organized data,
-documented steps and the project structured for reproducibility, but 
-researchers new to computing often don't know where to start. 
+research computing. As a result, data can get lost, analyses can take
+much longer than necessary, and researchers are limited in how
+effectively and they can work with software and data. Computing
+workflows need to follow the same practices as lab projects and
+notebooks, with organized data, documented steps and the project
+structured for reproducibility, but researchers new to computing often
+don't know where to start.
 
 This paper presents a set of good computing practices that every
-researcher can adopt regardless of their current level of computational
-skill.  These practices, which encompass data management, programming,
-collaborating with colleagues, organizing projects, tracking work, and
-writing manuscripts, are drawn from a wide variety of published
-sources, from our daily lives, and from our work with volunteer
-organizations that have delivered workshops to over 11,000 people
-since 2010.
+researcher can adopt regardless of their current level of
+computational skill.  These practices, which encompass data
+management, programming, collaborating with colleagues, organizing
+projects, tracking work, and writing manuscripts, are drawn from a
+wide variety of published sources, from our daily lives, and from our
+work with volunteer organizations that have delivered workshops to
+over 11,000 people since 2010.
 
 \linenumbers
 
@@ -172,63 +172,66 @@ since 2010.
 
 Two years ago a group of researchers involved in \withurl{Software
 Carpentry}{http://software-carpentry.org/} and \withurl{Data
-Carpentry}{http://datacarpentry.org/} wrote a paper called
-``Best Practices for Scientific Computing'' \cite{wilson2014}.
-That paper provided 'next steps' for people already working in
-scientific computing. However, as computing has become an
-essential part of science for all researchers, there is a larger
-group of people newer to scientific computing, and the question
-then becomes 'where to start?'.
+Carpentry}{http://datacarpentry.org/} wrote a paper called ``Best
+Practices for Scientific Computing'' \cite{wilson2014}.  That paper
+provided next steps for people already working in scientific
+computing. However, as computing has become an essential part of
+science for all researchers, there is a larger group of people newer
+to scientific computing, and the question then becomes ``where to
+start?''.
 
-This paper focuses on these first, accessible skills and perspectives - 
-the 'good enough' practices - for scientific computing, 
-a minimum set of tools and
-techniques that we believe every researcher can and should consider adopting. It
-draws inspiration from many sources
+This paper focuses on these first, accessible skills and perspectives
+- the ``good enough'' practices - for scientific computing, a minimum
+set of tools and techniques that we believe every researcher can and
+should consider adopting. It draws inspiration from many sources
 \cite{gentzkow2014,noble2009,brown2015,wickham2014,kitzes2016,sandve2013,hart2015},
 from our personal experience, and from the experiences of the
-thousands of people who have taken part in Software Carpentry and
-Data Carpentry workshops over the past six years.
+thousands of people who have taken part in Software Carpentry and Data
+Carpentry workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
-handful of collaborators on projects lasting a few days to a several 
-months. A practice is included in our list if large numbers of researchers 
-use it, and large numbers of people are \emph{still} using it months
-after first trying it out. We include the second criterion because
-there is no point recommending something that people won't actually
-adopt.
+handful of collaborators on projects lasting a few days to several
+months. A practice is included in our list if large numbers of
+researchers use it, and large numbers of people are \emph{still} using
+it months after first trying it out. We include the second criterion
+because there is no point recommending something that people won't
+actually adopt.
 
 Many of our recommendations are for the benefit of the collaborator
 every researcher cares about most: their future self\footnote{As the
 joke goes, yourself from three months ago doesn't answer
-email{\ldots}}. Change is hard and if researchers don't see those benefits
-quickly enough to justify the pain,
-they will almost certainly switch back to their old way
-of doing things.  This rules out many practices, such as code review,
-that we feel are essential for larger-scale development
-(Section~\ref{sec:omitted}).
+email{\ldots}}. Change is hard and if researchers don't see those
+benefits quickly enough to justify the pain, they will almost
+certainly switch back to their old way of doing things.  This rules
+out many practices, such as code review, that we feel are essential
+for larger-scale development (Section~\ref{sec:omitted}).
 
 We organize our recommendations into the following topics:
 
 \begin{itemize}
 
 \item Data Management:
-  saving both raw and intermediate forms; documenting all steps; creating tidy data amenable to analysis.
+  saving both raw and intermediate forms; documenting all steps;
+  creating tidy data amenable to analysis.
 
 \item Software:
-  writing, organizing, and sharing scripts and programs used in an analysis.
+  writing, organizing, and sharing scripts and programs used in an
+  analysis.
 
 \item Collaboration:
-  making it easy for existing and new collaborators to understand and contribute to a project.
+  making it easy for existing and new collaborators to understand and
+  contribute to a project.
 
 \item Project Organization:
-  organizing the digital artifacts of a project to ease discovery and understanding.
+  organizing the digital artifacts of a project to ease discovery and
+  understanding.
 
 \item Tracking Changes:
   recording how various components of your project change over time.
 
 \item Manuscripts:
-  writing manuscripts in a way that leaves an audit trail and minimizes manual merging of conflict.
+  writing manuscripts in a way that leaves an audit trail and
+  minimizes manual merging of conflict.
 
 \end{itemize}
 
@@ -255,75 +258,88 @@ data'', which can be a powerful accelerator for analysis
 \begin{enumerate}
 
 \item
-  \practice{1a}{Save the raw data}.  Where possible,
-  save data as originally generated (i.e. by an instrument or from a survey).
-  It is
-  tempting to overwrite raw data files with cleaned-up versions, but
-  faithful retention is essential for re-running analyses
-  from start to finish; for recovery from analytical
-  mishaps; and for experimenting without fear. Consider changing file permissions to
-  read-only or using spreadsheet protection features,
-  so it is harder to damage raw
-  data by accident or to hand edit it in a moment of weakness.
 
-  Some data will be impractical to manage in this way. For example, you should avoid
-  making local copies of large, stable databases.
-  In that case, record the exact procedure used to obtain the raw data, as well
-  as any other pertinent information, such as an official version number or the date of download. 
+  \practice{1a}{Save the raw data}.  Where possible, save data as
+  originally generated (i.e. by an instrument or from a survey).  It
+  is tempting to overwrite raw data files with cleaned-up versions,
+  but faithful retention is essential for re-running analyses from
+  start to finish; for recovery from analytical mishaps; and for
+  experimenting without fear. Consider changing file permissions to
+  read-only or using spreadsheet protection features, so it is harder
+  to damage raw data by accident or to hand edit it in a moment of
+  weakness.
+
+  Some data will be impractical to manage in this way. For example,
+  you should avoid making local copies of large, stable databases.  In
+  that case, record the exact procedure used to obtain the raw data,
+  as well as any other pertinent information, such as an official
+  version number or the date of download.
   
-  \practice{1b}{Ensure that raw data is backed up in more than one location.} If external hard drives are used, 
-  ideally they are stored off-site of the original location. Universities often have their own data
-  storage solutions, so it is worthwhile to consult with your local Information Technology (IT) or library groups.
-  Alternatively cloud computing resources, like Amazon
-  elastic storage are reasonably priced and reliable.  For large data sets, 
-  where storage and transfer can be expensive and time-consuming, you may need to 
-  use incremental backup or specialized storage systems, and people in your local 
-  IT group or library can often provide advice and assistance on options
-  at your university or organization as well.
+  \practice{1b}{Ensure that raw data is backed up in more than one
+  location.} If external hard drives are used, store them off-site
+  of the original location. Universities often have their own data
+  storage solutions, so it is worthwhile to consult with your local
+  Information Technology (IT) group or library.  Alternatively cloud
+  computing resources, like \withurl{Amazon Elastic Block
+  Storage}{https://aws.amazon.com/ebs/}, are reasonably priced and
+  reliable.  For large data sets, where storage and transfer can be
+  expensive and time-consuming, you may need to use incremental backup
+  or specialized storage systems, and people in your local IT group or
+  library can often provide advice and assistance on options at your
+  university or organization as well.
 
 \item
-  \practice{1b}{Create the data you wish to see in the world}. Create the dataset you
-  \emph{wish} you had received.  The goal here is to improve machine and human
-  readability, but \emph{not} to do vigorous data filtering or add external information.
-  Machine readability allows automatic processing using computer programs,
-  which is important when others want to reuse your data.
-  Specific examples of non-destructive transformations that we recommend at the beginning
+
+  \practice{1b}{Create the data you wish to see in the world}. Create
+  the dataset you \emph{wish} you had received.  The goal here is to
+  improve machine and human readability, but \emph{not} to do vigorous
+  data filtering or add external information.  Machine readability
+  allows automatic processing using computer programs, which is
+  important when others want to reuse your data.  Specific examples of
+  non-destructive transformations that we recommend at the beginning
   of analysis:
 
-  \emph{File formats}: Convert data from closed, proprietary formats to open,
-  non-proprietary formats that ensure machine readability across time and computing
-  setups \cite{ffIllinois}. Good options include CSV for tabular data, JSON, YAML, or XML for
-  non-tabular data such as graphs\footnote{The node-and-arc kind.}, and HDF5 for certain
-  kinds of structured data.
+  \emph{File formats}: Convert data from closed, proprietary formats
+  to open, non-proprietary formats that ensure machine readability
+  across time and computing setups \cite{ffIllinois}. Good options
+  include CSV for tabular data, JSON, YAML, or XML for non-tabular
+  data such as graphs\footnote{The node-and-arc kind.}, and HDF5 for
+  certain kinds of structured data.
 
-  \emph{Variable names}: Replace inscrutable variable names
-  and artificial data codes with self-explaining alternatives, e.g.,
+  \emph{Variable names}: Replace inscrutable variable names and
+  artificial data codes with self-explaining alternatives, e.g.,
   rename variables called \texttt{name1} and \texttt{name2} to
   \texttt{personal\_name} and \texttt{family\_name}, recode the
   treatment variable from \texttt{1} vs.  \texttt{2} to
   \texttt{untreated} vs. \texttt{treated}, and replace artificial
-  codes for missing data, such as ``-99'', with \texttt{NA},
-  a code used in most programming languages to indicate that data is ``Not Available''
-  \cite{white2013}.
+  codes for missing data, such as ``-99'', with \texttt{NA}, a code
+  used in most programming languages to indicate that data is ``Not
+  Available'' \cite{white2013}.
 
-  \emph{Filenames}: Store especially useful metadata as part of the filename itself, while
-  keeping the filename regular enough for easy pattern matching. For example, a filename
-  like \texttt{2016-05-alaska-b.csv} makes it easy for both people and programs to select
-  by year or by location.
+  \emph{Filenames}: Store especially useful metadata as part of the
+  filename itself, while keeping the filename regular enough for easy
+  pattern matching. For example, a filename like
+  \texttt{2016-05-alaska-b.csv} makes it easy for both people and
+  programs to select by year or by location.
 
 \item
-  \practice{1c}{Create analysis-friendly data}: Analysis can be much easier if you are
-  working with so-called ``tidy'' data \cite{wickham2014}. Two key principles are:
 
-  \emph{Make each column a variable}: Don't cram two variables into one, e.g.,
-  ``male\_treated'' should be split into separate variables for sex and treatment status.
-  Store units in their own variable or in metadata, e.g., ``3.4'' instead of ``3.4kg''.
+  \practice{1c}{Create analysis-friendly data}: Analysis can be much
+  easier if you are working with so-called ``tidy'' data
+  \cite{wickham2014}. Two key principles are:
 
-  \emph{Make each row an observation}: Data often comes in a wide format, because that
-  facilitated data entry or human inspection. Imagine one row per field site and then
-  columns for measurements made at each of several time points. Be prepared to gather such
-  columns into a variable of measurements, plus a new variable for time point.
-  Fig~\ref{fig:tidy} presents an example of such a transformation.
+  \emph{Make each column a variable}: Don't cram two variables into
+  one, e.g., ``male\_treated'' should be split into separate variables
+  for sex and treatment status.  Store units in their own variable or
+  in metadata, e.g., ``3.4'' instead of ``3.4kg''.
+
+  \emph{Make each row an observation}: Data often comes in a wide
+  format, because that facilitated data entry or human
+  inspection. Imagine one row per field site and then columns for
+  measurements made at each of several time points. Be prepared to
+  gather such columns into a variable of measurements, plus a new
+  variable for time point.  Fig~\ref{fig:tidy} presents an example of
+  such a transformation.
 
   \begin{figure} % \includegraphics[width = 5in]{tidy-data.png}
     \caption{\textbf{Example of gathering columns to create tidy data.}}
@@ -331,75 +347,85 @@ data'', which can be a powerful accelerator for analysis
   \end{figure}
 
 \item
-  \practice{1d}{Record all the steps used to process data}: Data manipulation is as integral
-  to your analysis as statistical modeling and inference. If you do not document this
-  step thoroughly, it is impossible for you, or anyone else, to repeat the analysis.
 
-  The best way to do this is to write scripts for \emph{every} stage of data processing.
-  This might feel frustratingly slow, but you will get faster with practice. The
-  immediate payoff will be the ease with which you can re-do data preparation when new
-  data arrives. You can also re-use data preparation steps in the future for related
-  projects. For very large data sets, data preparation may also include writing and saving scripts to obtain 
-  the data or subsets of the data from remote storage. 
+  \practice{1d}{Record all the steps used to process data}: Data
+  manipulation is as integral to your analysis as statistical modeling
+  and inference. If you do not document this step thoroughly, it is
+  impossible for you, or anyone else, to repeat the analysis.
 
-  Some data cleaning tools, such as \withurl{OpenRefine}{http://www.openrefine.org}, 
-  % check OpenRefine URL
-  provide a graphical user interface, but
-  also automatically keep track of each step in the process. When tools like these or
-  scripting is not feasible, it's important to clearly document every manual action
-  (what menu was used, what column was copied and pasted, what link was clicked, etc.).
-  Often you can at least capture \emph{what} action was taken, if not the complete
-  \emph{why}. For example, choosing a region of interest in an image is inherently
-  interactive, but you can save the region chosen as a set of boundary coordinates.
-  
- 
+  The best way to do this is to write scripts for \emph{every} stage
+  of data processing.  This might feel frustratingly slow, but you
+  will get faster with practice. The immediate payoff will be the ease
+  with which you can re-do data preparation when new data arrives. You
+  can also re-use data preparation steps in the future for related
+  projects. For very large data sets, data preparation may also
+  include writing and saving scripts to obtain the data or subsets of
+  the data from remote storage.
 
-\item
-  \practice{1e}{Anticipate the need to use multiple tables, and use unique identifiers}: Raw data, even if tidy, is not
-  necessarily complete. For example, the primary data table might hold the heart rate for
-  individual subjects at rest and after a physical challenge, identified via a subject ID.
-  Demographic variables, such as subject age and sex, are stored in a second table and
-  will need to be brought in via merging or lookup. This will go more smoothly if subject
-  ID is represented in a common format in both tables, e.g., always as ``14025'' versus
-  ``14,025'' in one table and ``014025'' in another. It is generally wise to give each
-  record or unit a unique, persistent key and to use the same names and codes when
-  variables in two datasets refer to the same thing.
+  Some data cleaning tools, such as
+  \withurl{OpenRefine}{http://www.openrefine.org}, provide a graphical
+  user interface, but also automatically keep track of each step in
+  the process. When tools like these or scripting is not feasible,
+  it's important to clearly document every manual action (what menu
+  was used, what column was copied and pasted, what link was clicked,
+  etc.).  Often you can at least capture \emph{what} action was taken,
+  if not the complete \emph{why}. For example, choosing a region of
+  interest in an image is inherently interactive, but you can save the
+  region chosen as a set of boundary coordinates.
 
 \item
-  \practice{1f}{Submit data to a reputable DOI-issuing repository so that
-    others can access and cite it.}  Your data is as much a product of
-  your research as the papers you write, and just as likely to be
-  useful to others (if not more so).  Sites such as
+
+  \practice{1e}{Anticipate the need to use multiple tables, and use a
+  unique identifier for every record}: Raw data, even if tidy, is
+  not necessarily complete. For example, the primary data table might
+  hold the heart rate for individual subjects at rest and after a
+  physical challenge, identified via a subject ID.  Demographic
+  variables, such as subject age and sex, are stored in a second table
+  and will need to be brought in via merging or lookup. This will go
+  more smoothly if subject ID is represented in a common format in
+  both tables, e.g., always as ``14025'' versus ``14,025'' in one
+  table and ``014025'' in another. It is generally wise to give each
+  record or unit a unique, persistent key and to use the same names
+  and codes when variables in two datasets refer to the same thing.
+
+\item
+
+  \practice{1f}{Submit data to a reputable DOI-issuing repository so
+  that others can access and cite it.}  Your data is as much a
+  product of your research as the papers you write, and just as likely
+  to be useful to others (if not more so).  Sites such as
   \withurl{Figshare}{https://figshare.com/},
   \withurl{Dryad}{http://datadryad.org/}, and
-  \withurl{Zenodo}{https://zenodo.org/} allow others to find your work,
-  use it, and cite it; we discuss licensing in
-  Section~\ref{sec:collaboration} below. Follow your research community's
-  standards for how to provide metadata. Note that there are two types
-  of metadata: metadata about the dataset as a whole and metadata about
-  the content within the dataset. If the audience is humans, write the
-  metadata (the readme file) for humans. If the audience includes automatic
-  metadata harvesters, fill out the formal metadata and write a good
-  readme file for the humans \cite{wickes2015}.
+  \withurl{Zenodo}{https://zenodo.org/} allow others to find your
+  work, use it, and cite it; we discuss licensing in
+  Section~\ref{sec:collaboration} below. Follow your research
+  community's standards for how to provide metadata. Note that there
+  are two types of metadata: metadata about the dataset as a whole and
+  metadata about the content within the dataset. If the audience is
+  humans, write the metadata (the readme file) for humans. If the
+  audience includes automatic metadata harvesters, fill out the formal
+  metadata and write a good readme file for the humans
+  \cite{wickes2015}.
 
 \end{enumerate}
 
 Taken in order, the recommendations above will produce intermediate
 data files with increasing levels of cleanliness and
 task-specificity. An alternative approach to data management would be
-to fold all data management tasks into a monolithic procedure for data analysis,
-so that intermediate data products are created ``on the fly'' and stored only in
-memory, not saved as distinct files.
+to fold all data management tasks into a monolithic procedure for data
+analysis, so that intermediate data products are created ``on the
+fly'' and stored only in memory, not saved as distinct files.
 
-While the latter approach may be appropriate for projects in which very
-little data cleaning or processing is needed, we recommend the explicit
-creation and retention of intermediate products. Saving intermediate
-files makes it easy to re-run \emph{parts} of a data analysis pipeline,
-which in turn makes it less onerous to revisit and improve specific data
-processing tasks. Breaking a lengthy workflow into pieces makes it
-easier to understand, share, describe, and modify. This is particularly 
-true when working with large data sets, where storage and transfer 
-of the entire data set is not trivial or inexpensive. 
+While the latter approach may be appropriate for projects in which
+very little data cleaning or processing is needed, we recommend the
+explicit creation and retention of intermediate products. Saving
+intermediate files makes it easy to re-run \emph{parts} of a data
+analysis pipeline, which in turn makes it less onerous to revisit and
+improve specific data processing tasks. Breaking a lengthy workflow
+into pieces makes it easier to understand, share, describe, and
+modify. This is particularly true when working with large data sets,
+where storage and transfer of the entire data set is not trivial or
+inexpensive.
 
 \practicesection{Software}{sec:software}
 
@@ -415,20 +441,21 @@ your code.
 The core realization in these practices is that \emph{readable},
 \emph{reusable}, and \emph{testable} are all side effects of writing
 \emph{modular} code, i.e., of building programs out of short,
-single-purpose functions with clearly-defined inputs and outputs. Much 
-has been written on this topic (refs!), and this section focuses on practices 
-that best balance ease of use with benefit for you and 
+single-purpose functions with clearly-defined inputs and outputs. Much
+has been written on this topic (refs!), and this section focuses on
+practices that best balance ease of use with benefit for you and
 collaborators.
 
 \begin{enumerate}
 
 \item
-  \practice{2a}{Place a brief explanatory comment at the start of every
-    program}, no matter how short it is. That comment should include
-  at least one example of how the program is used: remember, a good
-  example is worth a thousand words. Where possible, the comment
-  should also indicate reasonable values for parameters.
-  An example of such a comment is show below.
+
+  \practice{2a}{Place a brief explanatory comment at the start of
+  every program}, no matter how short it is. That comment should
+  include at least one example of how the program is used: remember, a
+  good example is worth a thousand words. Where possible, the comment
+  should also indicate reasonable values for parameters.  An example
+  of such a comment is show below.
 
 {\small
 \begin{verbatim}
@@ -448,57 +475,56 @@ where:
 }
 
 \item
-  \practice{2b}{Decompose programs into functions} that are no more than
-  one page (about 60 lines) long. Functions are sections within a program
-  that do one particular thing. The syntax varies depending on programming
-  language, but generally you name the function, list the parameters, or 
-  information needed for that section of code, and list what information will 
-  come out of the function. 
-  % check definition of functions
-  % WOULD BE GOOD TO HAVE EXAMPLE OF A FUNCTION
-  Functions should take no more than about 5 or 6 input parameters
-  and shouldn't include variables used in other parts of the program 
-  (global variables).
-  % I'm not sure if we should discuss global variables. I'm not sure it's
-  % an easy concept to explain. Or better description of global variables here?
-  The key motivation here is to fit the program
-  into the most limited memory of all: ours. Human short-term memory
-  is famously incapable of holding more than about seven items at
-  once \cite{miller1956}. If we are to understand
-  what our software is doing, we must break it into chunks that obey
-  this limit, then create programs by combining these chunks. Putting 
-  code into functions also makes it easier to test and troubleshoot if
-  something is going wrong. 
+
+  \practice{2b}{Decompose programs into functions} that are no more
+  than one page (about 60 lines) long. A function is a reusable
+  section of software that can be treated as a black box by the rest
+  of the program. The syntax for creating functions depends on
+  programming language, but generally you name the function, list its
+  input parameters, and decribe what information it produces.
+  Functions should take no more than five or six input parameters and
+  should not reference outside information.
+
+  The key motivation here is to fit the program into the most limited
+  memory of all: ours. Human short-term memory is famously incapable
+  of holding more than about seven items at once \cite{miller1956}. If
+  we are to understand what our software is doing, we must break it
+  into chunks that obey this limit, then create programs by combining
+  these chunks. Putting code into functions also makes it easier to
+  test and troubleshoot when things go wrong.
 
 \item
+
   \practice{2c}{Be ruthless about eliminating duplication}. Write and
-  re-use functions instead of copying and pasting code. You can 
-  also use 
-  data structures like lists, e.g. create \texttt{score = (1, 2, 3)} rather than lots of variables
-  like \texttt{score1 = 1}, \texttt{score2 = 2}, \texttt{score3 = 3}, etc.
+  re-use functions instead of copying and pasting code, and use data
+  structures like lists instead of creating many closely-related
+  variables, e.g. create \texttt{score = (1, 2, 3)} rather than
+  \texttt{score1}, \texttt{score2}, and \texttt{score3}.
 
-  Also look for well-maintained libraries that already do what you're trying to do. All
-  programming languages have libraries that you can import and 
-  use in your code. This is code that people have already written and made available
-  for distribution that have a particular function. For instances there are libraries for statistics,
-  modeling, mapping and many more. Many languages catalog the libraries in a centralized
-  source, for instance R has CRAN, Python has ... and Java has ...
-  % is this all correct?
-  So \practice{2d}{always search for well-maintained
-  software libraries that do what you need} before writing new code yourself,
-  but \practice{2e}{test libraries before relying on them}.
+  Also look for well-maintained libraries that already do what you're
+  trying to do. All programming languages have libraries that you can
+  import and use in your code. This is code that people have already
+  written and made available for distribution that have a particular
+  function. For instances there are libraries for statistics,
+  modeling, mapping and many more. Many languages catalog the
+  libraries in a centralized source, for instance R has
+  \withurl{CRAN}{https://cran.r-project.org/}, Python has
+  \withurl{PyPI}{https://pypi.python.org/}, and so on.  So
+  \practice{2d}{always search for well-maintained software libraries
+  that do what you need} before writing new code yourself, but
+  \practice{2e}{test libraries before relying on them}.
 
 \item
+
   \practice{2f}{Give functions and variables meaningful names}, both
   to document their purpose and to make the program easier to read. As
   a rule of thumb, the greater the scope of a variable, the more
   informative its name should be: while it's acceptable to call the
-  counter variable in a loop \texttt{i} or \texttt{j}, things that are re-used often, 
-  such as the major data
-  structures in a program should \emph{not} have one-letter
-  names.  Remember to follow each language's conventions for names,
-  such as \texttt{net\_charge} for Python and \texttt{NetCharge} for
-  Java.
+  counter variable in a loop \texttt{i} or \texttt{j}, things that are
+  re-used often, such as the major data structures in a program should
+  \emph{not} have one-letter names.  Remember to follow each
+  language's conventions for names, such as \texttt{net\_charge} for
+  Python and \texttt{NetCharge} for Java.
 
   \begin{quote}
     \noindent \textbf{Tab Completion}
@@ -506,12 +532,12 @@ where:
     Almost all modern text editors provide \emph{tab completion}, so
     that typing the first part of a variable name and then pressing
     the tab key inserts the completed name of the variable.  Employing
-    this means that meaningful longer variable names are no harder to type
-    than terse abbreviations.
-
+    this means that meaningful longer variable names are no harder to
+    type than terse abbreviations.
   \end{quote}
 
 \item
+
   \practice{2g}{Make dependencies and requirements explicit.} This is
   usually done on a per-project rather than per-program basis, i.e.,
   by adding a file called something like \texttt{requirements.txt} to
@@ -519,24 +545,27 @@ where:
   Started'' section to the \texttt{README} file.
 
 \item
-  \practice{2h}{Do not comment and uncomment sections of code to control
-    a program's behavior}, since this is error prone and makes it
-  difficult or impossible to automate analyses. Instead, put if/else
-  statements in the program to control what it does.
+
+  \practice{2h}{Do not comment and uncomment sections of code to
+  control a program's behavior}, since this is error prone and makes
+  it difficult or impossible to automate analyses. Instead, put
+  if/else statements in the program to control what it does.
 
 \item
+
   \practice{2i}{Provide a simple example or test data set} that users
   (including yourself) can run to determine whether the program is
-  working and whether it gives a known correct output for a
-  simple known input. Such a ``build and smoke test'' is particularly
-  helpful when supposedly-innocent changes are being made to the
-  program, or when it has to run on several different machines, e.g.,
-  the developer's laptop and the department's cluster.
+  working and whether it gives a known correct output for a simple
+  known input. Such a ``build and smoke test'' is particularly helpful
+  when supposedly-innocent changes are being made to the program, or
+  when it has to run on several different machines, e.g., the
+  developer's laptop and the department's cluster.
 
 \item
-  \practice{2j}{Submit code to a reputable DOI-issuing repository} upon
-  submission of paper, just as you do with data. Your software is as
-  much a product of your research as your papers, and should be as
+
+  \practice{2j}{Submit code to a reputable DOI-issuing repository}
+  upon submission of paper, just as you do with data. Your software is
+  as much a product of your research as your papers, and should be as
   easy for people to credit. DOIs for software are provided by
   \withurl{Figshare}{https://figshare.com/} and
   \withurl{Zenodo}{https://zenodo.org/}. Zenodo integrates directly
@@ -547,42 +576,44 @@ where:
 \practicesection{Collaboration}{sec:collaboration}
 
 You may start working on projects by yourself or with a small group of
-collaborators you already know, but you should design it to make it easy
-for new collaborators to join. These collaborators might be new
+collaborators you already know, but you should design it to make it
+easy for new collaborators to join. These collaborators might be new
 grad students or postdocs in the lab, or they might be \emph{you}
 returning to a project that has been idle for some time. As summarized
-in \cite{steinmacher2015}, you want to make it easy for people to set up a
-local workspace so that they \emph{can} contribute, help them find tasks
-so that they know \emph{what} to contribute, and make the contribution
-process clear so that they know \emph{how} to contribute.  You also want
-to make it easy for people to give you credit for your work.
+in \cite{steinmacher2015}, you want to make it easy for people to set
+up a local workspace so that they \emph{can} contribute, help them
+find tasks so that they know \emph{what} to contribute, and make the
+contribution process clear so that they know \emph{how} to contribute.
+You also want to make it easy for people to give you credit for your
+work.
 
 \begin{enumerate}
 
 \item
+
   \practice{3a}{Create an overview of your project.}  Have a short
-  file in the project's home directory that explains the
-  purpose of the project.  This file (generally called
-  \texttt{README}, \texttt{README.txt}, or something similar) should
-  contain the project's title, a brief description, up-to-date contact
-  information, and
-  an example or two of how to run various cleaning or analysis tasks.  It is often
-  the first thing users and collaborators on your project will look at, so 
- make it explicit how you want people to engage with the project. If you
- are looking for more contributors, make it
-  explicit that you welcome contributors and point them to the license (more below)
-  and ways they can help.
+  file in the project's home directory that explains the purpose of
+  the project.  This file (generally called \texttt{README},
+  \texttt{README.txt}, or something similar) should contain the
+  project's title, a brief description, up-to-date contact
+  information, and an example or two of how to run various cleaning or
+  analysis tasks.  It is often the first thing users and collaborators
+  on your project will look at, so make it explicit how you want
+  people to engage with the project. If you are looking for more
+  contributors, make it explicit that you welcome contributors and
+  point them to the license (more below) and ways they can help.
 
   You should also create a \texttt{CONTRIBUTING} file that describes
-  what people need to do in order to get the project going and use or 
+  what people need to do in order to get the project going and use or
   contribute to it, i.e., dependencies that need to be installed,
   tests that can be run to ensure that software has been installed
   correctly, and guidelines or checklists that your project adheres
   to.
 
 \item
-  \practice{3b}{Create a shared ``to-do'' list}.  This can be a
-  plain text file called something like \texttt{notes.txt} or
+
+  \practice{3b}{Create a shared ``to-do'' list}.  This can be a plain
+  text file called something like \texttt{notes.txt} or
   \texttt{todo.txt}, or you can use sites such as GitHub or Bitbucket
   to create a new \emph{issue} for each to-do item. (You can even add
   labels such as ``low hanging fruit'' to point newcomers at issues
@@ -590,30 +621,32 @@ to make it easy for people to give you credit for your work.
   items clearly so that they make sense to newcomers.
 
 \item
+
   \practice{3c}{Decide on communication strategies.} Make explicit
-  decisions about (and publicize where appropriate) how members 
-  of the project will communicate with
-  each other and with externals users / collaborators. This includes
-  the location and technology for email lists, chat channels, voice / 
-  video conferencing, documentation, and meeting notes, as well as 
-  which of these channels will be public or private. 
+  decisions about (and publicize where appropriate) how members of the
+  project will communicate with each other and with externals users /
+  collaborators. This includes the location and technology for email
+  lists, chat channels, voice / video conferencing, documentation, and
+  meeting notes, as well as which of these channels will be public or
+  private.
   
 \item
-  \practice{3d}{Make the license explicit.}  Have a \texttt{LICENSE} file
-  in the project's home directory that clearly states what license(s)
-  apply to the project's software, data, and manuscripts. Lack of an
-  explicit license does not mean there isn't one; rather, it implies
-  the author is keeping all rights and others are not allowed to
-  re-use or modify the material.
+
+  \practice{3d}{Make the license explicit.}  Have a \texttt{LICENSE}
+  file in the project's home directory that clearly states what
+  license(s) apply to the project's software, data, and
+  manuscripts. Lack of an explicit license does not mean there isn't
+  one; rather, it implies the author is keeping all rights and others
+  are not allowed to re-use or modify the material.
 
   We recommend Creative Commons licenses for data and text, either
   \withurl{CC-0}{https://creativecommons.org/about/cc0/} (the ``No
   Rights Reserved'' license) or
   \withurl{CC-BY}{https://creativecommons.org/licenses/by/4.0/} (the
-  ``Attribution'' license, which permits sharing and reuse but requires people
-  to give appropriate credit to the creators).  For software, we
-  recommend a permissive open source license such as the MIT, BSD, or Apache
-  license \cite{laurent2004}.
+  ``Attribution'' license, which permits sharing and reuse but
+  requires people to give appropriate credit to the creators).  For
+  software, we recommend a permissive open source license such as the
+  MIT, BSD, or Apache license \cite{laurent2004}.
 
   \begin{quote}
     \noindent \textbf{What Not To Do}
@@ -622,21 +655,22 @@ to make it easy for people to give you credit for your work.
     of the Creative Commons licenses because they may impede some
     forms of re-use.  For example, if a researcher in a developing
     country is being paid by her government to compile a public health
-    report, she will be unable to include your data if the license says
-    ``non-commercial''. We recommend permissive software licenses rather
-    than the GNU General Public License (GPL) because it is easier to
-    integrate permissively-licensed software into other projects,
-    see chapter three in \cite{laurent2004}.
+    report, she will be unable to include your data if the license
+    says ``non-commercial''. We recommend permissive software licenses
+    rather than the GNU General Public License (GPL) because it is
+    easier to integrate permissively-licensed software into other
+    projects, see chapter three in \cite{laurent2004}.
   \end{quote}
 
 \item
+
   \practice{3e}{Make the project citable} by including a
   \texttt{CITATION} file in the project's home directory that
-  describes how to cite this project as a whole, and where to find (and how to cite)
-  any data sets, code, figures, and other artifacts
+  describes how to cite this project as a whole, and where to find
+  (and how to cite) any data sets, code, figures, and other artifacts
   that have their own DOIs.  The example below shows the
   \texttt{CITATION} file for the \withurl{Ecodata
-    Retriever}{https://github.com/weecology/retriever}; for an example
+  Retriever}{https://github.com/weecology/retriever}; for an example
   of a more detailed \texttt{CITATION} file, see the one for the
   \withurl{khmer}{https://github.com/dib-lab/khmer/blob/master/CITATION}
   project.
@@ -663,8 +697,9 @@ them.  Our recommendations for doing this are drawn primarily from
 \begin{enumerate}
 
 \item
+
   \practice{4a}{Put each project in its own directory, which is named
-    after the project.}  Like deciding when a chunk of code should be
+  after the project.}  Like deciding when a chunk of code should be
   made a function, the ultimate goal of dividing research into
   distinct projects is to help you and others best understand your
   work. Some researchers create a separate project for each manuscript
@@ -677,76 +712,76 @@ them.  Our recommendations for doing this are drawn primarily from
   share more than half of their data and code, they are probably best
   managed together, while if you are building tools that are used in
   several projects, the common code should probably be in a project of
-  its own. Projects do often require their own organizational model, but the
-  below are recommendations on how you can structure data, code, analysis
-  outputs and other files. The important concept is that is useful to 
-  organize the project by the types of files and that consistency helps you
-  effectively find and use things later. 
+  its own. Projects do often require their own organizational model,
+  but the below are recommendations on how you can structure data,
+  code, analysis outputs and other files. The important concept is
+  that is useful to organize the project by the types of files and
+  that consistency helps you effectively find and use things later.
   
 \item
+
   \practice{4b}{Put text documents associated with the project in the
-    \texttt{doc} directory.} This includes files for manuscripts,
+  \texttt{doc} directory.} This includes files for manuscripts,
   documentation for source code, and/or an electronic lab notebook
   recording your experiments.  Subdirectories may be created for these
   different classes of files in large projects.
 
 \item
-  \practice{4c}{Put raw data and metadata in a \texttt{data} directory,
-    and files generated during cleanup and analysis in a
-    \texttt{results} directory}, where ``generated files'' includes
+
+  \practice{4c}{Put raw data and metadata in a \texttt{data}
+  directory, and files generated during cleanup and analysis in a
+  \texttt{results} directory}, where ``generated files'' includes
   intermediate results, such as cleaned data sets or simulated data,
   as well as final results such as figures and tables.
 
-  The \texttt{results} directory will \emph{usually}
-  require additional subdirectories for all but the simplest
+  The \texttt{results} directory will \emph{usually} require
+  additional subdirectories for all but the simplest
   projects. Intermediate files such as cleaned data, statistical
   tables, and final publication-ready figures or tables should be
   separated clearly by file naming conventions or placed into
   different subdirectories; those belonging to different papers or
   other publications should be grouped together. Similarly, the
-  \texttt{data} directory might require subdirectories to organize 
-  raw data based on time, method of collection, or other 
-  metadata most relevant to your analysis. 
+  \texttt{data} directory might require subdirectories to organize raw
+  data based on time, method of collection, or other metadata most
+  relevant to your analysis.
 
 \item
-  \practice{4d}{Put project source code in the \texttt{src} directory.}
-  \texttt{src} contains all of the code written for the project. This includes
-  programs written in interpreted languages
-  such as R or Python; those written compiled languages like
-  Fortran, C++, or Java; as well as shell scripts, snippets of SQL used to pull
-  information from databases; and other code needed to regenerate
-  the results.
 
-    This directory may contain two conceptually distinct types
-    of files that should be distinguished either by clear file names or by
-    additional subdirectories. The first type are files or
-    groups of files that perform the core
-    analysis of the research, such as data cleaning or statistical analyses.
-    These files can be thought of as the
-    ``scientific guts'' of the project.
+  \practice{4d}{Put project source code in the \texttt{src}
+  directory.}  \texttt{src} contains all of the code written for the
+  project. This includes programs written in interpreted languages
+  such as R or Python; those written compiled languages like Fortran,
+  C++, or Java; as well as shell scripts, snippets of SQL used to pull
+  information from databases; and other code needed to regenerate the
+  results.
 
-    The second type of file in \texttt{src} is controller or driver
-    scripts that is a script that combines all the analysis steps that
-    executes the entire project from start to finish, with 
-    particular
-    parameters and data input/output commands. A controller script for
-    a simple project, for example, may read a raw data table, import and
-    apply several cleanup and analysis functions from the other files in
-    this directory, and create and save a numeric result. For a small
-    project with one main output, a single controller script should be
-    placed in the main \texttt{src} directory and distinguished clearly by
-    a name such as ``runall''.
-    
-    % Should we add an example of a 'run all' type file? This is a big win that people don't often
-    % do, so I think an example would be helpful. 
+  This directory may contain two conceptually distinct types of files
+  that should be distinguished either by clear file names or by
+  additional subdirectories. The first type are files or groups of
+  files that perform the core analysis of the research, such as data
+  cleaning or statistical analyses.  These files can be thought of as
+  the ``scientific guts'' of the project.
+
+  The second type of file in \texttt{src} is controller or driver
+  scripts that that contains all the analysis steps for the entire
+  project from start to finish, with particular parameters and data
+  input/output commands. A controller script for a simple project, for
+  example, may read a raw data table, import and apply several cleanup
+  and analysis functions from the other files in this directory, and
+  create and save a numeric result. For a small project with one main
+  output, a single controller script should be placed in the main
+  \texttt{src} directory and distinguished clearly by a name such as
+  ``runall''.
 
 \item
-  \practice{4e}{Put external scripts, or compiled programs
-   in the \texttt{bin} directory}.  \texttt{bin} contains
-  scripts that are brought in from elsewhere, and executable programs
-  compiled from code in the \texttt{src} directory\footnote{The name
-    \texttt{bin} is an old Unix convention, and comes from the term
-    ``binary''.}. Projects that have neither will not require \texttt{bin}.
+
+  \practice{4e}{Put external scripts, or compiled programs in the
+  \texttt{bin} directory}.  \texttt{bin} contains scripts that are
+  brought in from elsewhere, and executable programs compiled from
+  code in the \texttt{src} directory\footnote{The name \texttt{bin} is
+  an old Unix convention, and comes from the term
+  ``binary''.}. Projects that have neither will not require
+  \texttt{bin}.
 
   \begin{quote}
     \noindent \textbf{Scripts vs.\ Programs}
@@ -761,8 +796,9 @@ them.  Our recommendations for doing this are drawn primarily from
   \end{quote}
 
 \item
-  \practice{4f}{Name all files to reflect their content or function.} For
-  example, use names such as \texttt{bird\_count\_table.csv},
+
+  \practice{4f}{Name all files to reflect their content or function.}
+  For example, use names such as \texttt{bird\_count\_table.csv},
   \texttt{manuscript.md}, or \texttt{sightings\_analysis.py}.  Do
   \emph{not} using sequential numbers (e.g., \texttt{result1.csv},
   \texttt{result2.csv}) or a location in a final manuscript (e.g.,
@@ -771,8 +807,8 @@ them.  Our recommendations for doing this are drawn primarily from
 
 \end{enumerate}
 
-The diagram below provides a concrete example of how a
-simple project might be organized following these recommendations:
+The diagram below provides a concrete example of how a simple project
+might be organized following these recommendations:
 
 {\small
 \begin{verbatim}
@@ -829,59 +865,64 @@ Mercurial, and Subversion. They keep track of what was changed in a
 file when and by whom, and synchronize changes to a central server so
 that many users can manage changes to the same set of files.
 
-While these version control tools make keeping track of changes easier and
-automatically integrates it into the workflow, they can have a steep learning
-curve. So, we provide two sets of recommendations, \emph{1} a
-systematic manual approach for managing changes and \emph{2} version
-control in its full glory, and you can use the first while working towards the 
-second, or just jump in to version control. 
+While these version control tools make tracking changes easier, they
+can have a steep learning curve. So, we provide two sets of
+recommendations, \emph{1} a systematic manual approach for managing
+changes and \emph{2} version control in its full glory, and you can
+use the first while working towards the second, or just jump in to
+version control.
 
 Whatever system you chose, we recommend that you:
 
 \begin{enumerate}
 
 \item
-  \practice{5a}{Back up (almost) everything created by a human being as
-    soon as it is created.} This includes scripts and programs of all
-  kinds, software packages that your project depends on, and
+
+  \practice{5a}{Back up (almost) everything created by a human being
+  as soon as it is created.} This includes scripts and programs of
+  all kinds, software packages that your project depends on, and
   documentation. A few exceptions to this rule are discussed below.
 
 \item
-  \practice{5b}{Keep changes small.}  Each change should not be so large
-  as to make the change tracking irrelevant. For example, a single
-  change such as ``Revise script file'' that adds or changes several
-  hundred lines is likely too large, as it will not allow changes to
-  different components of an analysis to be investigated
+
+  \practice{5b}{Keep changes small.}  Each change should not be so
+  large as to make the change tracking irrelevant. For example, a
+  single change such as ``Revise script file'' that adds or changes
+  several hundred lines is likely too large, as it will not allow
+  changes to different components of an analysis to be investigated
   separately. Similarly, changes should not be broken up into pieces
-  that are too small. As a rule of thumb, a good size for a single change is
-  a group of edits that you could imagine wanting to undo in one step
-  at some point in the future.
+  that are too small. As a rule of thumb, a good size for a single
+  change is a group of edits that you could imagine wanting to undo in
+  one step at some point in the future.
 
 \item
+
   \practice{5c}{Share changes frequently.} Everyone working on the
   project should share and incorporate changes from others on a
   regular basis. Do not allow individual investigator's versions of
   the project repository to drift apart, as the effort required to
   merge differences goes up faster than the size of the
   difference. This is particularly important for the manual versioning
-  procedure describe below, which does not provide any
-  assistance for merging simultaneous, possibly conflicting, changes.
+  procedure describe below, which does not provide any assistance for
+  merging simultaneous, possibly conflicting, changes.
 
 \item
+
   \practice{5d}{Create, maintain, and use a checklist for saving and
-    sharing changes to the project.} The list should include writing
+  sharing changes to the project.} The list should include writing
   log messages that clearly explain any changes, the size and content
   of individual changes, style guidelines for code, updating to-do
   lists, and bans on committing half-done work or broken code.  See
   \cite{gawande2011} for more on the proven value of checklists.
 
 \item
-  \practice{5e}{Store each project in a folder that is mirrored off the
-    researcher's working machine} using a system such as \withurl{Dropbox}{http://dropbox.com}
-    or a remote version control repository such as \withurl{GitHub}{http://github.com}.
-    Synchronize that folder at least daily. It may take a few minutes,
-  but that time is repaid the
-  moment a laptop is stolen or its hard drive fails.
+
+  \practice{5e}{Store each project in a folder that is mirrored off
+  the researcher's working machine} using a system such as
+  \withurl{Dropbox}{http://dropbox.com} or a remote version control
+  repository such as \withurl{GitHub}{http://github.com}.  Synchronize
+  that folder at least daily. It may take a few minutes, but that time
+  is repaid the moment a laptop is stolen or its hard drive fails.
 
 \end{enumerate}
 
@@ -893,11 +934,12 @@ two additional parts:
 \begin{enumerate}
 
 \item
-  \practice{5f}{Add a file called \texttt{CHANGELOG.txt} to the project's
-    \texttt{docs} subfolder}, and make dated notes about changes to
-  the project in this file in reverse chronological order (i.e., most
-  recent first). This file is the equivalent of a lab notebook, and
-  should contain entries like those shown below.
+
+  \practice{5f}{Add a file called \texttt{CHANGELOG.txt} to the
+  project's \texttt{docs} subfolder}, and make dated notes about
+  changes to the project in this file in reverse chronological order
+  (i.e., most recent first). This file is the equivalent of a lab
+  notebook, and should contain entries like those shown below.
 
 {\small
 \begin{verbatim}
@@ -914,11 +956,12 @@ two additional parts:
 }
 
 \item
-  \practice{5g}{Copy the entire project whenever a significant change has
-    been made} (i.e., one that materially affects the results), and store that
-    copy in a sub-folder whose name reflects
-  the date in the area that's being synchronized. This approach
-  results in projects being organized as shown below:
+
+  \practice{5g}{Copy the entire project whenever a significant change
+  has been made} (i.e., one that materially affects the results),
+  and store that copy in a sub-folder whose name reflects the date in
+  the area that's being synchronized. This approach results in
+  projects being organized as shown below:
 
 {\small
 \begin{verbatim}
@@ -933,20 +976,20 @@ two additional parts:
 \end{verbatim}
 }
 
-  Here, the \texttt{project\_name} folder is
-  mapped to external storage (such as Dropbox), \texttt{current} is
-  where development is done, and other folders within
-  \texttt{project\_name} are old versions.
+  Here, the \texttt{project\_name} folder is mapped to external
+  storage (such as Dropbox), \texttt{current} is where development is
+  done, and other folders within \texttt{project\_name} are old
+  versions.
 
   \begin{quote}
     \noindent \textbf{Data is Cheap, Time is Expensive}
     \\
     Copying everything like this may seem wasteful, since many files
     won't have changed, but consider: a terabyte hard drive costs
-    about \$50 retail, which means that 50 GByte costs less than 
-    \$5. Provided large data files are kept out of the backed-up
-    area (discussed below), this approach costs less than the time it
-    would take to select files by hand for copying.
+    about \$50 retail, which means that 50 GByte costs less than
+    \$5. Provided large data files are kept out of the backed-up area
+    (discussed below), this approach costs less than the time it would
+    take to select files by hand for copying.
   \end{quote}
 
 \end{enumerate}
@@ -962,32 +1005,33 @@ merge those files whenever a backup copy is made.
 
 What the manual process described above requires most is
 self-discipline. The version control tools that underpin our second
-approach, and the one we use in our projects, don't just
-accelerate the manual process: they also automate some steps while
-enforcing others, and thereby require less self-discipline for more
-reliable results.
+approach---the one we use in our own projects--don't just accelerate
+the manual process: they also automate some steps while enforcing
+others, and thereby require less self-discipline for more reliable
+results.
 
 \begin{enumerate}
 
 \item
-  \practice{5h}{Use a version control system}, to manage changes
-  to a project.
+
+  \practice{5h}{Use a version control system}, to manage changes to a
+  project.
 
 \end{enumerate}
 
-Box~2 briefly explains how version control systems work.
-It's hard to know what version control tool is most widely used in
-research today, but the one that's most talked about is undoubtedly
+Box~2 briefly explains how version control systems work.  It's hard to
+know what version control tool is most widely used in research today,
+but the one that's most talked about is undoubtedly
 \withurl{Git}{https://git-scm.com/}. This is largely because of
 \withurl{GitHub}{http://github.com}, a popular hosting site that
-combines the technical infrastructure for collaboration via Git with
-a modern web interface. GitHub is free for public and open source
+combines the technical infrastructure for collaboration via Git with a
+modern web interface. GitHub is free for public and open source
 projects and for users in academia and nonprofits.
 \withurl{GitLab}{https://about.gitlab.com} is a well-regarded
 alternative that some prefer, because the GitLab platform itself is
-free and open source. \withurl{Bitbucket}{https://bitbucket.org/} provides
-free hosting for both Git and Mercurial repositories, but does not
-have nearly as many scientific users
+free and open source. \withurl{Bitbucket}{https://bitbucket.org/}
+provides free hosting for both Git and Mercurial repositories, but
+does not have nearly as many scientific users.
 
 \subsection*{What Not to Put Under Version Control}
 
@@ -996,13 +1040,14 @@ file types.  In particular, version control can be more or less
 rewarding depending on file size and format.  First, file comparison
 in version control systems is optimized for plain text files, such as
 source code. The ability to see so-called ``diffs'' is one of the
-great joys of version control. Unfortunately, Microsoft\textregistered Office files
-(like the \texttt{.docx} files used by Word) or other binary files,
-e.g., PDFs, can be stored in a version control system, but it is not
-possible to pinpoint specific changes from one version to the next.
-Tabular data (such as CSV files) can be put in version control, but
-changing the order of the rows or columns will create a big change for
-the version control system, even if the data itself has not changed.
+great joys of version control. Unfortunately, Microsoft\textregistered
+Office files (like the \texttt{.docx} files used by Word) or other
+binary files, e.g., PDFs, can be stored in a version control system,
+but it is not possible to pinpoint specific changes from one version
+to the next.  Tabular data (such as CSV files) can be put in version
+control, but changing the order of the rows or columns will create a
+big change for the version control system, even if the data itself has
+not changed.
 
 Second, raw data should not change, and therefore should not require
 version tracking.  Keeping intermediate data files and other results
@@ -1029,9 +1074,9 @@ to recommend.
   provide access to private version control systems, so it is worth
   checking with your IT department.
   \\
-  Additionally, be sure not to unintentionally place security credentials,
-  such as passwords and private keys, in a version control system where it
-  may be accessed by others.
+  Additionally, be sure not to unintentionally place security
+  credentials, such as passwords and private keys, in a version
+  control system where it may be accessed by others.
 \end{quote}
 
 \practicesection{Manuscripts}{sec:manuscripts}
@@ -1044,10 +1089,10 @@ changed scientific writing just as much as it has changed research.
 A common practice in academic writing is for the lead author to send
 successive versions of a manuscript to coauthors to collect feedback,
 which is returned as changes to the document, comments on the
-document, plain text in email, or a mix of all three. This allows co-authors
-to use familiar tools, but results in
-a lot of files to keep track of, and a lot of tedious manual labor to
-merge comments to create the next master version.
+document, plain text in email, or a mix of all three. This allows
+co-authors to use familiar tools, but results in a lot of files to
+keep track of, and a lot of tedious manual labor to merge comments to
+create the next master version.
 
 Instead of an email-based workflow, we recommend mirroring good
 practices for managing software and data to make writing scalable,
@@ -1059,27 +1104,33 @@ to:
 \begin{itemize}
 
 \item
+
   Ensure that text is accessible to yourself and others now and in the
   future by making a single master document that is available to all
   coauthors at all times.
 
 \item
+
   Reduce the chances of work being lost or people overwriting each
   other's work.
 
 \item
+
   Make it easy to track and combine contributions from multiple
   collaborators.
 
 \item
+
   Avoid duplication and manual entry of information, particularly in
   constructing bibliographies, tables of contents, and lists.
 
 \item
+
   Make it easy to regenerate the final published form (e.g., a PDF)
   and to tell if it is up to date.
 
 \item
+
   Make it easy to share that final version with collaborators and to
   submit it to a journal.
 
@@ -1102,28 +1153,19 @@ Our first alternative will already be familiar to many researchers:
 \begin{enumerate}
 
 \item
-  \practice{6a}{Write manuscripts using online tools with rich
-    formatting, change tracking, and reference management}, such as
-  Google Docs. With the document online, everyone's
-  changes are in one place, and hence don't need to be merged
-  manually.
 
-% \item
-%   \practice{6b}{Include a \texttt{PUBLICATIONS} file in the project's
-%     \texttt{doc} directory} with metadata about each online manuscript
-%   (e.g., their URLs). This is analogous to the \texttt{data}
-%   directory, which might contain links to the location of the data
-%   file(s) rather than the actual files.
+  \practice{6a}{Write manuscripts using online tools with rich
+  formatting, change tracking, and reference management}, such as
+  Google Docs. With the document online, everyone's changes are in one
+  place, and hence don't need to be merged manually.
 
 \end{enumerate}
-
-
 
 We realize that in many cases, even this solution is asking too much
 from collaborators who see no reason to move forward from desktop GUI
 tools. To satisfy them, the manuscript can be converted to a desktop
-editor file format (e.g., Microsoft\textregistered Word \texttt{.docx} or
-LibreOffice \texttt{.odt}) after major changes, then downloaded and
+editor file format (e.g., Microsoft\textregistered Word \texttt{.docx}
+or LibreOffice \texttt{.odt}) after major changes, then downloaded and
 saved in the \texttt{doc} folder. Unfortunately, this means merging
 some changes and suggestions manually, as existing tools cannot always
 do this automatically when switching from a desktop file format to
@@ -1139,24 +1181,20 @@ disciplines for decades:
 \begin{enumerate}
 
 \item
-  \practice{6b}{Write the manuscript in a plain text format that permits
-    version control} such as
+
+  \practice{6b}{Write the manuscript in a plain text format that
+  permits version control} such as
   \withurl{LaTeX}{http://www.latex-project.org/} or
   \withurl{Markdown}{http://daringfireball.net/projects/markdown/},
   and then convert them to other formats such as PDF as needed using
   scriptable tools like \withurl{Pandoc}{http://pandoc.org/}.
 
-% \item
-%   \practice{6d}{Include tools needed to compile manuscripts in the
-%     project folder} and keep them under version control just like
-%   tools used to do simulation or analysis.
-
 \end{enumerate}
 
-Using a version control system provides good support for finding
-and merging differences resulting from concurrent changes. It
-also provides a convenient platform for making comments and
-performing review.
+Using a version control system provides good support for finding and
+merging differences resulting from concurrent changes. It also
+provides a convenient platform for making comments and performing
+review.
 
 This approach re-uses the version control tools and skills used to
 manage data and software, and is a good starting point for
@@ -1164,60 +1202,67 @@ fully-reproducible research. However, it requires all contributors to
 understand a much larger set of tools, including markdown or LaTeX,
 make, BiBTeX, and Git/GitHub.
 
-% WE'VE ALREADY MADE THE DECISION IN ANOTHER SECTION
-% TO HAVE TWO SETS OF RECOMMENDATIONS. I DON'T
-% THINK WE NEED THIS DESCRIPTION HERE. 
+% TKT: We've already made the decision in another section to have two
+% sets of recommendations. I don't think we need this description
+% here.
+%
 % It's a different style than the rest of the paper, and even though
-% we're describing Google docs as 'good enough' it comes 
-% across as being 'less than because you're not good enough to
-% use these tools', which is not what we're trying to say.
-% 
+% we're describing Google docs as 'good enough' it comes across as
+% being 'less than because you're not good enough to use these tools',
+% which is not what we're trying to say.
+%
+% GVW: I think this is likely to trigger a lot of disagreement, so
+% it's worth spelling out our reasoning for this particular pair of
+% recommendations.  In particular, I think the two quotes are
+% necessary to show ``true believers'' what the world looks like
+% to rank-and-file researchers.
 
-%\subsection*{Why Two Recommendations for Manuscripts?}
+% \subsection*{Why Two Recommendations for Manuscripts?}
 
-%The first draft of this paper recommended always using plain text in
-%version control to manage manuscripts, but several reviewers pushed
-%back forcefully. For example, Stephen Turner wrote:
+% The first draft of this paper recommended always using plain text in
+% version control to manage manuscripts, but several reviewers pushed
+% back forcefully. For example, Stephen Turner wrote:
 
-%\begin{quote}
-%{\ldots}try to explain the notion of compiling a document to an
-%overworked physician you collaborate with. Oh, but before that, you
-%have to explain the difference between plain text and word
-%processing. And text editors. And markdown/LaTeX compilers. And
-%BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
-%from the OR{\ldots}
+% \begin{quote}
+% {\ldots}try to explain the notion of compiling a document to an
+% overworked physician you collaborate with. Oh, but before that, you
+% have to explain the difference between plain text and word
+% processing. And text editors. And markdown/LaTeX compilers. And
+% BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
+% from the OR{\ldots}
 
-%{\ldots}as much as we want to convince ourselves otherwise, when you
-%have to collaborate with those outside the scientific computing
-%bubble, the barrier to collaborating on papers in this framework is
-%simply too high to overcome. Good intentions aside, it always comes
-%down to ``just give me a Word document with tracked changes,'' or
-%similar.
-%\end{quote}
+% {\ldots}as much as we want to convince ourselves otherwise, when you
+% have to collaborate with those outside the scientific computing
+% bubble, the barrier to collaborating on papers in this framework is
+% simply too high to overcome. Good intentions aside, it always comes
+% down to ``just give me a Word document with tracked changes,'' or
+% similar.
+% \end{quote}
 
-%Similarly, Arjun Raj said in \withurl{a blog
-%  post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
+% Similarly, Arjun Raj said in \withurl{a blog
+%   post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
 
-%\begin{quote}
-%Google Docs excels at easy sharing, collaboration, simultaneous
-%editing, commenting and reply-to-commenting. Sure, one can approximate
-%these using text-based systems and version control. The question is
-%why anyone would like to{\ldots}
+% \begin{quote}
+% Google Docs excels at easy sharing, collaboration, simultaneous
+% editing, commenting and reply-to-commenting. Sure, one can approximate
+% these using text-based systems and version control. The question is
+% why anyone would like to{\ldots}
 
-%The goal of reproducible research is to make sure one
-%can{\dots}reproduce{\ldots}computational analyses. The goal of version
-%control is to track changes to source code. These are fundamentally
-%distinct goals, and while there is some overlap, version control is
-%merely a tool to help achieve that, and comes with so much overhead
-%and baggage that it is often not worth the effort.
-%\end{quote}
+% The goal of reproducible research is to make sure one
+% can{\dots}reproduce{\ldots}computational analyses. The goal of version
+% control is to track changes to source code. These are fundamentally
+% distinct goals, and while there is some overlap, version control is
+% merely a tool to help achieve that, and comes with so much overhead
+% and baggage that it is often not worth the effort.
+% \end{quote}
 
-Collaborative editing in something like Google Docs if often therefore an 
-effective approach. This solution meets the requirements that we've outlined above, although 
-you do lose some benefits of text-based formats (notably, being able to use 
-non-proprietary tools for editing, sharing, and viewing and being amenable to  
-version control). We still recommend \emph{against} traditional desktop tools like
-LibreOffice and Microsoft\textregistered Word because they make collaboration more
+Collaborative editing in something like Google Docs is often therefore
+an effective approach. This solution meets the requirements that we've
+outlined above, although you do lose some benefits of text-based
+formats (notably, being able to use non-proprietary tools for editing,
+sharing, and viewing and being amenable to version control). We still
+recommend \emph{against} traditional desktop tools like LibreOffice
+and Microsoft\textregistered Word because they make collaboration more
 difficult than necessary.
 
 \subsection*{Supplementary Materials}
@@ -1229,12 +1274,12 @@ these materials as accessible to others as possible, do not rely
 solely on the PDF format, since extracting data from PDFs is
 notoriously hard.  Instead, we recommend separating the results that
 you may expect others to reuse (e.g., data in tables, data behind
-figures) into separate, text-format files in formats such as
-CSV, JSON, YAML, XML, or HDF5\footnote{We recommend against more
-innovative formats in deference to an old saying: ``What's oldest lasts longest.''}.
-The same holds for any commands or code you want to include as
-supplementary material: use the format that most easily enables reuse
-(source code files, Unix shell scripts etc).
+figures) into separate, text-format files in formats such as CSV,
+JSON, YAML, XML, or HDF5\footnote{We recommend against more innovative
+formats in deference to an old saying: ``What's oldest lasts
+longest.''}.  The same holds for any commands or code you want to
+include as supplementary material: use the format that most easily
+enables reuse (source code files, Unix shell scripts etc).
 
 \practicesection{What We Left Out}{sec:omitted}
 
@@ -1300,9 +1345,9 @@ investment before they start to pay off.
 \item[\textbf{Coverage}] Every modern programming language comes with
   tools to report the \emph{coverage} of a set of test cases, i.e.,
   the set of lines that are and aren't actually executed when those
-  tests are run. But as with unit testing, this
-  only starts to pay off once the project grows larger, and is
-  therefore not recommended here.
+  tests are run. But as with unit testing, this only starts to pay off
+  once the project grows larger, and is therefore not recommended
+  here.
 
 \item[\textbf{The Semantic Web}] Ontologies and other formal
   definitions of data are useful, but in our experience, even
@@ -1325,7 +1370,8 @@ investment before they start to pay off.
 
 \item[\textbf{Code Reviews and Pair Programming}] These practices are
   valuable in projects with multiple people making large software
-  contributions, which is not typical for the intended audience for this paper \cite{petre2014}.
+  contributions, which is not typical for the intended audience for
+  this paper \cite{petre2014}.
 
 \end{description}
 
@@ -1338,11 +1384,11 @@ project will need some or all of these things as it scales, so they
 might as well put it in place now.
 
 The problem comes when those experienced developers give advice to
-people who \emph{haven't} already mastered the tools, and
-\emph{don't} realize (yet) that they will save time if and when their
-project grows.  In that situation, advocating unit testing with
-coverage checking and continuous integration is more likely to be overwhelming
-to newcomers rather than aid them.
+people who \emph{haven't} already mastered the tools, and \emph{don't}
+realize (yet) that they will save time if and when their project
+grows.  In that situation, advocating unit testing with coverage
+checking and continuous integration is more likely to overwhelm
+newcomers rather than aid them.
 
 \section*{Conclusion}
 
@@ -1351,71 +1397,45 @@ on our collective experience, and the experience of the thousands of
 researchers we have met through Software Carpentry, Data Carpentry,
 and similar organizations.  These practices are pragmatic, accessible
 to people who consider themselves new to computing, and can be applied
-by both individuals and groups.
-Most importantly, these practices make researchers more productive
-individually by enabling them to get more done in less time and with
-less pain.  They also accelerate research as a whole by making
-computational work (which increasingly means \emph{all} work) more
-reproducible.
+by both individuals and groups.  Most importantly, these practices
+make researchers more productive individually by enabling them to get
+more done in less time and with less pain.  They also accelerate
+research as a whole by making computational work (which increasingly
+means \emph{all} work) more reproducible.
 
 But progress will not happen by itself. The practices are being 
 increasingly incentivized through requirements from funding
 agencies and journals, but the time and skills required to put these
 approaches into practice are still not being valued. 
 
-At a local level,
-PIs can have the most impact, requiring that the research their lab
-produces follow these recommendations. Even if a PI doesn't have
-a background in computation, they can require that students show
-and share their code in lab meetings and with lab mates, that data
-is available and accessible to all in the lab and that computational
-methods sections are comprehensive. Best practices can include
-things like paired-programming and having other lab members replicate
-workflows.\ref{computing_workflows_for_biologists}. PIs can also value the time
-it takes to do these things effectively and provide opportunities for
-training. While it seems challenging to take time away from other
-research activities, like coding itself, the time spent on the initial efforts
-will pay off with more efficient and likely more innovative research.
+At a local level, PIs can have the most impact, requiring that the
+research their lab produces follow these recommendations. Even if a PI
+doesn't have a background in computation, they can require that
+students show and share their code in lab meetings and with lab mates,
+that data is available and accessible to all in the lab and that
+computational methods sections are comprehensive. PIs can also value
+the time it takes to do these things effectively and provide
+opportunities for training.
 
-Universities can provide support for advice and infrastructure. This is
-most commonly provided by IT or High Performance Computing groups, 
-and an often under appreciated resource, the libraries. Librarians have
-thought about and worked with data and provenance even before 
-these computational challenges and increasingly
-have dedicated data librarians on staff who have an explicit service role.
-Many campuses also have self-organizing student groups, as students
-seek opportunities to engage with and learn from each other around 
-these skills. Universities would do well to support these groups, as 
-student peers are often some of the most knowledgable and they 
-help grow communities of practice. Universities can also provide 
-opportunities for training on these practical skills. Many resources are
-available already. They would do well to make use of existing training
-programs and resources, and even contribute to them, as the training 
-challenges are shared by all universities, and there is not a need to replicate 
-efforts. Additionally, where courses are not yet available, they can provide
-access to short courses and workshops, where again materials and often 
-instructors are already provided, so they can more quickly provide training. 
-In our experience with Software and Data Carpentry, our two-day workshops
-at universities are almost always full within a day or two of being announced,
-with wait lists as long or longer than the number of attendees. It is clear that there
-is extensive demand for training and unmet needs. 
+Universities can also support such efforts. While this is often
+provided by IT or High Performance Computing (HPC) groups, research
+librarians are an often under-appreciated resource.  Librarians have
+thought about and worked with data and provenance even before these
+computational challenges and increasingly have dedicated data
+librarians on staff who have an explicit service role.
 
-Funding agencies are challenged to meet many competing needs in research. 
-Many agencies are now requiring sections on data management plans and 
-education and outreach activities. We need to align these requirements with
-requests for funding for these activities. The true cost of implementing these
-plans includes not only infrastructure, but initially increased personnel time
-and resources for training. These costs will come down as researchers learn
-and more effectively implement these practices, but now is the time to invest
-in these activities for longer-term gains, as science will only become more
-data-intensive. 
+Many campuses also have self-organized groups led by students who wish
+to learn from each other, which may operate independently or in
+concert with organizations like Software Carpentry, Data Carpentry, or
+\withurl{The Hacker Within}{http://www.thehackerwithin.org/}.
 
-Such investment from PIs, universities, funding agencies and others
-will improve confidence in the results of
-computational work and allow us to make more rapid progress on
-important research questions.
-
-% \bibliography{good-enough-practices-for-scientific-computing}
+Finally, many funding agencies now require data management plans and
+education and outreach activities. The true cost of implementing these
+plans includes training: it is unfair as well as counter-productive to
+insist that researchers do things without teaching them how. We
+believe it is now time for funders to invest in such training; we hope
+that our recommendations will help shape consensus on what ``good
+enough'' looks like and how to achieve it.
 
 \begin{thebibliography}{10}
 
@@ -1460,11 +1480,12 @@ Sandve GK, Nekrutenko A, Taylor J, Hovig E.
 \newblock doi:{doi:10.1371/journal.pcbi.1003285}.
 
 \bibitem{hart2015}
-Hart E, Barmby P, LeBauer D, Michonneau F, Mount S, Poisot T, et~al.. Ten
-  simple rules for digital data storage; 2015.
+Hart E, Barmby P, LeBauer D, Michonneau F, Mount S, Poisot T, et~al.
+\newblock Ten simple rules for digital data storage; 2015.
 
 \bibitem{ffIllinois}
-of~Illinois~Library U. File Formats and Organization;.
+U.~of~Illinois~Library
+\newblock File Formats and Organization;.
 \newblock Available from:
   \url{http://www.library.illinois.edu/sc/services/data\_management/file\_formats.html}.
 
@@ -1475,7 +1496,7 @@ White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR.
 \newblock doi:{doi:10.4033/iee.2013.6b.6.f}.
 
 \bibitem{wickes2015}
-Wickes E. Comment on "Metadata"; 2015.
+Wickes E. Comment on Metadata; 2015.
 \newblock Available from:
   \url{https://github.com/swcarpentry/good\--enough\--practices\--in\--scientific\--computing/issues/3\#issuecomment-157410442}.
 
@@ -1494,7 +1515,7 @@ Steinmacher I, {Graciotto Silva} M, Gerosa M, Redmiles DF.
 \newblock doi:{10.1016/j.infsof.2014.11.001}.
 
 \bibitem{laurent2004}
-{St  Laurent} AM.
+{St.\ Laurent} AM.
 \newblock Understanding Open Source and Free Software Licensing.
 \newblock O'Reilly Media; 2004.
 \newblock Available from:
@@ -1509,6 +1530,12 @@ Gawande A.
 Petre M, Wilson G.
 \newblock Code Review For and By Scientists.
 \newblock In: Katz D, editor. Proc.\ WSSSPE 2014; 2014.
+
+\bibitem{shade2015}
+Shade A, Teal T TK.
+\newblock Computing Workflows for Biologists: A Roadmap.
+\newblock PLoS Biology, November 2015.
+\newblock doi:10.1371/journal.pbio.1002303.
 
 \end{thebibliography}
 
