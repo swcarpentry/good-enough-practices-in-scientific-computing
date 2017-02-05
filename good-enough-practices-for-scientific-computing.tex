@@ -1299,7 +1299,7 @@ longest.''}.  The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
 
-\practicesection{What We Left Out}{sec:omitted}
+\subsection*{What We Left Out}\label{sec:omitted}
 
 We have deliberately left many good tools and practices off our list,
 including some that we use daily, because they only make sense on top
@@ -1478,7 +1478,7 @@ Noble WS.
 \bibitem{brown2015}
 Brown CT. How to grow a sustainable software development process; 2015.
 \newblock Available from:
-  \url{http://ivory.idyll.org/blog/2015-growing\--sustainable\--software\--development-process.html}.
+  \url{http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html}.
 
 \bibitem{wickham2014}
 Wickham H.
@@ -1517,7 +1517,7 @@ White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR.
 \bibitem{wickes2015}
 Wickes E. Comment on "Metadata"; 2015.
 \newblock Available from:
-  \url{https://github.com/swcarpentry/good\--enough\--practices\--in\--scientific\--computing/issues/3\#issuecomment-157410442}.
+  \url{https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3\#issuecomment-157410442}.
 
 \bibitem{hunt1999}
 Hunt A, Thomas D.
@@ -1566,12 +1566,14 @@ Petre M, Wilson G.
 \item Data Management
   \begin{enumerate}[a)]
   \item Save the raw data.
+  \item Ensure that raw data is backed up in more than one location.
   \item Create the data you wish to see in the world.
   \item Create analysis-friendly data.
   \item Record all the steps used to process data.
-  \item Anticipate the need to use multiple tables.
+  \item Anticipate the need to use multiple tables, and use a unique identifier for every record.
   \item Submit data to a reputable DOI-issuing repository so that others can access and cite it.
   \end{enumerate}
+
 \item Software
   \begin{enumerate}[a)]
   \item Place a brief explanatory comment at the start of every program.
@@ -1583,24 +1585,28 @@ Petre M, Wilson G.
   \item Make dependencies and requirements explicit.
   \item Do not comment and uncomment sections of code to control a program's behavior.
   \item Provide a simple example or test data set.
-  \item Submit code to a reputable DOI-issuing repository.	
+  \item Submit code to a reputable DOI-issuing repository.
   \end{enumerate}
+
 \item Collaboration
   \begin{enumerate}[a)]
   \item Create an overview of your project.
-  \item Create a shared public ``to-do'' list.
+  \item Create a shared ``to-do'' list for the project.
+  \item Decide on communication strategies.
   \item Make the license explicit.
   \item Make the project citable.
   \end{enumerate}
+
 \item Project Organization
   \begin{enumerate}[a)]
   \item Put each project in its own directory, which is named after the project.
   \item Put text documents associated with the project in the \texttt{doc} directory.
   \item Put raw data and metadata in a \texttt{data} directory, and files generated during cleanup and analysis in a \texttt{results} directory.
   \item Put project source code in the \texttt{src} directory.
-  \item Put external scripts, or compiled programs in the \texttt{bin} directory.
+  \item Put external scripts, or compiled programs in the \texttt{bin} directory
   \item Name all files to reflect their content or function.
   \end{enumerate}
+
 \item Keeping Track of Changes
   \begin{enumerate}[a)]
   \item Back up (almost) everything created by a human being as soon as it is created.
@@ -1608,16 +1614,15 @@ Petre M, Wilson G.
   \item Share changes frequently.
   \item Create, maintain, and use a checklist for saving and sharing changes to the project.
   \item Store each project in a folder that is mirrored off the researcher's working machine.
-   \item Use a file called \texttt{CHANGELOG.txt} to record changes, and
-   \item Copy the entire project whenever a significant change has been made, OR
-   \item Use a version control system to manage changes 
+  \item Add a file called \texttt{CHANGELOG.txt} to the project's \texttt{docs} subfolder.
+  \item Copy the entire project whenever a significant change has been made.
+  \item Use a version control system.
   \end{enumerate}
+
 \item Manuscripts
   \begin{enumerate}[a)]
-  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management, OR
-  \item Write the manuscript in a plain text format that permits version control
-  % \item Include a \texttt{PUBLICATIONS} file in the project's \texttt{doc} directory.
-  % \item Include any tools needed to compile manuscripts in the project folder.
+  \item Write manuscripts using online tools with rich formatting, change tracking, and reference management.
+  \item Write the manuscript in a plain text format that permits version control.
   \end{enumerate}
 \end{enumerate}
 }
