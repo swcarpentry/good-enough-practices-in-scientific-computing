@@ -771,7 +771,25 @@ them.  Our recommendations for doing this are drawn primarily from
   create and save a numeric result. For a small project with one main
   output, a single controller script should be placed in the main
   \texttt{src} directory and distinguished clearly by a name such as
-  ``runall''.
+  ``runall''.  The short example below is typical of scripts of this
+  kind; note how it uses one variable, \texttt{TEMP\_DIR}, to avoid
+  repeating the name of a particular directory four times.
+
+{\small
+\begin{verbatim}
+TEMP_DIR = ./temp_zip_files
+
+echo "Packaging zip files required by analysis tool..."
+mkdir $(TEMP_DIR)
+./src/make-zip-files.py $(TEMP_DIR) *.dat
+
+echo "Analyzing..."
+./bin/sqr_mean_analyze -i $(TEMP_DIR) -b "temp"
+
+echo "Cleaning up..."
+rm -rf $(TEMP_DIR)
+\end{verbatim}
+}
 
 \item
 
