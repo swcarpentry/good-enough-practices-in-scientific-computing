@@ -775,13 +775,11 @@ them.  Our recommendations for doing this are drawn primarily from
 
 \item
 
-  \practice{4e}{Put external scripts, or compiled programs in the
-  \texttt{bin} directory}.  \texttt{bin} contains scripts that are
-  brought in from elsewhere, and executable programs compiled from
-  code in the \texttt{src} directory\footnote{The name \texttt{bin} is
-  an old Unix convention, and comes from the term
-  ``binary''.}. Projects that have neither will not require
-  \texttt{bin}.
+  \practice{4e}{Put compiled programs in the \texttt{bin} directory}.
+  \texttt{bin} contains executable programs compiled from code in the
+  \texttt{src} directory\footnote{The name \texttt{bin} is an old Unix
+  convention, and comes from the term ``binary''.}. Projects that
+  do not have any will not require \texttt{bin}.
 
   \begin{quote}
     \noindent \textbf{Scripts vs.\ Programs}
@@ -793,6 +791,21 @@ them.  Our recommendations for doing this are drawn primarily from
     compiled to bytecode as they are loaded, for example---so one
     other way to think of it is ``things that are edited directly''
     and ``things that are not''.
+  \end{quote}
+
+  \begin{quote}
+    \noindent \textbf{External Scripts}
+    \\
+    If \texttt{src} is for human-readable source code, and
+    \texttt{bin} is for compiled binaries, where should projects put
+    scripts that are executed directly---particularly ones that are
+    brought in from outside the project?  On the one hand, these are
+    written in the same languages as the project-specific scripts in
+    \texttt{src}; on the other, they are executable, like the programs
+    in \texttt{bin}.  The answer is that it doesn't matter, as long as
+    each team's projects follow the same rule.  As with many of our
+    other recommendations, consistency and predictability are more
+    important than hair-splitting.
   \end{quote}
 
 \item
