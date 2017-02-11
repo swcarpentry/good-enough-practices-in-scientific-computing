@@ -342,8 +342,8 @@ data'', which can be a powerful accelerator for analysis
   inspection. Imagine one row per field site and then columns for
   measurements made at each of several time points. Be prepared to
   gather such columns into a variable of measurements, plus a new
-  variable for time point.  Fig~\ref{fig:tidy} presents an example of
-  such a transformation.
+  variable for time point.  Figure~\ref{fig:tidy} presents an example
+  of such a transformation.
 
   \begin{figure} % \includegraphics[width = 5in]{tidy-data.png}
     \caption{\textbf{Example of gathering columns to create tidy data.}}
@@ -775,10 +775,12 @@ them.  Our recommendations for doing this are drawn primarily from
   create and save a numeric result. For a small project with one main
   output, a single controller script should be placed in the main
   \texttt{src} directory and distinguished clearly by a name such as
-  ``runall''.  The short example below is typical of scripts of this
-  kind; note how it uses one variable, \texttt{TEMP\_DIR}, to avoid
-  repeating the name of a particular directory four times.
+  ``runall''.  The short example in Figure~\ref{fig:script} is typical
+  of scripts of this kind; note how it uses one variable,
+  \texttt{TEMP\_DIR}, to avoid repeating the name of a particular
+  directory four times.
 
+\begin{figure}
 {\small
 \begin{verbatim}
 TEMP_DIR = ./temp_zip_files
@@ -794,6 +796,9 @@ echo "Cleaning up..."
 rm -rf $(TEMP_DIR)
 \end{verbatim}
 }
+\caption{\textbf{Example of a ``runall'' script.}}
+\label{fig:script}
+\end{figure}
 
 \item
 
@@ -802,6 +807,8 @@ rm -rf $(TEMP_DIR)
   \texttt{src} directory\footnote{The name \texttt{bin} is an old Unix
   convention, and comes from the term ``binary''.}. Projects that
   do not have any will not require \texttt{bin}.
+
+\pagebreak
 
   \begin{quote}
     \noindent \textbf{Scripts vs.\ Programs}
@@ -842,9 +849,11 @@ rm -rf $(TEMP_DIR)
 
 \end{enumerate}
 
-The diagram below provides a concrete example of how a simple project
-might be organized following these recommendations:
+The diagram in Figure~\ref{fig:project} provides a concrete example of
+how a simple project might be organized following these
+recommendations:
 
+\begin{figure}
 {\small
 \begin{verbatim}
 .
@@ -865,6 +874,9 @@ might be organized following these recommendations:
 |   -- runall.py
 \end{verbatim}
 }
+\caption{\textbf{Project layout.}}
+\label{fig:project}
+\end{figure}
 
 The root directory contains a \texttt{README} file that provides an
 overview of the project as a whole, a \texttt{CITATION} file that
@@ -1016,6 +1028,8 @@ two additional parts:
   done, and other folders within \texttt{project\_name} are old
   versions.
 
+\pagebreak
+
   \begin{quote}
     \noindent \textbf{Data is Cheap, Time is Expensive}
     \\
@@ -1075,7 +1089,7 @@ file types.  In particular, version control can be more or less
 rewarding depending on file size and format.  First, file comparison
 in version control systems is optimized for plain text files, such as
 source code. The ability to see so-called ``diffs'' is one of the
-great joys of version control. Unfortunately, Microsoft\textregistered
+great joys of version control. Unfortunately, Microsoft\textsuperscript{\textregistered}
 Office files (like the \texttt{.docx} files used by Word) or other
 binary files, e.g., PDFs, can be stored in a version control system,
 but it is not possible to pinpoint specific changes from one version
@@ -1199,13 +1213,13 @@ Our first alternative will already be familiar to many researchers:
 We realize that in many cases, even this solution is asking too much
 from collaborators who see no reason to move forward from desktop GUI
 tools. To satisfy them, the manuscript can be converted to a desktop
-editor file format (e.g., Microsoft\textregistered Word \texttt{.docx}
-or LibreOffice \texttt{.odt}) after major changes, then downloaded and
-saved in the \texttt{doc} folder. Unfortunately, this means merging
-some changes and suggestions manually, as existing tools cannot always
-do this automatically when switching from a desktop file format to
-text and back (although \withurl{Pandoc}{http://pandoc.org/} can go a
-long way).
+editor file format (e.g., Microsoft\textsuperscript{\textregistered}
+Word \texttt{.docx} or LibreOffice \texttt{.odt}) after major changes,
+then downloaded and saved in the \texttt{doc} folder. Unfortunately,
+this means merging some changes and suggestions manually, as existing
+tools cannot always do this automatically when switching from a
+desktop file format to text and back (although
+\withurl{Pandoc}{http://pandoc.org/} can go a long way).
 
 \subsection*{Text-based Documents Under Version Control}
 
@@ -1237,68 +1251,59 @@ fully-reproducible research. However, it requires all contributors to
 understand a much larger set of tools, including markdown or LaTeX,
 make, BiBTeX, and Git/GitHub.
 
-% TKT: We've already made the decision in another section to have two
-% sets of recommendations. I don't think we need this description
-% here.
-%
-% It's a different style than the rest of the paper, and even though
-% we're describing Google docs as 'good enough' it comes across as
-% being 'less than because you're not good enough to use these tools',
-% which is not what we're trying to say.
-%
-% GVW: I think this is likely to trigger a lot of disagreement, so
-% it's worth spelling out our reasoning for this particular pair of
-% recommendations.  In particular, I think the two quotes are
-% necessary to show ``true believers'' what the world looks like
-% to rank-and-file researchers.
+\subsection*{Discussion}
 
-% \subsection*{Why Two Recommendations for Manuscripts?}
+We initially recommended that researchers should always using plain
+text in version control to manage manuscripts.  However, several
+members of our community felt strongly that the learning curve
+associated with this recommendation was a significant barrier to
+entry.  For example, Stephen Turner wrote:
 
-% The first draft of this paper recommended always using plain text in
-% version control to manage manuscripts, but several reviewers pushed
-% back forcefully. For example, Stephen Turner wrote:
+\begin{quote}
 
-% \begin{quote}
-% {\ldots}try to explain the notion of compiling a document to an
-% overworked physician you collaborate with. Oh, but before that, you
-% have to explain the difference between plain text and word
-% processing. And text editors. And markdown/LaTeX compilers. And
-% BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
-% from the OR{\ldots}
+  {\ldots}try to explain the notion of compiling a document to an
+  overworked physician you collaborate with. Oh, but before that, you
+  have to explain the difference between plain text and word
+  processing. And text editors. And markdown/LaTeX compilers. And
+  BiBTeX. And Git. And GitHub. Etc. Meanwhile he/she is getting paged
+  from the OR{\ldots}
 
-% {\ldots}as much as we want to convince ourselves otherwise, when you
-% have to collaborate with those outside the scientific computing
-% bubble, the barrier to collaborating on papers in this framework is
-% simply too high to overcome. Good intentions aside, it always comes
-% down to ``just give me a Word document with tracked changes,'' or
-% similar.
-% \end{quote}
+  {\ldots}as much as we want to convince ourselves otherwise, when you
+  have to collaborate with those outside the scientific computing
+  bubble, the barrier to collaborating on papers in this framework is
+  simply too high to overcome. Good intentions aside, it always comes
+  down to ``just give me a Word document with tracked changes,'' or
+  similar.
 
-% Similarly, Arjun Raj said in \withurl{a blog
-%   post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
+\end{quote}
 
-% \begin{quote}
-% Google Docs excels at easy sharing, collaboration, simultaneous
-% editing, commenting and reply-to-commenting. Sure, one can approximate
-% these using text-based systems and version control. The question is
-% why anyone would like to{\ldots}
+Similarly, Arjun Raj said in \withurl{a blog
+post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
 
-% The goal of reproducible research is to make sure one
-% can{\dots}reproduce{\ldots}computational analyses. The goal of version
-% control is to track changes to source code. These are fundamentally
-% distinct goals, and while there is some overlap, version control is
-% merely a tool to help achieve that, and comes with so much overhead
-% and baggage that it is often not worth the effort.
-% \end{quote}
+\begin{quote}
 
-Collaborative editing in something like Google Docs is often therefore
-an effective approach. This solution meets the requirements that we've
-outlined above, although you do lose some benefits of text-based
-formats (notably, being able to use non-proprietary tools for editing,
-sharing, and viewing and being amenable to version control). We still
-recommend \emph{against} traditional desktop tools like LibreOffice
-and Microsoft\textregistered Word because they make collaboration more
-difficult than necessary.
+  Google Docs excels at easy sharing, collaboration, simultaneous
+  editing, commenting and reply-to-commenting. Sure, one can
+  approximate these using text-based systems and version control. The
+  question is why anyone would like to{\ldots}
+
+  The goal of reproducible research is to make sure one can{\dots}
+  reproduce{\ldots} computational analyses. The goal of version
+  control is to track changes to source code. These are fundamentally
+  distinct goals, and while there is some overlap, version control is
+  merely a tool to help achieve that, and comes with so much overhead
+  and baggage that it is often not worth the effort.
+
+\end{quote}
+
+Collaborative editing in something like Google Docs does not have all
+the benefits of text-based formats (notably, being able to store
+manuscripts in the same place, and in the same way, as other
+materials).  However, it does meet the requirements that we initially
+outlined.  We still recommend \emph{against} using desktop tools like
+LibreOffice and Microsoft\textregistered Word with either email or
+file-sharing services like Dropbox, as workflows based on these do not
+scale beyond a small number of participants.
 
 \subsection*{Supplementary Materials}
 
@@ -1316,7 +1321,7 @@ longest.''}.  The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
 
-\subsection*{What We Left Out}\label{sec:omitted}
+\section*{What We Left Out}\label{sec:omitted}
 
 We have deliberately left many good tools and practices off our list,
 including some that we use daily, because they only make sense on top
@@ -1689,7 +1694,5 @@ control:
   work. If so, they facilitate identifying conflict and merging changes.
 
 \end{itemize}
-
-\pagebreak
 
 \end{document}
