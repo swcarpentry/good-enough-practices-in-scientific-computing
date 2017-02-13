@@ -24,28 +24,32 @@ Tracy K. Teal<sup>6</sup>
 
 > **A PDF of this paper can be found at <http://arxiv.org/abs/1609.00037>.
 > We would appreciate feedback of all kinds:
-> please [email comments to the authors](mailto:gvwilson@software-carpentry.org?subject=comments on good enough practices).**
+> please email comments to the authors.**
 
 **Abstract**
 
 We present a set of computing tools and techniques that every researcher
-can and should adopt. These recommendations synthesize inspiration from
-our own work, from the experiences of the thousands of people who have
-taken part in Software Carpentry and Data Carpentry workshops over the
-past six years, and from a variety of other guides. Our recommendations
-are aimed specifically at people who are new to research computing.
+can and should consider adopting. These recommendations synthesize
+inspiration from our own work, from the experiences of the thousands of
+people who have taken part in Software Carpentry and Data Carpentry
+workshops over the past six years, and from a variety of other guides.
+Our recommendations are aimed specifically at people who are new to
+research computing.
 
 **Author Summary**
 
 Computers are now essential in all branches of science, but most
 researchers are never taught the equivalent of basic lab skills for
-research computing. As a result, they take days or weeks to do things
-that could be done in minutes or hours, are often unable to reproduce
-their own work (much less the work of others), and have no idea how
-reliable their computational results are.
+research computing. As a result, data can get lost, analyses can take
+much longer than necessary, and researchers are limited in how
+effectively and they can work with software and data. Computing
+workflows need to follow the same practices as lab projects and
+notebooks, with organized data, documented steps and the project
+structured for reproducibility, but researchers new to computing often
+don't know where to start.
 
 This paper presents a set of good computing practices that every
-researcher can adopt regardless of their current level of technical
+researcher can adopt regardless of their current level of computational
 skill. These practices, which encompass data management, programming,
 collaborating with colleagues, organizing projects, tracking work, and
 writing manuscripts, are drawn from a wide variety of published sources,
@@ -54,38 +58,39 @@ that have delivered workshops to over 11,000 people since 2010.
 
 ## Introduction
 
-Two years ago a group of researchers involved in Software
+Three years ago a group of researchers involved in Software
 Carpentry[^1] and Data
 Carpentry[^2] wrote a paper called "Best Practices for
-Scientific Computing" [[wilson2014](#wilson2014)]. It was well received, but many
-novices found its litany of tools and techniques intimidating. Also, by
-definition, the "best" are a small minority. What practices are
-comfortably within reach for the "rest"?
+Scientific Computing" [[wilson2014](#wilson2014)]. That paper provided recommendations
+for people who were already doing significant amounts of computation in
+their research. However, as computing has become an essential part of
+science for all researchers, there is a larger group of people newer to
+scientific computing, and the question then becomes "where to start?".
 
-This paper therefore presents a set of "good enough" practices[^3] for
-scientific computing, i.e., a minimum set of tools and techniques that
-we believe every researcher can and should adopt. It draws inspiration
-from many sources
-[[gentzkow2014](#gentzkow2014), [noble2009](#noble2009), [brown2015](#brown2015), [wickham2014](#wickham2014), [kitzes2016](#kitzes2016), [sandve2013](#sandve2013), [hart2015](#hart2015)],
+This paper focuses on these first, accessible skills and perspectives -
+the "good enough" practices - for scientific computing, a minimum set of
+tools and techniques that we believe every researcher can and should
+consider adopting. It draws inspiration from many sources [[gentzkow2014](#gentzkow2014),
+[noble2009](#noble2009), [brown2015](#brown2015), [wickham2014](#wickham2014), [kitzes2016](#kitzes2016), [sandve2013](#sandve2013), [hart2016](#hart2016)],
 from our personal experience, and from the experiences of the thousands
 of people who have taken part in Software Carpentry and Data Carpentry
 workshops over the past six years.
 
 Our intended audience is researchers who are working alone or with a
-handful of collaborators on projects lasting a few days to a few months,
-and who are ready to move beyond emailing themselves a spreadsheet named
-`results-updated-3-revised.xlsx` at the end of the workday. A practice
-is included in our list if large numbers of researchers use it, and
-large numbers of people are *still* using it months after first trying
-it out. We include the second criterion because there is no point
-recommending something that people won't actually adopt.
+handful of collaborators on projects lasting a few days to several
+months. A practice is included in our list if large numbers of
+researchers use it, and large numbers of people are *still* using it
+months after first trying it out. We include the second criterion
+because there is no point recommending something that people won't
+actually adopt.
 
 Many of our recommendations are for the benefit of the collaborator
-every researcher cares about most: their future self[^4]. Change is hard
+every researcher cares about most: their future self[^3]. Change is hard
 and if researchers don't see those benefits quickly enough to justify
 the pain, they will almost certainly switch back to their old way of
 doing things. This rules out many practices, such as code review, that
-we feel are essential for larger-scale development.
+we feel are essential for larger-scale development
+(Section [sec:omitted]).
 
 We organize our recommendations into the following topics:
 
@@ -124,7 +129,8 @@ what first arrives to what is actually used for the primary analyses.
 Our recommendations have two main themes. One is to work towards
 ready-to-analyze data incrementally, documenting both the intermediate
 data and the process. We also describe the key features of "tidy data",
-which can be a powerful accelerator for analysis [[wickham2014](#wickham2014), [hart2015](#hart2015)].
+which can be a powerful accelerator for analysis [[wickham2014](#wickham2014),
+[hart2016](#hart2016)].
 
 ![Example of gathering columns to create tidy data](tidy-data-smaller.png)
 
@@ -139,10 +145,26 @@ which can be a powerful accelerator for analysis [[wickham2014](#wickham2014), [
     or to hand edit it in a moment of weakness.
 
     Some data will be impractical to manage in this way. For example,
-    you should avoid making local copies of large, stable repositories.
-    In that case, record the exact procedure used to obtain the raw
-    data, as well as any other pertinent info, such as an official
+    you should avoid making local copies of large, stable databases. In
+    that case, record the exact procedure used to obtain the raw data,
+    as well as any other pertinent information, such as an official
     version number or the date of download.
+
+    ***Ensure that raw data is backed up in more than one
+    location. (1b)*** If external hard drives
+    are used, store them off-site of the original location. Universities
+    often have their own data storage solutions, so it is worthwhile to
+    consult with your local Information Technology (IT) group or
+    library. Alternatively cloud computing resources, like
+    Amazon Simple Storage Service (Amazon
+    S3)[^4], Google Cloud
+    Storage[^5] or
+    https://azure.microsoft.com/en-us/services/storage/ are
+    reasonably priced and reliable. For large data sets, where storage
+    and transfer can be expensive and time-consuming, you may need to
+    use incremental backup or specialized storage systems, and people in
+    your local IT group or library can often provide advice and
+    assistance on options at your university or organization as well.
 
 2.  ***Create the data you wish to see in the
     world (1b)***. Create the dataset you
@@ -155,16 +177,16 @@ which can be a powerful accelerator for analysis [[wickham2014](#wickham2014), [
 
     *File formats*: Convert data from closed, proprietary formats to
     open, non-proprietary formats that ensure machine readability across
-    time and computing setups [[illinois](#illinois)]. Good options include CSV for
+    time and computing setups [[UIllinois](#UIllinois)]. Good options include CSV for
     tabular data, JSON, YAML, or XML for non-tabular data such as
-    graphs[^5], and HDF5 for certain kinds of structured data.
+    graphs[^6], and HDF5 for certain kinds of structured data.
 
     *Variable names*: Replace inscrutable variable names and artificial
     data codes with self-explaining alternatives, e.g., rename variables
     called `name1` and `name2` to `personal_name` and `family_name`,
     recode the treatment variable from `1` vs. `2` to `untreated` vs.
     `treated`, and replace artificial codes for missing data, such as
-    "-99", with `NA`s, a code used in most programming languages to
+    "-99", with `NA`, a code used in most programming languages to
     indicate that data is "Not Available" [[white2013](#white2013)].
 
     *Filenames*: Store especially useful metadata as part of the
@@ -188,13 +210,13 @@ which can be a powerful accelerator for analysis [[wickham2014](#wickham2014), [
     row per field site and then columns for measurements made at each of
     several time points. Be prepared to gather such columns into a
     variable of measurements, plus a new variable for time point.
-    Fig [fig:tidy] presents an example of such a transformation.
+    Figure [fig:tidy] presents an example of such a transformation.
 
     [fig:tidy]
 
 4.  ***Record all the steps used to process
     data (1d)***: Data manipulation is as
-    integral to your analysis as statistical modelling and inference. If
+    integral to your analysis as statistical modeling and inference. If
     you do not document this step thoroughly, it is impossible for you,
     or anyone else, to repeat the analysis.
 
@@ -202,18 +224,25 @@ which can be a powerful accelerator for analysis [[wickham2014](#wickham2014), [
     data processing. This might feel frustratingly slow, but you will
     get faster with practice. The immediate payoff will be the ease with
     which you can re-do data preparation when new data arrives. You can
-    also re-use data preparation logic in the future for related
-    projects.
+    also re-use data preparation steps in the future for related
+    projects. For very large data sets, data preparation may also
+    include writing and saving scripts to obtain the data or subsets of
+    the data from remote storage.
 
-    When scripting is not feasible, it's important to clearly document
-    every manual action (what menu was used, what column was copied and
-    pasted, what link was clicked, etc.). Often you can at least capture
-    *what* action was taken, if not the complete *why*. For example,
-    choosing a region of interest in an image is inherently interactive,
-    but you can save the region chosen as a set of boundary coordinates.
+    Some data cleaning tools, such as
+    OpenRefine[^7], provide a graphical user
+    interface, but also automatically keep track of each step in the
+    process. When tools like these or scripting is not feasible, it's
+    important to clearly document every manual action (what menu was
+    used, what column was copied and pasted, what link was clicked,
+    etc.). Often you can at least capture *what* action was taken, if
+    not the complete *why*. For example, choosing a region of interest
+    in an image is inherently interactive, but you can save the region
+    chosen as a set of boundary coordinates.
 
-5.  ***Anticipate the need to use multiple
-    tables (1e)***: Raw data, even if tidy,
+5.  ***Anticipate the need to use multiple tables, and use a
+    unique identifier for every
+    record (1e)***: Raw data, even if tidy,
     is not necessarily complete. For example, the primary data table
     might hold the heart rate for individual subjects at rest and after
     a physical challenge, identified via a subject ID. Demographic
@@ -230,17 +259,17 @@ which can be a powerful accelerator for analysis [[wickham2014](#wickham2014), [
     it. (1f)*** Your data is as much a
     product of your research as the papers you write, and just as likely
     to be useful to others (if not more so). Sites such as
-    Figshare[^6],
-    Dryad[^7], and
-    Zenodo[^8] allow others to find your work,
-    use it, and cite it; we discuss licensing in
+    Figshare[^8],
+    Dryad[^9], and
+    Zenodo[^10] allow others to find your
+    work, use it, and cite it; we discuss licensing in
     Section [sec:collaboration] below. Follow your research community's
     standards for how to provide metadata. Note that there are two types
     of metadata: metadata about the dataset as a whole and metadata
     about the content within the dataset. If the audience is humans,
-    write the metadata (the readme file) for humans. If the audience
+    write the metadata (the README file) for humans. If the audience
     includes automatic metadata harvesters, fill out the formal metadata
-    and write a good readme file for the humans [[wickes2015](#wickes2015)].
+    and write a good README file for the humans [[wickes2015](#wickes2015)].
 
 Taken in order, the recommendations above will produce intermediate data
 files with increasing levels of cleanliness and task-specificity. An
@@ -255,7 +284,9 @@ creation and retention of intermediate products. Saving intermediate
 files makes it easy to re-run *parts* of a data analysis pipeline, which
 in turn makes it less onerous to revisit and improve specific data
 processing tasks. Breaking a lengthy workflow into pieces makes it
-easier to understand, share, describe, and modify.
+easier to understand, share, describe, and modify. This is particularly
+true when working with large data sets, where storage and transfer of
+the entire data set is not trivial or inexpensive.
 
 ## Software
 
@@ -270,7 +301,9 @@ it easier for people to understand and (re)use your code.
 The core realization in these practices is that *readable*, *reusable*,
 and *testable* are all side effects of writing *modular* code, i.e., of
 building programs out of short, single-purpose functions with
-clearly-defined inputs and outputs.
+clearly-defined inputs and outputs [[hunt1999](#hunt1999)]. Much has been written on
+this topic (refs!), and this section focuses on practices that best
+balance ease of use with benefit for you and collaborators.
 
 1.  ***Place a brief explanatory comment at the start of
     every program (2a)***, no matter how
@@ -290,39 +323,56 @@ clearly-defined inputs and outputs.
         -s seed    = random number generator seed (large integer)
         -v         = verbose
         -w size    = image width/height in pixels (typically 480-800)
+        -h = show help message
 
 2.  ***Decompose programs into
     functions (2b)*** that are no more than
-    one page (about 60 lines) long, do not use global variables
-    (constants are OK), and take no more than half a dozen parameters.
+    one page (about 60 lines) long. A function is a reusable section of
+    software that can be treated as a black box by the rest of the
+    program. The syntax for creating functions depends on programming
+    language, but generally you name the function, list its input
+    parameters, and describe what information it produces. Functions
+    should take no more than five or six input parameters and should not
+    reference outside information.
+
     The key motivation here is to fit the program into the most limited
     memory of all: ours. Human short-term memory is famously incapable
     of holding more than about seven items at once [[miller1956](#miller1956)]. If we
     are to understand what our software is doing, we must break it into
     chunks that obey this limit, then create programs by combining these
-    chunks.
+    chunks. Putting code into functions also makes it easier to test and
+    troubleshoot when things go wrong.
 
 3.  ***Be ruthless about eliminating
     duplication (2c)***. Write and re-use
-    functions instead of copying and pasting source code, and use data
-    structures like lists rather than creating lots of variables called
-    `score1`, `score2`, `score3`, etc.
+    functions instead of copying and pasting code, and use data
+    structures like lists instead of creating many closely-related
+    variables, e.g. create `score = (1, 2, 3)` rather than `score1`,
+    `score2`, and `score3`.
 
-    The easiest code to debug and maintain is code you didn't actually
-    write, so ***always search for well-maintained software
-    libraries that do what you need (2d)***
-    before writing new code yourself, and ***test libraries
-    before relying on them (2e)***.
+    Also look for well-maintained libraries that already do what you're
+    trying to do. All programming languages have libraries that you can
+    import and use in your code. This is code that people have already
+    written and made available for distribution that have a particular
+    function. For instances there are libraries for statistics,
+    modeling, mapping and many more. Many languages catalog the
+    libraries in a centralized source, for instance R has
+    CRAN[^11], Python has
+    PyPI[^12], and so on. So
+    ***always search for well-maintained software libraries
+    that do what you need (2d)*** before
+    writing new code yourself, but ***test libraries before
+    relying on them (2e)***.
 
 4.  ***Give functions and variables meaningful
     names (2f)***, both to document their
     purpose and to make the program easier to read. As a rule of thumb,
     the greater the scope of a variable, the more informative its name
     should be: while it's acceptable to call the counter variable in a
-    loop `i` or `j`, the major data structures in a program should *not*
-    have one-letter names. Remember to follow each language's
-    conventions for names, such as `net_charge` for Python and
-    `NetCharge` for Java.
+    loop `i` or `j`, things that are re-used often, such as the major
+    data structures in a program should *not* have one-letter names.
+    Remember to follow each language's conventions for names, such as
+    `net_charge` for Python and `NetCharge` for Java.
 
     > **Tab Completion**
     >
@@ -359,8 +409,8 @@ clearly-defined inputs and outputs.
     paper, just as you do with data. Your software is as much a product
     of your research as your papers, and should be as easy for people to
     credit. DOIs for software are provided by
-    Figshare[^9] and
-    Zenodo[^10]. Zenodo integrates directly
+    Figshare[^13] and
+    Zenodo[^14]. Zenodo integrates directly
     with GitHub.
 
 ## Collaboration
@@ -383,16 +433,20 @@ people to give you credit for your work.
     similar) should contain the project's title, a brief description,
     up-to-date contact information, and an example or two of how to run
     various cleaning or analysis tasks. It is often the first thing
-    users of your project will look at, so make it explicit that you
-    welcome contributors and point them to ways they can help.
+    users and collaborators on your project will look at, so make it
+    explicit how you want people to engage with the project. If you are
+    looking for more contributors, make it explicit that you welcome
+    contributors and point them to the license (more below) and ways
+    they can help.
 
     You should also create a `CONTRIBUTING` file that describes what
-    people need to do in order to get the project going and contribute
-    to it, i.e., dependencies that need to be installed, tests that can
-    be run to ensure that software has been installed correctly, and
-    guidelines or checklists that your project adheres to.
+    people need to do in order to get the project going and use or
+    contribute to it, i.e., dependencies that need to be installed,
+    tests that can be run to ensure that software has been installed
+    correctly, and guidelines or checklists that your project adheres
+    to.
 
-2.  ***Create a shared public "to-do"
+2.  ***Create a shared "to-do"
     list (3b)***. This can be a plain text
     file called something like `notes.txt` or `todo.txt`, or you can use
     sites such as GitHub or Bitbucket to create a new *issue* for each
@@ -401,8 +455,17 @@ people to give you credit for your work.
     you choose, describe the items clearly so that they make sense to
     newcomers.
 
-3.  ***Make the license
-    explicit. (3c)*** Have a `LICENSE` file
+3.  ***Decide on communication
+    strategies. (3c)*** Make explicit
+    decisions about (and publicize where appropriate) how members of the
+    project will communicate with each other and with externals users /
+    collaborators. This includes the location and technology for email
+    lists, chat channels, voice / video conferencing, documentation, and
+    meeting notes, as well as which of these channels will be public or
+    private.
+
+4.  ***Make the license
+    explicit. (3d)*** Have a `LICENSE` file
     in the project's home directory that clearly states what license(s)
     apply to the project's software, data, and manuscripts. Lack of an
     explicit license does not mean there isn't one; rather, it implies
@@ -410,12 +473,12 @@ people to give you credit for your work.
     re-use or modify the material.
 
     We recommend Creative Commons licenses for data and text, either
-    CC-0[^11] (the "No Rights Reserved"
-    license) or CC-BY[^12] (the "Attribution"
+    CC-0[^15] (the "No Rights Reserved"
+    license) or CC-BY[^16] (the "Attribution"
     license, which permits sharing and reuse but requires people to give
     appropriate credit to the creators). For software, we recommend a
     permissive open source license such as the MIT, BSD, or Apache
-    license [[stlaurent2004](#stlaurent2004)].
+    license [[laurent2004](#laurent2004)].
 
     > **What Not To Do**
     >
@@ -427,17 +490,17 @@ people to give you credit for your work.
     > "non-commercial". We recommend permissive software licenses rather
     > than the GNU General Public License (GPL) because it is easier to
     > integrate permissively-licensed software into other projects, see
-    > chapter three in [[stlaurent2004](#stlaurent2004)].
+    > chapter three in [[laurent2004](#laurent2004)].
 
-4.  ***Make the project
-    citable (3d)*** by including a `CITATION`
+5.  ***Make the project
+    citable (3e)*** by including a `CITATION`
     file in the project's home directory that describes how to cite this
     project as a whole, and where to find (and how to cite) any data
     sets, code, figures, and other artifacts that have their own DOIs.
     The example below shows the `CITATION` file for the
-    Ecodata Retriever[^13]; for an example of
+    Ecodata Retriever[^17]; for an example of
     a more detailed `CITATION` file, see the one for the
-    khmer[^14] project.
+    khmer[^18] project.
 
         Please cite this work as:
 
@@ -449,7 +512,8 @@ people to give you credit for your work.
 
 Organizing the files that make up a project in a logical and consistent
 directory structure will help you and others keep track of them. Our
-recommendations for doing this are drawn primarily from [[noble2009](#noble2009), [gentzkow2014](#gentzkow2014)].
+recommendations for doing this are drawn primarily from [[noble2009](#noble2009),
+[gentzkow2014](#gentzkow2014)].
 
 1.  ***Put each project in its own directory, which is named
     after the project. (4a)*** Like deciding
@@ -466,7 +530,11 @@ recommendations for doing this are drawn primarily from [[noble2009](#noble2009)
     share more than half of their data and code, they are probably best
     managed together, while if you are building tools that are used in
     several projects, the common code should probably be in a project of
-    its own.
+    its own. Projects do often require their own organizational model,
+    but the below are recommendations on how you can structure data,
+    code, analysis outputs and other files. The important concept is
+    that is useful to organize the project by the types of files and
+    that consistency helps you effectively find and use things later.
 
 2.  ***Put text documents associated with the project in the
     `doc` directory. (4b)*** This includes
@@ -487,7 +555,9 @@ recommendations for doing this are drawn primarily from [[noble2009](#noble2009)
     publication-ready figures or tables should be separated clearly by
     file naming conventions or placed into different subdirectories;
     those belonging to different papers or other publications should be
-    grouped together.
+    grouped together. Similarly, the `data` directory might require
+    subdirectories to organize raw data based on time, method of
+    collection, or other metadata most relevant to your analysis.
 
 4.  ***Put project source code in the `src`
     directory. (4d)*** `src` contains all of
@@ -505,21 +575,36 @@ recommendations for doing this are drawn primarily from [[noble2009](#noble2009)
     the "scientific guts" of the project.
 
     The second type of file in `src` is controller or driver scripts
-    that combine the core analytical functions with particular
-    parameters and data input/output commands in order to execute the
-    entire project analysis from start to finish. A controller script
-    for a simple project, for example, may read a raw data table, import
-    and apply several cleanup and analysis functions from the other
-    files in this directory, and create and save a numeric result. For a
-    small project with one main output, a single controller script
-    should be placed in the main `src` directory and distinguished
-    clearly by a name such as "runall".
+    that that contains all the analysis steps for the entire project
+    from start to finish, with particular parameters and data
+    input/output commands. A controller script for a simple project, for
+    example, may read a raw data table, import and apply several cleanup
+    and analysis functions from the other files in this directory, and
+    create and save a numeric result. For a small project with one main
+    output, a single controller script should be placed in the main
+    `src` directory and distinguished clearly by a name such as
+    "runall". The short example in Figure [fig:script] is typical of
+    scripts of this kind; note how it uses one variable, `TEMP_DIR`, to
+    avoid repeating the name of a particular directory four times.
 
-5.  ***Put external scripts, or compiled programs in the
-    `bin` directory (4e)***. `bin` contains
-    scripts that are brought in from elsewhere, and executable programs
-    compiled from code in the `src` directory[^15]. Projects that have
-    neither will not require `bin`.
+        TEMP_DIR = ./temp_zip_files
+
+        echo "Packaging zip files required by analysis tool..."
+        mkdir $(TEMP_DIR)
+        ./src/make-zip-files.py $(TEMP_DIR) *.dat
+
+        echo "Analyzing..."
+        ./bin/sqr_mean_analyze -i $(TEMP_DIR) -b "temp"
+
+        echo "Cleaning up..."
+        rm -rf $(TEMP_DIR)
+
+    [fig:script]
+
+5.  ***Put compiled programs in the `bin`
+    directory (4e)***. `bin` contains
+    executable programs compiled from code in the `src` directory[^19].
+    Projects that do not have any will not require `bin`.
 
     > **Scripts vs. Programs**
     >
@@ -531,6 +616,19 @@ recommendations for doing this are drawn primarily from [[noble2009](#noble2009)
     > way to think of it is "things that are edited directly" and
     > "things that are not".
 
+    > **External Scripts**
+    >
+    > If `src` is for human-readable source code, and `bin` is for
+    > compiled binaries, where should projects put scripts that are
+    > executed directly—particularly ones that are brought in from
+    > outside the project? On the one hand, these are written in the
+    > same languages as the project-specific scripts in `src`; on the
+    > other, they are executable, like the programs in `bin`. The answer
+    > is that it doesn't matter, as long as each team's projects follow
+    > the same rule. As with many of our other recommendations,
+    > consistency and predictability are more important than
+    > hair-splitting.
+
 6.  ***Name all files to reflect their content or
     function. (4f)*** For example, use names
     such as `bird_count_table.csv`, `manuscript.md`, or
@@ -539,8 +637,8 @@ recommendations for doing this are drawn primarily from [[noble2009](#noble2009)
     (e.g., `fig_3_a.png`), since those numbers will almost certainly
     change as the project evolves.
 
-The diagram below provides a concrete example of how a simple project
-might be organized following these recommendations:
+The diagram in Figure [fig:project] provides a concrete example of how a
+simple project might be organized following these recommendations:
 
     .
     |-- CITATION
@@ -558,6 +656,8 @@ might be organized following these recommendations:
     |-- src
     |   -- sightings_analysis.py
     |   -- runall.py
+
+[fig:project]
 
 The root directory contains a `README` file that provides an overview of
 the project as a whole, a `CITATION` file that explains how to reference
@@ -592,14 +692,13 @@ Mercurial, and Subversion. They keep track of what was changed in a file
 when and by whom, and synchronize changes to a central server so that
 many users can manage changes to the same set of files.
 
-Although all of the authors use version control daily for all of their
-projects, we recognize that many newcomers to computational science find
-version control to be one of the more difficult practices to adopt. We
-therefore recommend that projects adopt *either* a systematic manual
-approach for managing changes *or* version control in its full glory.
+While these version control tools make tracking changes easier, they can
+have a steep learning curve. So, we provide two sets of recommendations,
+*1* a systematic manual approach for managing changes and *2* version
+control in its full glory, and you can use the first while working
+towards the second, or just jump in to version control.
 
-Whatever system you chose, we recommend that you use it in the following
-way:
+Whatever system you chose, we recommend that you:
 
 1.  ***Back up (almost) everything created by a human being
     as soon as it is created. (5a)*** This
@@ -638,10 +737,11 @@ way:
 
 5.  ***Store each project in a folder that is mirrored off
     the researcher's working machine (5e)***
-    using a system such as Dropbox or a remote version control
-    repository such as GitHub. Synchronize that folder at least daily.
-    It may take a few minutes, but that time is repaid the moment a
-    laptop is stolen or its hard drive fails.
+    using a system such as Dropbox[^20] or a
+    remote version control repository such as
+    GitHub[^21]. Synchronize that folder at
+    least daily. It may take a few minutes, but that time is repaid the
+    moment a laptop is stolen or its hard drive fails.
 
 ### Manual Versioning
 
@@ -688,10 +788,10 @@ two additional parts:
     >
     > Copying everything like this may seem wasteful, since many files
     > won't have changed, but consider: a terabyte hard drive costs
-    > about $50 retail, which means that 50 GByte costs less than a
-    > latte. Provided large data files are kept out of the backed-up
-    > area (discussed below), this approach costs less than the time it
-    > would take to select files by hand for copying.
+    > about \$50 retail, which means that 50 GByte costs less than \$5.
+    > Provided large data files are kept out of the backed-up area
+    > (discussed below), this approach costs less than the time it would
+    > take to select files by hand for copying.
 
 This manual procedure satisfies the requirements outlined above without
 needing any new tools. If multiple researchers are working on the same
@@ -704,10 +804,9 @@ files whenever a backup copy is made.
 
 What the manual process described above requires most is
 self-discipline. The version control tools that underpin our second
-approach—the one all authors use for their projects—don't just
-accelerate the manual process: they also automate some steps while
-enforcing others, and thereby require less self-discipline for more
-reliable results.
+approach—the one we use in our own projects–don't just accelerate the
+manual process: they also automate some steps while enforcing others,
+and thereby require less self-discipline for more reliable results.
 
 1.  ***Use a version control
     system (5h)***, to manage changes to a
@@ -716,20 +815,16 @@ reliable results.
 Box 2 briefly explains how version control systems work. It's hard to
 know what version control tool is most widely used in research today,
 but the one that's most talked about is undoubtedly
-Git[^16]. This is largely because of
-GitHub[^17], a popular hosting site that
+Git[^22]. This is largely because of
+GitHub[^23], a popular hosting site that
 combines the technical infrastructure for collaboration via Git with a
 modern web interface. GitHub is free for public and open source projects
 and for users in academia and nonprofits.
-GitLab[^18] is a well-regarded alternative
+GitLab[^24] is a well-regarded alternative
 that some prefer, because the GitLab platform itself is free and open
-source.
-
-For those who find Git's command-line syntax inconsistent and confusing,
-Mercurial[^19] is a good choice;
-Bitbucket[^20] provides free hosting for both
-Git and Mercurial repositories, but does not have nearly as many
-scientific users.
+source. Bitbucket[^25] provides free hosting
+for both Git and Mercurial repositories, but does not have nearly as
+many scientific users.
 
 ### What Not to Put Under Version Control
 
@@ -738,7 +833,7 @@ types. In particular, version control can be more or less rewarding
 depending on file size and format. First, file comparison in version
 control systems is optimized for plain text files, such as source code.
 The ability to see so-called "diffs" is one of the great joys of version
-control. Unfortunately, Microsoft Office files (like the `.docx` files
+control. Unfortunately, Microsoft^^ Office files (like the `.docx` files
 used by Word) or other binary files, e.g., PDFs, can be stored in a
 version control system, but it is not possible to pinpoint specific
 changes from one version to the next. Tabular data (such as CSV files)
@@ -757,7 +852,7 @@ Third, today's version control systems are not designed to handle
 megabyte-sized files, never mind gigabytes, so large data or results
 files should not be included. (As a benchmark for "large", the limit for
 an individual file on GitHub is 100MB.) Some emerging hybrid systems
-such as Git LFS[^21] put textual notes under
+such as Git LFS[^26] put textual notes under
 version control, while storing the large data itself in a remote server,
 but these are not yet mature enough for us to recommend.
 
@@ -783,9 +878,10 @@ writing just as much as it has changed research.
 A common practice in academic writing is for the lead author to send
 successive versions of a manuscript to coauthors to collect feedback,
 which is returned as changes to the document, comments on the document,
-plain text in email, or a mix of all three. This results in a lot of
-files to keep track of, and a lot of tedious manual labor to merge
-comments to create the next master version.
+plain text in email, or a mix of all three. This allows co-authors to
+use familiar tools, but results in a lot of files to keep track of, and
+a lot of tedious manual labor to merge comments to create the next
+master version.
 
 Instead of an email-based workflow, we recommend mirroring good
 practices for managing software and data to make writing scalable,
@@ -833,12 +929,12 @@ Our first alternative will already be familiar to many researchers:
 We realize that in many cases, even this solution is asking too much
 from collaborators who see no reason to move forward from desktop GUI
 tools. To satisfy them, the manuscript can be converted to a desktop
-editor file format (e.g., Microsoft Word's `.docx` or LibreOffice's
+editor file format (e.g., Microsoft^^ Word `.docx` or LibreOffice
 `.odt`) after major changes, then downloaded and saved in the `doc`
 folder. Unfortunately, this means merging some changes and suggestions
 manually, as existing tools cannot always do this automatically when
 switching from a desktop file format to text and back (although
-Pandoc[^22] can go a long way).
+Pandoc[^27] can go a long way).
 
 ### Text-based Documents Under Version Control
 
@@ -848,10 +944,10 @@ disciplines for decades:
 
 1.  ***Write the manuscript in a plain text format that
     permits version control (6b)*** such as
-    LaTeX[^23] or
-    Markdown[^24], and then convert them to
+    LaTeX[^28] or
+    Markdown[^29], and then convert them to
     other formats such as PDF as needed using scriptable tools like
-    Pandoc[^25].
+    Pandoc[^30].
 
 Using a version control system provides good support for finding and
 merging differences resulting from concurrent changes. It also provides
@@ -865,9 +961,11 @@ make, BiBTeX, and Git/GitHub.
 
 ### Why Two Recommendations for Manuscripts?
 
-The first draft of this paper recommended always using plain text in
-version control to manage manuscripts, but several reviewers pushed back
-forcefully. For example, Stephen Turner wrote:
+We initially recommended that researchers should always using plain text
+in version control to manage manuscripts. However, several members of
+our community felt strongly that the learning curve associated with this
+recommendation was a significant barrier to entry. For example, Stephen
+Turner wrote:
 
 > …try to explain the notion of compiling a document to an
 > overworked physician you collaborate with. Oh, but before that, you
@@ -883,7 +981,7 @@ forcefully. For example, Stephen Turner wrote:
 > down to "just give me a Word document with tracked changes," or
 > similar.
 
-Similarly, Arjun Raj said in a blog post[^26]:
+Similarly, Arjun Raj said in a blog post[^31]:
 
 > Google Docs excels at easy sharing, collaboration, simultaneous
 > editing, commenting and reply-to-commenting. Sure, one can approximate
@@ -891,17 +989,20 @@ Similarly, Arjun Raj said in a blog post[^26]:
 > why anyone would like to…
 >
 > The goal of reproducible research is to make sure one
-> can…reproduce…computational analyses. The
+> can… reproduce… computational analyses. The
 > goal of version control is to track changes to source code. These are
 > fundamentally distinct goals, and while there is some overlap, version
 > control is merely a tool to help achieve that, and comes with so much
 > overhead and baggage that it is often not worth the effort.
 
-In keeping with our goal of recommending "good enough" practices, we
-have therefore included online, collaborative editing in something like
-Google Docs. We still recommend *against* traditional desktop tools like
-LibreOffice and Microsoft Word because they make collaboration more
-difficult than necessary.
+Collaborative editing in something like Google Docs does not have all
+the benefits of text-based formats (notably, being able to store
+manuscripts in the same place, and in the same way, as other materials).
+However, it does meet the requirements that we initially outlined. We
+still recommend *against* using desktop tools like LibreOffice and
+MicrosoftWord with either email or file-sharing services like Dropbox,
+as workflows based on these do not scale beyond a small number of
+participants.
 
 ### Supplementary Materials
 
@@ -912,7 +1013,7 @@ these materials as accessible to others as possible, do not rely solely
 on the PDF format, since extracting data from PDFs is notoriously hard.
 Instead, we recommend separating the results that you may expect others
 to reuse (e.g., data in tables, data behind figures) into separate,
-text-format files in formats such as CSV, JSON, YAML, XML, or HDF5[^27].
+text-format files in formats such as CSV, JSON, YAML, XML, or HDF5[^32].
 The same holds for any commands or code you want to include as
 supplementary material: use the format that most easily enables reuse
 (source code files, Unix shell scripts etc).
@@ -938,7 +1039,7 @@ investment before they start to pay off.
 
 **Build Tools**
 
-:   Tools like Make[^28] were originally
+:   Tools like Make[^33] were originally
     developed to recompile pieces of software that had fallen out of
     date. They are now used to regenerate data and entire papers: when
     one or more raw input files change, Make can automatically re-run
@@ -963,7 +1064,7 @@ investment before they start to pay off.
 
 **Continuous Integration**
 
-:   Tools like Travis-CI[^29] automatically
+:   Tools like Travis-CI[^34] automatically
     run a set of user-defined commands whenever changes are made to a
     version control repository. These commands typically execute tests
     to make sure that software hasn't regressed, i.e., that things which
@@ -994,7 +1095,7 @@ investment before they start to pay off.
 
 :   Ontologies and other formal definitions of data are useful, but in
     our experience, even simplified things like Dublin
-    Core[^30] are rarely encountered in the wild.
+    Core[^35] are rarely encountered in the wild.
 
 **Documentation**
 
@@ -1007,8 +1108,8 @@ investment before they start to pay off.
 **A Bibliography Manager**
 
 :   Researchers should use a reference manager of some sort, such as
-    Zotero[^31], and should also obtain and
-    use an ORCID[^32] to identify themselves
+    Zotero[^36], and should also obtain and
+    use an ORCID[^37] to identify themselves
     in their publications, but discussion of those is outside the scope
     of this paper.
 
@@ -1030,7 +1131,7 @@ The problem comes when those experienced developers give advice to
 people who *haven't* already mastered the tools, and *don't* realize
 (yet) that they will save time if and when their project grows. In that
 situation, advocating unit testing with coverage checking and continuous
-integration is more likely to scare newcomers off than to aid them.
+integration is more likely to overwhelm newcomers rather than aid them.
 
 ## Conclusion
 
@@ -1038,25 +1139,52 @@ We have outlined a series of practices for scientific computing based on
 our collective experience, and the experience of the thousands of
 researchers we have met through Software Carpentry, Data Carpentry, and
 similar organizations. These practices are pragmatic, accessible to
-people who consider themselves computing novices, and can be applied by
+people who consider themselves new to computing, and can be applied by
 both individuals and groups. Most importantly, these practices make
 researchers more productive individually by enabling them to get more
 done in less time and with less pain. They also accelerate research as a
 whole by making computational work (which increasingly means *all* work)
 more reproducible.
 
-But progress will not happen by itself. Universities and funding
-agencies need to support training for researchers in the use of these
-tools. Such investment will improve confidence in the results of
-computational work and allow us to make more rapid progress on important
-research questions.
+But progress will not happen by itself. The practices are being
+increasingly incentivized through requirements from funding agencies and
+journals, but the time and skills required to put these approaches into
+practice are still not being valued.
+
+At a local level, PIs can have the most impact, requiring that the
+research their lab produces follow these recommendations. Even if a PI
+doesn't have a background in computation, they can require that students
+show and share their code in lab meetings and with lab mates, that data
+is available and accessible to all in the lab and that computational
+methods sections are comprehensive. PIs can also value the time it takes
+to do these things effectively and provide opportunities for training.
+
+Universities can also support such efforts. While this is often provided
+by IT or High Performance Computing (HPC) groups, research librarians
+are an often under-appreciated resource. Librarians have thought about
+and worked with data and provenance even before these computational
+challenges and increasingly have dedicated data librarians on staff who
+have an explicit service role.
+
+Many campuses also have self-organized groups led by students who wish
+to learn from each other, which may operate independently or in concert
+with organizations like Software Carpentry, Data Carpentry, or
+The Hacker Within[^38].
+
+Finally, many funding agencies now require data management plans and
+education and outreach activities. The true cost of implementing these
+plans includes training: it is unfair as well as counter-productive to
+insist that researchers do things without teaching them how. We believe
+it is now time for funders to invest in such training; we hope that our
+recommendations will help shape consensus on what "good enough" looks
+like and how to achieve it.
 
 ## Bibliography
 
 <a name="brown2015"></a>[brown2015]:
 Brown CT. How to grow a sustainable software development process; 2015.
 Available from:
-[http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html](http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html).
+<http://ivory.idyll.org/blog/2015-growing-sustainable-software-development-process.html>.
 
 <a name="gawande2011"></a>[gawande2011]:
 Gawande A. The Checklist Manifesto: How to Get Things Right. Picador;
@@ -1067,17 +1195,17 @@ Gentzkow M, Shapiro JM. Code and Data for the Social Sciences: A
 Practitioner's Guide; 2014. Available from:
 <http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf>.
 
-<a name="hart2015"></a>[hart2015]:
-Hart E, Barmby P, LeBauer D, Michonneau F, Mount S, Poisot T, et al..
-Ten simple rules for digital data storage; 2015.
+<a name="hart2016"></a>[hart2016]:
+Hart EM, Barmby P, LeBauer D, Michonneau F, Mount S, Mulrooney P, et al.
+Ten simple rules for digital data storage. PLoS Computational Biology.
+2016;doi:doi:10.1371/journal.pcbi.1005097.
 
-<a name="illinois"></a>[illinois]:
-Illinois Library U. File Formats and Organization;. Available from:
-<http://www.library.illinois.edu/sc/services/data_management/file_formats.html>.
+<a name="hunt1999"></a>[hunt1999]:
+Hunt A, Thomas D. The Pragmatic Programmer. Addison-Wesley; 1999.
 
 <a name="kitzes2016"></a>[kitzes2016]:
 Kitzes J. Reproducible Workflows; 2016. Available from:
-[http://datasci.kitzes.com/lessons/python/reproducible_workflow.html](http://datasci.kitzes.com/lessons/python/\-reproducible_workflow.html).
+<http://datasci.kitzes.com/lessons/python/reproducible_workflow.html>.
 
 <a name="miller1956"></a>[miller1956]:
 Miller GA. The Magical Number Seven, Plus or Minus Two: Some Limits on
@@ -1108,6 +1236,10 @@ Systematic Literature Review on the Barriers Faced by Newcomers to Open
 Source Software Projects. Information and Software Technology.
 2015;59(C). doi:10.1016/j.infsof.2014.11.001.
 
+<a name="UIllinois"></a>[UIllinois]:
+U. of Illinois Library. File Formats and Organization. Available from:
+<http://www.library.illinois.edu/sc/services/data_management/file_formats.html>.
+
 <a name="white2013"></a>[white2013]:
 White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR. Nine
 Simple Ways to Make It Easier to (Re)use Your Data. Ideas in Ecology and
@@ -1115,7 +1247,7 @@ Evolution. 2013;6(2). doi:doi:10.4033/iee.2013.6b.6.f.
 
 <a name="wickes2015"></a>[wickes2015]:
 Wickes E. Comment on "Metadata"; 2015. Available from:
-[https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442).
+<https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/issues/3#issuecomment-157410442>.
 
 <a name="wickham2014"></a>[wickham2014]:
 Wickham H. Tidy Data. Journal of Statistical Software. 2014;59(1):1–23.
@@ -1134,10 +1266,11 @@ doi:10.1371/journal.pbio.1001745.
 <li>Data Management
     <ol type="a">
     <li>Save the raw data.</li>
+    <li>Ensure that raw data is backed up in more than one location.</li>
     <li>Create the data you wish to see in the world.</li>
     <li>Create analysis-friendly data.</li>
     <li>Record all the steps used to process data.</li>
-    <li>Anticipate the need to use multiple tables.</li>
+    <li>Anticipate the need to use multiple tables, and use a unique identifier for every record.</li>
     <li>Submit data to a reputable DOI-issuing repository so that others can access and cite it.</li>
     </ol>
 </li>
@@ -1158,7 +1291,8 @@ doi:10.1371/journal.pbio.1001745.
 <li>Collaboration
     <ol type="a">
     <li>Create an overview of your project.</li>
-    <li>Create a shared public "to-do" list.</li>
+    <li>Create a shared "to-do" list for the project.</li>
+    <li>Decide on communication strategies.</li>
     <li>Make the license explicit.</li>
     <li>Make the project citable.</li>
     </ol>
@@ -1166,10 +1300,10 @@ doi:10.1371/journal.pbio.1001745.
 <li>Project Organization
     <ol type="a">
     <li>Put each project in its own directory, which is named after the project.</li>
-    <li>Put text documents associated with the project in the <code>doc</code> directory.</li>
-    <li>Put raw data and metadata in a <code>data</code> directory, and files generated during cleanup and analysis in a <code>results</code> directory.</li>
-    <li>Put project source code in the <code>src</code> directory.</li>
-    <li>Put external scripts, or compiled programs in the <code>bin</code> directory.</li>
+    <li>Put text documents associated with the project in the `doc` directory.</li>
+    <li>Put raw data and metadata in a `data` directory, and files generated during cleanup and analysis in a `results` directory.</li>
+    <li>Put project source code in the `src` directory.</li>
+    <li>Put external scripts, or compiled programs in the `bin` directory.</li>
     <li>Name all files to reflect their content or function.</li>
     </ol>
 </li>
@@ -1180,21 +1314,18 @@ doi:10.1371/journal.pbio.1001745.
     <li>Share changes frequently.</li>
     <li>Create, maintain, and use a checklist for saving and sharing changes to the project.</li>
     <li>Store each project in a folder that is mirrored off the researcher's working machine.</li>
-    <li>Add a file called <code>CHANGELOG.txt</code> to the project's <code>docs</code> subfolder.</li>
+    <li>Add a file called `CHANGELOG.txt` to the project's `docs` subfolder.</li>
     <li>Copy the entire project whenever a significant change has been made.</li>
+    <li>Use a version control system.</li>
     </ol>
 </li>
 <li>Manuscripts
     <ol type="a">
     <li>Write manuscripts using online tools with rich formatting, change tracking, and reference management.</li>
-    <li>Include a <code>PUBLICATIONS</code> file in the project's <code>doc</code> directory.</li>
     <li>Write the manuscript in a plain text format that permits version control.</li>
-    <li>Include tools needed to compile manuscripts in the project folder.</li>
     </ol>
 </li>
 </ol>
-
-----
 
 ## Box 2: How Version Control Systems Work
 
@@ -1233,70 +1364,82 @@ control:
 
 ## Footnotes
 
-[^1]: <http://software-carpentry.org/>
+[^1]: `http://software-carpentry.org/`
 
-[^2]: <http://datacarpentry.org/>
+[^2]: `http://datacarpentry.org/`
 
-[^3]: Note that English lacks a good word for this: "mediocre",
-    "adequate", and "sufficient" aren't exactly right.
-
-[^4]: As the joke goes, yourself from three months ago doesn't answer
+[^3]: As the joke goes, yourself from three months ago doesn't answer
     email…
 
-[^5]: The node-and-arc kind.
+[^4]: `https://aws.amazon.com/s3/`
 
-[^6]: <https://figshare.com/>
+[^5]: `https://cloud.google.com/storage/`
 
-[^7]: <http://datadryad.org/>
+[^6]: The node-and-arc kind.
 
-[^8]: <https://zenodo.org/>
+[^7]: `http://www.openrefine.org`
 
-[^9]: <https://figshare.com/>
+[^8]: `https://figshare.com/`
 
-[^10]: <https://zenodo.org/>
+[^9]: `http://datadryad.org/`
 
-[^11]: <https://creativecommons.org/about/cc0/>
+[^10]: `https://zenodo.org/`
 
-[^12]: <https://creativecommons.org/licenses/by/4.0/>
+[^11]: `https://cran.r-project.org/`
 
-[^13]: <https://github.com/weecology/retriever>
+[^12]: `https://pypi.python.org/`
 
-[^14]: <https://github.com/dib-lab/khmer/blob/master/CITATION>
+[^13]: `https://figshare.com/`
 
-[^15]: The name `bin` is an old Unix convention, and comes from the term
+[^14]: `https://zenodo.org/`
+
+[^15]: `https://creativecommons.org/about/cc0/`
+
+[^16]: `https://creativecommons.org/licenses/by/4.0/`
+
+[^17]: `https://github.com/weecology/retriever`
+
+[^18]: `https://github.com/dib-lab/khmer/blob/master/CITATION`
+
+[^19]: The name `bin` is an old Unix convention, and comes from the term
     "binary".
 
-[^16]: <https://git-scm.com/>
+[^20]: `http://dropbox.com`
 
-[^17]: <http://github.com>
+[^21]: `http://github.com`
 
-[^18]: <https://about.gitlab.com>
+[^22]: `https://git-scm.com/`
 
-[^19]: <https://www.mercurial-scm.org/>
+[^23]: `http://github.com`
 
-[^20]: <https://bitbucket.org/>
+[^24]: `https://about.gitlab.com`
 
-[^21]: <https://git-lfs.github.com/>
+[^25]: `https://bitbucket.org/`
 
-[^22]: <http://pandoc.org/>
+[^26]: `https://git-lfs.github.com/`
 
-[^23]: <http://www.latex-project.org/>
+[^27]: `http://pandoc.org/`
 
-[^24]: <http://daringfireball.net/projects/markdown/>
+[^28]: `http://www.latex-project.org/`
 
-[^25]: <http://pandoc.org/>
+[^29]: `http://daringfireball.net/projects/markdown/`
 
-[^26]: <http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html>
+[^30]: `http://pandoc.org/`
 
-[^27]: We recommend against more innovative formats in deference to an
+[^31]: `http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html`
+
+[^32]: We recommend against more innovative formats in deference to an
     old saying: "What's oldest lasts longest."
 
-[^28]: <https://www.gnu.org/software/make/>
+[^33]: `https://www.gnu.org/software/make/`
 
-[^29]: <https://travis-ci.org/>
+[^34]: `https://travis-ci.org/`
 
-[^30]: <http://dublincore.org/>
+[^35]: `http://dublincore.org/`
 
-[^31]: <http://zotero.org/>
+[^36]: `http://zotero.org/`
 
-[^32]: <http://orcid.org/>
+[^37]: `http://orcid.org/`
+
+[^38]: `http://www.thehackerwithin.org/`
+
