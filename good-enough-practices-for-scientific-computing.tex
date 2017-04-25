@@ -94,7 +94,7 @@
 
 %% Include all macros below
 
-\newcommand{\withurl}[2]{{#1}\footnote{{\texttt{#2}}}}
+\newcommand{\withurl}[2]{{#1}}
 \newcommand{\practicesection}[2]{\section{#1}\label{#2}}
 \newcommand{\practice}[2]{\textbf{\emph{{#2}~({#1})}}}
 
@@ -198,9 +198,9 @@ because there is no point recommending something that people won't
 actually adopt.
 
 Many of our recommendations are for the benefit of the collaborator
-every researcher cares about most: their future self\footnote{As the
+every researcher cares about most: their future self (as the
 joke goes, yourself from three months ago doesn't answer
-email{\ldots}}. Change is hard and if researchers don't see those
+email{\ldots}). Change is hard and if researchers don't see those
 benefits quickly enough to justify the pain, they will almost
 certainly switch back to their old way of doing things.  This rules
 out many practices, such as code review, that we feel are essential
@@ -307,7 +307,7 @@ data'', which can be a powerful accelerator for analysis
   to open, non-proprietary formats that ensure machine readability
   across time and computing setups \cite{ffIllinois}. Good options
   include CSV for tabular data, JSON, YAML, or XML for non-tabular
-  data such as graphs\footnote{The node-and-arc kind.}, and HDF5 for
+  data such as graphs (the node-and-arc kind), and HDF5 for
   certain kinds of structured data.
 
   \emph{Variable names}: Replace inscrutable variable names and
@@ -675,11 +675,10 @@ work.
   describes how to cite this project as a whole, and where to find
   (and how to cite) any data sets, code, figures, and other artifacts
   that have their own DOIs.  The example below shows the
-  \texttt{CITATION} file for the \withurl{Ecodata
-  Retriever}{https://github.com/weecology/retriever}; for an example
-  of a more detailed \texttt{CITATION} file, see the one for the
-  \withurl{khmer}{https://github.com/dib-lab/khmer/blob/master/CITATION}
-  project.
+  \texttt{CITATION} file for the Ecodata
+  Retriever (https://github.com/weecology/retriever); for an example
+  of a more detailed \texttt{CITATION} file, see the one for the khmer
+  project (https://github.com/dib-lab/khmer).
 
 {\small
 \begin{verbatim}
@@ -804,13 +803,13 @@ rm -rf $(TEMP_DIR)
 
 \item
 
+\pagebreak
+
   \practice{4e}{Put compiled programs in the \texttt{bin} directory}.
   \texttt{bin} contains executable programs compiled from code in the
-  \texttt{src} directory\footnote{The name \texttt{bin} is an old Unix
-  convention, and comes from the term ``binary''.}. Projects that
+  \texttt{src} directory (the name \texttt{bin} is an old Unix
+  convention, and comes from the term ``binary''). Projects that
   do not have any will not require \texttt{bin}.
-
-\pagebreak
 
   \begin{quote}
     \noindent \textbf{Scripts vs.\ Programs}
@@ -1029,8 +1028,6 @@ two additional parts:
   storage (such as Dropbox), \texttt{current} is where development is
   done, and other folders within \texttt{project\_name} are old
   versions.
-
-\pagebreak
 
   \begin{quote}
     \noindent \textbf{Data is Cheap, Time is Expensive}
@@ -1279,8 +1276,7 @@ entry.  For example, Stephen Turner wrote:
 
 \end{quote}
 
-Similarly, Arjun Raj said in \withurl{a blog
-post}{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}:
+Similarly, Arjun Raj \cite{raj2016} said in a blog post:
 
 \begin{quote}
 
@@ -1317,9 +1313,9 @@ solely on the PDF format, since extracting data from PDFs is
 notoriously hard.  Instead, we recommend separating the results that
 you may expect others to reuse (e.g., data in tables, data behind
 figures) into separate, text-format files in formats such as CSV,
-JSON, YAML, XML, or HDF5\footnote{We recommend against more innovative
+JSON, YAML, XML, or HDF5. We recommend against more innovative
 formats in deference to an old saying: ``What's oldest lasts
-longest.''}.  The same holds for any commands or code you want to
+longest.'' The same holds for any commands or code you want to
 include as supplementary material: use the format that most easily
 enables reuse (source code files, Unix shell scripts etc).
 
@@ -1583,6 +1579,11 @@ Steinmacher I, {Graciotto Silva} M, Gerosa M, Redmiles DF.
 Gawande A.
 \newblock The Checklist Manifesto: How to Get Things Right.
 \newblock Picador; 2011.
+
+\bibitem{raj2016}
+Raj A. From over-reproducibility to a reproducibility wish-list; 2016.
+\newblock Available from:
+  \url{http://rajlaboratory.blogspot.ca/2016/03/from-over-reproducibility-to.html}.
 
 \bibitem{petre2014}
 Petre M, Wilson G.
