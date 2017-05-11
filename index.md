@@ -506,7 +506,7 @@ people to give you credit for your work.
 
         Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
         improving access to existing ecological data." PLOS ONE 8:e65848.
-        http://doi.org/doi:10.1371/journal.pone.0065848
+        https://doi.org/10.1371/journal.pone.0065848
 
 ## Project Organization
 
