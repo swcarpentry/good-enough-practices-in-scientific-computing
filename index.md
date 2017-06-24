@@ -22,7 +22,7 @@ Tracy K. Teal<sup>6</sup>
 
 6) Data Carpentry / tkteal@datacarpentry.org
 
-> **A PDF of this paper can be found at <http://arxiv.org/abs/1609.00037>.
+> **This paper has now been published in PLOS Computational biology: <http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510>.
 > We would appreciate feedback of all kinds:
 > please email comments to the authors.**
 
