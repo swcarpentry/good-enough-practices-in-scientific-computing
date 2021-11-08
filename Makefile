@@ -1,6 +1,6 @@
 LATEX=pdflatex
 BIBTEX=bibtex
-STEM=good-enough-practices-for-scientific-computing
+STEM=good-enough-practices
 
 all : commands
 
