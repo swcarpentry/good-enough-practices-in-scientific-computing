@@ -18,7 +18,7 @@ authors:
   orcid: "https://orcid.org/0000-0001-5539-0999"
 - family-names: "Teal"
   given-names: "Tracy K."
-  orcid: ""
+  orcid: "https://orcid.org/0000-0002-9180-9598"
 title: "Good enough practices in scientific computing"
 preferred-citation:
   type: article
@@ -40,7 +40,7 @@ preferred-citation:
     orcid: "https://orcid.org/0000-0001-5539-0999"
   - family-names: "Teal"
     given-names: "Tracy K."
-    orcid: ""
+    orcid: "https://orcid.org/0000-0002-9180-9598"
   doi: "10.1371/journal.pcbi.1005510"
   journal: "PLOS Computational Biology"
   title: "Good enough practices in scientific computing"
